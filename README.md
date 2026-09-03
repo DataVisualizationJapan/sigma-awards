@@ -2,7 +2,7 @@
 
 [The Sigma Awards](https://sigmaawards.org) に応募されたデータジャーナリズム作品を、カードUIで検索・閲覧する静的サイトです。
 
-公開ページ: https://datavisualizationjapan.github.io/sigma-awards/
+公開ページ: https://sigma-awards.data-visualization.jp/
 
 ## データ
 
