@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sigma Awards エントリー一覧</title>
+    <meta
+      name="description"
+      content="The Sigma Awards に応募されたデータジャーナリズム作品の一覧。2020年から2026年までの公開データを検索できます。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%230F6CBD' width='32' height='32' rx='6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' fill='white' font-family='Georgia, serif'%3EΣ%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#results">作品一覧へ</a>
+    <header class="masthead">
+      <div class="masthead__inner">
+        <p class="masthead__kicker">Data Visualization Japan</p>
+        <h1>Sigma Awards エントリー</h1>
+        <p class="masthead__lede">
+          GIJN 主催の国際データジャーナリズム賞に応募された作品です。データは
+          <a href="https://github.com/Sigma-Awards/The-Sigma-Awards-projects-data">The Sigma Awards の公開リポジトリ</a>
+          から読み込んでいます。
+        </p>
+      </div>
+    </header>
+
+    <main class="page">
+      <form class="filters" id="filters" role="search">
+        <label class="filters__search">
+          <span class="filters__label">検索</span>
+          <input
+            id="q"
+            type="search"
+            name="q"
+            placeholder="タイトル、媒体、国、タグ"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+
+        <fieldset class="filters__years">
+          <legend class="filters__label">開催年</legend>
+          <div class="chip-row" id="year-chips"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="filters__label">表示</legend>
+          <div class="chip-row" id="locale-chips">
+            <button class="chip" type="button" data-locale="ja" aria-pressed="true">日本語</button>
+            <button class="chip" type="button" data-locale="src" aria-pressed="false">原文</button>
+          </div>
+        </fieldset>
+
+        <div class="filters__row">
+          <label>
+            <span class="filters__label">結果</span>
+            <select id="result" name="result">
+              <option value="">すべて</option>
+              <option value="winner">受賞</option>
+              <option value="shortlist">ショートリスト</option>
+              <option value="mention">選外表彰</option>
+              <option value="entry">応募</option>
+            </select>
+          </label>
+          <label>
+            <span class="filters__label">種別</span>
+            <select id="kind" name="kind">
+              <option value="">すべて</option>
+              <option value="project">作品</option>
+              <option value="portfolio">ポートフォリオ</option>
+            </select>
+          </label>
+          <label>
+            <span class="filters__label">国・地域</span>
+            <select id="country" name="country">
+              <option value="">すべて</option>
+            </select>
+          </label>
+        </div>
+      </form>
+
+      <section class="results" id="results" aria-live="polite">
+        <div class="results__meta">
+          <p id="result-count">読み込み中</p>
+          <nav class="pager" id="pager" hidden></nav>
+        </div>
+        <div class="card-grid" id="card-grid"></div>
+        <p class="empty" id="empty" hidden></p>
+        <p class="error" id="error" hidden></p>
+      </section>
+    </main>
+
+    <aside
+      class="drawer"
+      id="drawer"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="drawer-title"
+    >
+      <div class="drawer__panel">
+        <button class="drawer__close" type="button" id="drawer-close" aria-label="詳細を閉じる">
+          閉じる
+        </button>
+        <img class="drawer__thumb" id="drawer-thumb" alt="" hidden />
+        <p class="drawer__meta" id="drawer-meta"></p>
+        <h2 id="drawer-title"></h2>
+        <p class="drawer__original-title" id="drawer-original-title"></p>
+        <p class="drawer__org" id="drawer-org"></p>
+        <p class="drawer__langs" id="drawer-langs"></p>
+        <div class="drawer__tags" id="drawer-tags"></div>
+        <div class="drawer__body" id="drawer-body"></div>
+        <details class="drawer__source" id="drawer-source">
+          <summary>原文</summary>
+          <div id="drawer-source-body"></div>
+        </details>
+        <div class="drawer__links" id="drawer-links"></div>
+      </div>
+    </aside>
+    <div class="drawer__backdrop" id="drawer-backdrop" hidden></div>
+
+    <footer class="site-footer">
+      <p>
+        データ提供:
+        <a href="https://sigmaawards.org">The Sigma Awards</a>
+        /
+        <a href="https://gijn.org">GIJN</a>
+        。ライセンスは
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+        です。タイトル・概要・本文の日本語は機械翻訳です。
+      </p>
+      <p>
+        ソース:
+        <a href="https://github.com/orgs/Sigma-Awards/repositories">Sigma-Awards repositories</a>
+      </p>
+    </footer>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+.tmp-data/
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+:memory:.ses
+
