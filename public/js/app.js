@@ -1,6 +1,9 @@
 import { countryJa, langsJa, sizeJa, tagJa } from "./i18n.js";
 
 const PAGE_SIZE = 24;
+const DEFAULT_YEAR = "2026";
+const RESULT_VALUES = new Set(["winner", "shortlist", "mention", "entry"]);
+const KIND_VALUES = new Set(["project", "portfolio"]);
 const RESULT_LABELS = {
   winner: "受賞",
   shortlist: "ショートリスト",
@@ -14,9 +17,10 @@ const KIND_LABELS = {
 
 const state = {
   entries: [],
+  years: [],
   filtered: [],
   page: 1,
-  year: "2026",
+  year: DEFAULT_YEAR,
   result: "",
   kind: "",
   country: "",
@@ -112,6 +116,66 @@ function compareEntries(a, b) {
   if (a.year !== b.year) return b.year - a.year;
   if (rank[a.result] !== rank[b.result]) return rank[a.result] - rank[b.result];
   return a.title.localeCompare(b.title, "en");
+}
+
+function filtersToSearch() {
+  const params = new URLSearchParams();
+  if (state.query) params.set("q", state.query);
+  if (!state.year) params.set("year", "all");
+  else if (state.year !== DEFAULT_YEAR) params.set("year", state.year);
+  if (state.result) params.set("result", state.result);
+  if (state.kind) params.set("kind", state.kind);
+  if (state.country) params.set("country", state.country);
+  if (state.page > 1) params.set("page", String(state.page));
+  const search = params.toString();
+  return search ? `?${search}` : "";
+}
+
+function currentUrl() {
+  return `${location.pathname}${location.search}${location.hash}`;
+}
+
+function nextUrl() {
+  return `${location.pathname}${filtersToSearch()}${location.hash}`;
+}
+
+function writeUrl({ replace = true, measure = true } = {}) {
+  const url = nextUrl();
+  if (url === currentUrl()) return;
+  history[replace ? "replaceState" : "pushState"](null, "", url);
+  if (measure && typeof window.gtag === "function") {
+    window.gtag("event", "page_view", {
+      page_title: document.title,
+      page_location: location.href,
+    });
+  }
+}
+
+function readUrl() {
+  const params = new URLSearchParams(location.search);
+  state.query = params.get("q") || "";
+  const year = params.get("year");
+  if (year === "all") state.year = "";
+  else if (year) state.year = year;
+  else state.year = DEFAULT_YEAR;
+  const result = params.get("result") || "";
+  state.result = RESULT_VALUES.has(result) ? result : "";
+  const kind = params.get("kind") || "";
+  state.kind = KIND_VALUES.has(kind) ? kind : "";
+  state.country = params.get("country") || "";
+  const page = Number(params.get("page"));
+  state.page = Number.isInteger(page) && page >= 1 ? page : 1;
+}
+
+function applyUrlToForm() {
+  els.q.value = state.query;
+  els.result.value = state.result;
+  els.kind.value = state.kind;
+}
+
+function normalizeYear() {
+  if (!state.year) return;
+  if (!state.years.includes(Number(state.year))) state.year = DEFAULT_YEAR;
 }
 
 function applyFilters() {
@@ -357,7 +421,7 @@ async function openDrawer(id) {
   els.drawer.dataset.open = "true";
   els.drawerBackdrop.hidden = false;
   document.body.style.overflow = "hidden";
-  history.replaceState(null, "", `#e=${encodeURIComponent(id)}`);
+  history.replaceState(null, "", `${location.pathname}${location.search}#e=${encodeURIComponent(id)}`);
   els.drawerClose.focus();
   try {
     const details = await loadDetails(entry.year);
@@ -387,11 +451,25 @@ function closeDrawer() {
 function syncFromHash() {
   const match = location.hash.match(/^#e=(.+)$/);
   if (match) openDrawer(decodeURIComponent(match[1]));
-  else closeDrawer();
+  else if (state.openId) closeDrawer();
+}
+
+function restoreFromLocation() {
+  readUrl();
+  normalizeYear();
+  applyUrlToForm();
+  renderYearChips(state.years);
+  renderCountries();
+  applyFilters();
+  renderCards();
+  syncFromHash();
 }
 
 function bind() {
   let timer = 0;
+  document.querySelector("#filters").addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
   els.q.addEventListener("input", () => {
     window.clearTimeout(timer);
     timer = window.setTimeout(() => {
@@ -399,6 +477,7 @@ function bind() {
       state.page = 1;
       applyFilters();
       renderCards();
+      writeUrl({ replace: true });
     }, 150);
   });
   els.yearChips.addEventListener("click", (event) => {
@@ -412,6 +491,7 @@ function bind() {
     renderCountries();
     applyFilters();
     renderCards();
+    writeUrl({ replace: false });
   });
   els.localeChips.addEventListener("click", (event) => {
     const button = event.target.closest("[data-locale]");
@@ -435,6 +515,7 @@ function bind() {
       state.page = 1;
       applyFilters();
       renderCards();
+      writeUrl({ replace: false });
     });
   }
   els.grid.addEventListener("click", (event) => {
@@ -450,6 +531,7 @@ function bind() {
     if (!page || page < 1 || page > maxPage) return;
     state.page = page;
     renderCards();
+    writeUrl({ replace: false });
     els.count.scrollIntoView({ block: "start" });
   });
   els.drawerClose.addEventListener("click", closeDrawer);
@@ -458,6 +540,7 @@ function bind() {
     if (event.key === "Escape" && !els.drawer.hidden) closeDrawer();
   });
   window.addEventListener("hashchange", syncFromHash);
+  window.addEventListener("popstate", restoreFromLocation);
 }
 
 async function init() {
@@ -467,11 +550,16 @@ async function init() {
     if (!response.ok) throw new Error("entries.json");
     const payload = await response.json();
     state.entries = payload.entries.slice().sort(compareEntries);
-    renderYearChips(payload.years);
+    state.years = payload.years;
+    readUrl();
+    normalizeYear();
+    applyUrlToForm();
+    renderYearChips(state.years);
     renderLocaleChips();
     renderCountries();
     applyFilters();
     renderCards();
+    writeUrl({ replace: true, measure: false });
     syncFromHash();
   } catch (error) {
     els.error.hidden = false;
