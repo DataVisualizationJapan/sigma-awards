@@ -122,7 +122,7 @@ function filtersToSearch() {
   const params = new URLSearchParams();
   if (state.query) params.set("q", state.query);
   if (!state.year) params.set("year", "all");
-  else if (state.year !== DEFAULT_YEAR) params.set("year", state.year);
+  else params.set("year", state.year);
   if (state.result) params.set("result", state.result);
   if (state.kind) params.set("kind", state.kind);
   if (state.country) params.set("country", state.country);
