@@ -1,0 +1,5160 @@
+{
+  "total": 535,
+  "processed": 535,
+  "complete": true,
+  "counts": {
+    "adopted": 96,
+    "excluded_placeholder": 2,
+    "no_reference": 395,
+    "unavailable": 42
+  },
+  "records": [
+    {
+      "id": "dja-2012-03789c4671e2",
+      "year": 2012,
+      "title": "Riot Rumours",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-081f428f98da",
+      "year": 2012,
+      "title": "CCTV in Welsh Schools",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-18fdeafd804d",
+      "year": 2012,
+      "title": "Faceted Exploration and Assessing of Social Media Data on Mobile Devices in San Diego",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-1d8027c2470c",
+      "year": 2012,
+      "title": "Pedestrian Crashes in Novosibirsk",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-20e241bc77b4",
+      "year": 2012,
+      "title": "Known to police",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-212738fa4873",
+      "year": 2012,
+      "title": "Did Twitter censor Occupy Wall Street?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-2211d06a823e",
+      "year": 2012,
+      "title": "Retratos Paraná",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-268cee2f85dd",
+      "year": 2012,
+      "title": "Poor pupils catching up in exams",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-2a53428b327e",
+      "year": 2012,
+      "title": "The Rise and Fall of Rick Perry’s Presidential Bid",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-2b14c7bf9c7b",
+      "year": 2012,
+      "title": "Where are you on the global pay scale?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-2e0e5dfcdbf7",
+      "year": 2012,
+      "title": "Texas Public Schools Database",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-2ff4e737c0e3",
+      "year": 2012,
+      "title": "Operation Saga",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-334f05254e8c",
+      "year": 2012,
+      "title": "Who cracks six figures – or more – among Ontario’s civil servants?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-336d4420918b",
+      "year": 2012,
+      "title": "Illinois School Report Cards",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-3b710f599764",
+      "year": 2012,
+      "title": "How Quickly Did Help Arrive",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-3c1471c01f6f",
+      "year": 2012,
+      "title": "Seniority salaries bulk up D.C.’s payroll",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-4725dd4d2605",
+      "year": 2012,
+      "title": "902911: the calls to Halifax Police",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-48b331bfeb99",
+      "year": 2012,
+      "title": "The 149 members of the 17th Berlin Parliament",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-515b443bc586",
+      "year": 2012,
+      "title": "2011 Brazil State-Level Business Environment Ranking",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-52f481ea50b5",
+      "year": 2012,
+      "title": "Terrorists for the FBI",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-5e1bec65e4e5",
+      "year": 2012,
+      "title": "Methadone and the Politics of Pain",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-5fd44b18907a",
+      "year": 2012,
+      "title": "DNAinfo Crime and Safety Report",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-681839021a5c",
+      "year": 2012,
+      "title": "Poisoned Places: Toxic Air, Neglected Communities",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-709d32bf0b43",
+      "year": 2012,
+      "title": "BBC: Serious Untoward Incidents",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-77f5d142c885",
+      "year": 2012,
+      "title": "Student Finance Calculator",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-7976d21676cb",
+      "year": 2012,
+      "title": "Decoding Prime",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-7a37e17d2244",
+      "year": 2012,
+      "title": "34612: Mexican Drug Deaths",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-7bf691e382d7",
+      "year": 2012,
+      "title": "Both Sides of the Law",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-7de7cc3d73c4",
+      "year": 2012,
+      "title": "Opaque LGUs the norm in NCR",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-8210deb01795",
+      "year": 2012,
+      "title": "99% vs 1%: the data behind the Occupy movement",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-8a83774289f9",
+      "year": 2012,
+      "title": "Toll of the Recession",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-8fa9e7ca1ac5",
+      "year": 2012,
+      "title": "Budget Calculator",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-8ff025c91636",
+      "year": 2012,
+      "title": "PeopleMovin",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-96366c06a21c",
+      "year": 2012,
+      "title": "Empty Cradles",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-a090407c716c",
+      "year": 2012,
+      "title": "Database of Public Procurements",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-a1b4e83eb085",
+      "year": 2012,
+      "title": "Coal Seam Gas by the numbers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-b43da35397e9",
+      "year": 2012,
+      "title": "The old and new ward maps, side-by-side",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-ba6411385372",
+      "year": 2012,
+      "title": "Every Death on Every Road in Great Britain, 1999-2010",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-c420036e1cb9",
+      "year": 2012,
+      "title": "Texas Campaign Finance Database: 2000-2011",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-ce86f9ea789b",
+      "year": 2012,
+      "title": "Empty Homes",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-d230e4c36b7b",
+      "year": 2012,
+      "title": "U.S. Budget Map",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-d2edd769006a",
+      "year": 2012,
+      "title": "Violence Against Journalists in Afghanistan, 2001-2011",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-d6ebb0822411",
+      "year": 2012,
+      "title": "Forex Fight",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-d9ae684386da",
+      "year": 2012,
+      "title": "Transparent Politics",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-db41fc15039d",
+      "year": 2012,
+      "title": "Tracking the Trades",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-e27f4220878a",
+      "year": 2012,
+      "title": "Washed Away",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-e385ae823c00",
+      "year": 2012,
+      "title": "Our Future Selves – an interactive feature",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-ea0ed7489526",
+      "year": 2012,
+      "title": "Country equivalents – interactive comparisons",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-eb0c82ecaef7",
+      "year": 2012,
+      "title": "Phone-hacking scandal: Who’s linked to who?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-ed37a2b44191",
+      "year": 2012,
+      "title": "Alhmunda",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-f1ec56923102",
+      "year": 2012,
+      "title": "TRAC FM",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-f4b9f2843f43",
+      "year": 2012,
+      "title": "Government Employee Salaries",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-f6149c3d10fb",
+      "year": 2012,
+      "title": "Verokuitti / Tax Receipt",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-f72721d317ee",
+      "year": 2012,
+      "title": "Toxic Europe",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-fbfd98f62401",
+      "year": 2012,
+      "title": "Subsidies for the Bus Transportation System",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-fd0aa33290cd",
+      "year": 2012,
+      "title": "Your School",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-fd1f5cde17a1",
+      "year": 2012,
+      "title": "EMSA sued dozens who where part of utility free service",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2012-fe77607cdc53",
+      "year": 2012,
+      "title": "County Scorecard",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2013-0366bd017011",
+      "year": 2013,
+      "title": "«No time for anger»",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-0b18e56fa5ea",
+      "year": 2013,
+      "title": "America Under the Gun:...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-0b1f2f8c585c",
+      "year": 2013,
+      "title": "The Wealth of the Gods of Faura",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-155eaed54951",
+      "year": 2013,
+      "title": "How fast is the London...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-171a5fa07885",
+      "year": 2013,
+      "title": "Mapping the crisis: lo...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-1a0446d3eccb",
+      "year": 2013,
+      "title": "Better or Worse",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-1ba87c43db39",
+      "year": 2013,
+      "title": "Lower Saxony State Ele...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-1c25f6fd92fb",
+      "year": 2013,
+      "title": "Special report: How th...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-1c7a5d6058eb",
+      "year": 2013,
+      "title": "Life on the line: 911 ...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-1f1d4a72948b",
+      "year": 2013,
+      "title": "Census shows rise in f...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-1fd763dc265e",
+      "year": 2013,
+      "title": "Women as Academic Auth...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-264dfe106d04",
+      "year": 2013,
+      "title": "Gay Rights by State",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-26cf29dd64fa",
+      "year": 2013,
+      "title": "Argentina’s Senate Expenses, 2004-2013",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-27d8d40db9d2",
+      "year": 2013,
+      "title": "Flugrouten-Radar / Fli...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-2c509deb3599",
+      "year": 2013,
+      "title": "Unemployment Rates",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-2e0ee3d5808f",
+      "year": 2013,
+      "title": "Associated Press Elect...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-2e2a2a12c21a",
+      "year": 2013,
+      "title": "Patterns of exclusion ...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-32ab1b322500",
+      "year": 2013,
+      "title": "Le Pariteur",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-3e990cd2165a",
+      "year": 2013,
+      "title": "Infoamazonia",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-402a9fb3848c",
+      "year": 2013,
+      "title": "The data behind R.A. D...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-4417b47acf2c",
+      "year": 2013,
+      "title": "Cracking the Codes",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-498cd8ca103e",
+      "year": 2013,
+      "title": "Athletes Like You",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-4c805a92a210",
+      "year": 2013,
+      "title": "Pro-life doctors and t...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-4cdae66300af",
+      "year": 2013,
+      "title": "TribData",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-4d08f8d2b23f",
+      "year": 2013,
+      "title": "The Media Industry und...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-52d95a78f427",
+      "year": 2013,
+      "title": "Children in Care",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-562402459f2b",
+      "year": 2013,
+      "title": "Mapping Australia's Ce...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-57e530fbc901",
+      "year": 2013,
+      "title": "Message Machine",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-58d1292ad5d6",
+      "year": 2013,
+      "title": "Ryan asked for federal...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-59ba34bd61bb",
+      "year": 2013,
+      "title": "Tweetometro Presidenci...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-6132264020b8",
+      "year": 2013,
+      "title": "America Under the Gun:...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-6377d020d2de",
+      "year": 2013,
+      "title": "Art Market for Dummies",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7794ed56c91b",
+      "year": 2013,
+      "title": "Powerhouse",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7958813d259c",
+      "year": 2013,
+      "title": "Comparison Interface f...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7b2c4b2755fe",
+      "year": 2013,
+      "title": "Religion at MIT",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7eb7c703e14b",
+      "year": 2013,
+      "title": "This Is Your Rep On Gu...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7f4ff05983cb",
+      "year": 2013,
+      "title": "How good are English s...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7f8e5187690e",
+      "year": 2013,
+      "title": "Dividing Lines: Gerrym...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-7fe9e90c08ee",
+      "year": 2013,
+      "title": "Who's Pulling the Stri...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-812e22d58b34",
+      "year": 2013,
+      "title": "Poderopedia: Who is wh...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-850a78e17750",
+      "year": 2013,
+      "title": "Network of Scandals",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-8bf1b2cbed6c",
+      "year": 2013,
+      "title": "Hooked: Canada's pill ...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-8e5b8b5fd5d7",
+      "year": 2013,
+      "title": "ProPublica Nerd Blog",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-9627e41da8be",
+      "year": 2013,
+      "title": "Connected China",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-988b65654eb8",
+      "year": 2013,
+      "title": "The business of US foo...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-9ddee2f4d661",
+      "year": 2013,
+      "title": "Exit polls 2012: How t...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-a08687e5686f",
+      "year": 2013,
+      "title": "Ballot Brief: Election...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-a50f80a2d593",
+      "year": 2013,
+      "title": "Great British Class Calculator",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-a6266328516a",
+      "year": 2013,
+      "title": "WalesOnline Datastore",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-a68095915893",
+      "year": 2013,
+      "title": "Data Section in lanaci...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-a94d548ca143",
+      "year": 2013,
+      "title": "Macroscop",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-ab20b01efe1f",
+      "year": 2013,
+      "title": "Guardian Data",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-afa31a6818e2",
+      "year": 2013,
+      "title": "Sharp fall in young po...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-b161764ab6de",
+      "year": 2013,
+      "title": "Source: Journalism cod...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-b1722b2b5726",
+      "year": 2013,
+      "title": "Proof young adults hav...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-b1abab09256d",
+      "year": 2013,
+      "title": "Segregation Maps",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-c19aeb5beeaf",
+      "year": 2013,
+      "title": "DC KIDS COUNT Data Too...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-c89ede6a76e7",
+      "year": 2013,
+      "title": "How integrated are Nor...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-c8fc5c2b0b67",
+      "year": 2013,
+      "title": "#Checkyourhospital",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-c92fd8944ecc",
+      "year": 2013,
+      "title": "Bloomberg Billionaires...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-d58760aaf86c",
+      "year": 2013,
+      "title": "The Gardiner - Trouble...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-d78363722a6f",
+      "year": 2013,
+      "title": "Data Dredger",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-dead25f4a409",
+      "year": 2013,
+      "title": "Texas Tribune Schools ...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-e0a0e2cfbcb1",
+      "year": 2013,
+      "title": "Gaza’s gas: the EU�...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-e3a8794dd717",
+      "year": 2013,
+      "title": "The Budget Game",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-e655bdeb0239",
+      "year": 2013,
+      "title": "Damage Estimation for ...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-ec94ce57ae2a",
+      "year": 2013,
+      "title": "Power Players: Massach...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-ee0ff144d379",
+      "year": 2013,
+      "title": "School Report",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-f13fe5d46e6f",
+      "year": 2013,
+      "title": "DataGraph / Europa-Atl...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-f1ce23ab5821",
+      "year": 2013,
+      "title": "London 2012 Olympics d...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-f2d367d84d4e",
+      "year": 2013,
+      "title": "Skin & Bone: The Shado...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-f48cbaf9efbd",
+      "year": 2013,
+      "title": "Texas Tribune Lawmaker...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2013-fb567ae772f1",
+      "year": 2013,
+      "title": "The global trade in re...",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2014-049c58706f2c",
+      "year": 2014,
+      "title": "The Cost of Kin(g)ship: The Herald Political Dynasties Project",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-0579788415b4",
+      "year": 2014,
+      "title": "Swiss Maps - Switzerland From a Bird's Perspective",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-095ee4d7f50e",
+      "year": 2014,
+      "title": "Neue Zürcher Zeitung",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-0a50a61d4df0",
+      "year": 2014,
+      "title": "Monitoring the new Media Law in Argentina 2009-2013: 94% created were state media, no plural voices as promised so far",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-0bf8258d3d5f",
+      "year": 2014,
+      "title": "ProPublica News Applications Desk Portfolio",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-112c8a91d74e",
+      "year": 2014,
+      "title": "Secrecy for Sale: Inside the Global Offshore Money Maze",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_secrecy_for_sale_0.png?itok=ShNnfmpu",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_secrecy_for_sale_0.png?itok=ShNnfmpu",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-1612610ee430",
+      "year": 2014,
+      "title": "Janet L. Yellen, on the Economy’s Twists and Turns",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-2298ea114ec2",
+      "year": 2014,
+      "title": "The Westgate Attacks: A Story of terrorism, citizen journalism, and Twitter.",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-280cafd77231",
+      "year": 2014,
+      "title": "Federal Flood Maps Left New York Unprepared for Sandy—and FEMA Knew It",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_fema_maps_predict_0.png?itok=TMdl99wn",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_fema_maps_predict_0.png?itok=TMdl99wn",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-29775f8cd5c7",
+      "year": 2014,
+      "title": "ER Wait Watcher",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-2d5149fbe0fc",
+      "year": 2014,
+      "title": "Dollars for Doctors",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-2e4ffe11120c",
+      "year": 2014,
+      "title": "Berlin Election Map - All votes of the 1709 polling stations",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_berlin_elections.png?itok=nhCm2GfK",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_berlin_elections.png?itok=nhCm2GfK",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-2f2adf974a77",
+      "year": 2014,
+      "title": "The New York Times",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-36a14bbdd75b",
+      "year": 2014,
+      "title": "The Dutch are playing catch-up: Investing in datajournalism",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-386d5d5530cc",
+      "year": 2014,
+      "title": "Kepler’s Tally of Planets",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-3877379a3172",
+      "year": 2014,
+      "title": "VozData: collaborating to free data from PDFs – The Senate Expenses part II",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-3c90b5a01ce9",
+      "year": 2014,
+      "title": "What Happened to the Gun Bill?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-3e74f4587bb5",
+      "year": 2014,
+      "title": "Newtown: One Year After",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-4eb096cfcde2",
+      "year": 2014,
+      "title": "Front Row to Fashion Week",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-4f233f68e7e5",
+      "year": 2014,
+      "title": "From 51 to 78 proven deaths. The La Plata major flooding tragedy and how data journalism helped confirm more casualties than those officially recognized by Government.",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-5716b9459b77",
+      "year": 2014,
+      "title": "ProPublica",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-5afa0900e256",
+      "year": 2014,
+      "title": "Time Lapse: Germany’s Population Since 1855 (175 Jahre im Zeitraffer)",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_timelapse_germany.png?itok=4LjGDn2Z",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_timelapse_germany.png?itok=4LjGDn2Z",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-5e7c5c6309d1",
+      "year": 2014,
+      "title": "In flight",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-6034f1e95291",
+      "year": 2014,
+      "title": "- Hydrogeological instability in Italy - Why Germany leads eurozone - SYRIA / From Arab Springs to Civil War - Italy's Earthquakes",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-6101f85730b4",
+      "year": 2014,
+      "title": "Federal election 2013 - Berlin parties in numbers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-646018403c37",
+      "year": 2014,
+      "title": "Consider the Source: Following the post-Citizens United money",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_consider_the_source_0.png?itok=UfEt9WVO",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_consider_the_source_0.png?itok=UfEt9WVO",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-64b8cc5ab592",
+      "year": 2014,
+      "title": "NHK Special “Disaster Big Data”",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/nhk.png?itok=0D-dcnN0",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/nhk.png?itok=0D-dcnN0",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-65c8240dd5b1",
+      "year": 2014,
+      "title": "China’s Memory Hole: The Images Erased From Sina Weibo",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-66026b22a9c7",
+      "year": 2014,
+      "title": "Paying Till It Hurts: A Case Study in High Costs",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-684808b90208",
+      "year": 2014,
+      "title": "Abgeordnetenbilanz (Representatives‘ balance sheet)",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/blicke.png?itok=CodOo6wv",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/blicke.png?itok=CodOo6wv",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-6bc39ff99939",
+      "year": 2014,
+      "title": "Portfolio: The New York Times",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-74724a81e92e",
+      "year": 2014,
+      "title": "How Much Acetaminophen Are You Taking?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-7bd7de49db60",
+      "year": 2014,
+      "title": "Set of data visualisations and articles about French municipal elections, March 2014",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-7f1a4bbdcf48",
+      "year": 2014,
+      "title": "Individual data journalism portfolio",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-85792ecbf139",
+      "year": 2014,
+      "title": "Across U.S. Companies, Tax Rates Vary Greatly",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/capture_decran_2014-06-16_a_15.51.17_0.png?itok=HnZxpQy5",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/capture_decran_2014-06-16_a_15.51.17_0.png?itok=HnZxpQy5",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-8912c7a2ff8b",
+      "year": 2014,
+      "title": "State Gun Laws Enacted in the Year Since Newtown",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-8b2d37c076f3",
+      "year": 2014,
+      "title": "Biomassa: Wensen en Grenzen (Translated: Biomass: Wishes and Limits)",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-8b725d1f8093",
+      "year": 2014,
+      "title": "Digitially Dependent Relationships - Gen Y Online",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-9f601008a3b4",
+      "year": 2014,
+      "title": "Individual Portfolio: Al Shaw",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-a1c6a7159044",
+      "year": 2014,
+      "title": "NC superintendents' contracts packed with perks",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-a5454bc47e2c",
+      "year": 2014,
+      "title": "Open Statement of Assets from Argentina’s Main Public Officials",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-ad5d49e95572",
+      "year": 2014,
+      "title": "California Drought Charts",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/screen_shot_2014-08-25_at_6.06.17_pm.png?itok=Te1AE6bt",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/screen_shot_2014-08-25_at_6.06.17_pm.png?itok=Te1AE6bt",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-b01daf02b49a",
+      "year": 2014,
+      "title": "Behind the Bloodshed: The Untold Story of America's Mass Killings",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dataviz.png?itok=EQGYbUf0",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dataviz.png?itok=EQGYbUf0",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-b0857f55500f",
+      "year": 2014,
+      "title": "The Prescribers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-b60a106adeab",
+      "year": 2014,
+      "title": "Homes for the Taking",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-b8be749dc812",
+      "year": 2014,
+      "title": "Overdose: Use Only as Directed",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-bb675c2f0170",
+      "year": 2014,
+      "title": "Lobbyism in Switzerland",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-bddd3b62851a",
+      "year": 2014,
+      "title": "Spending Stories",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-bf7ed6291d50",
+      "year": 2014,
+      "title": "Argentina's Elections 2013 - The results of the election in each polling -",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_hargentinas_elections_0.png?itok=ksX1JIvk",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_hargentinas_elections_0.png?itok=ksX1JIvk",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-c1a026f8826d",
+      "year": 2014,
+      "title": "America's Worst Charities",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-c282d46828e2",
+      "year": 2014,
+      "title": "The Times and Sunday Times Data Team portfolio",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-c40dc58cc0d2",
+      "year": 2014,
+      "title": "Chad Skelton",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-c99bef83378b",
+      "year": 2014,
+      "title": "HeartSaver: An Experimental News Game",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-d31efbd310f1",
+      "year": 2014,
+      "title": "Reshaping New York",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-d36ca79d857a",
+      "year": 2014,
+      "title": "The Migrants Files",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_detective_io.png?itok=boWimkvZ",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_detective_io.png?itok=boWimkvZ",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-d513eac350d3",
+      "year": 2014,
+      "title": "The price of italian politics: 5 billion euro over 20 years",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-d54b8e610455",
+      "year": 2014,
+      "title": "The Formula Behind the Voting Rights Act",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-d66bf0048b1e",
+      "year": 2014,
+      "title": "China: Who Uses Offshore Tax Havens",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_china_whouseoffshore.png?itok=bFn7mi3D",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja_14_china_whouseoffshore.png?itok=bFn7mi3D",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-de044328a31b",
+      "year": 2014,
+      "title": "Can't Touch This: United States Department of Defense Budget Deep Dive",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/cantouch.png?itok=_GHKis7W",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/cantouch.png?itok=_GHKis7W",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-e4d7fa306296",
+      "year": 2014,
+      "title": "Income Inequality Interactives",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-e5aedc9fd07f",
+      "year": 2014,
+      "title": "Rete al candidato",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-e89563ca31a1",
+      "year": 2014,
+      "title": "Where Poor and Uninsured Americans Live",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-e9749cc6b137",
+      "year": 2014,
+      "title": "Deals for Developers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-e99323365db7",
+      "year": 2014,
+      "title": "Breathless and Burdened: Dying from black lung, buried by law and medicine",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/coal.png?itok=d2qU960H",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/coal.png?itok=d2qU960H",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-ea0b21afb267",
+      "year": 2014,
+      "title": "New Maps and a New Plan for New York",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-ed88eadc96a9",
+      "year": 2014,
+      "title": "Kiln",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-f34b6060d3a4",
+      "year": 2014,
+      "title": "GED VIZ: Explore and Share What Globalization Is About",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-f363d9d2c29d",
+      "year": 2014,
+      "title": "In Climbing Income Ladder, Location Matters",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-f594b0651e99",
+      "year": 2014,
+      "title": "Mother Jones Interactives",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-f8998f48ae5d",
+      "year": 2014,
+      "title": "Justice Denied: Inside the Bronx’s Dysfunctional Court System",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-f96605928c81",
+      "year": 2014,
+      "title": "NSA Files: Decoded",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-faabf250779d",
+      "year": 2014,
+      "title": "Talkie",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-fb5e0fe80cb5",
+      "year": 2014,
+      "title": "Detective.io",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/detectiveio.png?itok=1KRAIoJ0",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/detectiveio.png?itok=1KRAIoJ0",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2014-fcc46a420a10",
+      "year": 2014,
+      "title": "Secret Wars // Geheimer Krieg",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-fdd195cb267f",
+      "year": 2014,
+      "title": "Individual Portfolio: Lena Groeger",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2014-fe3bb493014b",
+      "year": 2014,
+      "title": "You only fly once - A portrait on Swiss Snowboarder Iouri Podladtchikov",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2015-0072eadc7475",
+      "year": 2015,
+      "title": "New Berliners and Native Berliners",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/interaktivteam.jpg?itok=LOACHlTx",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361559/screen-shot-2015-06-12-at-165745_500x193.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/interaktivteam.jpg?itok=LOACHlTx",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361559/screen-shot-2015-06-12-at-165745_500x193.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-16dc33bb5832",
+      "year": 2015,
+      "title": "A Disappearing Planet",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/disappearing_planet.jpg?itok=U49FoKaC",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/disappearing_planet.jpg?itok=U49FoKaC",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-47d4c56b2763",
+      "year": 2015,
+      "title": "Sworn Accounts: An Analysis of Changes and Wealth of Lima’s Mayors",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/swornaccounts.png?itok=22y89QoL",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361549/screen-shot-2015-06-12-at-161646_481x251.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/swornaccounts.png?itok=22y89QoL",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361549/screen-shot-2015-06-12-at-161646_481x251.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-52111e9812fd",
+      "year": 2015,
+      "title": "Treatment Tracker",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/treatment_tracker.jpg?itok=NweLPs7n",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/treatment_tracker.jpg?itok=NweLPs7n",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-5d58f78c1565",
+      "year": 2015,
+      "title": "Which Sport Are You Made For? Take Our 60 Second Test",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/sport.gif?itok=4khSqBJq",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361563/screen-shot-2015-06-12-at-161849_500x178.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/sport.gif?itok=4khSqBJq",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361563/screen-shot-2015-06-12-at-161849_500x178.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-5d8f855c57ca",
+      "year": 2015,
+      "title": "Al Jazeera America — General Excellence",
+      "attempts": [],
+      "excluded": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/default_images/project_default_image.png?itok=sZxQ9Bm2",
+          "reason": "Generic placeholder or decorative image"
+        }
+      ],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2015-609bbf3bde1f",
+      "year": 2015,
+      "title": "People’s Republic of Bolzano",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/repubblica-popolare-di-bolzano_thumb.jpg?itok=cM0mBChI",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361546/screen-shot-2015-06-12-at-160637_496x225.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/repubblica-popolare-di-bolzano_thumb.jpg?itok=cM0mBChI",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361546/screen-shot-2015-06-12-at-160637_496x225.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-8fde186d69a3",
+      "year": 2015,
+      "title": "#Tracked",
+      "attempts": [],
+      "excluded": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/default_images/project_default_image.png?itok=sZxQ9Bm2",
+          "reason": "Generic placeholder or decorative image"
+        }
+      ],
+      "status": "excluded_placeholder"
+    },
+    {
+      "id": "dja-2015-a5f7892a220d",
+      "year": 2015,
+      "title": "BBC News Visual journalism data projects",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/entry.jpg?itok=07sD4jHR",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/entry.jpg?itok=07sD4jHR",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-a814cc9efa79",
+      "year": 2015,
+      "title": "Does School Pay Off? How Much?",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja2015.png?itok=KbzDGuUj",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361551/screen-shot-2015-06-12-at-162506_500x318.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/dja2015.png?itok=KbzDGuUj",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361551/screen-shot-2015-06-12-at-162506_500x318.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-a9e4ba6edc6d",
+      "year": 2015,
+      "title": "The Past, Present and Future of CO2",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/wri.jpg?itok=CkYz5Joo",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361556/screen-shot-2015-06-12-at-163601_498x185.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/wri.jpg?itok=CkYz5Joo",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361556/screen-shot-2015-06-12-at-163601_498x185.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-be697c524ae6",
+      "year": 2015,
+      "title": "A Really Small Slice of Americans Get to Decide Who Will Rule the Senate",
+      "attempts": [],
+      "excluded": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/default_images/project_default_image.png?itok=sZxQ9Bm2",
+          "reason": "Generic placeholder or decorative image"
+        }
+      ],
+      "status": "excluded_placeholder"
+    },
+    {
+      "id": "dja-2015-c08104dbdc52",
+      "year": 2015,
+      "title": "LA NACION DATA: Open Data Journalism for Change",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/data_0.jpg?itok=untHAQk8",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361656/logo_final_verdes.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/data_0.jpg?itok=untHAQk8",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361656/logo_final_verdes.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-c85b5e0225e4",
+      "year": 2015,
+      "title": "Swiss Leaks / Luxembourg Leaks",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/swissleaks.jpg?itok=iphnUp_w",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/luxleaksddja.jpg?itok=QmWPVrVI",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361547/screen-shot-2015-06-12-at-161033_474x178.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/swissleaks.jpg?itok=iphnUp_w",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/luxleaksddja.jpg?itok=QmWPVrVI",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361547/screen-shot-2015-06-12-at-161033_474x178.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-c880b4dc0358",
+      "year": 2015,
+      "title": "DATAGUEULE",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/data_gueule_banniere.jpg?itok=93mT5UQ-",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361599/screen-shot-2015-06-18-at-150415_425x235.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/data_gueule_banniere.jpg?itok=93mT5UQ-",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361599/screen-shot-2015-06-18-at-150415_425x235.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-d1adaaf2e0d7",
+      "year": 2015,
+      "title": "Rob Barry",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/rob_barry_headshot.jpg?itok=zeIoHKey",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361555/screen-shot-2015-06-12-at-163335_206x207.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/rob_barry_headshot.jpg?itok=zeIoHKey",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361555/screen-shot-2015-06-12-at-163335_206x207.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2015-f35c7dcec327",
+      "year": 2015,
+      "title": "Battling Infectious Diseases in the 20th Century: The Impact of Vaccines",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/screen_shot_2015-04-09_at_1.01.23_pm.png?itok=MdSsWJNs",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361545/screen-shot-2015-06-12-at-160238_500x319.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/screen_shot_2015-04-09_at_1.01.23_pm.png?itok=MdSsWJNs",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "http://www.globaleditorsnetwork.org/media/361545/screen-shot-2015-06-12-at-160238_500x319.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2016-006f77ed6981",
+      "year": 2016,
+      "title": "Failure Factories",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-011e6b5f8671",
+      "year": 2016,
+      "title": "Fideicomisos",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-0400ad8f71a8",
+      "year": 2016,
+      "title": "Spies in the skies",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-04d72f1e2577",
+      "year": 2016,
+      "title": "Pollution continues to batter city’s lungs, ears",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-08b12781fe9e",
+      "year": 2016,
+      "title": "Infotimes",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-156e67ddf0d1",
+      "year": 2016,
+      "title": "Caixin",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-1917a133afe5",
+      "year": 2016,
+      "title": "FiveThirtyEight",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-1919c6bfba65",
+      "year": 2016,
+      "title": "The Tennis Racket",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-195e7e0f9c8c",
+      "year": 2016,
+      "title": "John Burn-Murdoch",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-1d3473232c03",
+      "year": 2016,
+      "title": "Film Dialogue for 2,000 Screenplays, Broken Down by Gender and Age",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-20a53618390a",
+      "year": 2016,
+      "title": "How expensive is your neighbourhood?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-22731db976b5",
+      "year": 2016,
+      "title": "Guess the salary",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-24118e0b55ed",
+      "year": 2016,
+      "title": "How Red Meat Joined the 478 Other Things That Might Give You Cancer",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-24d2de928060",
+      "year": 2016,
+      "title": "Crowdsourcing 1000 electoral promises",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-2f7cfe13d586",
+      "year": 2016,
+      "title": "How equal are you?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-32fd9aabadbf",
+      "year": 2016,
+      "title": "Quick Interactives",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-33a41c63dbe4",
+      "year": 2016,
+      "title": "Chris Zubak-Skees",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-3f2ddaf0ea19",
+      "year": 2016,
+      "title": "Sisi Wei",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-41b60c4d27c5",
+      "year": 2016,
+      "title": "The Events That Pushed Greece to the Economic Brink",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-41c9d0e97438",
+      "year": 2016,
+      "title": "Alberto Lucas López",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-4776d5430ba1",
+      "year": 2016,
+      "title": "The Norwegian Victims of World War II",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-5317fd1cc0f9",
+      "year": 2016,
+      "title": "The Color of Debt: The Black Neighborhoods Where Collection Suits Hit Hardest",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-535bd6b431fc",
+      "year": 2016,
+      "title": "Homan Square",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-55c564fedd0c",
+      "year": 2016,
+      "title": "144 Stories - Remembering lives lost in the Peshawar school attack",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-57d9bb8480d3",
+      "year": 2016,
+      "title": "Budget ins and outs",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-61193be030f3",
+      "year": 2016,
+      "title": "Watch how a presidential motorcade can double a neighborhood’s traffic in an instant",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-63542cad5305",
+      "year": 2016,
+      "title": "800,000",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-63aa7e9e6fd1",
+      "year": 2016,
+      "title": "Excesos sin castigo",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-70ef5372eef3",
+      "year": 2016,
+      "title": "Open Data Journalism for Change",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-7161f4388c60",
+      "year": 2016,
+      "title": "Berlin’s new skyline",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-7746393267fe",
+      "year": 2016,
+      "title": "Measuring Justice Scalia's Tenure",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-7ad43f6ca9ed",
+      "year": 2016,
+      "title": "El Español",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-7d3880714577",
+      "year": 2016,
+      "title": "La Nación",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-8230eba1e887",
+      "year": 2016,
+      "title": "Candidates and Millions",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-8cf2ddca2888",
+      "year": 2016,
+      "title": "What would it take to flip states in the 2016 election?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-8f467da8426e",
+      "year": 2016,
+      "title": "How Fed Rates Move Markets",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-8fd8f2fc37a6",
+      "year": 2016,
+      "title": "Maarten Lambrechts",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-9293044595fb",
+      "year": 2016,
+      "title": "Quartz",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-95876d42d35b",
+      "year": 2016,
+      "title": "What Does Gun Violence Really Cost?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-995cd063c88c",
+      "year": 2016,
+      "title": "Build a New St. Louis",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-99b4d6ba6b49",
+      "year": 2016,
+      "title": "Derailed Amtrak train sped into deadly crash curve",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-9a8609d62c68",
+      "year": 2016,
+      "title": "Shipmap.org",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-9d18e15fb60a",
+      "year": 2016,
+      "title": "Is the Nasdaq in Another Bubble?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-aa2fbf40b708",
+      "year": 2016,
+      "title": "Global WOW – Who Owns What",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-b503799683c5",
+      "year": 2016,
+      "title": "A Plagiarism Scandal Is Unfolding In The Crossword World",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-bb55cbda60d3",
+      "year": 2016,
+      "title": "Maps of protests in Brazil",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/maps.jpg?itok=4LVQTJWe",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/maps.jpg?itok=4LVQTJWe",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2016-ca48045cf6cd",
+      "year": 2016,
+      "title": "What if the Syrian civil war happened in your country?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-cb63e2378a42",
+      "year": 2016,
+      "title": "Meet Thomas Drake",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-ccecde557fd5",
+      "year": 2016,
+      "title": "The Panama Papers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-cecc90e51463",
+      "year": 2016,
+      "title": "#breathe",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-d07df6d8dcb6",
+      "year": 2016,
+      "title": "Helena Bengtsson",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-d1fb3eb78538",
+      "year": 2016,
+      "title": "Medicamentalia",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-d5007c5739b1",
+      "year": 2016,
+      "title": "Femicide map in Turkey",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2016-d52491b6cefc",
+      "year": 2016,
+      "title": "Dag Medya",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-dd10d12f6123",
+      "year": 2016,
+      "title": "The private firms tracking terror targets at the heart of US drone wars",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-de8019b6b3b7",
+      "year": 2016,
+      "title": "Gun deaths in your district: what have your elected representatives done?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-e3ee0151dd69",
+      "year": 2016,
+      "title": "1939 Register",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-e83d8ed47581",
+      "year": 2016,
+      "title": "The Heritage of Evo's Cabinet",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-ea926a2b5ac4",
+      "year": 2016,
+      "title": "Clear signs of mobile surveillance in Oslo, despite denial from Police Security Service",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-f05782692e9a",
+      "year": 2016,
+      "title": "Zeit Online",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-f96efd04275b",
+      "year": 2016,
+      "title": "Histography",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2016-ff69bf66e5e4",
+      "year": 2016,
+      "title": "The Guardian",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-001c7c600839",
+      "year": 2017,
+      "title": "Berliner Morgenpost Interactive team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-01f0b3700451",
+      "year": 2017,
+      "title": "Currency Chaos",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-05b3c8eaf7ef",
+      "year": 2017,
+      "title": "El Confidencial data team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-07816d1702a2",
+      "year": 2017,
+      "title": "One Angry Bird",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-0b25f6e0ac87",
+      "year": 2017,
+      "title": "Live factchecking of the State of the Union Speech",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-0b3e4aa380ad",
+      "year": 2017,
+      "title": "ProPublica Data Store",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-0d16fc24717c",
+      "year": 2017,
+      "title": "Sydney Morning Herald",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-10e2488342a0",
+      "year": 2017,
+      "title": "Database of Assets of Serbian Politicians",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-1196d5f5507e",
+      "year": 2017,
+      "title": "Derek Willis",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-19db4b077b84",
+      "year": 2017,
+      "title": "The Rhymes Behind Hamilton",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-19fd2c6f7dcb",
+      "year": 2017,
+      "title": "Blue Feed, Red Feed",
+      "attempts": [
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/trump.png?itok=a8lS4i_n",
+          "status": "failed",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        },
+        {
+          "url": "http://community.globaleditorsnetwork.org/sites/default/files/styles/project_picture/public/trump.png?itok=a8lS4i_n",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2017-1b6b0f20c293",
+      "year": 2017,
+      "title": "Wall Street Journal Graphics team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-1d1b9fa64563",
+      "year": 2017,
+      "title": "Unfounded",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-1e5f33606232",
+      "year": 2017,
+      "title": "#MineAlert",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-28b0d90cb4ce",
+      "year": 2017,
+      "title": "Researchers bet on mass medication to wipe out malaria in L Victoria Region",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-2c6e5d65ad39",
+      "year": 2017,
+      "title": "Ctrl+X",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-329544be4a39",
+      "year": 2017,
+      "title": "Les Décodeurs",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-33df62f68791",
+      "year": 2017,
+      "title": "FiveThirtyEight.com",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-388c41992089",
+      "year": 2017,
+      "title": "Pajhwok Afghan News",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-3bb2bc995a00",
+      "year": 2017,
+      "title": "Ashley Kirk",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-3dc8cb6a2b56",
+      "year": 2017,
+      "title": "Foreign Investments Uncovered database",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-3eab138489c2",
+      "year": 2017,
+      "title": "Electionland",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-4100ac635232",
+      "year": 2017,
+      "title": "Keith Collins",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-46d7ba687d75",
+      "year": 2017,
+      "title": "EU referendum: The result in maps and charts",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-4a5694ee9f45",
+      "year": 2017,
+      "title": "The Nauru files: cache of 2,000 leaked reports reveal scale of abuse of children…",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-4bacff9071ab",
+      "year": 2017,
+      "title": "The death of a prosecutor, 40,000 audio hearings, 2 years, a team and a news app",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-5593b55c736c",
+      "year": 2017,
+      "title": "Crime in Context",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-6bbff44af44e",
+      "year": 2017,
+      "title": "Race Behind Bars",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-6da35af3a26f",
+      "year": 2017,
+      "title": "Gun Deaths in America",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-6f62c358d693",
+      "year": 2017,
+      "title": "Rutas del Conflicto",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-75d9c105cc0b",
+      "year": 2017,
+      "title": "Lena Groeger",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-77636e19fbe5",
+      "year": 2017,
+      "title": "Postdata.club",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-7b7ebe336e01",
+      "year": 2017,
+      "title": "Broken Homes – A record year of home demolitions in occupied East Jerusalem",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-7c10880f5a98",
+      "year": 2017,
+      "title": "Fenced Out",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-8965be5aff3b",
+      "year": 2017,
+      "title": "Patrick Stotz",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-91580baed4fa",
+      "year": 2017,
+      "title": "Fact Check: Trump And Clinton Debate For The First Time",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-962e240dc258",
+      "year": 2017,
+      "title": "Drone Warfare data explorer",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-a5cf86a5fba2",
+      "year": 2017,
+      "title": "Mona Chalabi,",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-a6fadf2754f3",
+      "year": 2017,
+      "title": "Julia Wolfe",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-a77c688eb993",
+      "year": 2017,
+      "title": "Who supports Donald Trump? The new Republican center of gravity",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-a87d59750a04",
+      "year": 2017,
+      "title": "Fake News and False Flags: How the Pentagon paid a British PR firm $500 million",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-af18d29676ac",
+      "year": 2017,
+      "title": "How do Chinese spokespersons of MFA answer questions?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-b0f3871fb564",
+      "year": 2017,
+      "title": "Fact-checking every Declaration of Assets and Incomes of the Spanish MPs",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-b1d38a9e03e6",
+      "year": 2017,
+      "title": "1,000 gold medals",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-b506ab2347fc",
+      "year": 2017,
+      "title": "Carla Pedret",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-b5dfd23f2939",
+      "year": 2017,
+      "title": "TeleGraphs",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-b796c7754370",
+      "year": 2017,
+      "title": "Parrains2017",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-b8604175f0c7",
+      "year": 2017,
+      "title": "A caixa-preta dos sindicatos",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-bb0b664c7522",
+      "year": 2017,
+      "title": "Doris Truong",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-bdc17ff3946b",
+      "year": 2017,
+      "title": "REM-F: City Efficiency Ranking (Ranking de Eficiência dos Municípios Folha)",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-be08180f7429",
+      "year": 2017,
+      "title": "Football Leaks",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-bfc2126df3b6",
+      "year": 2017,
+      "title": "Mohammed Haddad",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-d137fb46f494",
+      "year": 2017,
+      "title": "PORTAFOLIO DATA",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-d2588ed60153",
+      "year": 2017,
+      "title": "If you’re black",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-d6a5872ebfde",
+      "year": 2017,
+      "title": "Shadab Nazmi",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-d73ce9e1b900",
+      "year": 2017,
+      "title": "Yaryna Serkez",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-dc48aff92ccf",
+      "year": 2017,
+      "title": "Reade Levinson for Protecting the Blue",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-de40ac24ae3a",
+      "year": 2017,
+      "title": "US Elections 2016 Results Tracker",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-e540620a2ae1",
+      "year": 2017,
+      "title": "Data Journalism Pakistan",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-e57fec45bb7c",
+      "year": 2017,
+      "title": "John Burn-Murdoch",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-e7a2b71bdba0",
+      "year": 2017,
+      "title": "Open Data by SRF Data",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-ea17176fcd06",
+      "year": 2017,
+      "title": "The unlawful use of physical restraints in Norwegian psychiatric wards",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2017-edf4698a044d",
+      "year": 2017,
+      "title": "Analyzing 8 million data from public speed limit detectors radars",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-0d86fc33bd5a",
+      "year": 2018,
+      "title": "InfoTimes",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-0dd4cd386bec",
+      "year": 2018,
+      "title": "Folha De Londrina",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-10005090e2ae",
+      "year": 2018,
+      "title": "Julia Wolfe",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-150b011c7c1f",
+      "year": 2018,
+      "title": "Bussed Out: How America moves its homeless",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-1595b0ac4475",
+      "year": 2018,
+      "title": "Rob Grant",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-1e2b222d30cd",
+      "year": 2018,
+      "title": "The Times & The Sunday Times Data Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-24250bd3b1c3",
+      "year": 2018,
+      "title": "The South China Morning Post infographics Arcade",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-2a701c3e21a0",
+      "year": 2018,
+      "title": "Especiales Datasketch",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-2aad9762aadf",
+      "year": 2018,
+      "title": "Diving into Urban-Rural Prejudice",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-2ccbaf2dafb1",
+      "year": 2018,
+      "title": "Bloomberg Graphics team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-2e6c95d360b5",
+      "year": 2018,
+      "title": "AFP Interactive",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-309c955f308d",
+      "year": 2018,
+      "title": "Elecciones 2018",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-3179e5ca204a",
+      "year": 2018,
+      "title": "Caixin VisLab",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-366773fc76a3",
+      "year": 2018,
+      "title": "Martin Gonzalez",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-382471275733",
+      "year": 2018,
+      "title": "ExtraPol",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-38ad260422c1",
+      "year": 2018,
+      "title": "FiveThirtyEight’s Open Data Webpage",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-3943fcc01521",
+      "year": 2018,
+      "title": "Monitor da Violencia",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-3b5832a1411e",
+      "year": 2018,
+      "title": "The Wall Street Journal: data & graphics",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-3cf5e00c056a",
+      "year": 2018,
+      "title": "FiveThirtyEight",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-3f42d417d9b0",
+      "year": 2018,
+      "title": "Associated Press Data Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-4d9fb6371386",
+      "year": 2018,
+      "title": "BBC News Visual and Data Journalism Team portfolio",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-52c85998379b",
+      "year": 2018,
+      "title": "The Neglected Bridges",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-52dc6e6aad07",
+      "year": 2018,
+      "title": "Mona Chalabi",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-54e9fbf5d54d",
+      "year": 2018,
+      "title": "Journalism++ Stockholm",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-57bb38759bdc",
+      "year": 2018,
+      "title": "Streetscapes – Mozart, Marx and a Dictator",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-5d4787590185",
+      "year": 2018,
+      "title": "Stateless in Brazil",
+      "attempts": [
+        {
+          "url": "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/Apátridas-no-Brasil.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/Apátridas-no-Brasil.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2018-61becf90d049",
+      "year": 2018,
+      "title": "The Bureau Local",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-61f73c4db629",
+      "year": 2018,
+      "title": "Lam Thuy Vo",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-63a439bbf797",
+      "year": 2018,
+      "title": "Health-Care Holdouts in the House",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-650ecd4c8bce",
+      "year": 2018,
+      "title": "Civio Data Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-67b8d5cde269",
+      "year": 2018,
+      "title": "Saimi Reyes",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-70ec493fd6e9",
+      "year": 2018,
+      "title": "Abdul Salam Afridi",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-749cc67e1d12",
+      "year": 2018,
+      "title": "Feeding China",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-7c8a5d267dfd",
+      "year": 2018,
+      "title": "Marie-Louise Timcke",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-7db42dcaa81b",
+      "year": 2018,
+      "title": "365 days of Trump claims",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-80db0ac4ef8e",
+      "year": 2018,
+      "title": "Five Maps That Show Why Macron Beat Le Pen",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-81f4345d8c8e",
+      "year": 2018,
+      "title": "Newsworthy",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-824723ae1aab",
+      "year": 2018,
+      "title": "Instant analyses of European elections",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-832ca860b78d",
+      "year": 2018,
+      "title": "Reuters Graphics portfolio",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-838119a884fd",
+      "year": 2018,
+      "title": "The search operation of the submarine Ara San Juan",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-88e1007843cb",
+      "year": 2018,
+      "title": "The Atlas Of Redistricting",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-8a90d988ef17",
+      "year": 2018,
+      "title": "Yudivian Almeida",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-8d5c1987f595",
+      "year": 2018,
+      "title": "Paradise Papers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-8da66f5dcef9",
+      "year": 2018,
+      "title": "Christopher Cannon",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-8e3d3710da4d",
+      "year": 2018,
+      "title": "NZZ Storytelling",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-92cb3c0694ba",
+      "year": 2018,
+      "title": "Undi Power",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-972d0653aca8",
+      "year": 2018,
+      "title": "Those Places High-Speed Rail Could Take You To",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-9e25917cbe58",
+      "year": 2018,
+      "title": "Build Your Own Trading Bot",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-a0152b339c64",
+      "year": 2018,
+      "title": "Monitor de Victimas",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-a251349d8a24",
+      "year": 2018,
+      "title": "Follow the Money",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-a69b4d4aa445",
+      "year": 2018,
+      "title": "Life in the camps",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-a8f22803a26f",
+      "year": 2018,
+      "title": "Agnel Philip",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-a978afb971c6",
+      "year": 2018,
+      "title": "Patrick Stotz",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-abe5dae41e9a",
+      "year": 2018,
+      "title": "North American hurricane coverage",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-ac4267577b7f",
+      "year": 2018,
+      "title": "The Stanford Open Policing Project",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-ae701d915fe3",
+      "year": 2018,
+      "title": "The New York Times Opinion",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-b1a4721a7d20",
+      "year": 2018,
+      "title": "Humanizing data on the Syrian conflict",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-b2924f6c2c67",
+      "year": 2018,
+      "title": "20 Years, 20 Titles",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-b316fee481fc",
+      "year": 2018,
+      "title": "The Wall",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-b4a016d48782",
+      "year": 2018,
+      "title": "Hidden Spy Planes",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-b7a76beb907e",
+      "year": 2018,
+      "title": "The Guardian Data Projects Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-ba8e6c641695",
+      "year": 2018,
+      "title": "The Gerrymandering Project",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-bdb34c58926c",
+      "year": 2018,
+      "title": "Easy Money",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-be1c30f7d69b",
+      "year": 2018,
+      "title": "Nancharts Code for Africa & Code for Nigeria",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-bede6fed1825",
+      "year": 2018,
+      "title": "Trump’s Lies",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-c01b4f099154",
+      "year": 2018,
+      "title": "The Uber Game",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-c0b1eaf4e60c",
+      "year": 2018,
+      "title": "Michael Hester",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-c22c96820c19",
+      "year": 2018,
+      "title": "Vía Sobrecosto",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-c2b9fe2cbc91",
+      "year": 2018,
+      "title": "Jonathan Albright",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-c4e856cfc129",
+      "year": 2018,
+      "title": "Rachael Dottle",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-c595a4ab163d",
+      "year": 2018,
+      "title": "Road to Nowhere",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-ca47a5466098",
+      "year": 2018,
+      "title": "Passmark",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-cf5d4ea55828",
+      "year": 2018,
+      "title": "BB-resan",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-d33e6461f2fb",
+      "year": 2018,
+      "title": "La Nacion Data",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-d3530e16dad5",
+      "year": 2018,
+      "title": "Trump Town",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-d7a628abd694",
+      "year": 2018,
+      "title": "Open Data Journalism for Change",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-db083ca359ef",
+      "year": 2018,
+      "title": "Two theaters or 1,000? How to release an Oscar-winning film",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-dd522ac50f2b",
+      "year": 2018,
+      "title": "Death and Dysfunction: How New Jersey fails the dead and betrays the living",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-deb660ad182a",
+      "year": 2018,
+      "title": "Timo Grossenbacher",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-f3219abfe607",
+      "year": 2018,
+      "title": "Is anything left of Mosul?",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-f3f030b49c61",
+      "year": 2018,
+      "title": "Reporting Deaths in Malaysian Police Custody: Behind the Numbers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-f47d65cbc248",
+      "year": 2018,
+      "title": "KRO-NCRV Data Journalism Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-f81789d818fc",
+      "year": 2018,
+      "title": "#SaferRoadsPH",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2018-f967041e1097",
+      "year": 2018,
+      "title": "Zombie Campaigns",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-fac0dee03a08",
+      "year": 2018,
+      "title": "The five main projects of the Belt and Road Initiative",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2018-fc3874f2cfcd",
+      "year": 2018,
+      "title": "Hanna and Ismail",
+      "attempts": [],
+      "excluded": [],
+      "status": "adopted",
+      "cached": true
+    },
+    {
+      "id": "dja-2019-004138fc4576",
+      "year": 2019,
+      "title": "Implant Files, AVROTROS and more than 50 media partners, International Consortium of Investigative Journalists, NBC News Investigative Unit",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-0499171cb479",
+      "year": 2019,
+      "title": "The Economist’s “Build a voter” models",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-0534709e9561",
+      "year": 2019,
+      "title": "Sold From Under You",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-090f6801a5c5",
+      "year": 2019,
+      "title": "Al Shaw",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-09d28530cfaa",
+      "year": 2019,
+      "title": "RADAR – data journalism and automation to produce local news at scale",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-120c4e02f08c",
+      "year": 2019,
+      "title": "In certain places in Russia HIV takes more lives than car accidents, suicides and alcohol: research",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-12dedddcc4d9",
+      "year": 2019,
+      "title": "Hate Crime Watch",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180051id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821225227id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "adopted"
+        }
+      ],
+      "excluded": [
+        {
+          "url": "https://web.archive.org/web/20191014180051id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png",
+          "reason": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        }
+      ],
+      "status": "adopted"
+    },
+    {
+      "id": "dja-2019-141ed50b8315",
+      "year": 2019,
+      "title": "How the Thai cave rescue mission unfolded",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-181a040f2322",
+      "year": 2019,
+      "title": "The Force Report",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-23cdf775800c",
+      "year": 2019,
+      "title": "FiveThirtyEight",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-24cdf919dd00",
+      "year": 2019,
+      "title": "This is what an analysis of the presidential candidates’ facial expressions reveals",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-265cf13b37f3",
+      "year": 2019,
+      "title": "Every Time Ford and Kavanaugh Dodged a Question",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-284d63bb4fb3",
+      "year": 2019,
+      "title": "Miseducation",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-29caba26d0e6",
+      "year": 2019,
+      "title": "Ocean Shock",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-2ca207e207ae",
+      "year": 2019,
+      "title": "Homicide, the main cause of death of the bodies that were repatriated to El Salvador, El Diario de Hoy, El Salvador",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-3017de1d161b",
+      "year": 2019,
+      "title": "Concrete and coral: Tracking expansion in the South China Sea",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-3146d735d850",
+      "year": 2019,
+      "title": "Caixin Vislab",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-33a6fa513e56",
+      "year": 2019,
+      "title": "SPIEGEL Data",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-355d4b5d4287",
+      "year": 2019,
+      "title": "Mongolian Center for Investigative Reporting",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-358e5de7855d",
+      "year": 2019,
+      "title": "Postdata.club",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-394cbe6e6537",
+      "year": 2019,
+      "title": "We can draw school zones to make classrooms less segregated. This is how well your district does",
+      "attempts": [
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-46-02-am-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-46-02-am-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-3c2c5fffe8a9",
+      "year": 2019,
+      "title": "Rappler team portfolio: Series of data stories on social media, disinformation",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-41bca4b28f18",
+      "year": 2019,
+      "title": "Bloomberg Graphics",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-46d544330ff5",
+      "year": 2019,
+      "title": "Dying Homeless",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-46fd5c29931c",
+      "year": 2019,
+      "title": "This is how thin you have to be, to walk the catwalk",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-4b2dca027833",
+      "year": 2019,
+      "title": "Trapped in Paradise",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-53c4e09da911",
+      "year": 2019,
+      "title": "As Tons of Chicago Recycling Go to Dumps, a Private Firm Is Paid Twice",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-572e148e14d8",
+      "year": 2019,
+      "title": "The Times & The Sunday Times d",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-5a0edcb4c5c9",
+      "year": 2019,
+      "title": "South Sudan Food Prices",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-5aab0479f296",
+      "year": 2019,
+      "title": "ProPublica News Applications Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-5b442c527f9c",
+      "year": 2019,
+      "title": "Driver’s notebooks exposed Argentina’s greatest corruption scandal ever: ten years and millions of cash bribes in bags",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-616299e1d7ef",
+      "year": 2019,
+      "title": "graphics.reuters.com",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-61f3aad9239a",
+      "year": 2019,
+      "title": "State Capture and the R12-billion Bosasa was given",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-62089af3bdd5",
+      "year": 2019,
+      "title": "Spitz dogs or Staffordshire Terriers? How and why fashion for dog breeds has changed in Russia since 2000",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-63908fff9b44",
+      "year": 2019,
+      "title": "Kira Schacht",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-67506df850f9",
+      "year": 2019,
+      "title": "Reuters Graphics team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-6790cd394b11",
+      "year": 2019,
+      "title": "A whole presidential campaign categorized",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-6aa2d42458c3",
+      "year": 2019,
+      "title": "Black box Schufa, Bayerischer Rundfunk",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-6c097445af45",
+      "year": 2019,
+      "title": "La Nacion",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/lanaciondata-1-2-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "Remote end closed connection without response"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/lanaciondata-1-2-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180035id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/lanaciondata-1-2-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821223225id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/lanaciondata-1-2-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-6e35536c9cba",
+      "year": 2019,
+      "title": "The post-conflict numbers",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-7382bacff515",
+      "year": 2019,
+      "title": "George Greenwood, BBC London",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-7746764251be",
+      "year": 2019,
+      "title": "The Myth of the Criminal Immigrant",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180043id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821225222id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "adopted"
+        }
+      ],
+      "excluded": [
+        {
+          "url": "https://web.archive.org/web/20191014180043id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "reason": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        }
+      ],
+      "status": "adopted"
+    },
+    {
+      "id": "dja-2019-7b4a23eb07b6",
+      "year": 2019,
+      "title": "FiveThirtyEight’s Open Data intiatives",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-7b5b36ccb8bd",
+      "year": 2019,
+      "title": "St. Louis Crime Tracker",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-7bf36175256e",
+      "year": 2019,
+      "title": "Indonesia Plane Crash",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180046id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190626162334id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "adopted"
+        }
+      ],
+      "excluded": [
+        {
+          "url": "https://web.archive.org/web/20191014180046id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "reason": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        }
+      ],
+      "status": "adopted"
+    },
+    {
+      "id": "dja-2019-7ca51448289b",
+      "year": 2019,
+      "title": "Database on proceedings against public officials",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-7db867ea9f8e",
+      "year": 2019,
+      "title": "Facial recognition’s ‘dirty little secret’: Millions of online photos scraped without consent",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-8037806201d0",
+      "year": 2019,
+      "title": "Observatorio de Corrupción,",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-806a70c44f72",
+      "year": 2019,
+      "title": "Juan Gómez",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-813432024a2d",
+      "year": 2019,
+      "title": "Bureau Local Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-84be5da5830d",
+      "year": 2019,
+      "title": "Dada Lyndell",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/photo_2018-03-27_09-20-21-1-tt-width-562-height-732-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "Remote end closed connection without response"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/photo_2018-03-27_09-20-21-1-tt-width-562-height-732-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180043id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/photo_2018-03-27_09-20-21-1-tt-width-562-height-732-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821224919id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/photo_2018-03-27_09-20-21-1-tt-width-562-height-732-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-95497f513bf7",
+      "year": 2019,
+      "title": "Inga Ting",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-9ee71d8c1223",
+      "year": 2019,
+      "title": "To See How Levees Increase Flooding, We Built Our Own",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-9f3154422bc9",
+      "year": 2019,
+      "title": "California is burning, USA Today",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-9fcfc47faea0",
+      "year": 2019,
+      "title": "Broadband speed map reveals Britain’s new digital divide",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-a06c002f45e8",
+      "year": 2019,
+      "title": "Texas Tribune Data Visuals Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-a2d7a90546ec",
+      "year": 2019,
+      "title": "DW Data",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-a3173499164e",
+      "year": 2019,
+      "title": "How Brexit revealed four new political factions",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-a55137847a4f",
+      "year": 2019,
+      "title": "Radmesser",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180037id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821223744id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "adopted"
+        }
+      ],
+      "excluded": [
+        {
+          "url": "https://web.archive.org/web/20191014180037id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png",
+          "reason": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        }
+      ],
+      "status": "adopted"
+    },
+    {
+      "id": "dja-2019-a632a25fc857",
+      "year": 2019,
+      "title": "Marshall Project",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-a643c4d5eecb",
+      "year": 2019,
+      "title": "How life has changed for people your age",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-a7e42b54dbe9",
+      "year": 2019,
+      "title": "The Clean” Political Discourse van",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-aaa46d715b2b",
+      "year": 2019,
+      "title": "Follow the NRA’s Spending on the 2018 Midterms, Down to the Last Dollar",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-b645ae50de62",
+      "year": 2019,
+      "title": "The Race to Save the River Ganges",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/ganges-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "Remote end closed connection without response"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/ganges-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-b98af2e9e7d8",
+      "year": 2019,
+      "title": "The Economist Data Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-bb91101902b8",
+      "year": 2019,
+      "title": "Eva Belmonte",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180033id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821223214id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "adopted"
+        }
+      ],
+      "excluded": [
+        {
+          "url": "https://web.archive.org/web/20191014180033id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+          "reason": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        }
+      ],
+      "status": "adopted"
+    },
+    {
+      "id": "dja-2019-bc0fa0a82b56",
+      "year": 2019,
+      "title": "A test of 12520 heated words: Does Baijiahao really occupy Baidu’s search results? JieFang Daily",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-bc5cf837c947",
+      "year": 2019,
+      "title": "Graphic explainer: the deadly 43-minutes chat record of Puyuma Express derailment",
+      "attempts": [
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/og-puyuma_notitle-tt-width-470-height-290-crop-1-bgcolor-000000.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/og-puyuma_notitle-tt-width-470-height-290-crop-1-bgcolor-000000.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-be30bd747bc2",
+      "year": 2019,
+      "title": "Saimi Reyes",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-c2648ac9192c",
+      "year": 2019,
+      "title": "Bloomberg Businessweek Best B-Schools",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-c54c50363934",
+      "year": 2019,
+      "title": "Telegraph Data Journalism Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-c89941b95ee3",
+      "year": 2019,
+      "title": "The Guardian Data Projects Team",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-ceb5d9bd069b",
+      "year": 2019,
+      "title": "Ashley Kirk",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d0d7367613c0",
+      "year": 2019,
+      "title": "Shane Shifflett",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d1935b08041c",
+      "year": 2019,
+      "title": "A day in a Spain without women",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d1e14af939e5",
+      "year": 2019,
+      "title": "Center for Public Integrity",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d1ff1e4587bd",
+      "year": 2019,
+      "title": "Storybench",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d38938d45c63",
+      "year": 2019,
+      "title": "Emily M. Eng",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d4df99159f05",
+      "year": 2019,
+      "title": "How the monsoon could devastate Rohingya camps",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d593201d51f8",
+      "year": 2019,
+      "title": "Recommended for you by YouTube: racism, antisemitism and misogyny:How YouTube fuels right-wing radicalization",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-d7f4f7915efe",
+      "year": 2019,
+      "title": "Foreign Lobby Watch",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-dab434504374",
+      "year": 2019,
+      "title": "OCCRP Data",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-05-at-13-21-18-xxx-tt-width-875-height-545-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-05-at-13-21-18-xxx-tt-width-875-height-545-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-dc38791e4f53",
+      "year": 2019,
+      "title": "Can You Afford to Retire",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-e370681aea4b",
+      "year": 2019,
+      "title": "James Tozer",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-e5995be90bd0",
+      "year": 2019,
+      "title": "Claire Miller",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-e6dd85fa10af",
+      "year": 2019,
+      "title": "How Trump’s Trade War Went From 18 Products to 10,000",
+      "attempts": [
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/trade-war-promo-1531113669323-original-1-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/trade-war-promo-1531113669323-original-1-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-e80ed9e993f2",
+      "year": 2019,
+      "title": "Here’s How America Uses Its Land",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-e940819e4eae",
+      "year": 2019,
+      "title": "A year after the disappearance of the submarine ARA San Juan",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-eabd9c1fbd4a",
+      "year": 2019,
+      "title": "Jill Castellano: Following the Money in San Diego Elections",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-eb4ed2e7bf15",
+      "year": 2019,
+      "title": "The South China Morning Post Arcade",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-f15ebab179ba",
+      "year": 2019,
+      "title": "The Pudding",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/thepudding2-3-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/thepudding2-3-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+          "status": "archive_lookup_failed",
+          "error": "<urlopen error [Errno 61] Connection refused>"
+        }
+      ],
+      "excluded": [],
+      "status": "unavailable"
+    },
+    {
+      "id": "dja-2019-f37485814c92",
+      "year": 2019,
+      "title": "Media Hack Collective",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-f555e57b3a06",
+      "year": 2019,
+      "title": "Hurricane Maria’s Dead",
+      "attempts": [
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "archive_lookup",
+          "captures": 2
+        },
+        {
+          "url": "https://web.archive.org/web/20191014180043id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "failed",
+          "error": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190821223751id_/https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png",
+          "status": "adopted"
+        }
+      ],
+      "excluded": [
+        {
+          "url": "https://web.archive.org/web/20191014180043id_/https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png",
+          "reason": "DJA/DEN site placeholder, not a work image (visually reviewed)"
+        }
+      ],
+      "status": "adopted"
+    },
+    {
+      "id": "dja-2019-f695a6a0cf49",
+      "year": 2019,
+      "title": "See How Your Salary Compares",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-f7ca83b3cdff",
+      "year": 2019,
+      "title": "Yemen: Death from Above – Every Saudi coalition air raid on Yemen since 2015",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-f90480c3d26c",
+      "year": 2019,
+      "title": "Copy, paste, legislate: We looked for legislation that was written by special interests. We found it in all 50 states",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-fa77131081e8",
+      "year": 2019,
+      "title": "The Wall Street Journal data and graphics",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-faab6760bcae",
+      "year": 2019,
+      "title": "The Receipts of Power",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-ff329dc6a7b4",
+      "year": 2019,
+      "title": "J++ (Journalism++)",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    },
+    {
+      "id": "dja-2019-ff40c99b4a8a",
+      "year": 2019,
+      "title": "Roberto Rocha",
+      "attempts": [],
+      "excluded": [],
+      "status": "no_reference"
+    }
+  ]
+}

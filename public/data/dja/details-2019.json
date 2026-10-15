@@ -8,6 +8,7 @@
       "https://datajournalismawards.org/projects/copy-paste-legislate-we-looked-for-legislation-that-was-written-by-special-interests-we-found-it-in-all-50-states/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -44,6 +45,7 @@
       "https://datajournalismawards.org/projects/the-economists-build-a-voter-models/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -80,6 +82,7 @@
       "https://datajournalismawards.org/projects/concrete-and-coral-tracking-expansion-in-the-south-china-sea/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -116,6 +119,7 @@
       "https://datajournalismawards.org/projects/facial-recognitions-dirty-little-secret-millions-of-online-photos-scraped-without-consent/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -152,6 +156,7 @@
       "https://datajournalismawards.org/projects/radar-data-journalism-and-automation-to-produce-local-news-at-scale/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -187,7 +192,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/radmesser/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/radmesser_image-1-tt-width-875-height-492-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -238,6 +252,7 @@
       "https://datajournalismawards.org/projects/a-whole-presidential-campaign-categorized/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -274,6 +289,7 @@
       "https://datajournalismawards.org/projects/this-is-what-an-analysis-of-the-presidential-candidates-facial-expressions-reveals/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "innovation in data journalism",
@@ -310,6 +326,7 @@
       "https://datajournalismawards.org/projects/portfolio-kira-schacht/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -346,6 +363,7 @@
       "https://datajournalismawards.org/projects/deputy-editor-for-rutas-del-conflicto/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -382,6 +400,7 @@
       "https://datajournalismawards.org/projects/portfolio-james-tozer/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -418,6 +437,7 @@
       "https://datajournalismawards.org/projects/jill-castellano-following-the-money-in-san-diego-elections/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -453,7 +473,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/dada-lyndell-young-data-journalist-of-the-year-portfolio-entry/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/photo_2018-03-27_09-20-21-1-tt-width-562-height-732-fill-0-crop-0-bgcolor-eeeeee.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/photo_2018-03-27_09-20-21-1-tt-width-562-height-732-fill-0-crop-0-bgcolor-eeeeee.jpg",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -504,6 +533,7 @@
       "https://datajournalismawards.org/projects/george-greenwood-young-data-journalist-of-the-year-portfolio-entry/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -540,6 +570,7 @@
       "https://datajournalismawards.org/projects/saimi-reyes-young-data-journalist/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "student and young data journalist of the year",
@@ -576,6 +607,7 @@
       "https://datajournalismawards.org/projects/data-journalism-team/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -612,6 +644,7 @@
       "https://datajournalismawards.org/projects/propublica-news-applications-team/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -648,6 +681,7 @@
       "https://datajournalismawards.org/projects/reuters-graphics-team/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -684,6 +718,7 @@
       "https://datajournalismawards.org/projects/the-economist-data-teams-graphic-detail-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -719,7 +754,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/la-nacion-datas-team-portfolio-from-buenos-aires-argentina-2019/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/lanaciondata-1-2-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/lanaciondata-1-2-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -770,6 +814,7 @@
       "https://datajournalismawards.org/projects/the-south-china-morning-post-arcade/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -806,6 +851,7 @@
       "https://datajournalismawards.org/projects/dw-data/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -842,6 +888,7 @@
       "https://datajournalismawards.org/projects/bloomberg-graphics-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -878,6 +925,7 @@
       "https://datajournalismawards.org/projects/spiegel-data/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -914,6 +962,7 @@
       "https://datajournalismawards.org/projects/telegraph-data-journalism-team-2/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -950,6 +999,7 @@
       "https://datajournalismawards.org/projects/data-projects-team-2/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -986,6 +1036,7 @@
       "https://datajournalismawards.org/projects/the-wall-street-journal-data-and-graphics-2/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -1037,6 +1088,7 @@
       "https://datajournalismawards.org/projects/rappler-team-portfolio-series-of-data-stories-on-social-media-disinformation-and-democracy/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -1073,6 +1125,7 @@
       "https://datajournalismawards.org/projects/caixin-vislab-2/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Large newsroom)",
@@ -1109,7 +1162,16 @@
       "https://datajournalismawards.org/projects/the-pudding/",
       "https://datajournalismawards.org/projects/the-pudding-2/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/thepudding2-3-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/thepudding2-3-tt-width-875-height-525-fill-0-crop-0-bgcolor-eeeeee.jpg",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1175,6 +1237,7 @@
       "https://datajournalismawards.org/projects/texas-tribune-data-visuals-team-personalized-news-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1211,6 +1274,7 @@
       "https://datajournalismawards.org/projects/center-for-public-integrity-data-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1247,6 +1311,7 @@
       "https://datajournalismawards.org/projects/bureau-local-team/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1283,6 +1348,7 @@
       "https://datajournalismawards.org/projects/fivethirtyeight-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1319,6 +1385,7 @@
       "https://datajournalismawards.org/projects/j-journalism/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1355,6 +1422,7 @@
       "https://datajournalismawards.org/projects/marshall-project-data-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1391,6 +1459,7 @@
       "https://datajournalismawards.org/projects/air-quality-in-mongolia/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1428,6 +1497,7 @@
       "https://datajournalismawards.org/projects/postdata-club-data-journalism-website-of-the-year/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1479,6 +1549,7 @@
       "https://datajournalismawards.org/projects/south-africas-deadly-school-toilets/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team portfolio (Small newsroom)",
@@ -1515,6 +1586,7 @@
       "https://datajournalismawards.org/projects/shane-shiffletts-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1551,6 +1623,7 @@
       "https://datajournalismawards.org/projects/al-shaw-individual-portfolio/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1587,6 +1660,7 @@
       "https://datajournalismawards.org/projects/counting-the-cost-of-the-education-revolution-and-other-data-driven-investigations/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1622,7 +1696,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/eva-belmontes-individual-portfolio/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/eva-belmonte-4-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1673,6 +1756,7 @@
       "https://datajournalismawards.org/projects/twitter-trolls-stoked-debates-about-immigrants-and-pipelines-in-canada-data-show/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1709,6 +1793,7 @@
       "https://datajournalismawards.org/projects/individual-portfolio-claire-miller/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1745,6 +1830,7 @@
       "https://datajournalismawards.org/projects/ashley-kirk-2/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1781,6 +1867,7 @@
       "https://datajournalismawards.org/projects/portfolio-emily-m-eng/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1816,7 +1903,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/indonesia-plane-crash/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/crash-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -1866,7 +1962,22 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/every-time-ford-and-kavanaugh-dodged-a-question-in-one-chart/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+      "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-470-height-290-crop-1-bgcolor-000000.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      },
+      {
+        "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-58-09-am-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+        "file": "2019/projects-page-3.html",
+        "pageSnapshot": "https://web.archive.org/web/20190717183738id_/https://datajournalismawards.org/projects/"
+      }
+    ],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -1927,6 +2038,7 @@
       "https://datajournalismawards.org/projects/a-test-of-12520-heated-words-does-baijiahao-really-occupy-baidus-search-results/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -1963,6 +2075,7 @@
       "https://datajournalismawards.org/projects/state-capture-and-the-r12-billion-bosasa-was-given/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -1998,7 +2111,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/graphic-explainer-the-deadly-43-minutes-chat-record-of-puyuma-express-derailment/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/og-puyuma_notitle-tt-width-470-height-290-crop-1-bgcolor-000000.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/og-puyuma_notitle-tt-width-470-height-290-crop-1-bgcolor-000000.jpg",
+        "file": "2019/projects.html",
+        "pageSnapshot": "https://web.archive.org/web/20190717183738id_/https://datajournalismawards.org/projects/"
+      }
+    ],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -2044,6 +2166,7 @@
       "https://datajournalismawards.org/projects/california-is-burning/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -2080,6 +2203,7 @@
       "https://datajournalismawards.org/projects/how-the-thai-cave-rescue-mission-unfolded/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best use of data in a breaking news story, within first 36 hours",
@@ -2116,6 +2240,7 @@
       "https://datajournalismawards.org/projects/graphics-reuters-com/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -2151,7 +2276,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/hate-crime-watch/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-08-at-1-16-59-am-1-tt-width-875-height-299-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -2208,6 +2342,7 @@
       "https://datajournalismawards.org/projects/storybench/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -2244,6 +2379,7 @@
       "https://datajournalismawards.org/projects/to-see-how-levees-increase-flooding-we-built-our-own/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2280,6 +2416,7 @@
       "https://datajournalismawards.org/projects/heres-how-america-uses-its-land/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2316,6 +2453,7 @@
       "https://datajournalismawards.org/projects/trapped-in-paradise/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2352,6 +2490,7 @@
       "https://datajournalismawards.org/projects/a-year-after-the-disappearance-of-the-submarine-ara-san-juan/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2388,6 +2527,7 @@
       "https://datajournalismawards.org/projects/how-the-monsoon-could-devastate-rohingya-camps/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2424,6 +2564,7 @@
       "https://datajournalismawards.org/projects/yemen-death-from-above-every-saudi-coalition-air-raid-on-yemen-since-2015/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2460,6 +2601,7 @@
       "https://datajournalismawards.org/projects/how-brexit-revealed-four-new-political-factions/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2495,7 +2637,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/the-race-to-save-the-river-ganges/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/ganges-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/ganges-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.jpg",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2545,7 +2696,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/how-trumps-trade-war-went-from-18-products-to-10000/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/trade-war-promo-1531113669323-original-1-tt-width-470-height-290-crop-1-bgcolor-000000.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/trade-war-promo-1531113669323-original-1-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+        "file": "2019/projects.html",
+        "pageSnapshot": "https://web.archive.org/web/20190717183738id_/https://datajournalismawards.org/projects/"
+      }
+    ],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2590,7 +2750,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/we-can-draw-school-zones-to-make-classrooms-less-segregated-this-is-how-well-your-district-does/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-46-02-am-tt-width-470-height-290-crop-1-bgcolor-000000.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://datajournalismawards.org/wp-content/thumbnails/uploads/2019/02/screen-shot-2019-02-20-at-9-46-02-am-tt-width-470-height-290-crop-1-bgcolor-000000.png",
+        "file": "2019/projects-page-3.html",
+        "pageSnapshot": "https://web.archive.org/web/20190717183738id_/https://datajournalismawards.org/projects/"
+      }
+    ],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2637,6 +2806,7 @@
       "https://datajournalismawards.org/projects/how-life-has-changed-for-people-your-age/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -2672,7 +2842,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/hurricane-marias-dead/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/2_hurricane-marias-dead-1-tt-width-875-height-454-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2723,6 +2902,7 @@
       "https://datajournalismawards.org/projects/ocean-shock/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2759,6 +2939,7 @@
       "https://datajournalismawards.org/projects/dying-homeless/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2795,6 +2976,7 @@
       "https://datajournalismawards.org/projects/miseducation/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2831,6 +3013,7 @@
       "https://datajournalismawards.org/projects/drivers-notebooks-exposed-argentinas-greatest-corruption-scandal-ever-ten-years-and-millions-of-cash-bribes-in-bags/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2867,6 +3050,7 @@
       "https://datajournalismawards.org/projects/implant-files-2/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2903,6 +3087,7 @@
       "https://datajournalismawards.org/projects/black-box-schufa/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2939,6 +3124,7 @@
       "https://datajournalismawards.org/projects/the-receipts-of-power/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -2975,6 +3161,7 @@
       "https://datajournalismawards.org/projects/recommended-for-you-by-youtube-racism-antisemitism-and-misogyny-how-youtube-fuels-right-wing-radicalization/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -3011,6 +3198,7 @@
       "https://datajournalismawards.org/projects/as-tons-of-chicago-recycling-go-to-dumps-a-private-firm-is-paid-twice/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -3047,6 +3235,7 @@
       "https://datajournalismawards.org/projects/the-force-report/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -3083,6 +3272,7 @@
       "https://datajournalismawards.org/projects/observatorio-de-corrupcion/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News Data App",
@@ -3119,6 +3309,7 @@
       "https://datajournalismawards.org/projects/st-louis-crime-tracker/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News Data App",
@@ -3155,6 +3346,7 @@
       "https://datajournalismawards.org/projects/broadband-speed-map-reveals-britains-new-digital-divide/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News Data App",
@@ -3191,6 +3383,7 @@
       "https://datajournalismawards.org/projects/follow-the-nras-spending-on-the-2018-midterms-down-to-the-last-dollar/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News Data App",
@@ -3227,6 +3420,7 @@
       "https://datajournalismawards.org/projects/bloomberg-businessweek-best-b-schools/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News Data App",
@@ -3263,6 +3457,7 @@
       "https://datajournalismawards.org/projects/can-you-afford-to-retire/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News Data App",
@@ -3298,7 +3493,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/the-myth-of-the-criminal-immigrant/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/dja-promo-1-tt-width-500-height-300-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "News Data App",
@@ -3349,6 +3553,7 @@
       "https://datajournalismawards.org/projects/the-post-conflict-numbers/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open Data Award",
@@ -3385,6 +3590,7 @@
       "https://datajournalismawards.org/projects/sold-from-under-you/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open Data Award",
@@ -3420,7 +3626,16 @@
     "profileLinks": [
       "https://datajournalismawards.org/projects/occrp-data/"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-05-at-13-21-18-xxx-tt-width-875-height-545-fill-0-crop-0-bgcolor-eeeeee.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://www.datajournalismawards.org/wp-content/thumbnails/uploads/2019/04/screenshot-2019-04-05-at-13-21-18-xxx-tt-width-875-height-545-fill-0-crop-0-bgcolor-eeeeee.png",
+        "file": "2019/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20200405091055id_/https://datajournalismawards.org/2019-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Open Data Award",
@@ -3471,6 +3686,7 @@
       "https://datajournalismawards.org/projects/database-on-proceedings-against-public-officials/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open Data Award",
@@ -3507,6 +3723,7 @@
       "https://datajournalismawards.org/projects/foreign-lobby-watch/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open Data Award",
@@ -3543,6 +3760,7 @@
       "https://datajournalismawards.org/projects/fivethirtyeights-open-data-intiatives/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open Data Award",
@@ -3579,6 +3797,7 @@
       "https://datajournalismawards.org/projects/south-sudan-food-prices/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3615,6 +3834,7 @@
       "https://datajournalismawards.org/projects/the-clean-political-discourse-van/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3651,6 +3871,7 @@
       "https://datajournalismawards.org/projects/this-is-how-thin-you-have-to-be-to-walk-the-catwalk/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3701,6 +3922,7 @@
       "https://datajournalismawards.org/projects/spitz-dogs-or-staffordshire-terriers-how-and-why-fashion-for-dog-breeds-has-changed-in-russia-since-2000/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3737,6 +3959,7 @@
       "https://datajournalismawards.org/projects/see-how-your-salary-compares/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3773,6 +3996,7 @@
       "https://datajournalismawards.org/projects/in-certain-places-in-russia-hiv-takes-more-lives-than-car-accidents-suicides-and-alcohol-research/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3809,6 +4033,7 @@
       "https://datajournalismawards.org/projects/homicide-the-main-cause-of-death-of-the-bodies-that-were-repatriated-to-el-salvador/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",
@@ -3845,6 +4070,7 @@
       "https://datajournalismawards.org/projects/a-day-in-a-spain-without-women/"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Public Choice Award",

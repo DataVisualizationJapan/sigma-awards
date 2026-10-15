@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlencode, urljoin, urlsplit, urlunsplit
 
 from dja.html_tree import Node, Tree, clean
+from dja.thumbnails import ancestor, attach_thumbnails, image_urls
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT.parent / 'data-journalism-awards' / 'archive'
@@ -242,7 +243,8 @@ class Catalog:
         for i,n in enumerate(nodes):
             if n.tag!='h3' or not (n.text.startswith('Category ') or n.text=='Special Citation'):continue
             end=next((x.pos for x in nodes[i+1:] if x.tag=='h3'),999999)
-            ps=[x for x in nodes[i+1:] if x.pos<end and x.tag=='p' and x.text]
+            block_ps=[x for x in nodes[i+1:] if x.pos<end and x.tag=='p']
+            ps=[x for x in block_ps if x.text]
             raw=' '.join(p.text for p in ps)
             category=category_clean(n.text)
             if 'Open Data Award' in category:
@@ -254,7 +256,7 @@ class Catalog:
                 m=re.search(r'for [“\"]([^”\"]+)[”\"]',raw)
                 titles=[m[1]] if m else []
             for title in titles:
-                self.add(file,2015,title,category,raw=raw,supplement=True)
+                self.add(file,2015,title,category,raw=raw,images=[u for p in block_ps for u in image_urls(p,self.provenance(file)['original'])][:1] if len(titles)==1 else [],supplement=True)
 
     def shortlist_2014(self):
         file='2014/shortlist.html'; category=''
@@ -324,7 +326,10 @@ class Catalog:
                 title,org,country=named(a.text,a)
                 result='mention' if 'Honorable Mention' in n.text else 'winner'
                 jury=n.text.split(a.text,1)[-1].strip()
-                self.add(file,2018,title,category,result,org,country,[a.attrs['href']],jury=jury,raw=n.text)
+                row=ancestor(n,'row')
+                primary=next((link for link in row.nodes('a') if 'project_id=' in link.attrs.get('href','') or link.attrs.get('href','').startswith('https://g1.globo.com/')),None) if row else None
+                images=image_urls(row,self.provenance(file)['original']) if primary is a else []
+                self.add(file,2018,title,category,result,org,country,[a.attrs['href']],jury=jury,raw=n.text,images=images)
         # Citation records share one paragraph with prose instead of result cards.
         for p in self.trees[file].nodes('p'):
             if 'ExtraPol is an innovative' in p.text:
@@ -352,7 +357,8 @@ class Catalog:
                 jury=jury[:-1]
             a=n.first('a')
             self.add(file,2019,n.text.split(':',1)[1],cat,'mention' if n.text.startswith('Honorable') else 'winner',org,COUNTRIES.get(country,country),
-                     [a.attrs['href']] if a else [],jury=' '.join(jury),raw=n.text+' | '+' | '.join(p.text for p in ps[:2]))
+                     [a.attrs['href']] if a else [],jury=' '.join(jury),raw=n.text+' | '+' | '.join(p.text for p in ps[:2]),
+                     images=list(dict.fromkeys(u for p in n.parent.nodes('p') if n.pos<p.pos<end for u in image_urls(p,self.provenance(file)['original']))))
 
     def community(self):
         for file,tree in self.trees.items():
@@ -388,14 +394,14 @@ class Catalog:
             title=texts[0]
             country=next((t.removeprefix('Country:').strip() for t in texts if t.startswith('Country:')),'')
             org=next((t.removeprefix('Organisation:').strip() for t in texts if t.startswith('Organisation:')),'')
-            self.add(file,2018,title,'',org=org,country=country,links=[a.attrs['href']],raw=card.text,supplement=True)
+            self.add(file,2018,title,'',org=org,country=country,links=[a.attrs['href']],raw=card.text,images=image_urls(picture,self.provenance(file)['original']),supplement=True)
         for file in ['2019/projects.html','2019/projects-page-2.html','2019/projects-page-3.html']:
             for card in self.trees[file].nodes('div','col-project__content'):
                 heading=card.first('h3')
                 a=heading.first('a') if heading else None
                 if not a:continue
                 ps=[p.text for p in card.nodes('p') if p.text]
-                self.add(file,2019,heading.text,'',links=[a.attrs['href']],summary=ps[-1] if ps else '',raw=card.text,supplement=True)
+                self.add(file,2019,heading.text,'',links=[a.attrs['href']],summary=ps[-1] if ps else '',raw=card.text,images=image_urls(ancestor(card,'col-project__inner'),self.provenance(file)['original']),supplement=True)
 
     def extract(self):
         for method in [self.nominees_2012,self.winners_2012,self.shortlist_2013,self.winners_2013,self.winners_2015,self.shortlist_2014,self.past_winners,self.shortlist_2016,
@@ -453,7 +459,7 @@ class Catalog:
             stable_key=f'{year}|{key(title)}'
             if title.endswith('...') or '\ufffd' in title: stable_key += '|' + best['links'][0]
             entry_id=self.patches.get('ids',{}).get(stable_key,f'dja-{year}-{hashlib.sha256(stable_key.encode()).hexdigest()[:12]}')
-            awards=[];sources=[];links=[];image_sources=[]
+            awards=[];sources=[];links=[];image_sources=[];image_references=[]
             for row in rows:
                 if row['result'] and (row['category'] or not any(r['category'] for r in rows)):
                     canonical_cat=self.patches.get('categories',{}).get(f"{row['year']}|{row['category']}",row['category'])
@@ -464,6 +470,11 @@ class Catalog:
                     if link not in links:links.append(link)
                 for image in row['imageSources']:
                     if image and image not in image_sources:image_sources.append(image)
+                    if image:
+                        src=row['source']
+                        snapshot=src['wayback'] or self.sources.get(src.get('groupFile',''),{}).get('wayback','')
+                        ref={'url':image,'file':src['file'],'pageSnapshot':snapshot}
+                        if ref not in image_references:image_references.append(ref)
             dedup={}
             for award in awards:
                 cat_key=key(award['category'])
@@ -489,9 +500,10 @@ class Catalog:
                    'url':work_links[0] if work_links else '', 'awards':awards,'sources':sources}
             entries.append(entry)
             details[year][entry_id]={'summary':summary,'summaryJa':summary_ja,'jury':jury,'links':work_links,'profileLinks':profile_links,
-                                    'imageSources':image_sources,'awards':awards,'sources':sources,
+                                    'imageSources':image_sources,'imageReferences':image_references,'awards':awards,'sources':sources,
                                     'sourceRecords':[{'file':r['source']['file'],'text':r['sourceText']} for r in rows if r['sourceText']]}
         entries.sort(key=lambda e:(-e['year'],RANK[e['result']],e['title'].casefold()))
+        attach_thumbnails(entries,details)
         validate(entries,details)
         coverage=[]
         for year in range(2012,2020):

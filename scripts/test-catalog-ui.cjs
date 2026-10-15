@@ -33,7 +33,9 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     assert.equal(await page.locator('#year-chips [aria-pressed="true"]').innerText(), '2019');
     assert.equal(await page.locator('.card').count(), 24);
     assert.match(await page.locator('#result-count').innerText(), /100件/);
-    await page.screenshot({ path: '/tmp/dja-desktop.png', fullPage: true });
+    const imageRatio = await page.locator('.card__thumb').first().evaluate(img => img.getBoundingClientRect().width / img.getBoundingClientRect().height);
+    assert.ok(Math.abs(imageRatio - 1.6) < 0.02, 'Card image should retain the 16:10 layout');
+    await page.screenshot({ path: '/tmp/dja-desktop.png' });
     await page.locator('#coverage > summary').click();
     assert.equal(await page.locator('#coverage tbody tr').count(), 8);
     await page.locator('#pager [data-page="2"]').first().click();
@@ -72,7 +74,11 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     assert.equal(await page.locator('#drawer-title').innerText(), hurricane.title);
     assert.match(await page.locator('#drawer-body').innerText(), /プエルトリコ/);
     assert.ok(await page.locator('.source-list a').count() > 0);
-    assert.equal(await page.locator('#drawer-thumb').isVisible(), false);
+    assert.equal(await page.locator('#drawer-thumb').isVisible(), Boolean(hurricane.thumb));
+    if (hurricane.thumb) {
+      await page.locator('#drawer-thumb').evaluate(img => img.decode());
+      assert.ok(await page.locator('#drawer-thumb').evaluate(img => img.naturalWidth > 0));
+    }
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#drawer').isVisible(), false);
     await page.locator('#locale-chips [data-locale="src"]').click();
@@ -83,6 +89,8 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.locator('#card-grid .card__detail').first().click();
     await page.locator('#drawer .source-list').waitFor();
     await page.locator('#drawer .source-records').waitFor();
+    const firstId = await page.locator('#card-grid .card').first().getAttribute('data-id');
+    assert.equal(await page.locator('#drawer-thumb').isVisible(), Boolean(entries.find(e => e.id === firstId).thumb));
     await page.locator('#drawer-close').focus();
     await page.keyboard.press('Shift+Tab');
     assert.notEqual(await page.evaluate(() => document.activeElement.id), 'drawer-close');
@@ -106,9 +114,13 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.setViewportSize({ width: 390, height: 844 });
     await visit('/dja/?year=2018');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    assert.ok(await page.locator('.card__thumb').count() > 0);
+    await page.locator('.card__thumb').first().evaluate(img => img.decode());
     await page.screenshot({ path: '/tmp/dja-mobile.png', fullPage: true });
     await page.locator('.card__detail').first().click();
     await page.locator('#drawer .source-records').waitFor();
+    await page.locator('#drawer-thumb').evaluate(img => img.decode());
+    assert.ok(await page.locator('#drawer-thumb').evaluate(img => img.naturalWidth > 0));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.screenshot({ path: '/tmp/dja-mobile-detail.png' });
     await page.keyboard.press('Escape');

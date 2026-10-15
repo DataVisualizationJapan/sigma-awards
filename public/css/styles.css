@@ -295,6 +295,7 @@ h1 {
   display: block;
   margin: -16px -16px 8px;
   width: calc(100% + 32px);
+  height: auto;
   max-width: none;
   aspect-ratio: 16 / 10;
   object-fit: cover;

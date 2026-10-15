@@ -2,6 +2,8 @@
 import importlib.util
 import json
 import unittest
+import hashlib
+import tempfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -33,7 +35,8 @@ class DjaDataTests(unittest.TestCase):
             self.assertTrue(all(e['result'] in ('winner', 'shortlist', 'mention') for e in yearly))
         self.assertTrue(any(not e['country'] for e in self.entries))
         self.assertTrue(any(not e['summary'] and not e['summaryJa'] for e in self.entries))
-        self.assertFalse(any(e.get('thumb') for e in self.entries))
+        self.assertTrue(any(e.get('thumb') for e in self.entries))
+        self.assertTrue(any(not e.get('thumb') for e in self.entries))
 
     def test_nominees_2013_are_73_distinct_targets(self):
         self.assertEqual(sum(e['year'] == 2013 for e in self.entries), 73)
@@ -87,6 +90,40 @@ class DjaDataTests(unittest.TestCase):
                 self.assertTrue(source['file'].endswith('.html'))
                 self.assertIn('original', source)
                 self.assertIn('wayback', source)
+
+    def test_archived_image_association(self):
+        patrick = self.entry(2018, 'Patrick Stotz')
+        yudivian = self.entry(2018, 'Yudivian Almeida')
+        primary = self.details[2018][patrick['id']]['imageSources']
+        self.assertTrue(primary)
+        self.assertTrue(set(primary).isdisjoint(self.details[2018][yudivian['id']]['imageSources']))
+        hurricane = self.entry(2019, 'Hurricane Maria’s Dead')
+        urls = self.details[2019][hurricane['id']]['imageSources']
+        self.assertTrue(any('hurricane' in u for u in urls))
+        nos = self.entry(2019, 'This is how thin you have to be, to walk the catwalk')
+        self.assertEqual(self.details[2019][nos['id']]['imageSources'], [])
+
+    def test_local_thumbnails_and_rejected_placeholders(self):
+        from dja.thumbnails import MANIFEST, placeholder_reason, rejected_image_reason, attach_thumbnails
+        images = json.loads(MANIFEST.read_text())['images']
+        self.assertEqual(len(images), sum(bool(e.get('thumb')) for e in self.entries))
+        for entry in self.entries:
+            image = images.get(entry['id'])
+            if image is None:
+                continue
+            self.assertEqual(entry['thumb'], image['path'])
+            self.assertTrue(image['path'].startswith('/thumbs/dja/'))
+            self.assertFalse(placeholder_reason(image['sourceUrl']))
+            self.assertFalse(rejected_image_reason(image['sha256']))
+            content = (ROOT / 'public' / image['path'].lstrip('/')).read_bytes()
+            self.assertEqual(hashlib.sha256(content).hexdigest(), image['sha256'])
+        entry = next(e for e in self.entries if e.get('thumb'))
+        broken = dict(images[entry['id']], sha256='0' * 64)
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = Path(directory) / 'images.json'
+            manifest.write_text(json.dumps({'images': {entry['id']: broken}}))
+            with self.assertRaisesRegex(ValueError, 'Missing or modified thumbnail'):
+                attach_thumbnails(self.entries, self.details, manifest)
 
     @unittest.skipUnless(build_dja.DEFAULT_SOURCE.exists(), 'Supplied archive is not installed')
     def test_rebuild_never_opens_network_and_is_deterministic(self):

@@ -8,6 +8,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2266"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -44,6 +45,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2384"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -80,6 +82,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2514"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -116,6 +119,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1960"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -152,6 +156,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1907"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -188,6 +193,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2229"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -224,6 +230,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2109"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -259,7 +266,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=12"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/ogimageen.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/ogimageen.png",
+        "file": "2018/project-listing.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192840id_/https://www.datajournalismawards.org/project-listing/"
+      }
+    ],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -304,7 +320,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2195"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*2rXugZH3r0CyYo1NFJ0jTg.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*2rXugZH3r0CyYo1NFJ0jTg.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -355,6 +380,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2022"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -391,6 +417,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1970"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -427,6 +454,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1927"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data visualisation of the year",
@@ -463,6 +491,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2380"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -500,7 +529,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=1885"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*LGoTJi89GdHb00dwK4FP6w.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*LGoTJi89GdHb00dwK4FP6w.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -557,6 +595,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2338"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -593,6 +632,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2280"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -629,6 +669,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1978"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -664,7 +705,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2484"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*9cYmNzBS77Otr_dRs6Aq6Q.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*9cYmNzBS77Otr_dRs6Aq6Q.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -715,6 +765,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2004"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Investigation of the year",
@@ -751,6 +802,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2351"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News data app of the year",
@@ -786,7 +838,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2073"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*XbyQH4sEUvgAlybYAFU2GA.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*XbyQH4sEUvgAlybYAFU2GA.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "News data app of the year",
@@ -837,6 +898,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1950"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News data app of the year",
@@ -873,6 +935,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2531"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News data app of the year",
@@ -909,6 +972,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2327"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News data app of the year",
@@ -945,6 +1009,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2010"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "News data app of the year",
@@ -1003,6 +1068,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2526"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -1054,6 +1120,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1979"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -1090,6 +1157,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2272"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -1125,7 +1193,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2312"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*YJ6kYm5_aI4wX-TY20fa-Q.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*YJ6kYm5_aI4wX-TY20fa-Q.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -1175,7 +1252,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=7"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/Apátridas-no-Brasil.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/Apátridas-no-Brasil.jpg",
+        "file": "2018/project-listing.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192840id_/https://www.datajournalismawards.org/project-listing/"
+      }
+    ],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -1221,6 +1307,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2453"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Data journalism website of the year",
@@ -1257,6 +1344,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2430"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "best use of data in a breaking news story, within first 36 hours",
@@ -1293,6 +1381,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2374"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "best use of data in a breaking news story, within first 36 hours",
@@ -1329,6 +1418,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2071"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "best use of data in a breaking news story, within first 36 hours",
@@ -1364,7 +1454,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2304"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*5B7KvdcSsi2FKyDosTQMBg.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*5B7KvdcSsi2FKyDosTQMBg.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "best use of data in a breaking news story, within first 36 hours",
@@ -1415,6 +1514,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2357"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "best use of data in a breaking news story, within first 36 hours",
@@ -1451,6 +1551,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2082"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open data",
@@ -1487,6 +1588,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2434"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open data",
@@ -1523,6 +1625,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1901"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open data",
@@ -1558,7 +1661,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2496"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*ZCRmkDi8e1gr7c54WVjJSg.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*ZCRmkDi8e1gr7c54WVjJSg.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Open data",
@@ -1609,6 +1721,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2117"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Open data",
@@ -1665,6 +1778,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2410"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1701,6 +1815,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2273"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1737,6 +1852,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2165"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1773,6 +1889,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2139"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1809,6 +1926,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1928"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1845,6 +1963,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2103"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1894,7 +2013,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=1995"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*GxNocvequpbxXwHPsukTBA.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*GxNocvequpbxXwHPsukTBA.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1945,6 +2073,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1886"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -1981,6 +2110,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2402"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -2017,6 +2147,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2411"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best individual portfolio",
@@ -2053,6 +2184,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2354"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2089,6 +2221,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2216"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2125,6 +2258,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2405"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2160,7 +2294,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2041"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*b1ueqVph7sVnP6C320CgPw.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*b1ueqVph7sVnP6C320CgPw.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2211,6 +2354,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2074"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2247,6 +2391,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1953"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2283,6 +2428,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2112"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2319,6 +2465,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2456"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2355,6 +2502,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2421"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2391,6 +2539,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2025"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2447,6 +2596,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2396"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2483,6 +2633,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2239"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – large",
@@ -2519,6 +2670,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2340"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2555,6 +2707,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1952"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2591,6 +2744,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2204"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2626,7 +2780,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2359"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*qK41ypY0DsJRUBIENecanw.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*qK41ypY0DsJRUBIENecanw.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2677,6 +2840,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2236"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2713,6 +2877,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1916"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2749,6 +2914,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2436"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2784,7 +2950,22 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=8"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*ymjdIDupR0hdxniwo-SEiw.png",
+      "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/cintillo-monitor_Mesa-de-trabajo-7.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*ymjdIDupR0hdxniwo-SEiw.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      },
+      {
+        "url": "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/cintillo-monitor_Mesa-de-trabajo-7.png",
+        "file": "2018/project-listing.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192840id_/https://www.datajournalismawards.org/project-listing/"
+      }
+    ],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2844,6 +3025,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2406"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Best data journalism team – small",
@@ -2880,6 +3062,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1926"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -2915,7 +3098,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=24"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/szene.jpg"
+    ],
+    "imageReferences": [
+      {
+        "url": "http://www.datajournalismawards.org/wp-content/uploads/cf7-database/szene.jpg",
+        "file": "2018/project-listing.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192840id_/https://www.datajournalismawards.org/project-listing/"
+      }
+    ],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -2960,7 +3152,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2015"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*anRtYSlO7RQJ4x__PKVDpQ.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*anRtYSlO7RQJ4x__PKVDpQ.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -3011,6 +3212,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2520"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -3047,6 +3249,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2228"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -3083,6 +3286,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2489"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -3119,6 +3323,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1924"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -3155,6 +3360,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=1939"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Innovation in data journalism",
@@ -3190,7 +3396,16 @@
     "profileLinks": [
       "https://www.datajournalismawards.org/project-listing/?project_id=2365"
     ],
-    "imageSources": [],
+    "imageSources": [
+      "https://cdn-images-1.medium.com/max/1200/1*XWV0IJ8CiYg3lSAD91FNQQ.png"
+    ],
+    "imageReferences": [
+      {
+        "url": "https://cdn-images-1.medium.com/max/1200/1*XWV0IJ8CiYg3lSAD91FNQQ.png",
+        "file": "2018/winners.html",
+        "pageSnapshot": "https://web.archive.org/web/20180605192830id_/https://www.datajournalismawards.org/2018-winners/"
+      }
+    ],
     "awards": [
       {
         "category": "Student and young data journalist of the year",
@@ -3241,6 +3456,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2376"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Student and young data journalist of the year",
@@ -3277,6 +3493,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2102"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Student and young data journalist of the year",
@@ -3313,6 +3530,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2373"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Student and young data journalist of the year",
@@ -3349,6 +3567,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2468"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Student and young data journalist of the year",
@@ -3385,6 +3604,7 @@
       "https://www.datajournalismawards.org/project-listing/?project_id=2446"
     ],
     "imageSources": [],
+    "imageReferences": [],
     "awards": [
       {
         "category": "Student and young data journalist of the year",
