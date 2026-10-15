@@ -1,9 +1,11 @@
 import { countryJa, langsJa, sizeJa, tagJa } from "./i18n.js";
 
 const PAGE_SIZE = 24;
-const DEFAULT_YEAR = "2026";
+const IS_DJA = document.body.dataset.catalog === "dja";
+const DATA_BASE = document.body.dataset.dataBase || "data/";
+let defaultYear = document.body.dataset.defaultYear || "2026";
 const RESULT_VALUES = new Set(["winner", "shortlist", "mention", "entry"]);
-const KIND_VALUES = new Set(["project", "portfolio"]);
+const KIND_VALUES = new Set(IS_DJA ? ["project", "portfolio", "individual", "team", "site"] : ["project", "portfolio"]);
 const RESULT_LABELS = {
   winner: "受賞",
   shortlist: "ショートリスト",
@@ -11,6 +13,9 @@ const RESULT_LABELS = {
   entry: "応募",
 };
 const KIND_LABELS = {
+  individual: "個人",
+  team: "チーム",
+  site: "サイト",
   project: "作品",
   portfolio: "ポートフォリオ",
 };
@@ -20,7 +25,9 @@ const state = {
   years: [],
   filtered: [],
   page: 1,
-  year: DEFAULT_YEAR,
+  year: defaultYear,
+  category: "",
+  coverage: [],
   result: "",
   kind: "",
   country: "",
@@ -37,6 +44,8 @@ const els = {
   result: document.querySelector("#result"),
   kind: document.querySelector("#kind"),
   country: document.querySelector("#country"),
+  category: document.querySelector("#category"),
+  coverage: document.querySelector("#coverage"),
   count: document.querySelector("#result-count"),
   grid: document.querySelector("#card-grid"),
   empty: document.querySelector("#empty"),
@@ -126,6 +135,8 @@ function filtersToSearch() {
   if (state.result) params.set("result", state.result);
   if (state.kind) params.set("kind", state.kind);
   if (state.country) params.set("country", state.country);
+  if (state.category) params.set("category", state.category);
+  if (state.locale !== "ja") params.set("locale", state.locale);
   if (state.page > 1) params.set("page", String(state.page));
   const search = params.toString();
   return search ? `?${search}` : "";
@@ -157,12 +168,14 @@ function readUrl() {
   const year = params.get("year");
   if (year === "all") state.year = "";
   else if (year) state.year = year;
-  else state.year = DEFAULT_YEAR;
+  else state.year = defaultYear;
   const result = params.get("result") || "";
   state.result = RESULT_VALUES.has(result) ? result : "";
   const kind = params.get("kind") || "";
   state.kind = KIND_VALUES.has(kind) ? kind : "";
   state.country = params.get("country") || "";
+  state.category = IS_DJA ? params.get("category") || "" : "";
+  state.locale = params.get("locale") === "src" ? "src" : "ja";
   const page = Number(params.get("page"));
   state.page = Number.isInteger(page) && page >= 1 ? page : 1;
 }
@@ -171,11 +184,12 @@ function applyUrlToForm() {
   els.q.value = state.query;
   els.result.value = state.result;
   els.kind.value = state.kind;
+  if (els.category) els.category.value = state.category;
 }
 
 function normalizeYear() {
   if (!state.year) return;
-  if (!state.years.includes(Number(state.year))) state.year = DEFAULT_YEAR;
+  if (!state.years.includes(Number(state.year))) state.year = defaultYear;
 }
 
 function applyFilters() {
@@ -183,7 +197,11 @@ function applyFilters() {
   const tokens = query.split(/\s+/).filter(Boolean);
   state.filtered = state.entries.filter((entry) => {
     if (state.year && String(entry.year) !== state.year) return false;
-    if (state.result && entry.result !== state.result) return false;
+    const awards = entry.awards || [{ category: "", result: entry.result }];
+    if ((state.result || state.category) && !awards.some((award) =>
+      (!state.result || award.result === state.result) &&
+      (!state.category || award.category === state.category)
+    )) return false;
     if (state.kind && entry.kind !== state.kind) return false;
     if (state.country && entry.country !== state.country) return false;
     if (!tokens.length) return true;
@@ -192,6 +210,7 @@ function applyFilters() {
         entry.title,
         entry.titleJa,
         entry.org,
+        ...(entry.awards || []).flatMap((a) => [a.category, categoryJa(a.category)]),
         entry.country,
         countryJa(entry.country),
         entry.tags.join(" "),
@@ -251,6 +270,72 @@ function renderCountries() {
   els.country.value = current;
 }
 
+function categoryJa(value) {
+  if (!IS_DJA) return value;
+  const labels = [
+    [/Data story or group of stories on a single topic, online or print/i, "単一テーマのデータストーリー（オンライン・紙媒体）"],
+    [/Data-driven investigation, which uses data collection and analysis/i, "データ収集・分析による調査報道"],
+    [/Journalistic data visualization on a single theme/i, "単一テーマのデータ可視化"],
+    [/Data journalism application or website/i, "データジャーナリズムのアプリ・サイト"],
+    [/Small newsroom entry \(less than 25 members\)/i, "小規模編集部（25人未満）"],
+    [/Small newsrooms \(one or more winners\)/i, "小規模編集部"],
+    [/Best Entry from a Small Newsroom/i, "小規模編集部"],
+    [/General Excellence(?: Award)? \(Jur(?:y|ors)[’']s? Choice\)/i, "総合優秀賞（審査員選出）"],
+    [/Jury[’']s Choice/i, "審査員賞"],
+    [/Data[- ]driven investigative journalism/i, "データ調査報道"],
+    [/Data[- ]driven investigations?/i, "データ調査報道"],
+    [/Data visualisation and storytelling/i, "データ可視化・ストーリーテリング"],
+    [/Data[- ]driven applications?/i, "データアプリケーション"],
+    [/Data storytelling/i, "データストーリーテリング"],
+    [/Data journalism website or section/i, "データジャーナリズムのサイト・部門"],
+    [/Data journalism portfolio \(individual\)/i, "個人ポートフォリオ"],
+    [/Data journalism portfolio \(team\/newsroom\)/i, "チーム・編集部ポートフォリオ"],
+    [/Best (?:data journalism )?team portfolio/i, "チームポートフォリオ"],
+    [/Best portfolio [–-] Team/i, "チームポートフォリオ"],
+    [/Best data journalism team/i, "データジャーナリズムチーム"],
+    [/Best individual portfolio/i, "個人ポートフォリオ"],
+    [/Student and young data journalist of the year/i, "学生・若手データジャーナリスト"],
+    [/Data visualisation of the year/i, "データ可視化"],
+    [/Investigation of the year/i, "調査報道"],
+    [/(?:Best )?News data app(?: of the year)?/i, "ニュースデータアプリ"],
+    [/Data journalism website of the year/i, "データジャーナリズムサイト"],
+    [/Innovation in data journalism/i, "データジャーナリズムの革新"],
+    [/Open data(?: award)?/i, "オープンデータ"],
+    [/Public[’']?s? choice(?: award)?/i, "読者投票"],
+    [/People[’']s Choice Award/i, "読者投票"],
+    [/Special Citation|Citation for Excellence/i, "特別表彰"],
+  ];
+  let translated = value;
+  if (/best use of data in a breaking news story/i.test(value)) translated = "速報におけるデータ活用（36時間以内）";
+  else for (const [pattern, label] of labels) {
+    if (pattern.test(value)) { translated = value.replace(pattern, label); break; }
+  }
+  return translated.replace(/big media/g, "大規模媒体").replace(/small media/g, "小規模媒体")
+    .replace(/Large [Nn]ewsroom|large/g, "大規模編集部")
+    .replace(/Small [Nn]ewsroom|small/g, "小規模編集部")
+    .replace(/national\/international/g, "国内・国際").replace(/local\/regional/g, "地方・地域");
+}
+
+function renderCategories() {
+  if (!els.category) return;
+  const categories = uniqueSorted((state.year ? state.entries.filter((e) => String(e.year) === state.year) : state.entries).flatMap((entry) => (entry.awards || []).map((a) => a.category)));
+  if (!categories.includes(state.category)) state.category = "";
+  els.category.innerHTML = '<option value="">すべて</option>' + categories.map((category) =>
+    `<option value="${escapeHtml(category)}">${escapeHtml(isJa() ? categoryJa(category) : category)}</option>`
+  ).join("");
+  els.category.value = state.category;
+}
+
+function renderCoverage() {
+  if (!els.coverage) return;
+  els.coverage.innerHTML = `<summary>収録状況・出典について</summary>
+    <p>保存済みの受賞・候補リストから確認できた対象を収録しています。全応募を網羅する一覧ではありません。
+    部門別の選考結果と、同一年の同一対象をまとめた件数は異なります。画像・説明が残っていない対象も掲載しています。</p>
+    <div class="coverage__scroll"><table><caption>開催年別の収録状況</caption><thead><tr><th>開催年</th><th>対象数</th><th>部門別結果数</th><th>資料の状況</th></tr></thead><tbody>${state.coverage.map((row) =>
+      `<tr><th scope="row">${row.year}</th><td>${row.count}</td><td>${row.awardCount}</td><td>${row.notes.map(escapeHtml).join("<br>")}</td></tr>`
+    ).join("")}</tbody></table></div>`;
+}
+
 function renderCards() {
   const page = pageEntries();
   els.grid.innerHTML = page
@@ -280,6 +365,7 @@ function renderCards() {
           <p class="card__org">${escapeHtml([entry.org, displayCountry(entry.country)].filter(Boolean).join(" · "))}</p>
           ${langs ? `<p class="card__langs">${escapeHtml(isJa() ? `言語: ${langs}` : `Language: ${entry.langs}`)}</p>` : ""}
           ${langsOriginal && isJa() ? `<p class="card__original">${escapeHtml(entry.langs)}</p>` : ""}
+          ${IS_DJA ? `<p class="card__category">${escapeHtml(uniqueSorted((entry.awards || []).map((a) => isJa() ? categoryJa(a.category) : a.category)).join(" · "))}</p>` : ""}
           <p class="card__summary">${escapeHtml(displayCardSummary(entry))}</p>
           <div class="card__tags">${tags}</div>
           <div class="card__actions">
@@ -339,7 +425,7 @@ function findEntry(id) {
 
 async function loadDetails(year) {
   if (state.details.has(year)) return state.details.get(year);
-  const response = await fetch(`data/details-${year}.json`);
+  const response = await fetch(`${DATA_BASE}details-${year}.json`);
   if (!response.ok) throw new Error(`詳細データの読み込みに失敗しました（${year}）`);
   const payload = await response.json();
   state.details.set(year, payload);
@@ -352,6 +438,18 @@ function section(title, text) {
 }
 
 function renderDrawer(entry, details = {}) {
+  const previousFocus = document.activeElement;
+  const hadDrawerFocus = els.drawer.contains(previousFocus);
+  const restoreDrawerFocus = () => {
+    if (!hadDrawerFocus || previousFocus.isConnected) return;
+    const href = previousFocus.getAttribute("href");
+    const replacement = href
+      ? [...els.drawer.querySelectorAll("a[href]")].find((a) => a.getAttribute("href") === href)
+      : previousFocus.tagName === "SUMMARY"
+        ? els.drawer.querySelector(".source-records > summary")
+        : null;
+    (replacement || els.drawerClose).focus();
+  };
   const langs = details.langs || entry.langs || "";
   const title = displayTitle(entry);
   if (entry.thumb) {
@@ -387,6 +485,7 @@ function renderDrawer(entry, details = {}) {
   const impact = pickJa(details.impactJa, details.impact);
   const jury = pickJa(details.juryJa, details.jury);
   els.drawerBody.innerHTML = [
+    IS_DJA ? renderAwards(entry.awards || []) : "",
     section("概要", summary),
     section("影響", impact),
     section("使った技術", details.tools),
@@ -403,6 +502,11 @@ function renderDrawer(entry, details = {}) {
   if (isJa() && langs && displayLangs(langs) !== langs) originalBlocks.push(section("言語", langs));
   els.drawerSource.hidden = originalBlocks.length === 0;
   els.drawerSourceBody.innerHTML = originalBlocks.join("");
+  if (IS_DJA) {
+    els.drawerLinks.innerHTML = renderDjaLinks(entry, details);
+    restoreDrawerFocus();
+    return;
+  }
   const links = details.links?.length ? details.links : entry.url ? [entry.url] : [];
   els.drawerLinks.innerHTML = links
     .map(
@@ -410,11 +514,43 @@ function renderDrawer(entry, details = {}) {
         `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${index === 0 ? "作品を開く" : escapeHtml(url)}</a>`
     )
     .join("");
+  restoreDrawerFocus();
 }
+
+function safeLink(url, label) {
+  try {
+    if (!["http:", "https:"].includes(new URL(url).protocol)) return "";
+  } catch { return ""; }
+  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+}
+
+function renderAwards(awards) {
+  return `<h3>部門・選考結果</h3><ul class="award-list">${awards.map((award) =>
+    `<li>${escapeHtml(RESULT_LABELS[award.result])} · ${escapeHtml(isJa() ? categoryJa(award.category) : award.category || "部門記載なし")}
+      ${isJa() && categoryJa(award.category) !== award.category ? `<small>${escapeHtml(award.category)}</small>` : ""}</li>`
+  ).join("")}</ul>`;
+}
+
+function renderDjaLinks(entry, details) {
+  const links = details.links || (entry.url ? [entry.url] : []);
+  const profiles = details.profileLinks || [];
+  const sources = details.sources || entry.sources || [];
+  return `<h3>リンク・出典</h3>${links.map((url, i) => safeLink(url, i === 0 ? "作品・受賞対象を開く" : `関連リンク ${i + 1}`)).join("")}
+    ${profiles.map((url, i) => safeLink(url, `旧DJA紹介ページ ${i + 1}`)).join("")}
+    <p class="source-note">旧サイトや作品のリンクは現在閲覧できない場合があります。以下の保存資料が選考結果の出典です。</p>
+    <ul class="source-list">${sources.map((source) => `<li><span>${escapeHtml(source.file)}</span>
+      ${source.wayback ? safeLink(source.wayback, "保存ページ（Wayback）") : "<small>個別の保存URLは記録なし</small>"}
+      ${source.original ? safeLink(source.original, "出典の元ページ") : ""}</li>`).join("")}</ul>
+    ${details.sourceRecords?.length ? `<details class="source-records"><summary>保存資料の記載</summary>${details.sourceRecords.map((record) =>
+      `<p><small>${escapeHtml(record.file)}</small><br>${escapeHtml(record.text)}</p>`).join("")}</details>` : ""}`;
+}
+
+let returnFocus = null;
 
 async function openDrawer(id) {
   const entry = findEntry(id);
   if (!entry) return;
+  if (els.drawer.hidden) returnFocus = document.activeElement;
   state.openId = id;
   renderDrawer(entry);
   els.drawer.hidden = false;
@@ -443,6 +579,7 @@ function closeDrawer() {
   els.drawer.dataset.open = "false";
   els.drawerBackdrop.hidden = true;
   document.body.style.overflow = "";
+  if (returnFocus?.isConnected) returnFocus.focus();
   if (location.hash.startsWith("#e=")) {
     history.replaceState(null, "", location.pathname + location.search);
   }
@@ -459,6 +596,8 @@ function restoreFromLocation() {
   normalizeYear();
   applyUrlToForm();
   renderYearChips(state.years);
+  renderLocaleChips();
+  renderCategories();
   renderCountries();
   applyFilters();
   renderCards();
@@ -489,6 +628,7 @@ function bind() {
       chip.setAttribute("aria-pressed", String(chip === button));
     });
     renderCountries();
+    renderCategories();
     applyFilters();
     renderCards();
     writeUrl({ replace: false });
@@ -497,7 +637,10 @@ function bind() {
     const button = event.target.closest("[data-locale]");
     if (!button) return;
     state.locale = button.dataset.locale;
+    renderCategories();
+    writeUrl();
     renderLocaleChips();
+    renderCategories();
     renderCountries();
     applyFilters();
     renderCards();
@@ -507,11 +650,12 @@ function bind() {
       if (entry) renderDrawer(entry, details[entry.id] || {});
     }
   });
-  for (const select of [els.result, els.kind, els.country]) {
+  for (const select of [els.result, els.kind, els.country, els.category].filter(Boolean)) {
     select.addEventListener("change", () => {
       state.result = els.result.value;
       state.kind = els.kind.value;
       state.country = els.country.value;
+      state.category = els.category?.value || "";
       state.page = 1;
       applyFilters();
       renderCards();
@@ -537,7 +681,14 @@ function bind() {
   els.drawerClose.addEventListener("click", closeDrawer);
   els.drawerBackdrop.addEventListener("click", closeDrawer);
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !els.drawer.hidden) closeDrawer();
+    if (els.drawer.hidden) return;
+    if (event.key === "Escape") closeDrawer();
+    if (event.key === "Tab") {
+      const items = [...els.drawer.querySelectorAll('button, a[href], summary')].filter((el) => el.getClientRects().length);
+      const first = items[0], last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    }
   });
   window.addEventListener("hashchange", syncFromHash);
   window.addEventListener("popstate", restoreFromLocation);
@@ -546,16 +697,20 @@ function bind() {
 async function init() {
   bind();
   try {
-    const response = await fetch("data/entries.json");
+    const response = await fetch(`${DATA_BASE}entries.json`);
     if (!response.ok) throw new Error("entries.json");
     const payload = await response.json();
     state.entries = payload.entries.slice().sort(compareEntries);
     state.years = payload.years;
+    if (defaultYear === "latest") defaultYear = String(Math.max(...state.years));
+    state.coverage = payload.coverage || [];
+    renderCoverage();
     readUrl();
     normalizeYear();
     applyUrlToForm();
     renderYearChips(state.years);
     renderLocaleChips();
+    renderCategories();
     renderCountries();
     applyFilters();
     renderCards();

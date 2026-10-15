@@ -163,6 +163,14 @@ h1 {
   gap: 16px;
 }
 
+.filters__row--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.filters__row--four > label {
+  min-width: 0;
+}
+
 .chip-row {
   display: flex;
   flex-wrap: wrap;
@@ -556,6 +564,10 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .filters__row--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -595,3 +607,30 @@ h1 {
     transition: none !important;
   }
 }
+
+.award-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 8px 0 24px;
+  font-size: 14px;
+}
+.award-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.award-nav [aria-current="page"] { color: var(--text); font-weight: 600; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.card__category { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.coverage { margin-bottom: 32px; padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); font-size: 14px; }
+.coverage > summary, .source-records > summary { cursor: pointer; min-height: 44px; align-content: center; }
+.coverage__scroll { overflow-x: auto; }
+.coverage table { width: 100%; border-collapse: collapse; text-align: left; }
+.coverage caption { text-align: left; padding-bottom: 12px; font-weight: 600; }
+.coverage th, .coverage td { border-bottom: 1px solid var(--border); padding: 12px 8px; vertical-align: top; }
+.coverage th:first-child { white-space: nowrap; }
+.coverage td:last-child { min-width: 240px; }
+.award-list, .source-list { margin: 8px 0; padding-left: 20px; }
+.award-list li, .source-list li { margin-bottom: 12px; overflow-wrap: anywhere; }
+.award-list small, .source-list small, .source-list span { display: block; color: var(--text-secondary); }
+.drawer__links h3, .drawer__links .source-list, .drawer__links .source-note, .source-records { flex-basis: 100%; margin-bottom: 0; }
+.source-list a { display: inline-block; margin: 4px 16px 0 0; }
+.source-note { font-size: 13px; color: var(--text-secondary); }
+.source-records p { font-size: 14px; overflow-wrap: anywhere; }
+body[data-catalog="dja"] .card__title { overflow-wrap: anywhere; }

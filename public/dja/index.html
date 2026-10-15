@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DP20HK462"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0DP20HK462');
+    </script>
+    <title>Data Journalism Awards 受賞・候補一覧</title>
+    <meta
+      name="description"
+      content="Data Journalism Awardsの2012〜2019年の受賞・候補一覧。保存資料で確認できる作品・個人・チーム・サイトを検索できます。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%230F6CBD' width='32' height='32' rx='6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' fill='white' font-family='Georgia, serif'%3EΣ%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-catalog="dja" data-data-base="../data/dja/" data-default-year="latest">
+    <a class="skip-link" href="#results">作品一覧へ</a>
+    <header class="masthead">
+      <div class="masthead__inner">
+        <p class="masthead__kicker">Data Visualization Japan</p>
+        <nav class="award-nav" aria-label="アワード"><a href="/">Sigma Awards</a><a href="/dja/" aria-current="page">Data Journalism Awards</a></nav>
+        <h1>Data Journalism Awards 受賞・候補</h1>
+        <p class="masthead__lede">Sigma Awardsの前身となる国際データジャーナリズム賞。2012〜2019年の保存資料から、受賞・ショートリスト・特別表彰を紹介します。全応募の完全な一覧ではありません。</p>
+      </div>
+    </header>
+
+    <main class="page">
+      <form class="filters" id="filters" role="search">
+        <label class="filters__search">
+          <span class="filters__label">検索</span>
+          <input
+            id="q"
+            type="search"
+            name="q"
+            placeholder="タイトル、媒体・受賞者、国、部門"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+
+        <fieldset class="filters__years">
+          <legend class="filters__label">開催年</legend>
+          <div class="chip-row" id="year-chips"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="filters__label">表示</legend>
+          <div class="chip-row" id="locale-chips">
+            <button class="chip" type="button" data-locale="ja" aria-pressed="true">日本語</button>
+            <button class="chip" type="button" data-locale="src" aria-pressed="false">原文</button>
+          </div>
+        </fieldset>
+
+        <div class="filters__row filters__row--four">
+          <label>
+            <span class="filters__label">結果</span>
+            <select id="result" name="result">
+              <option value="">すべて</option>
+              <option value="winner">受賞</option>
+              <option value="shortlist">ショートリスト</option>
+              <option value="mention">選外表彰</option>
+            </select>
+          </label>
+          <label>
+            <span class="filters__label">種別</span>
+            <select id="kind" name="kind">
+              <option value="">すべて</option>
+              <option value="project">作品</option>
+              <option value="portfolio">ポートフォリオ</option>
+              <option value="individual">個人</option>
+              <option value="team">チーム</option>
+              <option value="site">サイト</option>
+            </select>
+          </label>
+          <label>
+            <span class="filters__label">国・地域</span>
+            <select id="country" name="country">
+              <option value="">すべて</option>
+            </select>
+          </label>
+          <label>
+            <span class="filters__label">部門</span>
+            <select id="category" name="category">
+              <option value="">すべて</option>
+            </select>
+          </label>
+        </div>
+      </form>
+      <details class="coverage" id="coverage"><summary>収録状況・出典について</summary></details>
+
+      <section class="results" id="results" aria-live="polite">
+        <div class="results__meta">
+          <p id="result-count">読み込み中</p>
+          <nav class="pager" id="pager" hidden></nav>
+        </div>
+        <div class="card-grid" id="card-grid"></div>
+        <p class="empty" id="empty" hidden></p>
+        <p class="error" id="error" hidden></p>
+      </section>
+    </main>
+
+    <aside
+      class="drawer"
+      id="drawer"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="drawer-title"
+    >
+      <div class="drawer__panel">
+        <button class="drawer__close" type="button" id="drawer-close" aria-label="詳細を閉じる">
+          閉じる
+        </button>
+        <img class="drawer__thumb" id="drawer-thumb" alt="" hidden />
+        <p class="drawer__meta" id="drawer-meta"></p>
+        <h2 id="drawer-title"></h2>
+        <p class="drawer__original-title" id="drawer-original-title"></p>
+        <p class="drawer__org" id="drawer-org"></p>
+        <p class="drawer__langs" id="drawer-langs"></p>
+        <div class="drawer__tags" id="drawer-tags"></div>
+        <div class="drawer__body" id="drawer-body"></div>
+        <details class="drawer__source" id="drawer-source">
+          <summary>原文</summary>
+          <div id="drawer-source-body"></div>
+        </details>
+        <div class="drawer__links" id="drawer-links"></div>
+      </div>
+    </aside>
+    <div class="drawer__backdrop" id="drawer-backdrop" hidden></div>
+
+    <footer class="site-footer">
+      <p>出典: Data Journalism Awards / Global Editors Networkの保存済み資料（2012〜2019年）。各対象の詳細から出典を確認できます。</p>
+      <p>日本語要約は保存資料に基づいて作成しています。原題・原文を併記し、説明が残っていない対象も掲載しています。</p>
+      <p>Sigma AwardsデータのCCライセンスはDJA資料には適用していません。</p>
+      <p><a href="/">Sigma Awards エントリー一覧</a></p>
+    </footer>
+
+    <script src="../js/app.js" type="module"></script>
+  </body>
+</html>

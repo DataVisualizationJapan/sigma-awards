@@ -1,0 +1,568 @@
+{
+  "htmlFiles": 37,
+  "sourceFiles": [
+    {
+      "file": "2012/entries-gen.html",
+      "sha256": "a99042b8f708f6337d5a61c0d6c400e40c835c6c4da31e884f3e8bc511eca103"
+    },
+    {
+      "file": "2012/nominees.html",
+      "sha256": "eaee0865046359f5d2025bbc0f87ae90bab5a4b23149683fa4463a1bcca0a848"
+    },
+    {
+      "file": "2012/winners.html",
+      "sha256": "0bb3ca493bbb56e59c440c8df462c581cf59058e98a208666f01ec31970c31e9"
+    },
+    {
+      "file": "2013/pre-jury-selection.html",
+      "sha256": "456e78f02da0ca4b44454482784b5ffc1011bf178e2605903fbfb15e19d9098c"
+    },
+    {
+      "file": "2013/winners.html",
+      "sha256": "cba38edd765a429c660e7e9ec3fb86659afcd2ba0a49ffe0336ecb4a2b7a5eab"
+    },
+    {
+      "file": "2013/wizehive-pages/page-1.html",
+      "sha256": "ad45d7ce92c7171dd9539da471856682db854d1499965b3330b8608013769edf"
+    },
+    {
+      "file": "2013/wizehive-pages/page-2.html",
+      "sha256": "29fcc732e21851914fa569cbf7c4ddfad8793aba443495641efdc6d7d621cd7b"
+    },
+    {
+      "file": "2013/wizehive-pages/page-3.html",
+      "sha256": "67dec8838588d1c57f008581a0f13efda5ac51a4a6d87aae32a90a4a667704e2"
+    },
+    {
+      "file": "2013/wizehive-pages/page-4.html",
+      "sha256": "bd33a67e45b527638915ad04e98764a2680251405d1c8187f2b4a7789dff2257"
+    },
+    {
+      "file": "2013/wizehive-pages/page-5.html",
+      "sha256": "270582eb522161bc713e1b2092a30853e279b4a99978b84c0465d4041e95c4b3"
+    },
+    {
+      "file": "2013/wizehive-pages/page-6.html",
+      "sha256": "4691ea0341f2be21bc7aa3e3a84bd6f5da4a905c4229d846cc52fb05e325ee68"
+    },
+    {
+      "file": "2013/wizehive-pages/page-7.html",
+      "sha256": "ef02f76a3978d718c101395b822d56d9f1674ccab18b1977ec366ff2219ffde6"
+    },
+    {
+      "file": "2013/wizehive-pages/page-8.html",
+      "sha256": "54c6a31b13fa3f30b3f1cf75c1e2322cb2bf8e4415e52746ccc60286c3e63e81"
+    },
+    {
+      "file": "2014/community-selected-page2.html",
+      "sha256": "0b68d575c1feb2a69519892a1cc521025c132394c73e45ced30f6fb29990af0e"
+    },
+    {
+      "file": "2014/community-selected.html",
+      "sha256": "7712fb14f9e6e94d9394a2e41096a060ad5b9b13a5fcebe1a30ad52639ecfb98"
+    },
+    {
+      "file": "2014/shortlist.html",
+      "sha256": "1039120a2fae54d198aa224e0563e7128697f536b8f0dcd80654870b298ed41d"
+    },
+    {
+      "file": "2014/winners.html",
+      "sha256": "33e095cda2897b0123075b06198c0e3da7fdd34f3a18c7dd632bbc93fe90e39a"
+    },
+    {
+      "file": "2015/community-selected-page2.html",
+      "sha256": "46e5f42aa2b663f4a9114269ae7684f58b1be5b6f859d2d22001607f5cebdd2f"
+    },
+    {
+      "file": "2015/community-selected.html",
+      "sha256": "451767249e23a7a158e8e50b14d0d2b186cc514c0c9dd9c9821f2209a9fcaa68"
+    },
+    {
+      "file": "2015/shortlist.html",
+      "sha256": "7fd31f89979a0d5ce32883be40457016a256e2ae004b58293750ec93faad0db3"
+    },
+    {
+      "file": "2015/winners.html",
+      "sha256": "4b0bcae2554449d3d71a451a43295f9c46aaa0d84e620cfae46a09eded143fac"
+    },
+    {
+      "file": "2016/community-selected-page2.html",
+      "sha256": "0e088a04d44703d228fa4636fc945f7253749f7152a50d46aa39a6b8c4515985"
+    },
+    {
+      "file": "2016/community-selected.html",
+      "sha256": "985c8027b1c1bbcc16438eb6c004f40756e13b0a32c1873ebaaf9c8e254dd027"
+    },
+    {
+      "file": "2016/shortlist.html",
+      "sha256": "30d62c3057d479e2bbcf662d30e1dadf0a497f6afd9f763863e61e9b0566af69"
+    },
+    {
+      "file": "2017/community-selected-page2.html",
+      "sha256": "bb5b77a074ffe7b74fc8947706239fd124256bccfe6fdf2efb3bdb642ff600d9"
+    },
+    {
+      "file": "2017/community-selected.html",
+      "sha256": "8d2c42451017efac9da02621cc532929efecc778141eda532c6cc8a3d53c6cb0"
+    },
+    {
+      "file": "2017/shortlist-gen.html",
+      "sha256": "a83d8e1e880b761da78e658401d43241a55a9ae49d273614e0b138ea3094abbe"
+    },
+    {
+      "file": "2017/shortlist.html",
+      "sha256": "5958301370c2040481f2f6651005697680054e106842d3f1c41891780e170647"
+    },
+    {
+      "file": "2018/past-winners.html",
+      "sha256": "f30dd7b12d8a73207f0bbbcd2a2e31e3aa5b609cd0d611b53bbae08c5e2e7358"
+    },
+    {
+      "file": "2018/project-listing.html",
+      "sha256": "b77667b859a58115925536a3e0e00d8a7193993db71ab31e888101241c8d2acd"
+    },
+    {
+      "file": "2018/shortlist.html",
+      "sha256": "4c9114d653a2686b058d7523dc5187db9a1efed38426fe05801ff205e5a262ba"
+    },
+    {
+      "file": "2018/winners.html",
+      "sha256": "59e6365f12b40d62d039f456050ed803b02abeaa466aeccf3dcaaeb0f7806402"
+    },
+    {
+      "file": "2019/projects-page-2.html",
+      "sha256": "88dbf3a4db88e9f1ef4f7607e446acf3288df57706ba9209be54ca15159d8f19"
+    },
+    {
+      "file": "2019/projects-page-3.html",
+      "sha256": "b5ed71f875664242c580e671aac0466c14162022c755bf2c66e178f710e64b9c"
+    },
+    {
+      "file": "2019/projects.html",
+      "sha256": "1d5313001ebe34b7dd824d40fed9ce26966dddfddeacf802bc61124c32a58e5b"
+    },
+    {
+      "file": "2019/shortlist.html",
+      "sha256": "43bfa72e8137ba323312bffda69db4a406397ed2693f3f4aa65a1df6ea673782"
+    },
+    {
+      "file": "2019/winners.html",
+      "sha256": "e7c54ce1d01d8576da99b82decffc6efc0e31dee9bc98f5e0c5035838fcc6226"
+    }
+  ],
+  "parsers": [
+    {
+      "parser": "nominees_2012",
+      "nominations": 58
+    },
+    {
+      "parser": "winners_2012",
+      "nominations": 9
+    },
+    {
+      "parser": "shortlist_2013",
+      "nominations": 73
+    },
+    {
+      "parser": "winners_2013",
+      "nominations": 9
+    },
+    {
+      "parser": "winners_2015",
+      "nominations": 0
+    },
+    {
+      "parser": "shortlist_2014",
+      "nominations": 75
+    },
+    {
+      "parser": "past_winners",
+      "nominations": 47
+    },
+    {
+      "parser": "shortlist_2016",
+      "nominations": 63
+    },
+    {
+      "parser": "<lambda>",
+      "nominations": 69
+    },
+    {
+      "parser": "<lambda>",
+      "nominations": 69
+    },
+    {
+      "parser": "<lambda>",
+      "nominations": 87
+    },
+    {
+      "parser": "<lambda>",
+      "nominations": 103
+    },
+    {
+      "parser": "winners_2018",
+      "nominations": 17
+    },
+    {
+      "parser": "winners_2019",
+      "nominations": 13
+    },
+    {
+      "parser": "community",
+      "nominations": 21
+    },
+    {
+      "parser": "listings",
+      "nominations": 0
+    }
+  ],
+  "coverage": [
+    {
+      "year": 2012,
+      "count": 58,
+      "results": {
+        "winner": 6,
+        "mention": 3,
+        "shortlist": 49
+      },
+      "awardCount": 58,
+      "rawNominations": 67,
+      "files": [
+        "2012/nominees.html",
+        "2012/winners.html"
+      ],
+      "notes": [
+        "候補ページの実抽出は58件。別の保存ページでは59件と案内されていますが、埋め込み一覧の本体は保存されていません。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2012/winners.html",
+          "extracted": 9,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Full 2012 winners and honourable mentions on the homepage."
+        },
+        {
+          "file": "2012/nominees.html",
+          "extracted": 58,
+          "supplementalRecords": 0,
+          "manifestCoverage": "2012 nominees by category."
+        },
+        {
+          "file": "2012/entries-gen.html",
+          "extracted": 0,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Gallery page for 59 shortlisted 2012 projects. The actual grid was a WizeHive iframe (displayPortal('dja2012')) and was not archived as HTML."
+        }
+      ]
+    },
+    {
+      "year": 2013,
+      "count": 73,
+      "results": {
+        "winner": 7,
+        "mention": 1,
+        "shortlist": 65
+      },
+      "awardCount": 74,
+      "rawNominations": 82,
+      "files": [
+        "2013/winners.html",
+        "2013/wizehive-pages/page-1.html",
+        "2013/wizehive-pages/page-2.html",
+        "2013/wizehive-pages/page-3.html",
+        "2013/wizehive-pages/page-4.html",
+        "2013/wizehive-pages/page-5.html",
+        "2013/wizehive-pages/page-6.html",
+        "2013/wizehive-pages/page-7.html",
+        "2013/wizehive-pages/page-8.html"
+      ],
+      "notes": [
+        "WizeHiveの8ページに計73件。多くの作品名・媒体名が省略表示され、国・概要・個別詳細は保存されていません。",
+        "page-3.htmlの「Gaza’s gas…」の省略位置に不完全なUTF-8文字があり、置換文字を保持しています。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2013/winners.html",
+          "extracted": 9,
+          "supplementalRecords": 0,
+          "manifestCoverage": "The 8 winners announced 20 June 2013."
+        },
+        {
+          "file": "2013/pre-jury-selection.html",
+          "extracted": 0,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Landing page for 73 selected 2013 projects. List itself is the WizeHive iframe in wizehive-pages/."
+        },
+        {
+          "file": "2013/wizehive-pages/page-1.html",
+          "extracted": 10,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Pages 1–8 together contain all 73 shortlisted 2013 entries (10+10+10+10+10+10+10+3)."
+        }
+      ]
+    },
+    {
+      "year": 2014,
+      "count": 76,
+      "results": {
+        "winner": 9,
+        "shortlist": 67
+      },
+      "awardCount": 77,
+      "rawNominations": 85,
+      "files": [
+        "2014/community-selected-page2.html",
+        "2014/community-selected.html",
+        "2014/shortlist.html",
+        "2014/winners.html",
+        "2018/past-winners.html"
+      ],
+      "notes": [
+        "候補表の75行を抽出。複数部門に登場する同一作品・対象は統合しています。",
+        "受賞者一覧のPublic’s ChoiceはThe New York Timesとだけ記載され、対象作品は特定できません。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2014/winners.html",
+          "extracted": 1,
+          "supplementalRecords": 0,
+          "manifestCoverage": "The nine 2014 winners on the GEN programme page."
+        },
+        {
+          "file": "2014/shortlist.html",
+          "extracted": 75,
+          "supplementalRecords": 0,
+          "manifestCoverage": "75 finalists for DJA 2014."
+        },
+        {
+          "file": "2014/community-selected.html",
+          "extracted": 1,
+          "supplementalRecords": 10,
+          "manifestCoverage": "GEN Community listing 'DJA 2014 - selected projects'. Page 2 is community-selected-page2.html. Later community pages were not archived."
+        },
+        {
+          "file": "2018/past-winners.html",
+          "extracted": 8,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Combined winners list for 2014, 2015, 2016, and 2017. This is the only archived HTML winners page that includes 2016."
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "count": 17,
+      "results": {
+        "winner": 13,
+        "mention": 1,
+        "shortlist": 3
+      },
+      "awardCount": 17,
+      "rawNominations": 34,
+      "files": [
+        "2015/community-selected-page2.html",
+        "2015/community-selected.html",
+        "2015/winners.html",
+        "2018/past-winners.html"
+      ],
+      "notes": [
+        "候補一覧の本体はGEN Communityの保存済み2ページのみ。全78候補の網羅は確認できません。",
+        "Swiss LeaksとLuxembourg Leaks、Al Jazeera Americaの3プロジェクトは、それぞれ共同受賞の対象として統合しています。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2015/winners.html",
+          "extracted": 0,
+          "supplementalRecords": 14,
+          "manifestCoverage": "Winners of DJA 2015 by category."
+        },
+        {
+          "file": "2015/shortlist.html",
+          "extracted": 0,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Official shortlist landing page. The list itself is a button to GEN Community event 890 (community-selected.html)."
+        },
+        {
+          "file": "2015/community-selected.html",
+          "extracted": 10,
+          "supplementalRecords": 10,
+          "manifestCoverage": "GEN Community 'DJA 2015 - selected projects'. Two pages archived."
+        },
+        {
+          "file": "2018/past-winners.html",
+          "extracted": 14,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Combined winners list for 2014, 2015, 2016, and 2017. This is the only archived HTML winners page that includes 2016."
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "count": 62,
+      "results": {
+        "winner": 11,
+        "mention": 1,
+        "shortlist": 50
+      },
+      "awardCount": 65,
+      "rawNominations": 75,
+      "files": [
+        "2016/community-selected.html",
+        "2016/shortlist.html",
+        "2018/past-winners.html"
+      ],
+      "notes": [
+        "候補一覧と2018年の過去受賞者ページを使用。応募一覧の保存は2ページのみです。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2016/shortlist.html",
+          "extracted": 63,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Full 2016 shortlist as a static HTML list on the GEN site."
+        },
+        {
+          "file": "2016/community-selected.html",
+          "extracted": 0,
+          "supplementalRecords": 10,
+          "manifestCoverage": "GEN Community 'DJA 2016 - selected projects'. Two pages archived. Community counted about 471 DJA 2016 projects; later pages were not archived."
+        },
+        {
+          "file": "2018/past-winners.html",
+          "extracted": 12,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Combined winners list for 2014, 2015, 2016, and 2017. This is the only archived HTML winners page that includes 2016."
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "count": 63,
+      "results": {
+        "winner": 12,
+        "shortlist": 51
+      },
+      "awardCount": 70,
+      "rawNominations": 150,
+      "files": [
+        "2017/community-selected.html",
+        "2017/shortlist-gen.html",
+        "2017/shortlist.html",
+        "2018/past-winners.html"
+      ],
+      "notes": [
+        "候補一覧のDJA版とGEN版を照合。受賞情報は2018年の過去受賞者ページを使用しています。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2017/shortlist.html",
+          "extracted": 69,
+          "supplementalRecords": 0,
+          "manifestCoverage": "2017 shortlist on the DJA site, by category."
+        },
+        {
+          "file": "2017/shortlist-gen.html",
+          "extracted": 69,
+          "supplementalRecords": 0,
+          "manifestCoverage": "GEN copy of the 2017 shortlist page."
+        },
+        {
+          "file": "2017/community-selected.html",
+          "extracted": 0,
+          "supplementalRecords": 10,
+          "manifestCoverage": "GEN Community 'DJA 2017 - selected projects'. Two pages archived. Community counted about 573 DJA 2017 projects."
+        },
+        {
+          "file": "2018/past-winners.html",
+          "extracted": 12,
+          "supplementalRecords": 0,
+          "manifestCoverage": "Combined winners list for 2014, 2015, 2016, and 2017. This is the only archived HTML winners page that includes 2016."
+        }
+      ]
+    },
+    {
+      "year": 2018,
+      "count": 86,
+      "results": {
+        "winner": 13,
+        "mention": 4,
+        "shortlist": 69
+      },
+      "awardCount": 91,
+      "rawNominations": 104,
+      "files": [
+        "2018/project-listing.html",
+        "2018/shortlist.html",
+        "2018/winners.html"
+      ],
+      "notes": [
+        "候補一覧の実抽出は87部門枠。ページ説明の86候補と差があるため、保存HTMLに実在する掲載を保持しています。",
+        "13受賞、Honorable Mention 1件に加え、Citation for Excellence 3件を収録しています。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2018/winners.html",
+          "extracted": 17,
+          "supplementalRecords": 0,
+          "manifestCoverage": "13 winners and 1 honourable mention for 2018."
+        },
+        {
+          "file": "2018/shortlist.html",
+          "extracted": 87,
+          "supplementalRecords": 0,
+          "manifestCoverage": "2018 shortlist (86 finalists) by category."
+        },
+        {
+          "file": "2018/project-listing.html",
+          "extracted": 0,
+          "supplementalRecords": 24,
+          "manifestCoverage": "Page 1 of the 2018 all-entries listing (~24 projects). Pagination went to ?pagination=27 (~28 pages). Query-string pages were not archived."
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "count": 100,
+      "results": {
+        "winner": 12,
+        "mention": 1,
+        "shortlist": 87
+      },
+      "awardCount": 104,
+      "rawNominations": 116,
+      "files": [
+        "2019/projects-page-3.html",
+        "2019/projects.html",
+        "2019/shortlist.html",
+        "2019/winners.html"
+      ],
+      "notes": [
+        "候補一覧の103部門枠を抽出。同じ作品が複数部門に選出されているため、統合後の対象件数とは異なります。",
+        "受賞ページのNOSの作品リンクがThe Puddingを指しているため、同梱の候補一覧にあるNOSの紹介URLで補正しています。"
+      ],
+      "sourceChecks": [
+        {
+          "file": "2019/winners.html",
+          "extracted": 13,
+          "supplementalRecords": 0,
+          "manifestCoverage": "12 winners and 1 honourable mention for 2019."
+        },
+        {
+          "file": "2019/shortlist.html",
+          "extracted": 103,
+          "supplementalRecords": 0,
+          "manifestCoverage": "103 shortlisted 2019 projects with links to /projects/{slug}/."
+        },
+        {
+          "file": "2019/projects.html",
+          "extracted": 0,
+          "supplementalRecords": 9,
+          "manifestCoverage": "Projects archive page 1 of 77. Only pages 1–3 were captured by Wayback (see projects-page-2.html and projects-page-3.html). Pages 4–77 were not archived."
+        }
+      ]
+    }
+  ],
+  "decodingWarnings": [
+    "2013/wizehive-pages/page-3.html"
+  ],
+  "unusedCorrections": []
+}
