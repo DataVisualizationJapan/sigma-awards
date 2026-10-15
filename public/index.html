@@ -29,7 +29,13 @@
     <a class="skip-link" href="#results">作品一覧へ</a>
     <header class="masthead">
       <div class="masthead__inner">
-        <p class="masthead__kicker">Data Visualization Japan</p>
+        <div class="masthead__top">
+          <p class="masthead__kicker">Data Visualization Japan</p>
+          <div class="chip-row locale-switch" id="locale-chips" role="group" aria-label="表示言語">
+            <button class="chip" type="button" data-locale="ja" aria-pressed="true">日本語</button>
+            <button class="chip" type="button" data-locale="src" aria-pressed="false">原文</button>
+          </div>
+        </div>
         <nav class="award-nav" aria-label="アワード"><a href="/" aria-current="page">Sigma Awards</a><a href="/dja/">Data Journalism Awards</a></nav>
         <h1>Sigma Awards エントリー</h1>
         <p class="masthead__lede">
@@ -57,14 +63,6 @@
         <fieldset class="filters__years">
           <legend class="filters__label">開催年</legend>
           <div class="chip-row" id="year-chips"></div>
-        </fieldset>
-
-        <fieldset>
-          <legend class="filters__label">表示</legend>
-          <div class="chip-row" id="locale-chips">
-            <button class="chip" type="button" data-locale="ja" aria-pressed="true">日本語</button>
-            <button class="chip" type="button" data-locale="src" aria-pressed="false">原文</button>
-          </div>
         </fieldset>
 
         <div class="filters__row">

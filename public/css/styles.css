@@ -89,11 +89,18 @@ a:hover {
 }
 
 .masthead__inner {
-  padding: 48px 0 32px;
+  padding: 16px 0 20px;
+}
+
+.masthead__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .masthead__kicker {
-  margin: 0 0 8px;
+  margin: 0;
   color: var(--brand-pink);
   font-size: 13px;
   font-weight: 500;
@@ -101,30 +108,46 @@ a:hover {
 
 h1 {
   margin: 0;
-  font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+  font-size: clamp(1.375rem, 1.4vw + 1rem, 1.75rem);
   font-weight: 600;
   line-height: 1.25;
 }
 
 .masthead__lede {
-  margin: 16px 0 0;
+  margin: 8px 0 0;
   color: var(--text-secondary);
+  font-size: 14px;
 }
 
 .page {
-  padding: 32px 0 64px;
+  padding: 20px 0 64px;
 }
 
 .filters {
   display: grid;
-  gap: 24px;
-  margin-bottom: 32px;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.filters__search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filters__search .filters__label {
+  flex: none;
+  margin: 0;
+}
+
+.filters__search input {
+  min-width: 0;
 }
 
 .filters__label,
 .filters legend {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
@@ -195,6 +218,31 @@ h1 {
   background: var(--primary);
   border-color: var(--primary);
   color: #fff;
+}
+
+.locale-switch {
+  flex: none;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--code-bg);
+}
+
+.locale-switch .chip {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.locale-switch .chip[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
 }
 
 .chip:active,
@@ -611,14 +659,14 @@ h1 {
 .award-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
-  margin: 8px 0 24px;
-  font-size: 14px;
+  gap: 4px 20px;
+  margin: 0 0 8px;
+  font-size: 13px;
 }
 .award-nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .award-nav [aria-current="page"] { color: var(--text); font-weight: 600; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .card__category { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
-.coverage { margin-bottom: 32px; padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); font-size: 14px; }
+.coverage { margin-bottom: 16px; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); font-size: 14px; }
 .coverage > summary, .source-records > summary { cursor: pointer; min-height: 44px; align-content: center; }
 .coverage__scroll { overflow-x: auto; }
 .coverage table { width: 100%; border-collapse: collapse; text-align: left; }
