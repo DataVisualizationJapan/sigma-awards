@@ -563,6 +563,9 @@ function renderDjaLinks(entry, details) {
 }
 
 let returnFocus = null;
+let returnSelector = ".card__detail";
+// True when the open drawer owns a history entry pushed for it (as opposed to a replaced one).
+let drawerPushed = false;
 
 async function openDrawer(id, trigger = null, { mode = "replace" } = {}) {
   const entry = findEntry(id);
@@ -570,6 +573,8 @@ async function openDrawer(id, trigger = null, { mode = "replace" } = {}) {
   const wasOpen = !els.drawer.hidden;
   if (!wasOpen) {
     returnFocus = trigger || document.activeElement;
+    returnSelector = trigger?.classList.contains("card__link") ? ".card__link" : ".card__detail";
+    drawerPushed = mode === "push" || (mode === "keep" && Boolean(history.state?.drawer));
     listUrl = mode === "keep"
       ? `${IS_DJA ? "/dja/" : "/"}${filtersToSearch()}`
       : `${location.pathname}${location.search}`;
@@ -604,16 +609,19 @@ function closeDrawer({ restoreUrl = true } = {}) {
   els.drawer.dataset.open = "false";
   els.drawerBackdrop.hidden = true;
   document.body.style.overflow = "";
-  if (returnFocus?.isConnected) returnFocus.focus();
-  else {
-    // Cards were re-rendered (e.g. after history navigation), so the original link is gone.
-    const link = [...els.grid.querySelectorAll(".card__detail")].find((a) => a.dataset.id === closedId);
+  if (returnFocus?.isConnected && returnFocus !== document.body && !els.drawer.contains(returnFocus)) {
+    returnFocus.focus();
+  } else {
+    // The opener is gone, was the page body, or sat inside the drawer: use the same kind of link on the card.
+    const card = [...els.grid.querySelectorAll(".card")].find((c) => c.dataset.id === closedId);
+    const link = card?.querySelector(returnSelector);
     if (link) link.focus();
     else {
       els.count.tabIndex = -1;
       els.count.focus();
     }
   }
+  drawerPushed = false;
   if (restoreUrl && listUrl) history.replaceState(null, "", listUrl);
   listUrl = "";
 }
@@ -641,7 +649,7 @@ function syncFromPopState() {
     return;
   }
   // Closing with Back lands on the old list entry; apply filters changed while the drawer was open (e.g. locale).
-  if (state.openId && listUrl && listUrl !== `${location.pathname}${location.search}`) {
+  if (state.openId && drawerPushed && listUrl && listUrl !== `${location.pathname}${location.search}`) {
     history.replaceState(null, "", listUrl);
   }
   restoreFromLocation();
@@ -729,13 +737,16 @@ function bind() {
     const link = event.target.closest(".card__link, .card__detail");
     if (link) {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const id = link.closest("[data-id]")?.dataset.id;
+      // Without loaded data the link navigates to the entry page normally.
+      if (!id || !findEntry(id)) return;
       event.preventDefault();
-      openDrawer(link.closest("[data-id]").dataset.id, link, { mode: "push" });
+      openDrawer(id, link, { mode: "push" });
       return;
     }
     if (event.target.closest("a")) return;
     const card = event.target.closest("[data-id]");
-    if (card) openDrawer(card.dataset.id);
+    if (card) openDrawer(card.dataset.id, null, { mode: "push" });
   });
   els.pager.addEventListener("click", (event) => {
     const button = event.target.closest("[data-page]");

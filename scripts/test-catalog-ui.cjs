@@ -246,6 +246,50 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     assert.equal(rel(), '/?year=2024');
     assert.equal(new URL(page.url()).hash, '');
 
+    // Margin click pushes a history entry like the links do: Back, then Back again.
+    await visit('/?year=2026');
+    await page.locator('#year-chips [data-year="2024"]').click();
+    await page.locator('#card-grid .card__summary').first().click();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    assert.match(rel(), /^\/entries\//);
+    await page.goBack();
+    await drawerClosed();
+    assert.equal(rel(), '/?year=2024');
+    await page.goBack();
+    await page.waitForFunction(() => location.search === '?year=2026');
+    assert.equal(rel(), '/?year=2026');
+
+    // Opening by #e= from body focus: Escape returns focus to that card's detail link.
+    await page.goto('about:blank');
+    await page.goto(`${base}/?year=2024#e=2024-s-0010`);
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
+    assert.equal(await page.evaluate(() => document.activeElement.closest('.card')?.dataset.id), '2024-s-0010');
+
+    // Title link opens the drawer and focus returns to the title link, also after a re-render (Back).
+    await visit('/?year=2024');
+    await page.locator('#card-grid .card__link').first().click();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.goBack();
+    await drawerClosed();
+    await page.waitForFunction(() => document.activeElement?.className === 'card__link');
+
+    // Before data loads, card links navigate normally to the entry page.
+    {
+      const early = await context.newPage();
+      await early.route('**/data/entries.json', async route => { await new Promise(r => setTimeout(r, 2500)); route.continue(); });
+      await early.route('**/entries/2024-s-0010/', route => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>entry</title>' }));
+      await early.goto(`${base}/`, { waitUntil: 'domcontentloaded' });
+      await early.evaluate(() => {
+        document.querySelector('#card-grid').innerHTML = '<article class="card" data-id="2024-s-0010"><h2 class="card__title"><a class="card__link" href="/entries/2024-s-0010/">t</a></h2></article>';
+      });
+      await early.locator('.card__link').click();
+      await early.waitForURL('**/entries/2024-s-0010/');
+      await early.close();
+    }
+
     // Malformed #e= values are ignored without an error banner.
     await visit('/#e=%E0');
     assert.equal(await page.locator('#drawer').isVisible(), false);
