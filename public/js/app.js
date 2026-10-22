@@ -8,7 +8,7 @@ const PAGE_URL = location.href;
 const DATA_URL = new URL(DATA_BASE, PAGE_URL).href;
 const resolveUrl = (path) => new URL(path, PAGE_URL).href;
 const entryPath = (id) => `${IS_DJA ? "/dja" : ""}/entries/${encodeURIComponent(id)}/`;
-let defaultYear = document.body.dataset.defaultYear || "2026";
+let defaultYear = document.body.dataset.defaultYear || "latest";
 const RESULT_VALUES = new Set(["winner", "shortlist", "mention", "entry"]);
 const KIND_VALUES = new Set(IS_DJA ? ["project", "portfolio", "individual", "team", "site"] : ["project", "portfolio"]);
 const RESULT_LABELS = {
@@ -746,7 +746,7 @@ function bind() {
     }
     if (event.target.closest("a")) return;
     const card = event.target.closest("[data-id]");
-    if (card) openDrawer(card.dataset.id, null, { mode: "push" });
+    if (card) openDrawer(card.dataset.id, card.querySelector(".card__link"), { mode: "push" });
   });
   els.pager.addEventListener("click", (event) => {
     const button = event.target.closest("[data-page]");

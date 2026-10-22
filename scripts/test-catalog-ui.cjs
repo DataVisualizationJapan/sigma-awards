@@ -290,6 +290,30 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
       await early.close();
     }
 
+    // Margin click: after closing, focus is on that card's title link.
+    await visit('/?year=2024');
+    await page.locator('#card-grid .card__summary').first().click();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__link');
+
+    // Default year follows the newest year in the data when the page has no data-default-year.
+    {
+      const future = await context.newPage();
+      await future.route('**/data/entries.json', async route => {
+        const response = await route.fetch();
+        const payload = await response.json();
+        payload.years.push(2027);
+        payload.entries.push({ ...payload.entries[0], id: '2027-s-9999', year: 2027 });
+        route.fulfill({ response, json: payload });
+      });
+      await future.goto(`${base}/`);
+      await future.locator('#card-grid .card').first().waitFor();
+      assert.equal(await future.locator('#year-chips [aria-pressed="true"]').innerText(), '2027');
+      await future.close();
+    }
+
     // Malformed #e= values are ignored without an error banner.
     await visit('/#e=%E0');
     assert.equal(await page.locator('#drawer').isVisible(), false);
