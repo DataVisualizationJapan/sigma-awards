@@ -564,12 +564,14 @@ function renderDjaLinks(entry, details) {
 
 let returnFocus = null;
 
-async function openDrawer(id, trigger = null) {
+async function openDrawer(id, trigger = null, { keepUrl = false } = {}) {
   const entry = findEntry(id);
   if (!entry) return;
   if (els.drawer.hidden) {
     returnFocus = trigger || document.activeElement;
-    listUrl = `${location.pathname}${location.search}`;
+    listUrl = keepUrl
+      ? `${IS_DJA ? "/dja/" : "/"}${filtersToSearch()}`
+      : `${location.pathname}${location.search}`;
   }
   state.openId = id;
   renderDrawer(entry);
@@ -577,7 +579,7 @@ async function openDrawer(id, trigger = null) {
   els.drawer.dataset.open = "true";
   els.drawerBackdrop.hidden = false;
   document.body.style.overflow = "hidden";
-  history.replaceState(null, "", entryPath(id));
+  if (!keepUrl) history.replaceState(null, "", entryPath(id));
   els.drawerClose.focus();
   try {
     const details = await loadDetails(entry.year);
@@ -594,19 +596,46 @@ async function openDrawer(id, trigger = null) {
 }
 
 function closeDrawer({ restoreUrl = true } = {}) {
+  const closedId = state.openId;
   state.openId = "";
   els.drawer.hidden = true;
   els.drawer.dataset.open = "false";
   els.drawerBackdrop.hidden = true;
   document.body.style.overflow = "";
   if (returnFocus?.isConnected) returnFocus.focus();
+  else {
+    // Cards were re-rendered (e.g. after history navigation), so the original link is gone.
+    const link = [...els.grid.querySelectorAll(".card__detail")].find((a) => a.dataset.id === closedId);
+    if (link) link.focus();
+    else {
+      els.count.tabIndex = -1;
+      els.count.focus();
+    }
+  }
   if (restoreUrl && listUrl) history.replaceState(null, "", listUrl);
   listUrl = "";
 }
 
+function safeDecode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return "";
+  }
+}
+
+const ENTRY_PATH_RE = IS_DJA ? /^\/dja\/entries\/([^/]+)\/$/ : /^\/entries\/([^/]+)\/$/;
+
+function syncFromPopState() {
+  const match = location.pathname.match(ENTRY_PATH_RE);
+  if (match && safeDecode(match[1])) openDrawer(safeDecode(match[1]), null, { keepUrl: true });
+  else restoreFromLocation();
+}
+
 function syncFromHash() {
   const match = location.hash.match(/^#e=(.+)$/);
-  if (match) openDrawer(decodeURIComponent(match[1]));
+  const id = match ? safeDecode(match[1]) : "";
+  if (id) openDrawer(id);
   else if (state.openId) closeDrawer({ restoreUrl: false });
 }
 
@@ -717,7 +746,7 @@ function bind() {
     }
   });
   window.addEventListener("hashchange", syncFromHash);
-  window.addEventListener("popstate", restoreFromLocation);
+  window.addEventListener("popstate", syncFromPopState);
 }
 
 async function init() {

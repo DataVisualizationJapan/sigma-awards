@@ -189,6 +189,31 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
     assert.equal(await page.evaluate(() => document.activeElement.closest('.card').dataset.id === document.querySelector('.card').dataset.id), true);
 
+    // History: push a filter, open a work, go back (drawer closes, URL kept, focus on the same work), then forward.
+    await visit('/?year=2026');
+    await page.locator('#year-chips [data-year=""]').click();
+    const histId = await page.locator('#card-grid .card').first().getAttribute('data-id');
+    assert.match(histId, /^2026-/);
+    await page.locator('#card-grid .card__detail').first().click();
+    await page.locator('#drawer-body p').first().waitFor();
+    assert.equal(new URL(page.url()).pathname, `/entries/${histId}/`);
+    await page.goBack();
+    await page.waitForFunction(() => document.querySelector('#drawer').hidden);
+    assert.equal(new URL(page.url()).pathname + new URL(page.url()).search, '/?year=2026');
+    await page.locator(`#card-grid .card__detail[data-id="${histId}"]`).waitFor();
+    assert.equal(await page.evaluate(() => document.activeElement.dataset.id), histId);
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
+    await page.goForward();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    assert.equal(new URL(page.url()).pathname, `/entries/${histId}/`);
+    assert.equal(await page.locator('#drawer-title').innerText() !== '', true);
+    await page.keyboard.press('Escape');
+
+    // Malformed #e= values are ignored without an error banner.
+    await visit('/#e=%E0');
+    assert.equal(await page.locator('#drawer').isVisible(), false);
+    assert.equal(await page.locator('#error').isVisible(), false);
+
     // Screenshots for visual comparison.
     await page.screenshot({ path: '/tmp/sigma-desktop.png' });
     await page.setViewportSize({ width: 390, height: 844 });
