@@ -564,12 +564,13 @@ function renderDjaLinks(entry, details) {
 
 let returnFocus = null;
 
-async function openDrawer(id, trigger = null, { keepUrl = false } = {}) {
+async function openDrawer(id, trigger = null, { mode = "replace" } = {}) {
   const entry = findEntry(id);
   if (!entry) return;
-  if (els.drawer.hidden) {
+  const wasOpen = !els.drawer.hidden;
+  if (!wasOpen) {
     returnFocus = trigger || document.activeElement;
-    listUrl = keepUrl
+    listUrl = mode === "keep"
       ? `${IS_DJA ? "/dja/" : "/"}${filtersToSearch()}`
       : `${location.pathname}${location.search}`;
   }
@@ -579,7 +580,8 @@ async function openDrawer(id, trigger = null, { keepUrl = false } = {}) {
   els.drawer.dataset.open = "true";
   els.drawerBackdrop.hidden = false;
   document.body.style.overflow = "hidden";
-  if (!keepUrl) history.replaceState(null, "", entryPath(id));
+  if (mode === "push" && !wasOpen) history.pushState({ drawer: id }, "", entryPath(id));
+  else if (mode === "replace") history.replaceState(null, "", entryPath(id));
   els.drawerClose.focus();
   try {
     const details = await loadDetails(entry.year);
@@ -616,6 +618,12 @@ function closeDrawer({ restoreUrl = true } = {}) {
   listUrl = "";
 }
 
+// A drawer opened by a click owns a pushed history entry; closing walks back so Back/Forward stay symmetric.
+function requestCloseDrawer() {
+  if (state.openId && history.state?.drawer) history.back();
+  else closeDrawer();
+}
+
 function safeDecode(value) {
   try {
     return decodeURIComponent(value);
@@ -628,8 +636,15 @@ const ENTRY_PATH_RE = IS_DJA ? /^\/dja\/entries\/([^/]+)\/$/ : /^\/entries\/([^/
 
 function syncFromPopState() {
   const match = location.pathname.match(ENTRY_PATH_RE);
-  if (match && safeDecode(match[1])) openDrawer(safeDecode(match[1]), null, { keepUrl: true });
-  else restoreFromLocation();
+  if (match && safeDecode(match[1])) {
+    openDrawer(safeDecode(match[1]), null, { mode: "keep" });
+    return;
+  }
+  // Closing with Back lands on the old list entry; apply filters changed while the drawer was open (e.g. locale).
+  if (state.openId && listUrl && listUrl !== `${location.pathname}${location.search}`) {
+    history.replaceState(null, "", listUrl);
+  }
+  restoreFromLocation();
 }
 
 function syncFromHash() {
@@ -715,7 +730,7 @@ function bind() {
     if (link) {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      openDrawer(link.closest("[data-id]").dataset.id, link);
+      openDrawer(link.closest("[data-id]").dataset.id, link, { mode: "push" });
       return;
     }
     if (event.target.closest("a")) return;
@@ -733,11 +748,11 @@ function bind() {
     writeUrl({ replace: false });
     els.count.scrollIntoView({ block: "start" });
   });
-  els.drawerClose.addEventListener("click", () => closeDrawer());
-  els.drawerBackdrop.addEventListener("click", () => closeDrawer());
+  els.drawerClose.addEventListener("click", requestCloseDrawer);
+  els.drawerBackdrop.addEventListener("click", requestCloseDrawer);
   document.addEventListener("keydown", (event) => {
     if (els.drawer.hidden) return;
-    if (event.key === "Escape") closeDrawer();
+    if (event.key === "Escape") requestCloseDrawer();
     if (event.key === "Tab") {
       const items = [...els.drawer.querySelectorAll('button, a[href], summary')].filter((el) => el.getClientRects().length);
       const first = items[0], last = items.at(-1);
@@ -745,7 +760,10 @@ function bind() {
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     }
   });
-  window.addEventListener("hashchange", syncFromHash);
+  // popstate also fires for hash navigation and handles closing; the URL may already be an entry path here.
+  window.addEventListener("hashchange", () => {
+    if (location.hash) syncFromHash();
+  });
   window.addEventListener("popstate", syncFromPopState);
 }
 
