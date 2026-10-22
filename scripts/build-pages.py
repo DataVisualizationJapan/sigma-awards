@@ -14,7 +14,6 @@ import json
 import re
 import shutil
 import sys
-import unicodedata
 from pathlib import Path
 from urllib.parse import quote, urljoin, urlparse
 
@@ -164,9 +163,7 @@ class I18n:
 # ---------------------------------------------------------------- helpers
 
 def sort_key(entry):
-    title = unicodedata.normalize("NFKD", entry["title"])
-    title = "".join(c for c in title if not unicodedata.combining(c)).casefold()
-    return (-entry["year"], RESULT_RANK.get(entry["result"], 9), title, entry["title"], entry["id"])
+    return (-entry["year"], RESULT_RANK.get(entry["result"], 9), entry["title"].casefold(), entry["id"])
 
 
 def http_url(url):
@@ -174,7 +171,7 @@ def http_url(url):
         p = urlparse(url or "")
     except ValueError:
         return ""
-    return url if p.scheme in ("http", "https") and p.netloc else ""
+    return url if p.scheme in ("http", "https") and p.netloc and not re.search(r"\s", url) else ""
 
 
 def safe_link(url, label):
@@ -192,8 +189,33 @@ def abs_thumb(thumb, catalog_prefix):
     return urljoin(base, thumb)
 
 
+def plain(text):
+    """Text without HTML tags/comments, for <title>, meta and JSON-LD."""
+    text = re.sub(r"<!--.*?-->", " ", text or "", flags=re.S)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]*>", " ", text)).strip()
+
+
+def clean_str(value, key=""):
+    """Undo entities stored as text (once) and drop machine-translation <unk> leftovers in Ja fields."""
+    value = html.unescape(value)
+    if key.endswith("Ja"):
+        value = re.sub(r"[ \t]*<unk>[ \t]*", " ", value)
+        value = re.sub(r"[ \t]{2,}", " ", value).strip()
+    return value
+
+
+def clean_data(obj, key=""):
+    if isinstance(obj, str):
+        return clean_str(obj, key)
+    if isinstance(obj, list):
+        return [clean_data(v, key) for v in obj]
+    if isinstance(obj, dict):
+        return {k: clean_data(v, k) for k, v in obj.items()}
+    return obj
+
+
 def truncate(text, limit=120):
-    text = re.sub(r"\s+", " ", text or "").strip()
+    text = plain(text)
     return text if len(text) <= limit else text[: limit - 1].rstrip() + "…"
 
 
@@ -378,10 +400,10 @@ def render_entry_page(shell, i18n, cat, entry, details, years):
             for i, u in enumerate(urls))
 
     lang_line = ("言語: %s" % i18n.langs(langs)) if langs else ""
-    page_title = "%s | %s %s" % (title, conf["name"], year)
+    page_title = "%s | %s %s" % (plain(title) or title, conf["name"], year)
     desc = truncate(summary or summary_src)
     if not desc:
-        desc = "%s %s年の%s: %s%s。" % (conf["name"], year, KIND_LABELS.get(entry.get("kind"), "作品"), title,
+        desc = "%s %s年の%s: %s%s。" % (conf["name"], year, KIND_LABELS.get(entry.get("kind"), "作品"), plain(title),
                                       "（%s）" % org_line if org_line else "")
     canonical = SITE + entry_path(cat, entry["id"])
     og_image = SITE + thumb if thumb else ""
@@ -392,11 +414,11 @@ def render_entry_page(shell, i18n, cat, entry, details, years):
         award = awards or "%s %s %s" % (conf["name"], year, RESULT_EN.get(entry["result"], entry["result"]))
     else:
         award = "%s %s %s" % (conf["name"], year, RESULT_EN.get(entry["result"], entry["result"]))
-    ld = {"@context": "https://schema.org", "@type": "CreativeWork", "name": entry["title"]}
+    ld = {"@context": "https://schema.org", "@type": "CreativeWork", "name": plain(entry["title"]) or entry["title"]}
     if title_ja and title_ja != entry["title"]:
-        ld["alternateName"] = title_ja
+        ld["alternateName"] = plain(title_ja)
     if entry.get("org"):
-        ld["author"] = {"@type": "Organization", "name": entry["org"]}
+        ld["author"] = {"@type": "Organization", "name": plain(entry["org"])}
     work_url = http_url(entry.get("url"))
     if work_url:
         ld["url"] = work_url
@@ -421,20 +443,21 @@ def render_entry_page(shell, i18n, cat, entry, details, years):
         <p class="detail__meta">%s</p>
         <h1>%s</h1>
         %s
-        <p class="detail__org">%s</p>
         %s
-        <div class="detail__tags">%s</div>
-        <div class="detail__body">
-          %s
-        </div>
         %s
-        <div class="detail__links">%s</div>
+        %s
+        %s
+        %s
+        %s
       </article>
       %s
     </main>""" % (
         masthead(cat), esc(list_path(cat, year)), year, esc(year_path(cat, year)), year, thumb_html, esc(meta), esc(title),
-        original_title, esc(org_line), ('<p class="detail__langs">%s</p>' % esc(lang_line)) if lang_line else "", tags,
-        "\n          ".join(p for p in body_parts if p), orig_html, links_html, year_nav(cat, years, year))
+        original_title, ('<p class="detail__org">%s</p>' % esc(org_line)) if org_line else "",
+        ('<p class="detail__langs">%s</p>' % esc(lang_line)) if lang_line else "",
+        ('<div class="detail__tags">%s</div>' % tags) if tags else "",
+        ('<div class="detail__body">\n          %s\n        </div>' % "\n          ".join(p for p in body_parts if p)) if any(body_parts) else "",
+        orig_html, ('<div class="detail__links">%s</div>' % links_html) if links_html else "", year_nav(cat, years, year))
     return shell.page(cat, title=page_title, description=desc, canonical=canonical, body=body,
                       og_type="article", og_image=og_image, ld=ld)
 
@@ -492,16 +515,22 @@ def render_card(i18n, cat, e):
              '<h2 class="card__title"><a class="card__link" href="%s">%s</a></h2>' % (esc(href), esc(title))]
     if e.get("titleJa") and e["titleJa"] != e["title"]:
         parts.append('<p class="card__original-title">%s</p>' % esc(e["title"]))
-    parts.append('<p class="card__org">%s</p>' % esc(" · ".join(x for x in [e.get("org"), i18n.country(e.get("country"))] if x)))
+    org_line = " · ".join(x for x in [e.get("org"), i18n.country(e.get("country"))] if x)
+    if org_line:
+        parts.append('<p class="card__org">%s</p>' % esc(org_line))
     if langs:
         parts.append('<p class="card__langs">%s</p>' % esc("言語: " + langs))
     if langs_original:
         parts.append('<p class="card__original">%s</p>' % esc(langs_original))
     if cat == "dja":
         cats = sorted({category_ja(a.get("category", "")) for a in e.get("awards") or [] if a.get("category") is not None})
-        parts.append('<p class="card__category">%s</p>' % esc(" · ".join(c for c in cats if c)))
-    parts.append('<p class="card__summary">%s</p>' % esc(e.get("summaryJa") or e.get("summary") or ""))
-    parts.append('<div class="card__tags">%s</div>' % tags)
+        if any(cats):
+            parts.append('<p class="card__category">%s</p>' % esc(" · ".join(c for c in cats if c)))
+    summary = e.get("summaryJa") or e.get("summary") or ""
+    if summary:
+        parts.append('<p class="card__summary">%s</p>' % esc(summary))
+    if tags:
+        parts.append('<div class="card__tags">%s</div>' % tags)
     parts.append('<div class="card__actions"><a class="card__detail" href="%s" data-id="%s">詳細</a>%s</div>' % (esc(href), esc(e["id"]), open_link))
     return '<article class="card" data-id="%s">\n          %s\n        </article>' % (esc(e["id"]), "\n          ".join(p for p in parts if p))
 
@@ -530,12 +559,12 @@ def embed_index(i18n, cat, text, entries, years, default_year):
 def load_catalog(public, cat):
     conf = CATALOGS[cat]
     base = public / conf["data"]
-    payload = json.loads((base / "entries.json").read_text(encoding="utf-8"))
+    payload = clean_data(json.loads((base / "entries.json").read_text(encoding="utf-8")))
     entries = sorted(payload["entries"], key=sort_key)
     details = {}
     for year in payload["years"]:
         p = base / ("details-%s.json" % year)
-        details[year] = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+        details[year] = clean_data(json.loads(p.read_text(encoding="utf-8"))) if p.exists() else {}
     for e in entries:
         if not SAFE_ID.match(e["id"]):
             raise SystemExit("unsafe entry id: %r" % e["id"])

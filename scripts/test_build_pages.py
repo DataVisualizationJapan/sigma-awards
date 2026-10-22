@@ -112,7 +112,7 @@ class BuildPagesTests(unittest.TestCase):
             self.assertEqual(ld["mainEntityOfPage"], bp.SITE + canon)
             self.assertIn('<link rel="canonical" href="%s" />' % (bp.SITE + canon), text)
         ld = json.loads(re.search(r'ld\+json">(.*?)</script>', self.read("entries/2024-s-0001/index.html"), re.S).group(1))
-        self.assertEqual(ld["name"], XSS)
+        self.assertEqual(ld["name"], 'alert(1) "&')  # tags stripped in JSON-LD
         self.assertNotIn("url", ld)  # javascript: url is dropped
         self.assertEqual(ld["award"], "Sigma Awards 2024 Winner")
 
@@ -161,6 +161,100 @@ class BuildPagesTests(unittest.TestCase):
         write_json(self.public / "data/entries.json", data)
         with self.assertRaises(SystemExit):
             bp.main(["--public-dir", str(self.public), "--output-dir", str(self.tmp / "d3")])
+
+
+class RealDataTests(unittest.TestCase):
+    """Checks against known problem records in the committed catalog."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.out = Path(cls._tmp.name) / "dist"
+        bp.main(["--public-dir", str(ROOT / "public"), "--output-dir", str(cls.out)])
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._tmp.cleanup()
+
+    def page(self, rel):
+        return (self.out / rel / "index.html").read_text(encoding="utf-8")
+
+    def ld(self, rel):
+        return json.loads(re.search(r'ld\+json">(.*?)</script>', self.page(rel), re.S).group(1))
+
+    def test_counts(self):
+        self.assertEqual(len(list((self.out / "entries").glob("*/index.html"))), 3899)
+        self.assertEqual(len(list((self.out / "dja/entries").glob("*/index.html"))), 535)
+
+    def test_unk_removed_from_ja(self):
+        src = json.loads((ROOT / "public/data/entries.json").read_text())["entries"]
+        with_unk = [e for e in src if "<unk>" in (e.get("titleJa") or "")]
+        self.assertTrue(with_unk)
+        for e in with_unk[:20]:
+            text = self.page("entries/" + e["id"])
+            self.assertNotIn("&lt;unk&gt;", text)
+            self.assertNotIn("<unk>", text)
+        self.assertNotIn("&lt;unk&gt;", self.page("entries/2020-s-0243"))
+
+    def test_entities_not_double_escaped(self):
+        text = self.page("entries/2024-s-0056")
+        self.assertIn("Climate Crisis &amp; You", text)
+        self.assertNotIn("&amp;amp;", text)
+        self.assertEqual(self.ld("entries/2024-s-0056")["name"], "Unsettled Debt: Africa, The Climate Crisis & You")
+
+    def test_bad_urls_not_linked(self):
+        for i in ("2020-s-0031", "2020-s-0168", "2021-s-0423", "2020-s-0019", "2026-s-0045"):
+            text = self.page("entries/" + i)
+            ld = self.ld("entries/" + i)
+            if i in ("2020-s-0031", "2020-s-0168", "2021-s-0423"):
+                self.assertNotIn("url", ld, i)  # URL field carries a note after the address
+            if "url" in ld:
+                self.assertNotRegex(ld["url"], r"\s", i)
+            for href in re.findall(r'<a [^>]*href="(https?://[^"]*)"', text.split("<main", 1)[1]):
+                self.assertNotRegex(href, r"\s", i)
+
+    def test_html_in_source_text(self):
+        for i in ("2020-s-0091", "2021-s-0380"):
+            text = self.page("entries/" + i)
+            body = text.split('<div class="detail__body">', 1)[1].split("</article>", 1)[0]
+            self.assertNotRegex(body, r"<(?:a|ul|h3)\b(?![^>]*(?:class|target))", i)
+            self.assertIn("&lt;", body, i)
+            ld = self.ld("entries/" + i)
+            self.assertNotRegex(ld["description"], r"<[^>]+>")
+            head = text.split("</head>", 1)[0]
+            self.assertNotRegex(re.search(r"<title>(.*?)</title>", head).group(1), r"<")
+            self.assertNotRegex(re.search(r'name="description" content="([^"]*)"', head).group(1), r"&lt;|<")
+
+    def test_thumbs_resolve(self):
+        text = self.page("entries/2023-s-0001")
+        self.assertIn('src="/thumbs/2023-s-0001.png"', text)
+        self.assertIn(bp.SITE + "/thumbs/2023-s-0001.png", text)
+        dja = json.loads((ROOT / "public/data/dja/entries.json").read_text())["entries"]
+        e = next(x for x in dja if x.get("thumb"))
+        text = self.page("dja/entries/" + e["id"])
+        self.assertIn('src="%s"' % e["thumb"], text)
+        self.assertIn(bp.SITE + e["thumb"], text)
+
+    def test_no_empty_elements(self):
+        for rel in ("entries/2020-s-0001", "dja/entries/dja-2019-84be5da5830d", "dja"):
+            text = self.page(rel)
+            if rel != "dja":  # list pages keep empty containers that app.js fills
+                self.assertNotRegex(text, r"<(p|div|h2)\b[^>]*>\s*</\1>", rel)
+            else:
+                grid = text.split('id="card-grid">', 1)[1].split('<p class="empty"', 1)[0]
+                self.assertNotRegex(grid, r"<(p|div|h2)\b[^>]*>\s*</\1>")
+            self.assertNotRegex(text, r'content=""', rel)
+            self.assertNotRegex(text, r'<[^>]*href=""', rel)
+        ld = self.ld("dja/entries/dja-2019-84be5da5830d")
+        self.assertNotIn("url", ld)
+        self.assertNotIn("alternateName", ld)
+        self.assertNotIn("license", ld)
+        self.assertTrue(all(v not in ("", [], None) for v in ld.values()))
+
+    def test_dja_has_no_cc_license(self):
+        for rel in ("dja/entries/dja-2019-84be5da5830d", "dja"):
+            self.assertNotIn("CC BY-NC-SA", self.page(rel))
+        self.assertIn("CC BY-NC-SA", self.page("entries/2020-s-0001"))
 
 
 if __name__ == "__main__":
