@@ -19,6 +19,8 @@ from urllib.parse import quote, urljoin, urlparse
 
 SITE = "https://sigma-awards.data-visualization.jp"
 PAGE_SIZE = 24
+PLACEHOLDER = re.compile(r"\s*(?:none|n/a)\s*", re.I)
+MARKER = ".build-pages"
 SAFE_ID = re.compile(r"^[A-Za-z0-9._-]+$")
 
 RESULT_LABELS = {"winner": "受賞", "shortlist": "ショートリスト", "mention": "選外表彰", "entry": "応募"}
@@ -42,14 +44,12 @@ CATALOGS = {
         "prefix": "",          # URL prefix of the catalog root
         "data": "data",
         "index": "index.html",
-        "default_year": None,  # fixed below
     },
     "dja": {
         "name": "Data Journalism Awards",
         "prefix": "/dja",
         "data": "data/dja",
         "index": "dja/index.html",
-        "default_year": None,
     },
 }
 
@@ -192,15 +192,17 @@ def abs_thumb(thumb, catalog_prefix):
 def plain(text):
     """Text without HTML tags/comments, for <title>, meta and JSON-LD."""
     text = re.sub(r"<!--.*?-->", " ", text or "", flags=re.S)
-    return re.sub(r"\s+", " ", re.sub(r"<[^>]*>", " ", text)).strip()
+    return re.sub(r"\s+", " ", re.sub(r"</?[A-Za-z][^>]*>", " ", text)).strip()
 
 
 def clean_str(value, key=""):
-    """Undo entities stored as text (once) and drop machine-translation <unk> leftovers in Ja fields."""
+    """Undo entities stored as text (once); a Ja field with <unk> is not a translation, so it becomes empty
+    (callers then fall back to the original). org/authors/tools placeholders such as None or N/A become empty."""
     value = html.unescape(value)
-    if key.endswith("Ja"):
-        value = re.sub(r"[ \t]*<unk>[ \t]*", " ", value)
-        value = re.sub(r"[ \t]{2,}", " ", value).strip()
+    if key.endswith("Ja") and "<unk>" in value:
+        return ""
+    if key in ("org", "authors", "tools") and PLACEHOLDER.fullmatch(value):
+        return ""
     return value
 
 
@@ -296,7 +298,7 @@ def masthead(cat):
         <p class="masthead__kicker">Data Visualization Japan</p>
         <nav class="award-nav" aria-label="アワード"><a href="/"%s>Sigma Awards</a><a href="/dja/"%s>Data Journalism Awards</a></nav>
       </div>
-    </header>""" % ("" if cat != "sigma" else ' aria-current="true"', "" if cat != "dja" else ' aria-current="true"')
+    </header>""" % ("" if cat != "sigma" else ' aria-current="page"', "" if cat != "dja" else ' aria-current="page"')
 
 
 def year_nav(cat, years, current=None):
@@ -361,7 +363,7 @@ def render_entry_page(shell, i18n, cat, entry, details, years):
     langs = details.get("langs") or entry.get("langs") or ""
     result_label = RESULT_LABELS.get(entry["result"]) or entry.get("resultLabel") or ""
     summary_src = details.get("summary") or entry.get("summary") or ""
-    summary = pick_ja(details.get("summaryJa") or entry.get("summaryJa"), summary_src)
+    summary = pick_ja(details.get("summaryJa") if details.get("summary") else entry.get("summaryJa"), summary_src)
     impact_src, jury_src = details.get("impact") or "", details.get("jury") or ""
     impact = pick_ja(details.get("impactJa"), impact_src)
     jury = pick_ja(details.get("juryJa"), jury_src)
@@ -551,6 +553,17 @@ def embed_index(i18n, cat, text, entries, years, default_year):
     text, n = re.subn(r'<footer class="site-footer">', lambda _m: nav + '<footer class="site-footer">', text, count=1)
     if n != 1:
         raise SystemExit("footer not found for %s" % cat)
+    title = html.unescape(re.search(r"<title>(.*?)</title>", text, re.S).group(1).strip())
+    m = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', text, re.S)
+    desc = html.unescape(m.group(1)) if m else ""
+    canonical = SITE + CATALOGS[cat]["prefix"] + "/"
+    meta = ['<link rel="canonical" href="%s" />' % esc(canonical)]
+    for k, v in (("og:title", title), ("og:description", desc), ("og:url", canonical), ("og:type", "website")):
+        if v:
+            meta.append('<meta property="%s" content="%s" />' % (k, esc(v)))
+    text, n = re.subn(r"</head>", lambda _m: "    " + "\n    ".join(meta) + "\n  </head>", text, count=1)
+    if n != 1:
+        raise SystemExit("</head> not found for %s" % cat)
     return text
 
 
@@ -571,13 +584,28 @@ def load_catalog(public, cat):
     return entries, sorted(payload["years"]), details
 
 
+def default_year_for(index_file, years):
+    """data-default-year of the list page; absent, "latest" or unknown means the newest year."""
+    m = re.search(r'data-default-year="(\d+)"', index_file.read_text(encoding="utf-8"))
+    year = int(m.group(1)) if m else None
+    return year if year in years else max(years)
+
+
 def build(public, out):
     public, out = public.resolve(), out.resolve()
     if out == public or public in out.parents or out in public.parents:
         raise SystemExit("output dir must be separate from the public dir")
     if out.exists():
-        shutil.rmtree(out)
+        if not out.is_dir():
+            raise SystemExit("output path is not a directory: %s" % out)
+        if (out / MARKER).exists():
+            shutil.rmtree(out)
+        elif any(out.iterdir()):
+            raise SystemExit("refusing to delete %s: no %s marker from a previous build" % (out, MARKER))
+        else:
+            out.rmdir()
     shutil.copytree(public, out)
+    write(out / MARKER, "generated by scripts/build-pages.py; safe to delete\n")
 
     shell = Shell(public)
     i18n = I18n(public / "js" / "i18n.js")
@@ -596,9 +624,7 @@ def build(public, out):
             write(out / entry_path(cat, e["id"]).strip("/") / "index.html",
                   render_entry_page(shell, i18n, cat, e, details.get(e["year"], {}).get(e["id"]), years))
             urls.append(SITE + entry_path(cat, e["id"]))
-        default_year = max(years) if cat == "dja" else 2026
-        if cat == "sigma" and default_year not in years:
-            default_year = max(years)
+        default_year = default_year_for(public / conf["index"], years)
         index_path = out / conf["index"]
         write(index_path, embed_index(i18n, cat, index_path.read_text(encoding="utf-8"), entries, years, default_year))
         stats[cat] = len(entries)

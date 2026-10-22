@@ -13,7 +13,7 @@ spec = importlib.util.spec_from_file_location("build_pages", ROOT / "scripts/bui
 bp = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bp)
 
-INDEX = """<!DOCTYPE html><html><head><!-- Google tag (gtag.js) -->
+INDEX = """<!DOCTYPE html><html><head><title>T &amp; U</title><meta name="description" content="D" /><!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X"></script>
 <script>gtag('config', 'G-X');</script></head><body>
 <p id="result-count">読み込み中</p>
@@ -151,6 +151,32 @@ class BuildPagesTests(unittest.TestCase):
         self.assertEqual(tree_hash(self.out), tree_hash(out2))
         self.assertEqual(before, tree_hash(self.public))
 
+    def test_plain_strips_only_html_tags(self):
+        self.assertEqual(bp.plain("a <b>x</b> <!-- c --> <Роскомнадзор> d <3"), "a x <Роскомнадзор> d <3")
+
+    def test_refuses_unmarked_existing_output(self):
+        victim = self.tmp / "victim"
+        victim.mkdir()
+        (victim / "keep.txt").write_text("x")
+        with self.assertRaises(SystemExit):
+            bp.main(["--public-dir", str(self.public), "--output-dir", str(victim)])
+        self.assertTrue((victim / "keep.txt").exists())
+        bp.main(["--public-dir", str(self.public), "--output-dir", str(self.out)])  # marked: rebuilt
+        empty = self.tmp / "empty"
+        empty.mkdir()
+        bp.main(["--public-dir", str(self.public), "--output-dir", str(empty)])
+        self.assertTrue((empty / bp.MARKER).exists())
+
+    def test_default_year_from_index_attribute(self):
+        idx = self.public / "index.html"
+        idx.write_text(idx.read_text().replace("<body>", '<body data-default-year="2024">'), encoding="utf-8")
+        out = self.tmp / "d4"
+        bp.main(["--public-dir", str(self.public), "--output-dir", str(out)])
+        text = (out / "index.html").read_text(encoding="utf-8")
+        self.assertIn("2024年 1–2件 / 2件", text)
+        self.assertIn('data-id="2024-s-0002"', text)
+        self.assertNotIn('data-id="2025-s-0003"', text)
+
     def test_rejects_output_inside_public(self):
         with self.assertRaises(SystemExit):
             bp.main(["--public-dir", str(self.public), "--output-dir", str(self.public / "x")])
@@ -186,15 +212,40 @@ class RealDataTests(unittest.TestCase):
         self.assertEqual(len(list((self.out / "entries").glob("*/index.html"))), 3899)
         self.assertEqual(len(list((self.out / "dja/entries").glob("*/index.html"))), 535)
 
-    def test_unk_removed_from_ja(self):
+    def test_unk_ja_falls_back_to_original(self):
         src = json.loads((ROOT / "public/data/entries.json").read_text())["entries"]
         with_unk = [e for e in src if "<unk>" in (e.get("titleJa") or "")]
         self.assertTrue(with_unk)
-        for e in with_unk[:20]:
+        for e in with_unk:
             text = self.page("entries/" + e["id"])
             self.assertNotIn("&lt;unk&gt;", text)
             self.assertNotIn("<unk>", text)
-        self.assertNotIn("&lt;unk&gt;", self.page("entries/2020-s-0243"))
+            self.assertNotIn("alternateName", text, e["id"])
+            self.assertIn("<h1>%s</h1>" % bp.esc(bp.clean_str(e["title"])), text, e["id"])
+        text = self.page("entries/2020-s-0243")
+        self.assertRegex(text, r"<title>„Die Welt bangt")
+        self.assertIn("<h1>„Die Welt bangt", text)
+
+    def test_placeholder_org_authors_tools(self):
+        text = self.page("entries/2020-f-0052")
+        self.assertNotRegex(text, r'detail__org">\s*None')
+        self.assertNotIn("author", self.ld("entries/2020-f-0052"))
+        text = self.page("entries/2022-s-0195")
+        self.assertNotIn("<h2>制作</h2>", text)
+        self.assertIn("<h2>使った技術</h2>", text)
+
+    def test_list_pages_have_canonical_and_og(self):
+        for rel, url in (("", bp.SITE + "/"), ("dja", bp.SITE + "/dja/")):
+            head = self.page(rel).split("</head>", 1)[0]
+            self.assertIn('<link rel="canonical" href="%s" />' % url, head)
+            for k in ("og:title", "og:description", "og:url", "og:type"):
+                self.assertIn('property="%s"' % k, head)
+            self.assertIn('<meta property="og:type" content="website" />', head)
+
+    def test_aria_current_page(self):
+        text = self.page("entries/2020-s-0001")
+        self.assertIn('<a href="/" aria-current="page">Sigma Awards</a>', text)
+        self.assertNotIn('aria-current="true"', text)
 
     def test_entities_not_double_escaped(self):
         text = self.page("entries/2024-s-0056")
