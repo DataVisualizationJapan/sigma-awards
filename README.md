@@ -103,3 +103,19 @@ python3 scripts/test_dja_thumbnails.py
 採用結果の正本は `scripts/dja/thumbnails.json`、画像ファイルは `public/thumbs/dja/` です。元の画像URL、入力HTML、保存URL、取得URL、形式、サイズ、SHA-256を記録します。`public/data/dja/thumbnails-report.json` には全535件の結果・除外理由・失敗した取得先を記録します。目視で判明したDJA/DENロゴの代替画像は `scripts/dja/rejected-images.json` のハッシュで除外し、URLが作品名でも画像本体が仮画像なら採用しません。
 
 現在96件（2013年73件、2015年1件、2016年1件、2018年15件、2019年6件）を採用しています。残りは取得・採用できなかった44件と画像参照のない395件です。形式検証だけでは作品画像と断定できないため、新規取得後は目視でも対応を確認してください。仮画像が見つかった場合は除外ハッシュを記録し、採用結果を見直してからデータを再生成します。元画像を変換せず保存し、ブラウザはローカル画像だけを読み込みます。データ再生成では正本の画像と入力HTMLの対応、ファイルの存在・ハッシュを確認して `thumb` を再設定するため、再生成後もサムネイルが保持されます。
+
+### 静的ページの生成（クローラー向け）
+
+JavaScriptなしでも内容を読めるよう、コミット済みのJSONからビルド時に静的HTMLを生成します。データJSONは変更しません。Netlifyでは `netlify.toml` のとおり `python3 scripts/build-pages.py` を実行し、`dist/` を公開します（Python標準ライブラリのみ、`dist/` はGit管理外）。
+
+```bash
+python3 scripts/build-pages.py && python3 -m http.server 4173 --directory dist
+python3 scripts/test_build_pages.py
+```
+
+`--public-dir`（既定 `public`）と `--output-dir`（既定 `dist`）を指定できます。`public/` を `dist/` へコピーし、次を追加します。同じ入力からは毎回同じ出力になります。
+
+- 作品ごとの個別ページ: `/entries/{id}/`（Sigma 3,899件）、`/dja/entries/{id}/`（DJA 535件）。日本語・原文、リンク・出典、canonical、OGP、JSON-LD（`CreativeWork`）を含みます。
+- 年別一覧ページ: `/{year}/`（2020〜2026）、`/dja/{year}/`（2012〜2019）。
+- `/` と `/dja/` の `#card-grid` に既定年の先頭24件のカードと「年別一覧」リンク集を埋め込みます。JavaScriptが動くと `app.js` が置き換えます。
+- `sitemap.xml`（`lastmod` なし）。
