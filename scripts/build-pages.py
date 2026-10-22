@@ -195,10 +195,18 @@ def plain(text):
     return re.sub(r"\s+", " ", re.sub(r"</?[A-Za-z][^>]*>", " ", text)).strip()
 
 
+ENTITY = re.compile(r"&(?:amp|lt|gt|quot|apos|#\d+|#[xX][0-9a-fA-F]+);")
+
+
+def unescape_once(value):
+    """Decode only well-formed (semicolon-terminated) basic entities, one pass; "&para=" etc. stay intact."""
+    return ENTITY.sub(lambda m: html.unescape(m.group(0)), value)
+
+
 def clean_str(value, key=""):
     """Undo entities stored as text (once); a Ja field with <unk> is not a translation, so it becomes empty
     (callers then fall back to the original). org/authors/tools placeholders such as None or N/A become empty."""
-    value = html.unescape(value)
+    value = unescape_once(value)
     if key.endswith("Ja") and "<unk>" in value:
         return ""
     if key in ("org", "authors", "tools") and PLACEHOLDER.fullmatch(value):

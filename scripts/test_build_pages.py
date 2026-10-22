@@ -151,6 +151,13 @@ class BuildPagesTests(unittest.TestCase):
         self.assertEqual(tree_hash(self.out), tree_hash(out2))
         self.assertEqual(before, tree_hash(self.public))
 
+    def test_unescape_once_is_conservative(self):
+        for keep in ("?a=1&para=2", "&copy=", "&amp=&feature=", "x&times"):
+            self.assertEqual(bp.unescape_once(keep), keep)
+        self.assertEqual(bp.unescape_once("A &amp; B &lt;i&gt; &#38; &#x26; &quot;"), 'A & B <i> & & "')
+        self.assertEqual(bp.unescape_once("&amp;amp;"), "&amp;")  # one pass only
+        self.assertEqual(bp.unescape_once("a&amp;para=1"), "a&para=1")
+
     def test_plain_strips_only_html_tags(self):
         self.assertEqual(bp.plain("a <b>x</b> <!-- c --> <Роскомнадзор> d <3"), "a x <Роскомнадзор> d <3")
 
@@ -252,6 +259,23 @@ class RealDataTests(unittest.TestCase):
         self.assertIn("Climate Crisis &amp; You", text)
         self.assertNotIn("&amp;amp;", text)
         self.assertEqual(self.ld("entries/2024-s-0056")["name"], "Unsettled Debt: Africa, The Climate Crisis & You")
+
+    def test_semicolonless_ampersand_sequences_kept(self):
+        import html as h
+        entries = {e["id"]: e for e in json.loads((ROOT / "public/data/entries.json").read_text())["entries"]}
+        for i in ("2022-s-0191", "2022-s-0194", "2022-s-0339"):
+            details = json.loads((ROOT / ("public/data/details-%s.json" % i[:4])).read_text())[i]
+            text = self.page("entries/" + i)
+            hrefs = [h.unescape(x) for x in re.findall(r'<a [^>]*href="([^"]*)"', text.split("<main", 1)[1])]
+            for url in details["links"]:
+                self.assertIn(url, hrefs, i)
+            if entries[i]["url"]:
+                self.assertEqual(self.ld("entries/" + i)["url"], entries[i]["url"])
+        self.assertIn("&amp;timestamp=55963", self.page("entries/2022-s-0191"))
+        impact = json.loads((ROOT / "public/data/details-2020.json").read_text())["2020-s-0374"]["impact"]
+        text = self.page("entries/2020-s-0374")
+        self.assertIn("&amp=&feature=", impact)
+        self.assertIn(h.escape(impact, quote=True), text)
 
     def test_bad_urls_not_linked(self):
         for i in ("2020-s-0031", "2020-s-0168", "2021-s-0423", "2020-s-0019", "2026-s-0045"):
