@@ -133,6 +133,69 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.locator('#drawer-body p').first().waitFor();
     assert.equal(await page.locator('#drawer').isVisible(), true);
     await page.keyboard.press('Escape');
+
+    // Entry-page links: cards link to entry pages, the drawer shows the entry URL, and the catalog URL is restored.
+    for (const [prefix, query] of [['', '?year=2024&result=winner&page=2'], ['/dja', '?year=2019&page=2']]) {
+      const root = prefix ? `${prefix}/` : '/';
+      await visit(`${root}${query}`);
+      const first = page.locator('#card-grid .card').first();
+      const id = await first.getAttribute('data-id');
+      const expected = `${prefix}/entries/${id}/`;
+      assert.equal(await first.locator('.card__link').getAttribute('href'), expected);
+      assert.equal(await first.locator('.card__detail').getAttribute('href'), expected);
+      const listPath = new URL(page.url()).pathname + new URL(page.url()).search;
+      await first.locator('.card__detail').click();
+      await page.locator('#drawer-body h3').first().waitFor();
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).search + new URL(page.url()).hash, expected);
+      assert.ok((await page.locator('#drawer-body').innerText()).length > 50, 'Detail text should load');
+      const hasThumb = await page.locator('#drawer-thumb').isVisible();
+      if (hasThumb) {
+        await page.locator('#drawer-thumb').evaluate(img => img.decode());
+        assert.ok(await page.locator('#drawer-thumb').evaluate(img => img.naturalWidth > 0));
+      }
+      await page.keyboard.press('Escape');
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).search + new URL(page.url()).hash, listPath);
+      // Title link opens the drawer too.
+      await first.locator('.card__link').click();
+      await page.locator('#drawer').waitFor({ state: 'visible' });
+      assert.equal(new URL(page.url()).pathname, expected);
+      await page.locator('#drawer-close').click();
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).search, listPath);
+      // Direct #e= still opens the drawer.
+      await page.goto(`${base}${root}#e=${id}`);
+      await page.locator('#drawer').waitFor({ state: 'visible' });
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).hash, expected);
+      await page.keyboard.press('Escape');
+      assert.equal(new URL(page.url()).pathname, root);
+      assert.equal(new URL(page.url()).hash, '');
+    }
+
+    // Language switch while the drawer is open keeps the entry path; closing restores the new catalog URL.
+    await visit('/dja/?year=2019');
+    const switchId = await page.locator('#card-grid .card').first().getAttribute('data-id');
+    await page.locator('#card-grid .card__detail').first().click();
+    await page.locator('#drawer-body p').first().waitFor();
+    await page.locator('#locale-chips [data-locale="src"]').evaluate(el => el.click());
+    assert.equal(new URL(page.url()).pathname + new URL(page.url()).search, `/dja/entries/${switchId}/`);
+    await page.keyboard.press('Escape');
+    assert.match(page.url(), /\/dja\/\?.*locale=src/);
+
+    // Keyboard: Tab to the detail link, Enter opens, Escape closes and returns focus.
+    await visit('/');
+    await page.locator('#card-grid .card__detail').first().focus();
+    await page.keyboard.press('Enter');
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
+    assert.equal(await page.evaluate(() => document.activeElement.closest('.card').dataset.id === document.querySelector('.card').dataset.id), true);
+
+    // Screenshots for visual comparison.
+    await page.screenshot({ path: '/tmp/sigma-desktop.png' });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await visit('/');
+    await page.screenshot({ path: '/tmp/sigma-mobile.png' });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await visit('/');
     await page.getByRole('link', { name: 'Data Journalism Awards', exact: true }).click();
     await page.waitForLoadState('networkidle');
     assert.equal(new URL(page.url()).pathname, '/dja/');
