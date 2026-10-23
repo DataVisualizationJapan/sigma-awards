@@ -50,14 +50,27 @@ def blank_placeholder(value: str) -> str:
     return "" if is_placeholder(value) else value
 
 
+_UTF8_MULTIBYTE = re.compile(
+    rb"[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xec\xee\xef][\x80-\xbf]{2}"
+    rb"|\xed[\x80-\x9f][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf]{2}|[\xf1-\xf3][\x80-\xbf]{3}"
+    rb"|\xf4[\x80-\x8f][\x80-\xbf]{2}"
+)
+
+
 def decode_csv_bytes(data: bytes) -> str:
-    """Decode line by line: UTF-8, falling back to Mac Roman for a bad line."""
+    """Decode line by line: UTF-8, falling back to Mac Roman for a bad line.
+
+    A bad line that also holds valid UTF-8 multibyte text would be garbled
+    by a whole-line Mac Roman read, so it stops the build instead.
+    """
     lines = data.splitlines(keepends=True)
     out: list[str] = []
     for index, line in enumerate(lines):
         try:
             out.append(line.decode("utf-8-sig" if index == 0 else "utf-8"))
         except UnicodeDecodeError:
+            if _UTF8_MULTIBYTE.search(line):
+                raise ValueError(f"line {index + 1} mixes valid UTF-8 and invalid bytes; not re-reading it as Mac Roman")
             out.append(line.decode("mac_roman"))
     return "".join(out)
 

@@ -66,6 +66,15 @@ class DecodeCsvBytesTest(unittest.TestCase):
         self.assertEqual(text, 'a,b\n"told, “You” and ’s",ok\nあ,2\n')
 
 
+    def test_mixed_utf8_and_invalid_line_stops(self) -> None:
+        data = b'a,b\n"caf\xc3\xa9 \xd2x",1\n'
+        with self.assertRaises(ValueError):
+            decode_csv_bytes(data)
+
+    def test_mac_roman_only_line_is_read(self) -> None:
+        self.assertEqual(decode_csv_bytes(b"a\n\xd2You\xd3\n"), "a\n\u201cYou\u201d\n")
+
+
 class NormalizeUrlTest(unittest.TestCase):
     def urls(self, raw: str) -> list[str]:
         return normalize_url_cell(raw)[0]

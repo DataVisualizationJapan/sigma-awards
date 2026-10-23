@@ -216,6 +216,16 @@ def merge_existing_ja(entries: list[dict], details_by_year: dict[int, dict[str, 
         )
 
 
+ENTRY_TAIL_KEYS = ("thumb", "titleJa", "summaryJa")
+DETAIL_TAIL_KEYS = ("summaryJa", "impactJa", "juryJa")
+
+
+def with_tail_order(record: dict, tail: tuple[str, ...]) -> dict:
+    """Return record with the optional keys last, in a fixed order, so output bytes are stable."""
+    head = {key: value for key, value in record.items() if key not in tail}
+    return head | {key: record[key] for key in tail if key in record}
+
+
 def build() -> None:
     ensure_source()
     index_entries: list[dict] = []
@@ -285,6 +295,11 @@ def build() -> None:
         counts[year] += sequential
 
     merge_existing_ja(index_entries, details_by_year)
+    index_entries = [with_tail_order(entry, ENTRY_TAIL_KEYS) for entry in index_entries]
+    details_by_year = {
+        year: {entry_id: with_tail_order(record, DETAIL_TAIL_KEYS) for entry_id, record in records.items()}
+        for year, records in details_by_year.items()
+    }
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
