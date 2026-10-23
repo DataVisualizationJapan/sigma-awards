@@ -14,6 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sigma_text import blank_placeholder, decode_entities, normalize_links, read_text_lines  # noqa: E402
+from sigma import ledger as id_ledger  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = Path(os.environ.get("SIGMA_DATA_DIR", ROOT / ".tmp-data"))
@@ -125,18 +126,24 @@ def ensure_source() -> None:
     subprocess.check_call(["git", "clone", "--depth", "1", SOURCE_REPO, str(SOURCE_DIR)])
 
 
-def load_rows(path: Path) -> list[dict[str, str]]:
+def read_rows(path: Path) -> list[dict[str, str]]:
+    """CSV rows exactly as read. The ID ledger fingerprints these, so keep any cleanup out of here.
+
+    Decoding only picks the right text encoding per line; it does not change content.
+    """
     reader = csv.DictReader(read_text_lines(path.read_bytes()))
-    rows = []
-    for row in reader:
-        out: dict[str, str] = {}
-        for key, value in row.items():
-            name = decode_entities(key or "").strip()
-            # Link cells keep their upstream text so url-fixes.json can show the original.
-            is_link = isinstance(value, str) and LINK_KEY.search(name)
-            out[name] = decode_entities(value) if isinstance(value, str) and not is_link else value
-        rows.append(out)
-    return rows
+    return [{(k or "").strip(): v for k, v in row.items()} for row in reader]
+
+
+def clean_row(row: dict[str, str]) -> dict[str, str]:
+    """Display-only cleanup applied after IDs are assigned."""
+    out: dict[str, str] = {}
+    for key, value in row.items():
+        name = decode_entities(key)
+        # Link cells keep their upstream text so url-fixes.json can show the original.
+        is_link = isinstance(value, str) and LINK_KEY.search(name)
+        out[name] = decode_entities(value) if isinstance(value, str) and not is_link else value
+    return out
 
 
 def compact_summary(text: str) -> str:
@@ -226,8 +233,23 @@ def with_tail_order(record: dict, tail: tuple[str, ...]) -> dict:
     return head | {key: record[key] for key in tail if key in record}
 
 
+def source_commit() -> str | None:
+    try:
+        out = subprocess.run(["git", "-C", str(SOURCE_DIR), "rev-parse", "HEAD"], capture_output=True, text=True, check=True)
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return out.stdout.strip() or None
+
+
 def build() -> None:
     ensure_source()
+    ledger = id_ledger.load()
+    try:
+        id_ledger.validate_overrides(ledger)
+    except id_ledger.LedgerError as error:
+        raise SystemExit(f"ID ledger: {error}")
+    commit = source_commit()
+    reports: list[dict] = []
     index_entries: list[dict] = []
     details_by_year: dict[int, dict[str, dict]] = {}
     url_fixes: list[dict] = []
@@ -237,14 +259,16 @@ def build() -> None:
         path = SOURCE_DIR / filename
         if not path.exists():
             raise SystemExit(f"Missing {path}")
-        sequential = 0
-        for row in load_rows(path):
+        raw_rows = [row for row in read_rows(path) if (row.get("Project title") or "").strip()]
+        try:
+            ids, report = id_ledger.reconcile(ledger, year, kind, raw_rows)
+        except id_ledger.LedgerError as error:
+            raise SystemExit(f"ID ledger: {error}")
+        reports.append(report)
+        sequential = len(raw_rows)
+        for raw_row, entry_id in zip(raw_rows, ids):
+            row = clean_row(raw_row)
             title = first(row.get("Project title"))
-            if not title:
-                continue
-            prefix = "s" if kind == "project" else "f"
-            sequential += 1
-            entry_id = f"{year}-{prefix}-{sequential:04d}"
             result_key, result_label = normalize_result(row.get("Results"))
             summary = first(
                 row.get("A short description of the project"),
@@ -307,6 +331,7 @@ def build() -> None:
         "license": "CC BY-NC-SA 4.0",
         "attribution": "The Sigma Awards / Global Investigative Journalism Network (GIJN)",
         "site": "https://sigmaawards.org",
+        "upstreamCommit": commit,
         "builtAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "count": len(index_entries),
         "years": sorted({entry["year"] for entry in index_entries}),
@@ -327,6 +352,9 @@ def build() -> None:
         encoding="utf-8",
     )
 
+    ledger["upstreamCommit"] = commit
+    id_ledger.save(ledger)
+    print(id_ledger.format_report(reports))
     print(f"entries {len(index_entries)}")
     print(f"url fixes {len(url_fixes)}")
     print("by year", counts)
