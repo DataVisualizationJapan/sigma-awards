@@ -130,7 +130,7 @@ def category_ja(value):
     translated = re.sub(
         r"\b(?:small|large) newsroom\b|\b(?:small|large)\b",
         lambda m: "小規模編集部" if m.group(0).lower().startswith("small") else "大規模編集部",
-        translated, flags=re.I)
+        translated, flags=re.I | re.ASCII)
     return translated.replace("national/international", "国内・国際").replace("local/regional", "地方・地域")
 
 

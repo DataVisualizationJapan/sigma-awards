@@ -534,8 +534,10 @@ function renderDrawer(entry, details = {}) {
 }
 
 function isHttpUrl(url) {
+  if (typeof url !== "string" || /\s/.test(url)) return false;
   try {
-    return ["http:", "https:"].includes(new URL(url).protocol);
+    const parsed = new URL(url);
+    return ["http:", "https:"].includes(parsed.protocol) && Boolean(parsed.hostname);
   } catch { return false; }
 }
 
