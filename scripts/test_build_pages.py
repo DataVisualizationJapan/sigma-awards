@@ -159,6 +159,40 @@ class BuildPagesTests(unittest.TestCase):
                 self.assertRegex(href, r"^https?://\S+$")
         self.assertNotIn("a.example", text.split("<main", 1)[1])
 
+    def test_paragraphs_refs_and_link_notes(self):
+        xss = "<img src=x onerror=alert(1)>"
+        text, ld = self.rebuild_with(
+            {},
+            {"summary": "first <b>\n\nsecond", "impact": "one\n\ntwo\n\nthree", "links": [
+                "https://a.example/work", "https://b.example/other"],
+             "refs": [{"url": "https://c.example/?a=1&b=2", "label": xss}, {"url": "https://d.example/x", "label": ""},
+                      {"url": "javascript:alert(1)", "label": "bad"}, {"url": "ftp://e.example/", "label": "ftp"}],
+             "linkNotes": {"https://a.example/work": "Passcode: <x>&1", "https://zzz.example/": "stray"},
+             "summaryJa": "第一\n\n第二", "impactJa": "一"})
+        main = text.split("<main", 1)[1]
+        self.assertIn("<h2>概要</h2><p>第一</p><p>第二</p>", main)
+        self.assertIn("<h2>概要</h2><p>first &lt;b&gt;</p><p>second</p>", main)  # the 原文 section
+        self.assertIn("<h2>影響</h2><p>一</p>", main)
+        self.assertIn("<h2>影響</h2><p>one</p><p>two</p><p>three</p>", main)
+        self.assertIn('<span class="link-row"><a href="https://a.example/work" target="_blank" rel="noopener noreferrer">作品を開く</a>'
+                      '<small class="link-note">Passcode: &lt;x&gt;&amp;1</small></span>', main)
+        self.assertIn('<span class="link-row"><a href="https://b.example/other" target="_blank" rel="noopener noreferrer">'
+                      'https://b.example/other</a></span>', main)
+        self.assertNotIn("stray", main)
+        refs = main.split('<h2 class="ref-title">本文中のリンク</h2>', 1)[1].split("</ul>", 1)[0]
+        self.assertEqual(re.findall(r'href="([^"]*)"', refs), ["https://c.example/?a=1&amp;b=2", "https://d.example/x"])
+        self.assertIn("&lt;img src=x onerror=alert(1)&gt;</a>", refs)
+        self.assertIn(">https://d.example/x</a>", refs)
+        self.assertNotIn("<img src=x", main)
+        self.assertNotIn("javascript:", main)
+        self.assertNotIn("ftp://", main)
+        self.assertEqual(ld["description"], "第一 第二")
+
+    def test_no_refs_section_without_refs(self):
+        text, _ = self.rebuild_with({}, {"summary": "s", "impact": "i", "links": ["https://a.example/work"], "refs": []})
+        self.assertNotIn("本文中のリンク", text.split("<main", 1)[1])
+        self.assertNotIn("link-note", text.split("<main", 1)[1])
+
     def test_unk_ja_falls_back_to_original(self):
         text, ld = self.rebuild_with(
             {"title": "„Die Welt bangt", "titleJa": "<unk>Die Welt bangt // <unk> 世界は恐れる",
@@ -373,10 +407,10 @@ class RealDataTests(unittest.TestCase):
             if entries[i]["url"]:
                 self.assertEqual(self.ld("entries/" + i)["url"], entries[i]["url"])
         self.assertIn("&amp;timestamp=55963", self.page("entries/2022-s-0191"))
-        impact = json.loads((ROOT / "public/data/details-2020.json").read_text())["2020-s-0374"]["impact"]
+        refs = json.loads((ROOT / "public/data/details-2020.json").read_text())["2020-s-0374"]["refs"]
+        url = next(ref["url"] for ref in refs if "&amp=&feature=" in ref["url"])
         text = self.page("entries/2020-s-0374")
-        self.assertIn("&amp=&feature=", impact)
-        self.assertIn(h.escape(impact, quote=True), text)
+        self.assertIn(h.escape(url, quote=True), text)
 
     def test_urls_in_output_are_http_without_whitespace(self):
         for i in ("2020-s-0031", "2020-s-0168", "2021-s-0423", "2020-s-0019", "2026-s-0045"):
@@ -393,12 +427,28 @@ class RealDataTests(unittest.TestCase):
             text = self.page("entries/" + i)
             body = text.split('<div class="detail__body">', 1)[1].split("</article>", 1)[0]
             self.assertNotRegex(body, r"<(?:a|ul|h3)\b(?![^>]*(?:class|target))", i)
-            self.assertIn("&lt;", body, i)
+            self.assertNotIn("&lt;", body, i)
             ld = self.ld("entries/" + i)
             self.assertNotRegex(ld["description"], r"<[^>]+>")
             head = text.split("</head>", 1)[0]
             self.assertNotRegex(re.search(r"<title>(.*?)</title>", head).group(1), r"<")
             self.assertNotRegex(re.search(r'name="description" content="([^"]*)"', head).group(1), r"&lt;|<")
+        self.assertIn("#WildEye is a pioneering", self.page("entries/2020-s-0091"))
+        self.assertIn("non-dairy, etc.), and countries", self.page("entries/2021-s-0380"))
+
+    def test_paragraphs_refs_and_notes_from_real_data(self):
+        text = self.page("entries/2020-s-0130")
+        self.assertRegex(text, r"<p>Dallas</p>\s*<p>https://www\.dallasnews\.com/\S+ https://www\.dmagazine\.com/")
+        self.assertGreaterEqual(text.count("<p>"), 8)
+        self.assertNotRegex(text, r"<p>[^<]*\n\n")
+        refs = text.split('<h2 class="ref-title">本文中のリンク</h2>', 1)[1].split("</ul>", 1)[0]
+        self.assertIn('<li><a href="https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1735" target="_blank" rel="noopener noreferrer">'
+                      'Database of Road Transportation Emissions</a></li>', refs.replace("&amp;", "&"))
+        self.assertIn('<li><a href="https://www.king5.com/article/news/local/vehicle-emissions-rise-in-seattle-metro-areas/'
+                      '281-e2454541-a1db-4373-b1e2-6f7477f6a92c" target="_blank" rel="noopener noreferrer">https://www.king5.com/', refs)
+        zoom = self.page("entries/2022-s-0269")
+        self.assertRegex(zoom, r'<span class="link-row"><a href="https://kqed\.zoom\.us/rec/play/[^"]+" target="_blank" '
+                               r'rel="noopener noreferrer">https://kqed\.zoom\.us/[^<]+</a><small class="link-note">Passcode: \^6@V#ytf</small></span>')
 
     def test_thumbs_resolve(self):
         text = self.page("entries/2023-s-0001")
