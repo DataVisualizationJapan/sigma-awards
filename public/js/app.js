@@ -448,9 +448,38 @@ async function loadDetails(year) {
   return payload;
 }
 
+function paragraphs(text) {
+  return String(text)
+    .split(/\n{2,}/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => `<p>${escapeHtml(part)}</p>`)
+    .join("");
+}
+
 function section(title, text) {
   if (!text) return "";
-  return `<h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p>`;
+  return `<h3>${escapeHtml(title)}</h3>${paragraphs(text)}`;
+}
+
+function renderWorkLinks(links, notes = {}) {
+  return links
+    .map((url, index) => {
+      const note = typeof notes[url] === "string" && notes[url] ? `<small class="link-note">${escapeHtml(notes[url])}</small>` : "";
+      return `<span class="link-row"><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${index === 0 ? "作品を開く" : escapeHtml(url)}</a>${note}</span>`;
+    })
+    .join("");
+}
+
+function renderRefs(refs) {
+  const items = (Array.isArray(refs) ? refs : []).filter((ref) => ref && isHttpUrl(ref.url));
+  if (!items.length) return "";
+  return `<h3 class="ref-title">本文中のリンク</h3><ul class="ref-list">${items
+    .map(
+      (ref) =>
+        `<li><a href="${escapeHtml(ref.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ref.label || ref.url)}</a></li>`
+    )
+    .join("")}</ul>`;
 }
 
 function renderDrawer(entry, details = {}) {
@@ -524,12 +553,7 @@ function renderDrawer(entry, details = {}) {
     return;
   }
   const links = (details.links?.length ? details.links : entry.url ? [entry.url] : []).filter(isHttpUrl);
-  els.drawerLinks.innerHTML = links
-    .map(
-      (url, index) =>
-        `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${index === 0 ? "作品を開く" : escapeHtml(url)}</a>`
-    )
-    .join("");
+  els.drawerLinks.innerHTML = renderWorkLinks(links, details.linkNotes) + renderRefs(details.refs);
   restoreDrawerFocus();
 }
 
