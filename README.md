@@ -59,6 +59,8 @@ python3 -m http.server 4173 --directory public
 - **文字化け**：CSV は行ごとに UTF-8 で読み、失敗した行だけ Mac Roman で読み直します。
 - **日本語訳の引き継ぎ**：既存JSONの原文を同じ規則で整形したものが、新しい原文と一致する欄の訳だけを引き継ぎます（フィールドごとに判定）。原文が空になった欄、`<unk>` を含む訳は捨て、原文表示になります。捨てた件数は理由別に表示します。引き継ぐ訳にも実体デコードをかけます。
 
+`read_rows` は文字コードの判定（行ごとに UTF-8、失敗した行だけ Mac Roman。UTF-8 の文字が混在する行はビルドを止めます）だけを行い、値の整形は `clean_row` に置きます（`read_rows` を変えると台帳の指紋が変わるため）。
+
 `python3 scripts/test_build_data.py` が整形規則の単体テストと、`public/data` 全体の不変条件（`<unk>`・基本実体・U+FFFD・不正なリンク・プレースホルダ値がないこと）を検証します。
 
 ## Data Journalism Awards（DJA）

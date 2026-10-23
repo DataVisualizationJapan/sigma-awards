@@ -57,11 +57,12 @@ _UTF8_MULTIBYTE = re.compile(
 )
 
 
-def decode_csv_bytes(data: bytes) -> str:
+def decode_csv_bytes(data: bytes, source: str = "CSV") -> str:
     """Decode line by line: UTF-8, falling back to Mac Roman for a bad line.
 
     A bad line that also holds valid UTF-8 multibyte text would be garbled
-    by a whole-line Mac Roman read, so it stops the build instead.
+    by a whole-line Mac Roman read, so it stops the build instead
+    (SystemExit naming source and line number).
     """
     lines = data.splitlines(keepends=True)
     out: list[str] = []
@@ -70,7 +71,9 @@ def decode_csv_bytes(data: bytes) -> str:
             out.append(line.decode("utf-8-sig" if index == 0 else "utf-8"))
         except UnicodeDecodeError:
             if _UTF8_MULTIBYTE.search(line):
-                raise ValueError(f"line {index + 1} mixes valid UTF-8 and invalid bytes; not re-reading it as Mac Roman")
+                raise SystemExit(
+                    f"{source}: line {index + 1} mixes valid UTF-8 and invalid bytes; not re-reading it as Mac Roman"
+                )
             out.append(line.decode("mac_roman"))
     return "".join(out)
 
@@ -169,5 +172,5 @@ def normalize_links(cells: list[str]) -> tuple[list[str], list[dict]]:
     return links, fixes
 
 
-def read_text_lines(data: bytes) -> io.StringIO:
-    return io.StringIO(decode_csv_bytes(data), newline="")
+def read_text_lines(data: bytes, source: str = "CSV") -> io.StringIO:
+    return io.StringIO(decode_csv_bytes(data, source), newline="")

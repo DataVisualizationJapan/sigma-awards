@@ -131,7 +131,7 @@ def read_rows(path: Path) -> list[dict[str, str]]:
 
     Decoding only picks the right text encoding per line; it does not change content.
     """
-    reader = csv.DictReader(read_text_lines(path.read_bytes()))
+    reader = csv.DictReader(read_text_lines(path.read_bytes(), path.name))
     return [{(k or "").strip(): v for k, v in row.items()} for row in reader]
 
 

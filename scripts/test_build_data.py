@@ -3,10 +3,15 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
+import shutil
 import sys
+import tempfile
 import unittest
+import unittest.mock
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -68,8 +73,10 @@ class DecodeCsvBytesTest(unittest.TestCase):
 
     def test_mixed_utf8_and_invalid_line_stops(self) -> None:
         data = b'a,b\n"caf\xc3\xa9 \xd2x",1\n'
-        with self.assertRaises(ValueError):
-            decode_csv_bytes(data)
+        with self.assertRaises(SystemExit) as raised:
+            decode_csv_bytes(data, "projects.csv")
+        self.assertIn("projects.csv", str(raised.exception))
+        self.assertIn("line 2", str(raised.exception))
 
     def test_mac_roman_only_line_is_read(self) -> None:
         self.assertEqual(decode_csv_bytes(b"a\n\xd2You\xd3\n"), "a\n\u201cYou\u201d\n")
@@ -179,6 +186,57 @@ class NormalizeUrlTest(unittest.TestCase):
         self.assertEqual(links, ["https://a.example/1", "https://b.example/2"])
         self.assertEqual(len(fixes), 1)
         self.assertEqual(fixes[0]["dropped"], ["(x)"])
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_build_module():
+    spec = importlib.util.spec_from_file_location("build_data", ROOT / "scripts" / "build-data.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+class BuildOutputTest(unittest.TestCase):
+    """Rebuilding must give byte-identical JSON whatever key order the previous output had."""
+
+    def test_rebuild_is_byte_identical_with_fixed_key_order(self) -> None:
+        source = ROOT / ".tmp-data"
+        if not (source / "The Sigma Awards 2026-single-project.csv").exists():
+            self.skipTest("upstream data not cloned in .tmp-data")
+        build = load_build_module()
+
+        class FixedClock(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return datetime(2000, 1, 1, tzinfo=tz)
+
+        saved = (build.OUT_DIR, build.SOURCE_DIR, build.datetime, build.id_ledger.save)
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            for path in DATA_DIR.glob("*.json"):
+                if path.is_file():
+                    shutil.copy(path, out / path.name)
+            # Scramble key order so only the build decides the output order.
+            for path in out.glob("details-*.json"):
+                doc = json.loads(path.read_text(encoding="utf-8"))
+                scrambled = {i: dict(reversed(list(rec.items()))) for i, rec in doc.items()}
+                path.write_text(json.dumps(scrambled, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            build.OUT_DIR, build.SOURCE_DIR, build.datetime = out, source, FixedClock
+            build.id_ledger.save = lambda ledger: None
+            try:
+                runs = []
+                for _ in range(2):
+                    with unittest.mock.patch("builtins.print"):
+                        build.build()
+                    runs.append({p.name: p.read_bytes() for p in sorted(out.glob("*.json"))})
+            finally:
+                build.OUT_DIR, build.SOURCE_DIR, build.datetime, build.id_ledger.save = saved
+            self.assertEqual(runs[0], runs[1])
+            for name, data in runs[0].items():
+                if name.startswith("details-"):
+                    self.assertEqual(data, (DATA_DIR / name).read_bytes(), name)
 
 
 def walk_strings(node: object, path: str = ""):
