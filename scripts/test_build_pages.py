@@ -132,6 +132,45 @@ class BuildPagesTests(unittest.TestCase):
         self.assertNotIn("javascript:bad", dja)
         self.assertIn("https://web.archive.org/x", dja)
 
+    def rebuild_with(self, entry_patch, details):
+        public = self.tmp / "public2"
+        sigma, _ = make_public(public)
+        entries = json.loads((public / "data/entries.json").read_text(encoding="utf-8"))
+        entries["entries"][1].update(entry_patch)
+        write_json(public / "data/entries.json", entries)
+        write_json(public / "data/details-2024.json", {sigma[1]["id"]: details})
+        out = self.tmp / "dist2"
+        bp.main(["--public-dir", str(public), "--output-dir", str(out)])
+        text = (out / "entries" / sigma[1]["id"] / "index.html").read_text(encoding="utf-8")
+        ld = json.loads(re.search(r'ld\+json">(.*?)</script>', text, re.S).group(1))
+        return text, ld
+
+    def test_urls_with_notes_or_spaces_are_not_linked(self):
+        text, ld = self.rebuild_with(
+            {"url": "http://a.example/ (Original publication in French)"},
+            {"summary": "s", "impact": "i", "links": [
+                "http://a.example/ (Original publication in French)",
+                "https://b.example/x https://c.example/y",
+                "https://d.example/ok"]})
+        self.assertNotIn("url", ld)
+        self.assertIn('href="https://d.example/ok"', text)
+        for href in re.findall(r'<a [^>]*href="([^"]*)"', text.split("<main", 1)[1]):
+            if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", href):
+                self.assertRegex(href, r"^https?://\S+$")
+        self.assertNotIn("a.example", text.split("<main", 1)[1])
+
+    def test_unk_ja_falls_back_to_original(self):
+        text, ld = self.rebuild_with(
+            {"title": "„Die Welt bangt", "titleJa": "<unk>Die Welt bangt // <unk> 世界は恐れる",
+             "summaryJa": "吸うこと <unk>酒"},
+            {"summary": "orig summary", "impact": "i", "links": [], "summaryJa": "吸うこと <unk>酒",
+             "impactJa": "We<unk>ve", "juryJa": "<unk>"})
+        for needle in ("&lt;unk&gt;", "<unk>"):
+            self.assertNotIn(needle, text)
+        self.assertNotIn("alternateName", text)
+        self.assertNotIn("alternateName", ld)
+        self.assertIn("<h1>%s</h1>" % bp.esc(bp.clean_str("„Die Welt bangt")), text)
+
     def test_index_embeds_cards(self):
         # 2026 is absent from the fixture, so the latest available year (2025) is embedded
         self.assertIn('<h2 class="card__title"><a class="card__link" href="/entries/2025-s-0003/">Title 3</a></h2>', self.read("index.html"))
@@ -289,19 +328,11 @@ class RealDataTests(unittest.TestCase):
         self.assertEqual(len(list((self.out / "entries").glob("*/index.html"))), 3899)
         self.assertEqual(len(list((self.out / "dja/entries").glob("*/index.html"))), 535)
 
-    def test_unk_ja_falls_back_to_original(self):
-        src = json.loads((ROOT / "public/data/entries.json").read_text())["entries"]
-        with_unk = [e for e in src if "<unk>" in (e.get("titleJa") or "")]
-        self.assertTrue(with_unk)
-        for e in with_unk:
-            text = self.page("entries/" + e["id"])
-            self.assertNotIn("&lt;unk&gt;", text)
-            self.assertNotIn("<unk>", text)
-            self.assertNotIn("alternateName", text, e["id"])
-            self.assertIn("<h1>%s</h1>" % bp.esc(bp.clean_str(e["title"])), text, e["id"])
+    def test_quoted_title_shown_in_full(self):
         text = self.page("entries/2020-s-0243")
         self.assertRegex(text, r"<title>„Die Welt bangt")
         self.assertIn("<h1>„Die Welt bangt", text)
+        self.assertNotIn("&lt;unk&gt;", text)
 
     def test_placeholder_org_authors_tools(self):
         text = self.page("entries/2020-f-0052")
@@ -347,16 +378,15 @@ class RealDataTests(unittest.TestCase):
         self.assertIn("&amp=&feature=", impact)
         self.assertIn(h.escape(impact, quote=True), text)
 
-    def test_bad_urls_not_linked(self):
+    def test_urls_in_output_are_http_without_whitespace(self):
         for i in ("2020-s-0031", "2020-s-0168", "2021-s-0423", "2020-s-0019", "2026-s-0045"):
             text = self.page("entries/" + i)
             ld = self.ld("entries/" + i)
-            if i in ("2020-s-0031", "2020-s-0168", "2021-s-0423"):
-                self.assertNotIn("url", ld, i)  # URL field carries a note after the address
             if "url" in ld:
-                self.assertNotRegex(ld["url"], r"\s", i)
-            for href in re.findall(r'<a [^>]*href="(https?://[^"]*)"', text.split("<main", 1)[1]):
-                self.assertNotRegex(href, r"\s", i)
+                self.assertRegex(ld["url"], r"^https?://\S+$", i)
+            for href in re.findall(r'<a [^>]*href="([^"]*)"', text.split("<main", 1)[1]):
+                if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", href):
+                    self.assertRegex(href, r"^https?://\S+$", i)
 
     def test_html_in_source_text(self):
         for i in ("2020-s-0091", "2021-s-0380"):

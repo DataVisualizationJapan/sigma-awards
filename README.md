@@ -66,6 +66,20 @@ grep -c '<unk>' public/data/*.json
 
 補正辞書は `{"灌<unk>": "灌漑"}` の形式で追記できます。テストは `python3 scripts/test_translate_ja.py`（モデル不要）です。
 
+### Sigmaデータの整形
+
+`scripts/build-data.py` は、上流CSVの内容がそのまま流れ込んだ表示上の問題を、共通処理 `scripts/sigma_text.py`（標準ライブラリのみ）で直します。作品IDの決め方は変えていません。
+
+- **文字実体**：全フィールドで `&amp;` `&lt;` `&gt;` `&quot;` `&apos;` と数値参照だけを1回デコードします。`html.unescape` は使いません。セミコロンのない `&para=` や `&timestamp=` を含むURLを壊さないためです。
+- **URL（`links` と `url`）**：実体をデコードして空白を除き、Markdown の `[t](u)` と `](` から URL を取り出します。空白で区切り、`http(s)://` で始まる断片をそれぞれ1本のURLにします。空白なしの連結は、2本目の直前が `/` で、外側が web.archive.org、translate.google.com、google.com/url のいずれでもないときだけ分割します。末尾の `.,;:` と、対応していない `)` `]` を除きます。`#:~:text=` を含むURLは変更しません。scheme が http/https で、netloc に `.` を含み、空白がないものだけを残し、重複は順序を保って除きます。`url` は整形後の先頭のリンクです。変換前後は `public/data/url-fixes.json` に全件記録します。
+- **プレースホルダ値**：`org` `country` `authors` `tools` `impact` が、前後の空白と大文字小文字を除いて `none` `n/a` `na` `nil` `nil.` `-` `—` と完全一致するときは空にします。
+- **文字化け**：CSV は行ごとに UTF-8 で読み、失敗した行だけ Mac Roman で読み直します。
+- **日本語訳の引き継ぎ**：既存JSONの原文を同じ規則で整形したものが、新しい原文と一致する欄の訳だけを引き継ぎます（フィールドごとに判定）。原文が空になった欄、`<unk>` を含む訳は捨て、原文表示になります。捨てた件数は理由別に表示します。引き継ぐ訳にも実体デコードをかけます。
+
+`read_rows` は文字コードの判定（行ごとに UTF-8、失敗した行だけ Mac Roman。UTF-8 の文字が混在する行はビルドを止めます）だけを行い、値の整形は `clean_row` に置きます（`read_rows` を変えると台帳の指紋が変わるため）。
+
+`python3 scripts/test_build_data.py` が整形規則の単体テストと、`public/data` 全体の不変条件（`<unk>`・基本実体・U+FFFD・不正なリンク・プレースホルダ値がないこと）を検証します。
+
 ## Data Journalism Awards（DJA）
 
 `/dja/` に2012〜2019年の受賞・ショートリスト・特別表彰を掲載します。Sigmaとの表示処理・CSSは共用し、データを `public/data/dja/` に分けています。

@@ -1,0 +1,1012 @@
+{
+ "count": 104,
+ "fixes": [
+  {
+   "id": "2020-s-0019",
+   "field": "links",
+   "original": "https://www.volkskrant.nl/nieuws-achtergrond/zo-onderzochten-wij-radicalisering-op-youtube~bd8cebe8/?_ga=2.152566841.1018213455.1553429656-816711757.1531847512 https://github.com/CorrespondentData/YouTubeExtremism/tree/create_make_setup/DataCollection",
+   "result": [
+    "https://www.volkskrant.nl/nieuws-achtergrond/zo-onderzochten-wij-radicalisering-op-youtube~bd8cebe8/?_ga=2.152566841.1018213455.1553429656-816711757.1531847512",
+    "https://github.com/CorrespondentData/YouTubeExtremism/tree/create_make_setup/DataCollection"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2020-s-0031",
+   "field": "links",
+   "original": "http://medor-opioids.s3-website-eu-west-1.amazonaws.com/ (Translation in english of the original publication)",
+   "result": [
+    "http://medor-opioids.s3-website-eu-west-1.amazonaws.com/"
+   ],
+   "dropped": [
+    "(Translation in english of the original publication)"
+   ]
+  },
+  {
+   "id": "2020-s-0031",
+   "field": "links",
+   "original": "https://medor.coop/nos-series/la-douleur-des-belges/opioides-datavisualisations/ (Original publication in French)",
+   "result": [
+    "https://medor.coop/nos-series/la-douleur-des-belges/opioides-datavisualisations/"
+   ],
+   "dropped": [
+    "(Original publication in French)"
+   ]
+  },
+  {
+   "id": "2020-s-0132",
+   "field": "links",
+   "original": "https://www.zeit.de/politik/deutschland/2019-05/ost-west-wanderung-abwanderung-ostdeutschland-umzug (Original publication May 2nd, Translation: May 30th)",
+   "result": [
+    "https://www.zeit.de/politik/deutschland/2019-05/ost-west-wanderung-abwanderung-ostdeutschland-umzug"
+   ],
+   "dropped": [
+    "(Original publication May 2nd, Translation: May 30th)"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://australiatalks.abc.net.au/ (online tool page)",
+   "result": [
+    "https://australiatalks.abc.net.au/"
+   ],
+   "dropped": [
+    "(online tool page)"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://australiatalks.abc.net.au/results/2ba047c5-e507-42cb-add5-71a723645701 [indicative results page]",
+   "result": [
+    "https://australiatalks.abc.net.au/results/2ba047c5-e507-42cb-add5-71a723645701"
+   ],
+   "dropped": [
+    "[indicative results page]"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://vimeo.com/388880381 (password: Australiatalks) [Australia Talks live show TX 18 November 2019]",
+   "result": [
+    "https://vimeo.com/388880381"
+   ],
+   "dropped": [
+    "(password: Australiatalks) [Australia Talks live show TX 18 November 2019]"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://www.abc.net.au/news/2019-11-15/sex-dating-and-prejudice-why-we-are-a-nation-sharply-divided/11694038 [digital story using data]",
+   "result": [
+    "https://www.abc.net.au/news/2019-11-15/sex-dating-and-prejudice-why-we-are-a-nation-sharply-divided/11694038"
+   ],
+   "dropped": [
+    "[digital story using data]"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://www.abc.net.au/news/2019-12-17/what-youd-spend-to-halt-climate-change-and-what-you-could-get/11784704 [digital story using data]",
+   "result": [
+    "https://www.abc.net.au/news/2019-12-17/what-youd-spend-to-halt-climate-change-and-what-you-could-get/11784704"
+   ],
+   "dropped": [
+    "[digital story using data]"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://www.abc.net.au/news/about/backstory/digital/2019-10-24/australia-talks-your-questions-answered/11608434 [explainer]",
+   "result": [
+    "https://www.abc.net.au/news/about/backstory/digital/2019-10-24/australia-talks-your-questions-answered/11608434"
+   ],
+   "dropped": [
+    "[explainer]"
+   ]
+  },
+  {
+   "id": "2020-s-0168",
+   "field": "links",
+   "original": "https://www.abc.net.au/life/annabel-crabb-and-leigh-sales-share-their-kindness-heroes/11704014 [kindness campaign]",
+   "result": [
+    "https://www.abc.net.au/life/annabel-crabb-and-leigh-sales-share-their-kindness-heroes/11704014"
+   ],
+   "dropped": [
+    "[kindness campaign]"
+   ]
+  },
+  {
+   "id": "2020-s-0313",
+   "field": "links",
+   "original": "https://australiatalks.abc.net.au/results/2ba047c5-e507-42cb-add5-71a723645701 (indicative results page)",
+   "result": [
+    "https://australiatalks.abc.net.au/results/2ba047c5-e507-42cb-add5-71a723645701"
+   ],
+   "dropped": [
+    "(indicative results page)"
+   ]
+  },
+  {
+   "id": "2020-s-0313",
+   "field": "links",
+   "original": "https://www.abc.net.au/news/about/backstory/digital/2019-10-24/australia-talks-your-questions-answered/11608434 (How and why explainer)",
+   "result": [
+    "https://www.abc.net.au/news/about/backstory/digital/2019-10-24/australia-talks-your-questions-answered/11608434"
+   ],
+   "dropped": [
+    "(How and why explainer)"
+   ]
+  },
+  {
+   "id": "2020-s-0313",
+   "field": "links",
+   "original": "https://www.abc.net.au/news/2019-10-06/australia-talks-explained/11570332 (Launch explainer)",
+   "result": [
+    "https://www.abc.net.au/news/2019-10-06/australia-talks-explained/11570332"
+   ],
+   "dropped": [
+    "(Launch explainer)"
+   ]
+  },
+  {
+   "id": "2020-s-0396",
+   "field": "links",
+   "original": "https://sverigesradio.se/sida/artikel.aspx?programid=185&artikel=7160785 https://yle.fi/uutiset/3-10662005",
+   "result": [
+    "https://sverigesradio.se/sida/artikel.aspx?programid=185&artikel=7160785",
+    "https://yle.fi/uutiset/3-10662005"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2021-s-0030",
+   "field": "links",
+   "original": "http://bit.ly/va-hmda-methodology -- \"Nerd box\" explaining where I got the data and how I analyzed it.",
+   "result": [
+    "http://bit.ly/va-hmda-methodology"
+   ],
+   "dropped": [
+    "-- \"Nerd box\" explaining where I got the data and how I analyzed it."
+   ]
+  },
+  {
+   "id": "2021-s-0030",
+   "field": "links",
+   "original": "https://bit.ly/hmda19_va -- Google Sheet with summary statistics from my analysis of the HMDA data.",
+   "result": [
+    "https://bit.ly/hmda19_va"
+   ],
+   "dropped": [
+    "-- Google Sheet with summary statistics from my analysis of the HMDA data."
+   ]
+  },
+  {
+   "id": "2021-s-0030",
+   "field": "links",
+   "original": "https://bit.ly/hmda19_va_db -- Compressed file containing a Microsoft Access database, which has the tables and key queries from my HMDA analysis.",
+   "result": [
+    "https://bit.ly/hmda19_va_db"
+   ],
+   "dropped": [
+    "-- Compressed file containing a Microsoft Access database, which has the tables and key queries from my HMDA analysis."
+   ]
+  },
+  {
+   "id": "2021-s-0030",
+   "field": "links",
+   "original": "https://bit.ly/homeownership_va -- Google Sheet with national, state, metro and locality data on homeownership by race.",
+   "result": [
+    "https://bit.ly/homeownership_va"
+   ],
+   "dropped": [
+    "-- Google Sheet with national, state, metro and locality data on homeownership by race."
+   ]
+  },
+  {
+   "id": "2021-s-0030",
+   "field": "links",
+   "original": "https://www.datawrapper.de/_/zZ1aU/ -- Bar chart showing mortgage loan denial rates by race for the nation, state and each Virginia metro area.",
+   "result": [
+    "https://www.datawrapper.de/_/zZ1aU/"
+   ],
+   "dropped": [
+    "-- Bar chart showing mortgage loan denial rates by race for the nation, state and each Virginia metro area."
+   ]
+  },
+  {
+   "id": "2021-s-0030",
+   "field": "links",
+   "original": "https://www.datawrapper.de/_/18V0n/ -- Map showing homeownership rates for Blacks and Whites in each Virginia city and county.",
+   "result": [
+    "https://www.datawrapper.de/_/18V0n/"
+   ],
+   "dropped": [
+    "-- Map showing homeownership rates for Blacks and Whites in each Virginia city and county."
+   ]
+  },
+  {
+   "id": "2021-s-0032",
+   "field": "links",
+   "original": "https://www.landgrabu.org/. This is link to overview that includes methodology, public database, stories and follow-up",
+   "result": [
+    "https://www.landgrabu.org/"
+   ],
+   "dropped": [
+    "This is link to overview that includes methodology, public database, stories and follow-up"
+   ]
+  },
+  {
+   "id": "2021-s-0048",
+   "field": "links",
+   "original": "https://youtu.be/ITbbkZlqNGs (tutorial with English and Spanish subtitles)",
+   "result": [
+    "https://youtu.be/ITbbkZlqNGs"
+   ],
+   "dropped": [
+    "(tutorial with English and Spanish subtitles)"
+   ]
+  },
+  {
+   "id": "2021-s-0158",
+   "field": "links",
+   "original": "https://www.corona-ampel.org/401.html - Newsletter Example",
+   "result": [
+    "https://www.corona-ampel.org/401.html"
+   ],
+   "dropped": [
+    "- Newsletter Example"
+   ]
+  },
+  {
+   "id": "2021-s-0211",
+   "field": "links",
+   "original": "https://translate.google.com/translate?sl=auto&tl=en&u=https://www.addendum.org/feinstaub/u-bahn-feinstaub-belastung/ -- google translate seems to work fine for translation if you use the Chrome browser",
+   "result": [
+    "https://translate.google.com/translate?sl=auto&tl=en&u=https://www.addendum.org/feinstaub/u-bahn-feinstaub-belastung/"
+   ],
+   "dropped": [
+    "-- google translate seems to work fine for translation if you use the Chrome browser"
+   ]
+  },
+  {
+   "id": "2021-s-0244",
+   "field": "links",
+   "original": "https://kdocs.cn/l/seAIy1YNenWT [金山文档] 地摊经济热多久-文稿及图片翻译.docx",
+   "result": [
+    "https://kdocs.cn/l/seAIy1YNenWT"
+   ],
+   "dropped": [
+    "[金山文档] 地摊经济热多久-文稿及图片翻译.docx"
+   ]
+  },
+  {
+   "id": "2021-s-0423",
+   "field": "links",
+   "original": "https://pandemiainvisible.lalupa.press (This link has a plugin so you can read it completely in English)",
+   "result": [
+    "https://pandemiainvisible.lalupa.press"
+   ],
+   "dropped": [
+    "(This link has a plugin so you can read it completely in English)"
+   ]
+  },
+  {
+   "id": "2021-f-0036",
+   "field": "links",
+   "original": "https://shimo.im/docs/gdpYWJpP8ttG8WQD/ 「A-Share Green Weekly Report」，可复制链接后用石墨文档 App 或小程序打开",
+   "result": [
+    "https://shimo.im/docs/gdpYWJpP8ttG8WQD/"
+   ],
+   "dropped": [
+    "「A-Share Green Weekly Report」，可复制链接后用石墨文档 App 或小程序打开"
+   ]
+  },
+  {
+   "id": "2021-f-0036",
+   "field": "links",
+   "original": "https://shimo.im/docs/QPKpKRTtcQdTrDwP/ 「A-share Green Flash- Environmental administrative penalty」，可复制链接后用石墨文档 App 或小程序打开",
+   "result": [
+    "https://shimo.im/docs/QPKpKRTtcQdTrDwP/"
+   ],
+   "dropped": [
+    "「A-share Green Flash- Environmental administrative penalty」，可复制链接后用石墨文档 App 或小程序打开"
+   ]
+  },
+  {
+   "id": "2021-f-0036",
+   "field": "links",
+   "original": "https://shimo.im/docs/dtyRHwkPjKqvhqCG/ 「A-share Green Flash-Environmental Assessment」，可复制链接后用石墨文档 App 或小程序打开",
+   "result": [
+    "https://shimo.im/docs/dtyRHwkPjKqvhqCG/"
+   ],
+   "dropped": [
+    "「A-share Green Flash-Environmental Assessment」，可复制链接后用石墨文档 App 或小程序打开"
+   ]
+  },
+  {
+   "id": "2022-s-0066",
+   "field": "links",
+   "original": "https://www.wmmsk.com/2021/09/lekciya-schjotchik-femicida/ multilingual site",
+   "result": [
+    "https://www.wmmsk.com/2021/09/lekciya-schjotchik-femicida/"
+   ],
+   "dropped": [
+    "multilingual site"
+   ]
+  },
+  {
+   "id": "2022-s-0210",
+   "field": "links",
+   "original": "https://www.lanacion.com.ar/comunidad/una-nueva-herramienta-para-observar-el-dificil-camino-de-las-leyes-ambientales-nid04062021/ ·",
+   "result": [
+    "https://www.lanacion.com.ar/comunidad/una-nueva-herramienta-para-observar-el-dificil-camino-de-las-leyes-ambientales-nid04062021/"
+   ],
+   "dropped": [
+    "·"
+   ]
+  },
+  {
+   "id": "2022-s-0269",
+   "field": "links",
+   "original": "https://kqed.zoom.us/rec/play/4INRgDh_0l9Wjba5l6pBH_3yBzLfBLvYMwV2AKZyMfLl3u4wReKwB47gnqjqYnsD4lWJyaCMH4_f65CZ.uUBEy-nW-1xJR8Ag?continueMode=true Passcode: ^6@V#ytf",
+   "result": [
+    "https://kqed.zoom.us/rec/play/4INRgDh_0l9Wjba5l6pBH_3yBzLfBLvYMwV2AKZyMfLl3u4wReKwB47gnqjqYnsD4lWJyaCMH4_f65CZ.uUBEy-nW-1xJR8Ag?continueMode=true"
+   ],
+   "dropped": [
+    "Passcode: ^6@V#ytf"
+   ]
+  },
+  {
+   "id": "2022-s-0311",
+   "field": "links",
+   "original": "https://thenews.com.pk/tns/detail/923541 #TNS #TheNews",
+   "result": [
+    "https://thenews.com.pk/tns/detail/923541"
+   ],
+   "dropped": [
+    "#TNS #TheNews"
+   ]
+  },
+  {
+   "id": "2022-f-0038",
+   "field": "links",
+   "original": "https://www.dataphyte.com/latest-reports/governance/suspicious https://www.dataphyte.com/latest-reports/in-3-months-five-federal-govt-agencies-paid-n790-million-without-description/",
+   "result": [
+    "https://www.dataphyte.com/latest-reports/governance/suspicious",
+    "https://www.dataphyte.com/latest-reports/in-3-months-five-federal-govt-agencies-paid-n790-million-without-description/"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2022-f-0058",
+   "field": "links",
+   "original": "https://www.usatoday.com/story/news/nation/2021/07/09/surfside-condo-collapse-climate-change-coastal-living/7876434002/https://www.usatoday.com/in-depth/graphics/2021/06/24/florida-beach-condo-buildling-collapse-investigation-underway/5333761001/",
+   "result": [
+    "https://www.usatoday.com/story/news/nation/2021/07/09/surfside-condo-collapse-climate-change-coastal-living/7876434002/",
+    "https://www.usatoday.com/in-depth/graphics/2021/06/24/florida-beach-condo-buildling-collapse-investigation-underway/5333761001/"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2022-f-0061",
+   "field": "links",
+   "original": "https://www.rtve.es/noticias/20211219/tecnologia-cambia-estudio-volcanes/2239980.shtml](https://www.rtve.es/noticias/20211219/tecnologia-cambia-estudio-volcanes/2239980.shtml",
+   "result": [
+    "https://www.rtve.es/noticias/20211219/tecnologia-cambia-estudio-volcanes/2239980.shtml",
+    "https://www.rtve.es/noticias/20211219/tecnologia-cambia-estudio-volcanes/2239980.shtml"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0005",
+   "field": "links",
+   "original": "https://youtu.be/RXp0F9LjAzY?feature=shared&amp;t=2785",
+   "result": [
+    "https://youtu.be/RXp0F9LjAzY?feature=shared&t=2785"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0010",
+   "field": "links",
+   "original": "https://www.wired.com/preview/story/63e565abcde6e0e4f71292cf?status=draft&amp;t=1675978318256",
+   "result": [
+    "https://www.wired.com/preview/story/63e565abcde6e0e4f71292cf?status=draft&t=1675978318256"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0020",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=3B61wcXMq9Y&amp;t=306s",
+   "result": [
+    "https://www.youtube.com/watch?v=3B61wcXMq9Y&t=306s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0044",
+   "field": "links",
+   "original": "https://www.nytimes.com/2023/02/25/us/unaccompanied-migrant-child-workers-exploitation.html?unlocked_article_code=1.NE0.rVW0.ig0MjKFj6LaZ&amp;smid=url-share",
+   "result": [
+    "https://www.nytimes.com/2023/02/25/us/unaccompanied-migrant-child-workers-exploitation.html?unlocked_article_code=1.NE0.rVW0.ig0MjKFj6LaZ&smid=url-share"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0044",
+   "field": "links",
+   "original": "https://www.nytimes.com/interactive/2023/12/28/us/migrants-children-data.html?unlocked_article_code=1.Jk0.xUv9.GJ_Yfahr5URj&amp;smid=url-share",
+   "result": [
+    "https://www.nytimes.com/interactive/2023/12/28/us/migrants-children-data.html?unlocked_article_code=1.Jk0.xUv9.GJ_Yfahr5URj&smid=url-share"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0044",
+   "field": "links",
+   "original": "https://www.nytimes.com/2023/04/17/us/politics/migrant-child-labor-biden.html?unlocked_article_code=1.NE0.BZTS.KFX8DID9iQBC&amp;smid=url-share",
+   "result": [
+    "https://www.nytimes.com/2023/04/17/us/politics/migrant-child-labor-biden.html?unlocked_article_code=1.NE0.BZTS.KFX8DID9iQBC&smid=url-share"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0044",
+   "field": "links",
+   "original": "https://www.nytimes.com/2023/03/03/insider/searching-for-the-faces-of-child-migrant-labor.html?unlocked_article_code=1.Nk0.es3f.6KeZXcwNoJF5&amp;smid=url-share",
+   "result": [
+    "https://www.nytimes.com/2023/03/03/insider/searching-for-the-faces-of-child-migrant-labor.html?unlocked_article_code=1.Nk0.es3f.6KeZXcwNoJF5&smid=url-share"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0048",
+   "field": "links",
+   "original": "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1r352Fe8bfI2bLPWUmolFDJ_AqymWcvAxq_dIkb9V5yY&amp;titulo=Ideological+mapping+%3Cspan%3ENavigating+Argentina%27s+electoral+landscape+through+an+interactive+political+test+%3C%2Fspan%3E&amp;bajada=&amp;volanta=LA+NACION&amp;header_nota_theme=dark&amp;preview=1&amp;estilos_apertura=&amp;id_video_apertura=&amp;url_foto_apertura=#/",
+   "result": [
+    "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1r352Fe8bfI2bLPWUmolFDJ_AqymWcvAxq_dIkb9V5yY&titulo=Ideological+mapping+%3Cspan%3ENavigating+Argentina%27s+electoral+landscape+through+an+interactive+political+test+%3C%2Fspan%3E&bajada=&volanta=LA+NACION&header_nota_theme=dark&preview=1&estilos_apertura=&id_video_apertura=&url_foto_apertura=#/"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0071",
+   "field": "links",
+   "original": "https://www.instagram.com/p/CwLJ-Q3OYjy/?utm_source=ig_web_copy_link&amp;igshid=MzRlODBiNWFlZA%3D%3D",
+   "result": [
+    "https://www.instagram.com/p/CwLJ-Q3OYjy/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA%3D%3D"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0088",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=1AclSTPEe0Y&amp;pp=ygUqcmVwb3J0ZXIncyBjb2xsZWN0aXZlIHNvY2lhbCBtZWRpYSBtYW5pcHVy",
+   "result": [
+    "https://www.youtube.com/watch?v=1AclSTPEe0Y&pp=ygUqcmVwb3J0ZXIncyBjb2xsZWN0aXZlIHNvY2lhbCBtZWRpYSBtYW5pcHVy"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0110",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=J7i2PZcEKnY&amp;ab_channel=Ag%C3%AAnciaMuraldeJornalismodasPeriferias",
+   "result": [
+    "https://www.youtube.com/watch?v=J7i2PZcEKnY&ab_channel=Ag%C3%AAnciaMuraldeJornalismodasPeriferias"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0136",
+   "field": "links",
+   "original": "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1AJgPG-RX5IhR5SPfMSV_Y_LIETTVRod5GoCemLSBOAg&amp;titulo=%3Cspan%3E%27How+do+I+say+it%3F%27%3C%2Fspan%3EA+tool+for+a+more+inclusive+and+respectful+communication&amp;bajada=&amp;volanta=&amp;header_nota_theme=light&amp;preview=1&amp;estilos_apertura=&amp;id_video_apertura=&amp;url_foto_apertura=#/",
+   "result": [
+    "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1AJgPG-RX5IhR5SPfMSV_Y_LIETTVRod5GoCemLSBOAg&titulo=%3Cspan%3E%27How+do+I+say+it%3F%27%3C%2Fspan%3EA+tool+for+a+more+inclusive+and+respectful+communication&bajada=&volanta=&header_nota_theme=light&preview=1&estilos_apertura=&id_video_apertura=&url_foto_apertura=#/"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0136",
+   "field": "links",
+   "original": "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1Tgd21Aok0Q025k3bPmQ2a9gpeka-gAnsAuL7NZ5nBYA&amp;titulo=%3Cspan%3EGenie%3C%2Fspan%3EA+tool+to+track+the+gender+gap+in+Spanish&amp;bajada=&amp;volanta=&amp;header_nota_theme=light&amp;preview=1&amp;estilos_apertura=&amp;id_video_apertura=&amp;url_foto_apertura=#/",
+   "result": [
+    "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1Tgd21Aok0Q025k3bPmQ2a9gpeka-gAnsAuL7NZ5nBYA&titulo=%3Cspan%3EGenie%3C%2Fspan%3EA+tool+to+track+the+gender+gap+in+Spanish&bajada=&volanta=&header_nota_theme=light&preview=1&estilos_apertura=&id_video_apertura=&url_foto_apertura=#/"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0139",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=-aTxSxQxDeY&amp;t=655s",
+   "result": [
+    "https://www.youtube.com/watch?v=-aTxSxQxDeY&t=655s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0147",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=WuozAj9Gvu0&amp;t=13s&amp;ab_channel=UnbiasTheNews",
+   "result": [
+    "https://www.youtube.com/watch?v=WuozAj9Gvu0&t=13s&ab_channel=UnbiasTheNews"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0147",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=PlDtBRg02aU&amp;ab_channel=UnbiasTheNews",
+   "result": [
+    "https://www.youtube.com/watch?v=PlDtBRg02aU&ab_channel=UnbiasTheNews"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0177",
+   "field": "links",
+   "original": "https://www.instagram.com/reel/Cq82SYnJUjy/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA%3D%3D",
+   "result": [
+    "https://www.instagram.com/reel/Cq82SYnJUjy/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA%3D%3D"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0178",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=0DQZ50HKVo8&amp;t=119s",
+   "result": [
+    "https://www.youtube.com/watch?v=0DQZ50HKVo8&t=119s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0184",
+   "field": "links",
+   "original": "https://www.instagram.com/p/Cz3xWQSrr9P/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA==",
+   "result": [
+    "https://www.instagram.com/p/Cz3xWQSrr9P/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0184",
+   "field": "links",
+   "original": "https://www.instagram.com/p/C0hqWW_OyM2/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA==",
+   "result": [
+    "https://www.instagram.com/p/C0hqWW_OyM2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0191",
+   "field": "links",
+   "original": "https://www.dropbox.com/scl/fi/cikrg2qz8c7fnwtkwv5z6/You-Are-What-You-Watch.Pdf?rlkey=135gkvz98v5myqd5ambqfxs9v&amp;dl=0",
+   "result": [
+    "https://www.dropbox.com/scl/fi/cikrg2qz8c7fnwtkwv5z6/You-Are-What-You-Watch.Pdf?rlkey=135gkvz98v5myqd5ambqfxs9v&dl=0"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0222",
+   "field": "links",
+   "original": "https://twitter.com/Dataphyte/status/1692465960848953595?t=EEsalcTYtDTDnpVZtAM1VQ&amp;s=19",
+   "result": [
+    "https://twitter.com/Dataphyte/status/1692465960848953595?t=EEsalcTYtDTDnpVZtAM1VQ&s=19"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0243",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=0OFBhMLLJrs&amp;list=PL6dChQlPmND4A4E_dHItuliNdnGDB44f8&amp;index=12",
+   "result": [
+    "https://www.youtube.com/watch?v=0OFBhMLLJrs&list=PL6dChQlPmND4A4E_dHItuliNdnGDB44f8&index=12"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0270",
+   "field": "links",
+   "original": "https://m.facebook.com/story.php?story_fbid=pfbid02uf84JztPNSSDDkMMGbYqMyvGJrrQMtQU1GxAf7EYeztXWV3xMFdxB7Eg5RhzV9NWl&amp;id=100075998502305&amp;sfnsn=mo&amp;mibextid=RUbZ1f",
+   "result": [
+    "https://m.facebook.com/story.php?story_fbid=pfbid02uf84JztPNSSDDkMMGbYqMyvGJrrQMtQU1GxAf7EYeztXWV3xMFdxB7Eg5RhzV9NWl&id=100075998502305&sfnsn=mo&mibextid=RUbZ1f"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0270",
+   "field": "links",
+   "original": "https://m.facebook.com/story.php?story_fbid=pfbid036gHu25ZHH349RgDcHhPHuDEBzorqjnzRqdNUHQz6TcqfvYJwhQM6N3qpoVCvkhprl&amp;id=109590738160082&amp;sfnsn=mo&amp;mibextid=RUbZ1f",
+   "result": [
+    "https://m.facebook.com/story.php?story_fbid=pfbid036gHu25ZHH349RgDcHhPHuDEBzorqjnzRqdNUHQz6TcqfvYJwhQM6N3qpoVCvkhprl&id=109590738160082&sfnsn=mo&mibextid=RUbZ1f"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0270",
+   "field": "links",
+   "original": "https://m.facebook.com/story.php?story_fbid=pfbid02ByfJUGYTr8pEy55ahLxBhwm1XenaR2v78KeytJmTy2ypBFAra9e8JjTezhB6YbDhl&amp;id=100075998502305&amp;sfnsn=mo&amp;mibextid=RUbZ1f",
+   "result": [
+    "https://m.facebook.com/story.php?story_fbid=pfbid02ByfJUGYTr8pEy55ahLxBhwm1XenaR2v78KeytJmTy2ypBFAra9e8JjTezhB6YbDhl&id=100075998502305&sfnsn=mo&mibextid=RUbZ1f"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0273",
+   "field": "links",
+   "original": "https://twitter.com/oyedunbabs/status/1682408325294481408?t=hHGkYnh5n6r-ltk-TDimJA&amp;s=19",
+   "result": [
+    "https://twitter.com/oyedunbabs/status/1682408325294481408?t=hHGkYnh5n6r-ltk-TDimJA&s=19"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0285",
+   "field": "links",
+   "original": "https://interactive.aljazeera.com/aje/2023/colorado-river-climate-indigenous-communities/?utm_source=www.aljazeera.com&amp;utm_medium=website&amp;utm_campaign=ucms",
+   "result": [
+    "https://interactive.aljazeera.com/aje/2023/colorado-river-climate-indigenous-communities/?utm_source=www.aljazeera.com&utm_medium=website&utm_campaign=ucms"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0322",
+   "field": "links",
+   "original": "https://www.facebook.com/media/set/?set=a.859851816147114&amp;type=3",
+   "result": [
+    "https://www.facebook.com/media/set/?set=a.859851816147114&type=3"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0326",
+   "field": "links",
+   "original": "https://www.cbsnews.com/news/owed-employers-face-little-accountability-for-wage-theft/?ftag=CNM-00-10aab8d&amp;linkId=198446092",
+   "result": [
+    "https://www.cbsnews.com/news/owed-employers-face-little-accountability-for-wage-theft/?ftag=CNM-00-10aab8d&linkId=198446092"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0327",
+   "field": "links",
+   "original": "https://share.ard-zdf-box.de/s/sE6dTWbwAbWppLJ?dir=undefined&amp;path=%2FPreisbewerbungen%20und%20Konferenzen%2FSigma%202024&amp;openfile=244175014",
+   "result": [
+    "https://share.ard-zdf-box.de/s/sE6dTWbwAbWppLJ?dir=undefined&path=%2FPreisbewerbungen%20und%20Konferenzen%2FSigma%202024&openfile=244175014"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0351",
+   "field": "links",
+   "original": "https://www.google.com/url?q=https://cnsmaryland.org/2023/10/12/challenged-books-in-carroll-county-largely-written-by-women-feature-lgbtqia-characters/&amp;source=gmail&amp;ust=1705430088835000&amp;usg=AOvVaw1aIHPFaydNi_uaxFuml_iI",
+   "result": [
+    "https://www.google.com/url?q=https://cnsmaryland.org/2023/10/12/challenged-books-in-carroll-county-largely-written-by-women-feature-lgbtqia-characters/&source=gmail&ust=1705430088835000&usg=AOvVaw1aIHPFaydNi_uaxFuml_iI"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0372",
+   "field": "links",
+   "original": "https://www.ohmynews.com/NWS_Web/View/at_pg_gp.aspx?CNTN_CD=A0002929700&amp;SRS_CD=0000016405",
+   "result": [
+    "https://www.ohmynews.com/NWS_Web/View/at_pg_gp.aspx?CNTN_CD=A0002929700&SRS_CD=0000016405"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0372",
+   "field": "links",
+   "original": "https://www.ohmynews.com/NWS_Web/Series/series_premium_pg.aspx?CNTN_CD=A0002920844&amp;SRS_CD=0000016405",
+   "result": [
+    "https://www.ohmynews.com/NWS_Web/Series/series_premium_pg.aspx?CNTN_CD=A0002920844&SRS_CD=0000016405"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0372",
+   "field": "links",
+   "original": "https://www.ohmynews.com/NWS_Web/Series/series_premium_pg.aspx?CNTN_CD=A0002921639&amp;SRS_CD=0000016405",
+   "result": [
+    "https://www.ohmynews.com/NWS_Web/Series/series_premium_pg.aspx?CNTN_CD=A0002921639&SRS_CD=0000016405"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0378",
+   "field": "links",
+   "original": "https://multimedia-tijd-be.translate.goog/parlementaire-prestaties/?_x_tr_sl=nl&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp",
+   "result": [
+    "https://multimedia-tijd-be.translate.goog/parlementaire-prestaties/?_x_tr_sl=nl&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0379",
+   "field": "links",
+   "original": "https://multimedia-tijd-be.translate.goog/alleenwonenden/?_x_tr_sl=nl&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp",
+   "result": [
+    "https://multimedia-tijd-be.translate.goog/alleenwonenden/?_x_tr_sl=nl&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0380",
+   "field": "links",
+   "original": "https://multimedia-tijd-be.translate.goog/gemeentebudget/?_x_tr_sl=nl&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp",
+   "result": [
+    "https://multimedia-tijd-be.translate.goog/gemeentebudget/?_x_tr_sl=nl&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0384",
+   "field": "links",
+   "original": "https://pointer-kro--ncrv-nl.translate.goog/hoe-misinformatie-de-online-haatmachine-tegen-de-week-van-de-lentekriebels-op-gang-trok?_x_tr_sl=auto&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp",
+   "result": [
+    "https://pointer-kro--ncrv-nl.translate.goog/hoe-misinformatie-de-online-haatmachine-tegen-de-week-van-de-lentekriebels-op-gang-trok?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0431",
+   "field": "links",
+   "original": "https://www.instagram.com/p/CwAv5C6O-tu/?igshid=MzRlODBiNWFlZA%3D%3D&amp;img_index=1",
+   "result": [
+    "https://www.instagram.com/p/CwAv5C6O-tu/?igshid=MzRlODBiNWFlZA%3D%3D&img_index=1"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0433",
+   "field": "links",
+   "original": "https://www.instagram.com/p/Cwi0z0mOTvo/?igshid=MTc4MmM1YmI2Ng%3D%3D&amp;img_index=1",
+   "result": [
+    "https://www.instagram.com/p/Cwi0z0mOTvo/?igshid=MTc4MmM1YmI2Ng%3D%3D&img_index=1"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0471",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=LMnyLW9O-54&amp;pp=ygUQdGFhcmFiIG11c2ljIGtiYw%3D%3D",
+   "result": [
+    "https://www.youtube.com/watch?v=LMnyLW9O-54&pp=ygUQdGFhcmFiIG11c2ljIGtiYw%3D%3D"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0475",
+   "field": "links",
+   "original": "https://l.facebook.com/l.php?u=https%3A%2F%2Farij.net%2Finvestigations%2FCovid19-Vaccine%2F%3Ffbclid%3DIwAR2pFNUak2SAmKH18fibPdh-qacJCYbuFHEzVEt0muz2HDMLF5b2ZaVq1GE&amp;h=AT2k91R_gP6SrQM3By7buaXuwa3gBwUVVXkcsbgqY1WYUpLYBMfAolZGWYVbvnpfvBPy03NV8vOmajK0PvgzyWoa-EUpAQXmvOs1AJxrc32Y8oWc0rFLq7QLyV4cHvzHl_b4tg",
+   "result": [
+    "https://l.facebook.com/l.php?u=https%3A%2F%2Farij.net%2Finvestigations%2FCovid19-Vaccine%2F%3Ffbclid%3DIwAR2pFNUak2SAmKH18fibPdh-qacJCYbuFHEzVEt0muz2HDMLF5b2ZaVq1GE&h=AT2k91R_gP6SrQM3By7buaXuwa3gBwUVVXkcsbgqY1WYUpLYBMfAolZGWYVbvnpfvBPy03NV8vOmajK0PvgzyWoa-EUpAQXmvOs1AJxrc32Y8oWc0rFLq7QLyV4cHvzHl_b4tg"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0495",
+   "field": "links",
+   "original": "https://www.westganews.net/dreja.aspx?=hewal&amp;jmara=122828&amp;Jor=1&amp;fbclid=IwAR0sBGgvVZufGdYYPETtdMNzJbkQlmNwYAmLmsHFe7b6IiNcHRucUE_Z24g",
+   "result": [
+    "https://www.westganews.net/dreja.aspx?=hewal&jmara=122828&Jor=1&fbclid=IwAR0sBGgvVZufGdYYPETtdMNzJbkQlmNwYAmLmsHFe7b6IiNcHRucUE_Z24g"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0495",
+   "field": "links",
+   "original": "https://www.westganews.net/dreja.aspx?=hewal&amp;jmara=122828&amp;Jor=1&amp;fbclid=IwAR0aHF_5kRlAP8krM-vInVbraZn1gWV_j92Y-XxNJetq8sFO-ozXOcVyU2o",
+   "result": [
+    "https://www.westganews.net/dreja.aspx?=hewal&jmara=122828&Jor=1&fbclid=IwAR0aHF_5kRlAP8krM-vInVbraZn1gWV_j92Y-XxNJetq8sFO-ozXOcVyU2o"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0495",
+   "field": "links",
+   "original": "https://www.westganews.net/dreja.aspx?=hewal&amp;jmara=122828&amp;Jor=1",
+   "result": [
+    "https://www.westganews.net/dreja.aspx?=hewal&jmara=122828&Jor=1"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0495",
+   "field": "links",
+   "original": "https://www.westganews.net/dreja.aspx?=hewal&amp;jmara=122828&amp;Jor=1",
+   "result": [
+    "https://www.westganews.net/dreja.aspx?=hewal&jmara=122828&Jor=1"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0496",
+   "field": "links",
+   "original": "https://nos-nl.translate.goog/artikel/2494692-geen-geld-uit-de-muur-geldautomaten-te-vaak-in-storing?_x_tr_sl=nl&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp&amp;_x_tr_hist=true",
+   "result": [
+    "https://nos-nl.translate.goog/artikel/2494692-geen-geld-uit-de-muur-geldautomaten-te-vaak-in-storing?_x_tr_sl=nl&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp&_x_tr_hist=true"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0496",
+   "field": "links",
+   "original": "https://www-linkedin-com.translate.goog/feed/update/urn:li:activity:7121014699357270016/?_x_tr_sl=nl&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp",
+   "result": [
+    "https://www-linkedin-com.translate.goog/feed/update/urn:li:activity:7121014699357270016/?_x_tr_sl=nl&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0496",
+   "field": "links",
+   "original": "https://nos-nl.translate.goog/artikel/2500514-papiergeld-storten-lukt-soms-niet-door-storingen-geldmaat-belooft-beterschap?_x_tr_sl=nl&amp;_x_tr_tl=en&amp;_x_tr_hl=nl&amp;_x_tr_pto=wapp&amp;_x_tr_hist=true",
+   "result": [
+    "https://nos-nl.translate.goog/artikel/2500514-papiergeld-storten-lukt-soms-niet-door-storingen-geldmaat-belooft-beterschap?_x_tr_sl=nl&_x_tr_tl=en&_x_tr_hl=nl&_x_tr_pto=wapp&_x_tr_hist=true"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-s-0511",
+   "field": "links",
+   "original": "https://docs.google.com/document/d/1y2MePaCw0_h-GWybu2pmbWJRyELj5j6O/edit?usp=sharing&amp;ouid=108362882674428331266&amp;rtpof=true&amp;sd=true",
+   "result": [
+    "https://docs.google.com/document/d/1y2MePaCw0_h-GWybu2pmbWJRyELj5j6O/edit?usp=sharing&ouid=108362882674428331266&rtpof=true&sd=true"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0001",
+   "field": "links",
+   "original": "https://www.google.com/url?q=https://news.mongabay.com/2023/04/professional-services-abound-for-amazon-land-grabbers-seeking-legitimacy/&amp;sa=D&amp;source=docs&amp;ust=1705436476142667&amp;usg=AOvVaw11i0Fad8epQOMaZXfdZ90R",
+   "result": [
+    "https://www.google.com/url?q=https://news.mongabay.com/2023/04/professional-services-abound-for-amazon-land-grabbers-seeking-legitimacy/&sa=D&source=docs&ust=1705436476142667&usg=AOvVaw11i0Fad8epQOMaZXfdZ90R"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0007",
+   "field": "links",
+   "original": "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1YQVpJ3ycV4mLXITBgoDkcWhkyEI20e773VMeA92detk&amp;titulo=%3Cspan%3EInnovating+electoral+coverage%3C%2Fspan%3EThe+use+of+disruptive+data+and+AI+in+Argentina%27s+unprecedented+2023+election&amp;bajada=&amp;volanta=&amp;header_nota_theme=light&amp;preview=1&amp;estilos_apertura=&amp;id_video_apertura=&amp;url_foto_apertura=#/",
+   "result": [
+    "https://especialess3.lanacion.com.ar/22/05/scrolly-aml-app-nuxt/?doc_id=1YQVpJ3ycV4mLXITBgoDkcWhkyEI20e773VMeA92detk&titulo=%3Cspan%3EInnovating+electoral+coverage%3C%2Fspan%3EThe+use+of+disruptive+data+and+AI+in+Argentina%27s+unprecedented+2023+election&bajada=&volanta=&header_nota_theme=light&preview=1&estilos_apertura=&id_video_apertura=&url_foto_apertura=#/"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0020",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=-aTxSxQxDeY&amp;t=635s",
+   "result": [
+    "https://www.youtube.com/watch?v=-aTxSxQxDeY&t=635s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0030",
+   "field": "links",
+   "original": "https://docs.google.com/document/d/1c8JmAlpoX39gFYIOBj_PhFKYtty3F0ve/edit?usp=drive_link&amp;ouid=106322834937800228606&amp;rtpof=true&amp;sd=true",
+   "result": [
+    "https://docs.google.com/document/d/1c8JmAlpoX39gFYIOBj_PhFKYtty3F0ve/edit?usp=drive_link&ouid=106322834937800228606&rtpof=true&sd=true"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0030",
+   "field": "links",
+   "original": "https://docs.google.com/document/d/1YtkOAkKs0kyjzk-lF14XZqrtdHPZB-YB/edit?usp=drive_link&amp;ouid=106322834937800228606&amp;rtpof=true&amp;sd=true",
+   "result": [
+    "https://docs.google.com/document/d/1YtkOAkKs0kyjzk-lF14XZqrtdHPZB-YB/edit?usp=drive_link&ouid=106322834937800228606&rtpof=true&sd=true"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0030",
+   "field": "links",
+   "original": "https://docs.google.com/document/d/1_oQSrKcAcFp8SPk5yX8T6MYp1AgK77kT/edit?usp=drive_link&amp;ouid=106322834937800228606&amp;rtpof=true&amp;sd=true",
+   "result": [
+    "https://docs.google.com/document/d/1_oQSrKcAcFp8SPk5yX8T6MYp1AgK77kT/edit?usp=drive_link&ouid=106322834937800228606&rtpof=true&sd=true"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0033",
+   "field": "links",
+   "original": "https://l.facebook.com/l.php?u=https%3A%2F%2Fpublic.flourish.studio%2Fvisualisation%2F15861008%2F%3Ffbclid%3DIwAR3jbVj1n7MzfPQlKYY-2_HXMz8w0PQLbuztxu92mrbwVDZ-vTZh4kwNoDI&amp;h=AT13UVNaWMVqexr31XF-YbvJ_ga3qYFP7V8XVvPA91WEWhF8CJvCT1sMTkWcjcYPdxaJ1acDwJNCAwKFvYvt2AzIDxFVBJngW2JHn0A1RU3BTk8l6N-lG_qOqztmCbdCtxmZ&amp;__tn__=H-R&amp;c[0]=AT0xdJL4H2ksnAgbjSDriHsX8zJUGNnAr_W5AYoHQ9N2Ct9PKbIdDGM6LStXTqC31rjYyvx2HBXJIMkdE7ZRW2gxfziR4RqTWY0q5yk9o9YaUKcseNv96dgvs32ctfpwjx_qvflmVjki-8RtVPvFFUS8-luShipwLEDhCz-IGc33TpssoI6ri5xZSRRBKmeQ4kdGypUqaCqbIQGjR64Z4n3UUOf6mJodoD1J",
+   "result": [
+    "https://l.facebook.com/l.php?u=https%3A%2F%2Fpublic.flourish.studio%2Fvisualisation%2F15861008%2F%3Ffbclid%3DIwAR3jbVj1n7MzfPQlKYY-2_HXMz8w0PQLbuztxu92mrbwVDZ-vTZh4kwNoDI&h=AT13UVNaWMVqexr31XF-YbvJ_ga3qYFP7V8XVvPA91WEWhF8CJvCT1sMTkWcjcYPdxaJ1acDwJNCAwKFvYvt2AzIDxFVBJngW2JHn0A1RU3BTk8l6N-lG_qOqztmCbdCtxmZ&__tn__=H-R&c[0]=AT0xdJL4H2ksnAgbjSDriHsX8zJUGNnAr_W5AYoHQ9N2Ct9PKbIdDGM6LStXTqC31rjYyvx2HBXJIMkdE7ZRW2gxfziR4RqTWY0q5yk9o9YaUKcseNv96dgvs32ctfpwjx_qvflmVjki-8RtVPvFFUS8-luShipwLEDhCz-IGc33TpssoI6ri5xZSRRBKmeQ4kdGypUqaCqbIQGjR64Z4n3UUOf6mJodoD1J"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0051",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=lc-8cRcA_cQ&amp;t=60s",
+   "result": [
+    "https://www.youtube.com/watch?v=lc-8cRcA_cQ&t=60s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0051",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=cJNiCFQdZaE&amp;t=47s",
+   "result": [
+    "https://www.youtube.com/watch?v=cJNiCFQdZaE&t=47s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0051",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=6hYuQ0WvWfo&amp;t=310s",
+   "result": [
+    "https://www.youtube.com/watch?v=6hYuQ0WvWfo&t=310s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0051",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=Yk_lGovMcro&amp;t=192s",
+   "result": [
+    "https://www.youtube.com/watch?v=Yk_lGovMcro&t=192s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0051",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=OmUWYCZ2oJY&amp;t=39s",
+   "result": [
+    "https://www.youtube.com/watch?v=OmUWYCZ2oJY&t=39s"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0051",
+   "field": "links",
+   "original": "https://www.youtube.com/watch?v=kvg0cWURRTM&amp;list=PLLT21ES-Oho6FBtaMMOJ6OF1yz7XPpGrx",
+   "result": [
+    "https://www.youtube.com/watch?v=kvg0cWURRTM&list=PLLT21ES-Oho6FBtaMMOJ6OF1yz7XPpGrx"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2024-f-0068",
+   "field": "links",
+   "original": "https://us5.campaign-archive.com/?u=4ea5740c1fe71d71fea4212ee&amp;id=2199d86e73",
+   "result": [
+    "https://us5.campaign-archive.com/?u=4ea5740c1fe71d71fea4212ee&id=2199d86e73"
+   ],
+   "dropped": []
+  },
+  {
+   "id": "2026-s-0032",
+   "field": "links",
+   "original": "https://drive.google.com/file/d/1MgDuATobpWyQxEj0cz2OMwQATMGp0bnY/view?usp=sharing (English Translation of the Investigation)",
+   "result": [
+    "https://drive.google.com/file/d/1MgDuATobpWyQxEj0cz2OMwQATMGp0bnY/view?usp=sharing"
+   ],
+   "dropped": [
+    "(English Translation of the Investigation)"
+   ]
+  },
+  {
+   "id": "2026-s-0045",
+   "field": "links",
+   "original": "https://Death brokers in Gaza: Medication Contains Lethal Toxin By: Roaa Mamdouh On a cold November night, within a dilapidated tent near Al-Mawasi beach in Khan Younis, southern Gaza Strip, Mahmoud Jaabir, 83, passed away. His body became rigid with stiffened limbs, a yellowed face, and a fixed gaze towards the sky. His death was not attributable to conventional causes, such as missile strikes or artillery fire, which have become tragically commonplace for residents of Gaza. Rather, his demise was a more insidious one: it was brought about by the administration of expired medication. Pharmacies in the Gaza Strip are dispensing medications without proper regulatory oversight: Hajj Mahmoud, as he was known, was forcibly displaced from his residence in the Shati refugee camp, west of Gaza City, to Al-Mawasi in search of refuge from the ongoing conflict. However, the conflict was not the only adversary that drained his remaining strength. Tragically, his life was cut short due to expired medication, highlighting a tragic reality that silently afflicts the bodies of displaced and ill individuals. The death of the elderly man underscores a broader issue: the prevalence of expired pharmaceuticals in Gaza, stemming from inadequate regulatory controls and compromised supply chains. This situation poses a serious threat to public health. In the bustling streets of the Gaza Strip, where individuals fight for basic necessities and access to medications, an unseen peril lurks, revealing itself only when it is far too late. Expired medications have infiltrated displacement camps and patient residences via illicit sales channels. These medications are traded by intermediaries via platforms like WhatsApp and sold at unregulated street stalls, circumventing essential health inspections and traceability measures. Furthermore, reports indicate that some pharmacies within the Gaza Strip are dispensing these medications without proper supervision. This illicit trade in pharmaceuticals has precipitated significant humanitarian crises, resulting in tragic outcomes for families, fatalities, and severe adverse health effects. Ahmad, son of the late Haj Mahmoud, reports that his father suffered from a complex array of chronic conditions, including diabetes and diabetic foot. The elder Mahmoud was also bedridden and non-verbal. Following his forced displacement and the subsequent disruption of medical care after the destruction of the Al-Israa 2 Medical Center in Gaza City, where he had been receiving treatment, he became reliant on his family for his healthcare needs. Now in his fifties, Ahmad reflects with a heavy heart, \"My father had long been plagued by chronic constipation, which necessitated the use of lactulose syrup. This medication is quite common here in Gaza; it's readily accessible in pharmacies and doesn’t need a prescription or any special procedures to obtain.\" The ordeal began with the purchase of a bottle of lactulose syrup from a pharmacy in Rafah, located at the southernmost point of the Gaza Strip. Despite the pharmacist being aware that the medication had expired in January 2023, he sold it to the family without any caution. Hajj Mahmoud used the expired medication several times. On November 10, 2024, after beginning a new course, he started experiencing serious symptoms: severe, foul-smelling diarrhea, a sharp drop in blood pressure, and persistent fatigue. His family responded by giving him intravenous fluids to treat dehydration, unaware that the expired medication was the underlying cause. They initially attributed the symptoms to his pre-existing conditions. He continued to self-administer the medication twice daily when experiencing difficulty defecating. However, two days later, on a cold November night in 2024, Hajj Mahmoud passed away at the age of 83. Ahmad, his son, shared, \"We thought what happened to my father was normal due to his illness and old age, but during the funeral, the doctor following his case told us that every time he took that medication, it triggered a serious health crisis. We never imagined the true cause behind his suffering and complications.\" This case underscores the potential dangers of using expired medications and their potentially fatal consequences for patients' health in the Gaza Strip. Dr. Yamen Al-Astal, head of the health department at Al-Israa 2 Center in Gaza City and the deceased's attending physician, disclosed the details of the case to Al-Watan. The first warning sign appeared when the family noticed severe, foul-smelling diarrhea. They then administered intravenous fluids to alleviate the symptoms, but the elderly man's health continued to deteriorate. Throughout this time, the family was unaware of the true cause. After the man's death, the cause became clear when they discovered that the medication he had taken had expired. Al-Watan requested a documented death certificate specifying the exact cause, but Al-Astal explained that under current conditions and with the rising daily death toll in the Gaza Strip, issuing an accurate death certificate has become difficult. Tales of counterfeit medication in Gaza  The physician attending to Hajj Mahmoud explained that the issue was not with the medication itself, but rather with its expiration date. The patient began taking the medication prior to his evacuation from the Al-Israa 2 Medical Center, which was targeted and bombed by the occupying forces, which rendered the facility non-operational. Consequently, the patient had to relocate to the Al-Mawasi area, outside the medical supervision of Al-Astal. This situation led to the patient using the expired medication without the treating doctor’s awareness, as the family failed to realize that the medication had been expired for over 22 months, ultimately causing a significant decline in his health that resulted in his death. Dr. Al-Astal emphasized the inherent dangers associated with the use of expired lactulose, stating, \"Lactulose, when used beyond its expiration date or following prolonged storage, may undergo chemical decomposition or become contaminated with bacteria and fungi, particularly in open containers. This transforms the medication from a constipation remedy into a significant health hazard, potentially causing severe abdominal distress, diarrhea, vomiting, intestinal infections, and a critical drop in blood pressure that can be fatal.\" He concluded, \"Hajj Mahmoud's tragic case underscores the multifaceted challenges faced by patients in Gaza, including chronic illnesses, inadequate medical supervision, forced displacement, harsh winter conditions, and pharmacist negligence. His death serves as a poignant illustration of the suffering endured by patients due to the prevalence of compromised medications.\" Illicit trade of expired medication in the Gaza Strip Al-Watan newspaper conducted a four-month investigation into the illicit trade of expired medications within the Gaza Strip. The investigation revealed a network of pharmacists and brokers utilizing clandestine WhatsApp groups to facilitate the distribution and sale of expired medications within the local market. This practice is exacerbated by severe shortages within the medical sector, compounded by the ongoing blockade imposed by the occupying forces, leaving families of patients with no choice but to seek out the scarce medications and purchase them at any cost. This illicit trade proliferates during crises and border closures and encompasses medications for chronic diseases, infections, analgesics, and diabetes. These medications are frequently resold after the removal of expiration dates, indicative of regulatory gaps and compromised supply chain integrity. This practice significantly elevates health risks for the population, ranging from therapeutic failure to severe and potentially life-threatening complications. Data obtained from WhatsApp groups used by drug brokers, monitored by Al-Watan newspaper, indicated that the most frequently traded medications included anti-inflammatory drugs, cardiovascular medications, antipyretics, and antibiotics, with a minimum of six distinct types of each identified. These were followed by medications for migraines and epilepsy (five types), antibacterial medications (four types), and allergy medications, diabetes medications, nutritional supplements, and emollients (three types each). Medications for digestive disorders (two types) and less frequently utilized medications, such as decongestants, Parkinson's disease medications, and anesthetics (one type each), were also present. The most frequently traded medications anti-inflammatory drugs 6 cardiovascular medications 6 antipyretics and antibiotics 6 migraines and epilepsy 5 antibacterial medications 4 allergy medications 3 diabetes medications 3 nutritional supplements 3 emollients 3 Medications for digestive disorders 2 decongestants 1 Parkinson's disease medications 1 anesthetics 1   [Images of expired medication sales via WhatsApp groups used by drug brokers] Mu’az: I purchased medication for an autoimmune disease and suffered intestinal bleeding; drug prices are skyrocketing In the Al-Bureij camp, located in the central Gaza Strip, Israeli airstrikes have reduced structures to rubble, leaving only fragments of walls offering minimal shade. The remnants provide scant shelter to the inhabitants. Displaced by Israeli missile strikes that have reduced his home to near ruins, Mu’az Al-Salehi has fallen prey to the “drug barons.“ The thirty-year-old resident suffers from Crohn’s disease, a severe chronic autoimmune disorder affecting the digestive system. For over three years, he has been undergoing treatment, regularly obtaining medication from pharmacies and hospitals. Despite limited resources, he has been able to maintain medical follow-ups. \"Before the war, life was difficult but manageable, as I could access my medication,\" Mu’az explains. \"Now, obtaining medication is an unattainable aspiration, medical follow-up is a perilous undertaking, and simply leaving the camp involves potentially life-threatening risks due to bombing.\" His voice, strained and filled with a blend of pain and acceptance, he continues, “When the bombings escalated in Bureij, I had to escape with my family—my wife and our two kids—to Deir al-Balah. Since Rivasal, my prescribed medication, was unavailable at pharmacies, I resorted to buying it from a street vendor. It wasn’t the best choice, but it was my only option.”  He notes a significant surge in drug prices, with a single strip of medication costing fifty to sixty shekels, a fivefold increase from its pre-war price of ten shekels, even when expired. Two days after starting the medication, Mu’az began to experience severe symptoms, including intense diarrhea, intestinal cramps, ongoing abdominal pain, and painful internal bleeding. Although he had acquired and used the medication in April 2025, it was later revealed to have expired in June 2024. Mu’az explained, “I have been using the medication ‘Rafasal’ for three and a half years and am accustomed to its side effects. However, this time was different. The combined effects of the expired medication and my underlying condition triggered health complications necessitating hospitalization. However, due to access limitations and drone strike risks along the route, I chose to consult a doctor by phone. The doctor confirmed that my symptoms resulted from taking the expired medication.\"     The 30-year-old man was given medication dangerously lacking proper labeling. He received a strip without its original packaging or informational leaflet, making it impossible to see the expiration date. Only after his pain rapidly intensified did he discover the medication had expired ten months earlier. Mu'az's ordeal exposes a critical, worsening failure in Gaza's healthcare: medications for inflammatory bowel diseases are now pushed on the streets in plastic bags, left to bake in extreme heat, and stored without refrigeration, rendering them not only ineffective but hazardous to patients’ lives. Dr. Yamen Al-Astal, commenting on Mu'az's diagnosis, explained that Ravasal, an anti-inflammatory drug used to treat intestinal inflammation, can lead to serious health complications such as diarrhea, cramps, and abdominal pain if taken post-expiration. In severe cases, these symptoms can escalate to intestinal bleeding and, in rare instances, death.  Abdelhadi testifies to irregularities in the pharmaceutical market: Some Medications Circulating in the Gaza Strip Are Being Stolen Dr. Hazem Abdelhadi, a pharmacist in Khan Younis Governorate, reports a critical deterioration in the pharmaceutical market in Gaza following the recent conflict. Prior to the war, the market was stable, with readily available medications and any shortages were typically resolved within days or weeks. Currently, only an estimated 30% of the required medical supplies are being met. Before the war, medicines were primarily sourced from Palestinian companies such as Al-Quds, Birzeit, Al-Tawridat, Beit Jala, Al-Mutatawwirah, Masrouji, and U&Me, alongside Israeli and foreign agents like Teva. The present market is now heavily reliant on donations, a significant portion of which are subject to theft. Pharmaceutical warehouses are reportedly distributing remaining stock, even products nearing expiration, due to the absence of new supplies. A majority of available medications were manufactured two years prior and have not been replenished. This has resulted in a severe shortage, leading to the widespread use of short-acting medications. As Abdelhadi notes, the lack of medication and depletion of vital categories have led to certain medicines being used for multiple ailments, intensifying demand for a specific type. Certain medications are available for sale up to six months, or even a full year, past their expiration date. While most consumers are aware of the expiration status, they are compelled to use these medications, hoping for a partial therapeutic effect, at least 30% effective. Middlemen are allegedly selling these expired medications as if they were still viable. Abdelhadi further highlights the challenges faced by relief organizations in delivering medicines within Gaza, emphasizing the need to secure shipments immediately upon their entry into the Strip through various crossings. He states, “Approximately a year into the conflict, certain organizations received authorization to import very limited amounts of medicine. The main issue lies in ensuring these shipments, as the insurance costs are substantial, forcing organizations to cut back on the amount of medicine they can bring in due to the financial strain of insurance expenses. Furthermore, instances of looting by traders and thieves, and even participation by some health sector employees, occur during the crossing process. These stolen medications are then sold to pharmacies or directly to citizens, resulting in significantly inflated prices compared to pre-war levels.” Dr. Abdelhadi states that the Medical Investigations Department of the Ministry of Health, the regulatory body, is currently unable to effectively oversee the interactions between warehouses, companies, pharmacies, and consumers. This is attributed to the deliberate targeting of its employees by occupation forces, perpetuating a state of disarray. Consequently, the system relies heavily on the ethical conduct of pharmacists, companies, and warehouses, as well as the patient's discernment to potentially forego medication if not urgently needed. He also reveals that a considerable proportion of post-aggression shipments presented as donations were nearing their expiration dates. This situation arose due to the hindrances placed on their entry into the Strip, as stringent regulations are imposed by the occupation regarding the permissible quantities. Consequently, the trucks remain stacked at the crossings for extended periods, sometimes lasting several months.  Nour, a Palestinian girl, suffered three days of blindness after using year-old expired eye drops: Nour Ghabban, a 19-year-old resident of Gaza City, experienced a severe adverse reaction after using expired eye drops. In late March, she sought treatment at a local UNRWA clinic for eye pain and redness and was diagnosed with dry eye. She was prescribed Cystan Ultra eye drops for a three-day course. On the first day, she reported experiencing pain, which she thought was due to tiredness. By the second day, the pain had intensified, accompanied by significant redness and swelling, leading to the closure of her eyelids. On the third day, she experienced a three-day period of vision loss. “Nour shares her experience,” she states. “I found out that the eye drops had expired in June 2024, a full year prior to use. After experiencing symptoms, I returned to the clinic and was diagnosed with severe inflammation caused by using the expired medication.” While the cost of the drops pre-war was 15 shekels, the young Palestinian woman purchased them for 50 shekels. According to a Gaza health official, the use of expired eye drops can exacerbate inflammation, increase redness and swelling, heighten light sensitivity, cause the eyelids to adhere, pose a risk to the cornea, and potentially lead to blurred vision or temporary disfigurement. Furthermore, expired medication loses its protective properties, increasing the eye's vulnerability to bacterial and fungal infections.  Hisham Muhanna, spokesperson for the International Committee of the Red Cross (ICRC) in the Gaza Strip, informed Al-Watan that the ICRC has issued warnings regarding the dangers of selling or distributing expired medications within the Strip, citing the significant risks to civilian lives and the difficulty in managing the consequences amidst the current health crisis. While the ICRC has not directly observed instances of expired medication sales, it has implemented stringent protocols to tackle such issues, collaborating closely with the Palestinian Ministry of Health and various civil society groups. These protocols include monitoring potential problems and actively working towards their resolution.  Mr. Muhanna stated that the ICRC has recently delivered multiple medical aid convoys to the Gaza Strip, including one within the past week. He emphasized that all medications undergo rigorous inspection throughout the supply chain, from regional warehouses to end users. He pointed out that the ICRC rejects any medication shipment nearing its expiration date and employs specialized teams and procedures for its destruction. \"We are mindful of the restrictions and stringent measures governing aid entry, and therefore, we diligently ensure that medications have extended shelf lives. In some cases, shipments have been rejected after prolonged delays at the border, necessitating their replacement to ensure compliance with specifications,\" he added. The ICRC spokesperson indicated that the healthcare system has suffered complete devastation, and that drug supplies are being depleted at an alarming and irreversible rate.  Wafaa bought two insulin syringes for 70 shekels from stalls of street vendors In Nasser Hospital, Khan Younis, 10-year-old Khaled Abu Amsha, a diabetic patient of three years requiring regular insulin, is facing dire circumstances. Prior to the recent conflict, his mother, Wafaa Ayed, reliably obtained his insulin from UNRWA clinics and maintained its efficacy through refrigeration. However, following airstrikes in their Beit Hanoun neighborhood in northern Gaza, the family was displaced southward. Despite initial efforts to preserve the insulin pens in a cooled container, the heat exposure during their journey compromised the medication. Now, a year and a half later, the sustained targeting of medical facilities and free clinics has significantly hindered Wafaa's ability to procure insulin regularly. Consequently, she resorted to purchasing two syringes from pharmacies and stalls of street vendors for 70 shekels, a stark contrast to the pre-war availability of free medication. The family's financial stability has been devastated, leaving them struggling to meet basic needs. Two days after administering insulin acquired from these informal sources, Khaled began exhibiting severe symptoms, including cramps and abdominal distension. His condition manifested in jaundice, dizziness, and exhaustion, leading to recurrent episodes of hypoglycemia and loss of consciousness. His mother, Wafaa, recounts, \"At times, he can't even speak, and other times he collapses, drenched in cold sweat. We attempted to help him by cooling the insulin pens in a water container, which we refreshed every hour due to power outages in the sweltering tent. However, his situation deteriorated, and he was rushed to the hospital, where doctors confirmed that the symptoms stemmed from using expired insulin.\" She continues, \"I initially thought it was merely a storage issue, but when I checked the box, I found it had expired in December 2024, even though I had used it in June 2025. This exacerbated Khaled's condition, as his symptoms worsened, resulting in altered mental status, frequent fainting episodes, vomiting, relentless thirst, and excessive urination.\" Following a two-week interruption in Khaled's medication regimen, he has developed chronic hyperglycemia, resulting in significant weight loss and skeletal prominence. “We visit the hospital daily, where the only available treatment is intravenous fluid administration, if they happen to be in stock and we’re fortunate enough to secure an empty bed. My faith in the medication has waned, yet I have no other options. I dread the thought of waking up one day to find he’s no longer with us.”   The lack of an expiration date on the packaging: A significant concern identified within brokers' groups is the absence of expiration dates on pharmaceutical packaging. Data reported by Al-Watan newspaper indicates that 24 medication types were offered for sale without clearly marked expiration dates. Furthermore, five medication types were labeled with an expiration date of May 2025, and eight others with expiration dates in April and June 2025. An additional four medications were advertised with October expiration dates, while varying quantities of one medication were noted to expire in July and September 2025, and December 2024. Key months and years of expiration and the number of medication types: 24 medication types  Dr. Hazem Abdelhadi, an observer of the illicit drug market, has confirmed that medications currently in circulation are entering the country through multiple channels. Some originate from stockpiles in pre-war storage facilities, while others are illicitly taken from the Ministry of Health's warehouses and field hospitals operated by American, Jordanian, Emirati, and Red Crescent entities. Furthermore, certain medicines are smuggled alongside aid trucks and sold on the black market, while others are pilfered by security personnel responsible for securing shipments at border crossings. Dr. Abdelhadi reports that the most frequently smuggled medications are those used to treat chronic illnesses such as hypertension and diabetes, neurological conditions, dermatological conditions, severe pain, hormonal imbalances, and pregnancy complications; an estimated 30% of these medications are expired.   Dr. Abdelhadi notes a lack of official invoices for smuggled or expired medications, replaced instead by informal itemized lists lacking tax information and regulatory oversight. He also highlights the prevalence of bank transfer payment requests from brokers, stating: \"The price difference reflected in bank transfer applications is 40% higher than cash payments. For example, a medication box priced at 100 shekels cash would cost 140 shekels via bank transfer.\" Dr. Abdelhadi attributes the proliferation of expired medications to the period following the initial year of aggression, coinciding with the depletion of usable stocks, particularly medications for dermatological conditions, chronic illnesses, and neurological disorders. The resultant supply scarcity and compromised regulatory oversight due to the disruption of medical investigations facilitated the emergence of WhatsApp groups. These groups, infiltrated by brokers and pharmacists, offer in-demand medications, including those expired by more than six months, at inflated prices. This situation, characterized by systemic chaos, lack of oversight, and supply shortages, presents patients with a distressing dilemma: endure the symptoms of their illness or risk consuming expired medication. Dr. Abdelhadi further stated: “Medications with high public demand, such as pregnancy-stabilizing drugs like Duphaston and hormone medications, are frequently bundled with less frequently needed items and sold at inflated prices.” Zakaria Abu Qamar, Acting Director General of Pharmacy at the Ministry of Health in Gaza, reported to Al-Watan that brief inspections of pharmacies conducted during the recent conflict revealed the presence of expired medications. These medications, which should have been isolated for disposal, were not properly segregated due to disruptions caused by the ongoing war, rendering designated disposal sites inaccessible. He noted that the Ministry is currently collecting these items at temporary locations pending access to appropriate disposal facilities.   Abu Qamar stated that the Ministry has not received any formal complaints from the public via the Complaints Department or the Quality Department regarding the sale of expired medications in licensed pharmacies. He further noted that most licensed pharmacies are experiencing significant medication shortages. He identified unlicensed stalls and kiosks as a primary challenge, the oversight of which falls under the purview of the Ministry of Interior or the Ministry of Economy.    Abu Qamar disclosed that the Ministry of Health is currently facing a critical drug shortage of 52%. He acknowledged that the Ministry is unable to eliminate the sale of medications by street vendors, who operate from temporary locations and obtain drugs through illicit channels from specific organizations. He assured that the Ministry takes prompt action upon receiving complaints from the public, implementing both technical and legal measures against offenders. He also indicated that approximately 80% of private sector pharmacies are non-operational, due to infrastructural damage from bombings or the displacement of pharmacy owners. He explained that commercial drug shipments have been suspended since the beginning of the conflict nearly two years ago, with medication entry limited to aid deliveries to hospitals, primary care centers, and medical and charitable organizations, excluding private sector pharmacies.  Abu Qamar stated that the activities of the Ministry of Health inspectors from the Quality and Control Department have been significantly restricted during the ongoing conflict. This limitation is further exacerbated by the dwindling number of staff available in hospitals and primary care centers, as emergency departments are overwhelmed with a high influx of casualties. He stated that the Ministry of Health is actively disseminating warnings to the public via its websites and pharmacy-related social media groups regarding the risks associated with using expired medications, and has issued several public advisories. He affirmed that the General Directorate of Pharmacy addresses all received complaints with urgency. The Ministry is also collaborating with NGOs and UNRWA to provide medications for chronic illnesses and vulnerable populations, aiming to assist as many patients and displaced individuals as possible. He emphasized the Ministry of Health's continued monitoring of licensed pharmacies and cautioned against purchasing medications from unregulated kiosks or street vendors, even if the medications appear to be within their expiration date, due to the potential for spoilage resulting from improper storage.  Rawan purchased expired baby formula for 100 shekels: “Doctors warned me my son could get poisoned.”  The challenges facing Gazans extend beyond the risks associated with expired medication. In the narrow pathways of the densely populated Nuseirat refugee camp, nestled among the makeshift shelters of those displaced from their homes, the echoes of hunger and the wails of children filled the air. There, 26-year-old Rawan Ismail held her young son, Rakan, close, battling tears as she grappled with the harsh reality: “I gave him the expired formula because I have nothing else.” Rawan’s origins do not lie in this camp, and she never envisioned that displacement and starvation would be part of her everyday existence. A year and a half ago, relentless Israeli aggression forced her to abandon her home in Gaza City, seeking refuge within the Nuseirat camp, in search of safety and shelter. Today, she faces the heart-wrenching challenge of finding sufficient food to nourish her three-year-old son.  In the face of severe food shortages and inflated prices, a mother in her twenties resorted to purchasing a 400-gram can of Materna Plus 2 formula for her infant, Rakan, from a small vendor within the camp in early August. The cost was 100 shekels, a significant increase from the pre-war price of 25 to 30 shekels. Driven by her child's distress, she stated, \"I wasn't thinking about the price. I was just looking for something to quiet Rakan's crying. He was screaming from hunger. All I wanted was for him to calm down, to feel full for even a moment, even if it was just for a short time.\" It was only after the purchase, as Rawan was about to open the can, that she observed the expiration date of February 2025. Nevertheless, she felt she had no other alternatives. Driven by her child's evident hunger, she resolved to proceed. With tears streaming down her face, she recounted her dilemma: \"I considered returning the product, but they wouldn’t refund me, and finding another can seemed impossible, so I made the choice to take it and feed him.\" Tragically, within a day of consuming the expired milk, Rakan experienced adverse effects: \"He developed severe diarrhea and intense stomach cramps, and cried incessantly.\" Rawan carried him from one place to another, desperately seeking medicine or basic care, but pharmacies were rarely open, and hospitals lacked the resources to adequately address the situation. \"The doctors cautioned me that my son might vomit or suffer from cramps, and, in the worst-case scenario, it could escalate to food poisoning. But I had no other options. Even if I resolved to stop giving it to him, what could I offer? Water? Clean water is also unavailable.\" She added sorrowfully, glancing at her weary child's face, \"I know giving him that milk is wrong.\" \"It's a heartbreaking end, but if you could see the hunger in his eyes, you would understand. I had to choose the lesser of two evils.\"  Al-Turkmani: We haven't received any complaints or reports about the sale of expired medications. Bakr al-Turkmani, a lawyer and investigations coordinator at the Independent Commission for Human Rights (ICHR), the Ombudsman's Office in the Gaza Strip, has indicated that the Commission has not received any formal grievances or incident reports pertaining to the distribution of expired or counterfeit pharmaceutical products since the onset of hostilities. Mr. al-Turkmani further noted the absence of precise estimations or dependable data to accurately assess the prevalence of this issue, both within established pharmacies and in unregulated markets. He attributed this situation to the extensive disruption of Gaza's administrative and institutional framework, resulting from direct Israeli targeting, which has impacted all state institutions, including those responsible for accountability and regulatory oversight. Mr. al-Turkmani emphasized that the occupation’s military actions have specifically targeted members of the Legislative Council, civilian police personnel, and officials within various ministries and governmental agencies—the very entities tasked with monitoring, price regulation, and legal prosecution of offenders. Al-Turkmani asserted that the systematic nature of these attacks has eroded the accountability framework, fostering an environment of lawlessness. He posited that the objective is to destabilize the Gaza Strip by inciting disorder and disrupting civil peace and public order. He further noted that the targeting has extended beyond official institutions to encompass local and international aid workers and human rights advocates, including...",
+   "result": [],
+   "dropped": [
+    "https://Death brokers in Gaza: Medication Contains Lethal Toxin By: Roaa Mamdouh On a cold November night, within a dilapidated tent near Al-Mawasi beach in Khan Younis, southern Gaza Strip, Mahmoud Jaabir, 83, passed away. His body became rigid with stiffened limbs, a yellowed face, and a fixed gaze towards the sky. His death was not attributable to conventional causes, such as missile strikes or artillery fire, which have become tragically commonplace for residents of Gaza. Rather, his demise was a more insidious one: it was brought about by the administration of expired medication. Pharmacies in the Gaza Strip are dispensing medications without proper regulatory oversight: Hajj Mahmoud, as he was known, was forcibly displaced from his residence in the Shati refugee camp, west of Gaza City, to Al-Mawasi in search of refuge from the ongoing conflict. However, the conflict was not the only adversary that drained his remaining strength. Tragically, his life was cut short due to expired medication, highlighting a tragic reality that silently afflicts the bodies of displaced and ill individuals. The death of the elderly man underscores a broader issue: the prevalence of expired pharmaceuticals in Gaza, stemming from inadequate regulatory controls and compromised supply chains. This situation poses a serious threat to public health. In the bustling streets of the Gaza Strip, where individuals fight for basic necessities and access to medications, an unseen peril lurks, revealing itself only when it is far too late. Expired medications have infiltrated displacement camps and patient residences via illicit sales channels. These medications are traded by intermediaries via platforms like WhatsApp and sold at unregulated street stalls, circumventing essential health inspections and traceability measures. Furthermore, reports indicate that some pharmacies within the Gaza Strip are dispensing these medications without proper supervision. This illicit trade in pharmaceuticals has precipitated significant humanitarian crises, resulting in tragic outcomes for families, fatalities, and severe adverse health effects. Ahmad, son of the late Haj Mahmoud, reports that his father suffered from a complex array of chronic conditions, including diabetes and diabetic foot. The elder Mahmoud was also bedridden and non-verbal. Following his forced displacement and the subsequent disruption of medical care after the destruction of the Al-Israa 2 Medical Center in Gaza City, where he had been receiving treatment, he became reliant on his family for his healthcare needs. Now in his fifties, Ahmad reflects with a heavy heart, \"My father had long been plagued by chronic constipation, which necessitated the use of lactulose syrup. This medication is quite common here in Gaza; it's readily accessible in pharmacies and doesn’t need a prescription or any special procedures to obtain.\" The ordeal began with the purchase of a bottle of lactulose syrup from a pharmacy in Rafah, located at the southernmost point of the Gaza Strip. Despite the pharmacist being aware that the medication had expired in January 2023, he sold it to the family without any caution. Hajj Mahmoud used the expired medication several times. On November 10, 2024, after beginning a new course, he started experiencing serious symptoms: severe, foul-smelling diarrhea, a sharp drop in blood pressure, and persistent fatigue. His family responded by giving him intravenous fluids to treat dehydration, unaware that the expired medication was the underlying cause. They initially attributed the symptoms to his pre-existing conditions. He continued to self-administer the medication twice daily when experiencing difficulty defecating. However, two days later, on a cold November night in 2024, Hajj Mahmoud passed away at the age of 83. Ahmad, his son, shared, \"We thought what happened to my father was normal due to his illness and old age, but during the funeral, the doctor following his case told us that every time he took that medication, it triggered a serious health crisis. We never imagined the true cause behind his suffering and complications.\" This case underscores the potential dangers of using expired medications and their potentially fatal consequences for patients' health in the Gaza Strip. Dr. Yamen Al-Astal, head of the health department at Al-Israa 2 Center in Gaza City and the deceased's attending physician, disclosed the details of the case to Al-Watan. The first warning sign appeared when the family noticed severe, foul-smelling diarrhea. They then administered intravenous fluids to alleviate the symptoms, but the elderly man's health continued to deteriorate. Throughout this time, the family was unaware of the true cause. After the man's death, the cause became clear when they discovered that the medication he had taken had expired. Al-Watan requested a documented death certificate specifying the exact cause, but Al-Astal explained that under current conditions and with the rising daily death toll in the Gaza Strip, issuing an accurate death certificate has become difficult. Tales of counterfeit medication in Gaza The physician attending to Hajj Mahmoud explained that the issue was not with the medication itself, but rather with its expiration date. The patient began taking the medication prior to his evacuation from the Al-Israa 2 Medical Center, which was targeted and bombed by the occupying forces, which rendered the facility non-operational. Consequently, the patient had to relocate to the Al-Mawasi area, outside the medical supervision of Al-Astal. This situation led to the patient using the expired medication without the treating doctor’s awareness, as the family failed to realize that the medication had been expired for over 22 months, ultimately causing a significant decline in his health that resulted in his death. Dr. Al-Astal emphasized the inherent dangers associated with the use of expired lactulose, stating, \"Lactulose, when used beyond its expiration date or following prolonged storage, may undergo chemical decomposition or become contaminated with bacteria and fungi, particularly in open containers. This transforms the medication from a constipation remedy into a significant health hazard, potentially causing severe abdominal distress, diarrhea, vomiting, intestinal infections, and a critical drop in blood pressure that can be fatal.\" He concluded, \"Hajj Mahmoud's tragic case underscores the multifaceted challenges faced by patients in Gaza, including chronic illnesses, inadequate medical supervision, forced displacement, harsh winter conditions, and pharmacist negligence. His death serves as a poignant illustration of the suffering endured by patients due to the prevalence of compromised medications.\" Illicit trade of expired medication in the Gaza Strip Al-Watan newspaper conducted a four-month investigation into the illicit trade of expired medications within the Gaza Strip. The investigation revealed a network of pharmacists and brokers utilizing clandestine WhatsApp groups to facilitate the distribution and sale of expired medications within the local market. This practice is exacerbated by severe shortages within the medical sector, compounded by the ongoing blockade imposed by the occupying forces, leaving families of patients with no choice but to seek out the scarce medications and purchase them at any cost. This illicit trade proliferates during crises and border closures and encompasses medications for chronic diseases, infections, analgesics, and diabetes. These medications are frequently resold after the removal of expiration dates, indicative of regulatory gaps and compromised supply chain integrity. This practice significantly elevates health risks for the population, ranging from therapeutic failure to severe and potentially life-threatening complications. Data obtained from WhatsApp groups used by drug brokers, monitored by Al-Watan newspaper, indicated that the most frequently traded medications included anti-inflammatory drugs, cardiovascular medications, antipyretics, and antibiotics, with a minimum of six distinct types of each identified. These were followed by medications for migraines and epilepsy (five types), antibacterial medications (four types), and allergy medications, diabetes medications, nutritional supplements, and emollients (three types each). Medications for digestive disorders (two types) and less frequently utilized medications, such as decongestants, Parkinson's disease medications, and anesthetics (one type each), were also present. The most frequently traded medications anti-inflammatory drugs 6 cardiovascular medications 6 antipyretics and antibiotics 6 migraines and epilepsy 5 antibacterial medications 4 allergy medications 3 diabetes medications 3 nutritional supplements 3 emollients 3 Medications for digestive disorders 2 decongestants 1 Parkinson's disease medications 1 anesthetics 1 [Images of expired medication sales via WhatsApp groups used by drug brokers] Mu’az: I purchased medication for an autoimmune disease and suffered intestinal bleeding; drug prices are skyrocketing In the Al-Bureij camp, located in the central Gaza Strip, Israeli airstrikes have reduced structures to rubble, leaving only fragments of walls offering minimal shade. The remnants provide scant shelter to the inhabitants. Displaced by Israeli missile strikes that have reduced his home to near ruins, Mu’az Al-Salehi has fallen prey to the “drug barons.“ The thirty-year-old resident suffers from Crohn’s disease, a severe chronic autoimmune disorder affecting the digestive system. For over three years, he has been undergoing treatment, regularly obtaining medication from pharmacies and hospitals. Despite limited resources, he has been able to maintain medical follow-ups. \"Before the war, life was difficult but manageable, as I could access my medication,\" Mu’az explains. \"Now, obtaining medication is an unattainable aspiration, medical follow-up is a perilous undertaking, and simply leaving the camp involves potentially life-threatening risks due to bombing.\" His voice, strained and filled with a blend of pain and acceptance, he continues, “When the bombings escalated in Bureij, I had to escape with my family—my wife and our two kids—to Deir al-Balah. Since Rivasal, my prescribed medication, was unavailable at pharmacies, I resorted to buying it from a street vendor. It wasn’t the best choice, but it was my only option.” He notes a significant surge in drug prices, with a single strip of medication costing fifty to sixty shekels, a fivefold increase from its pre-war price of ten shekels, even when expired. Two days after starting the medication, Mu’az began to experience severe symptoms, including intense diarrhea, intestinal cramps, ongoing abdominal pain, and painful internal bleeding. Although he had acquired and used the medication in April 2025, it was later revealed to have expired in June 2024. Mu’az explained, “I have been using the medication ‘Rafasal’ for three and a half years and am accustomed to its side effects. However, this time was different. The combined effects of the expired medication and my underlying condition triggered health complications necessitating hospitalization. However, due to access limitations and drone strike risks along the route, I chose to consult a doctor by phone. The doctor confirmed that my symptoms resulted from taking the expired medication.\" The 30-year-old man was given medication dangerously lacking proper labeling. He received a strip without its original packaging or informational leaflet, making it impossible to see the expiration date. Only after his pain rapidly intensified did he discover the medication had expired ten months earlier. Mu'az's ordeal exposes a critical, worsening failure in Gaza's healthcare: medications for inflammatory bowel diseases are now pushed on the streets in plastic bags, left to bake in extreme heat, and stored without refrigeration, rendering them not only ineffective but hazardous to patients’ lives. Dr. Yamen Al-Astal, commenting on Mu'az's diagnosis, explained that Ravasal, an anti-inflammatory drug used to treat intestinal inflammation, can lead to serious health complications such as diarrhea, cramps, and abdominal pain if taken post-expiration. In severe cases, these symptoms can escalate to intestinal bleeding and, in rare instances, death. Abdelhadi testifies to irregularities in the pharmaceutical market: Some Medications Circulating in the Gaza Strip Are Being Stolen Dr. Hazem Abdelhadi, a pharmacist in Khan Younis Governorate, reports a critical deterioration in the pharmaceutical market in Gaza following the recent conflict. Prior to the war, the market was stable, with readily available medications and any shortages were typically resolved within days or weeks. Currently, only an estimated 30% of the required medical supplies are being met. Before the war, medicines were primarily sourced from Palestinian companies such as Al-Quds, Birzeit, Al-Tawridat, Beit Jala, Al-Mutatawwirah, Masrouji, and U&Me, alongside Israeli and foreign agents like Teva. The present market is now heavily reliant on donations, a significant portion of which are subject to theft. Pharmaceutical warehouses are reportedly distributing remaining stock, even products nearing expiration, due to the absence of new supplies. A majority of available medications were manufactured two years prior and have not been replenished. This has resulted in a severe shortage, leading to the widespread use of short-acting medications. As Abdelhadi notes, the lack of medication and depletion of vital categories have led to certain medicines being used for multiple ailments, intensifying demand for a specific type. Certain medications are available for sale up to six months, or even a full year, past their expiration date. While most consumers are aware of the expiration status, they are compelled to use these medications, hoping for a partial therapeutic effect, at least 30% effective. Middlemen are allegedly selling these expired medications as if they were still viable. Abdelhadi further highlights the challenges faced by relief organizations in delivering medicines within Gaza, emphasizing the need to secure shipments immediately upon their entry into the Strip through various crossings. He states, “Approximately a year into the conflict, certain organizations received authorization to import very limited amounts of medicine. The main issue lies in ensuring these shipments, as the insurance costs are substantial, forcing organizations to cut back on the amount of medicine they can bring in due to the financial strain of insurance expenses. Furthermore, instances of looting by traders and thieves, and even participation by some health sector employees, occur during the crossing process. These stolen medications are then sold to pharmacies or directly to citizens, resulting in significantly inflated prices compared to pre-war levels.” Dr. Abdelhadi states that the Medical Investigations Department of the Ministry of Health, the regulatory body, is currently unable to effectively oversee the interactions between warehouses, companies, pharmacies, and consumers. This is attributed to the deliberate targeting of its employees by occupation forces, perpetuating a state of disarray. Consequently, the system relies heavily on the ethical conduct of pharmacists, companies, and warehouses, as well as the patient's discernment to potentially forego medication if not urgently needed. He also reveals that a considerable proportion of post-aggression shipments presented as donations were nearing their expiration dates. This situation arose due to the hindrances placed on their entry into the Strip, as stringent regulations are imposed by the occupation regarding the permissible quantities. Consequently, the trucks remain stacked at the crossings for extended periods, sometimes lasting several months. Nour, a Palestinian girl, suffered three days of blindness after using year-old expired eye drops: Nour Ghabban, a 19-year-old resident of Gaza City, experienced a severe adverse reaction after using expired eye drops. In late March, she sought treatment at a local UNRWA clinic for eye pain and redness and was diagnosed with dry eye. She was prescribed Cystan Ultra eye drops for a three-day course. On the first day, she reported experiencing pain, which she thought was due to tiredness. By the second day, the pain had intensified, accompanied by significant redness and swelling, leading to the closure of her eyelids. On the third day, she experienced a three-day period of vision loss. “Nour shares her experience,” she states. “I found out that the eye drops had expired in June 2024, a full year prior to use. After experiencing symptoms, I returned to the clinic and was diagnosed with severe inflammation caused by using the expired medication.” While the cost of the drops pre-war was 15 shekels, the young Palestinian woman purchased them for 50 shekels. According to a Gaza health official, the use of expired eye drops can exacerbate inflammation, increase redness and swelling, heighten light sensitivity, cause the eyelids to adhere, pose a risk to the cornea, and potentially lead to blurred vision or temporary disfigurement. Furthermore, expired medication loses its protective properties, increasing the eye's vulnerability to bacterial and fungal infections. Hisham Muhanna, spokesperson for the International Committee of the Red Cross (ICRC) in the Gaza Strip, informed Al-Watan that the ICRC has issued warnings regarding the dangers of selling or distributing expired medications within the Strip, citing the significant risks to civilian lives and the difficulty in managing the consequences amidst the current health crisis. While the ICRC has not directly observed instances of expired medication sales, it has implemented stringent protocols to tackle such issues, collaborating closely with the Palestinian Ministry of Health and various civil society groups. These protocols include monitoring potential problems and actively working towards their resolution. Mr. Muhanna stated that the ICRC has recently delivered multiple medical aid convoys to the Gaza Strip, including one within the past week. He emphasized that all medications undergo rigorous inspection throughout the supply chain, from regional warehouses to end users. He pointed out that the ICRC rejects any medication shipment nearing its expiration date and employs specialized teams and procedures for its destruction. \"We are mindful of the restrictions and stringent measures governing aid entry, and therefore, we diligently ensure that medications have extended shelf lives. In some cases, shipments have been rejected after prolonged delays at the border, necessitating their replacement to ensure compliance with specifications,\" he added. The ICRC spokesperson indicated that the healthcare system has suffered complete devastation, and that drug supplies are being depleted at an alarming and irreversible rate. Wafaa bought two insulin syringes for 70 shekels from stalls of street vendors In Nasser Hospital, Khan Younis, 10-year-old Khaled Abu Amsha, a diabetic patient of three years requiring regular insulin, is facing dire circumstances. Prior to the recent conflict, his mother, Wafaa Ayed, reliably obtained his insulin from UNRWA clinics and maintained its efficacy through refrigeration. However, following airstrikes in their Beit Hanoun neighborhood in northern Gaza, the family was displaced southward. Despite initial efforts to preserve the insulin pens in a cooled container, the heat exposure during their journey compromised the medication. Now, a year and a half later, the sustained targeting of medical facilities and free clinics has significantly hindered Wafaa's ability to procure insulin regularly. Consequently, she resorted to purchasing two syringes from pharmacies and stalls of street vendors for 70 shekels, a stark contrast to the pre-war availability of free medication. The family's financial stability has been devastated, leaving them struggling to meet basic needs. Two days after administering insulin acquired from these informal sources, Khaled began exhibiting severe symptoms, including cramps and abdominal distension. His condition manifested in jaundice, dizziness, and exhaustion, leading to recurrent episodes of hypoglycemia and loss of consciousness. His mother, Wafaa, recounts, \"At times, he can't even speak, and other times he collapses, drenched in cold sweat. We attempted to help him by cooling the insulin pens in a water container, which we refreshed every hour due to power outages in the sweltering tent. However, his situation deteriorated, and he was rushed to the hospital, where doctors confirmed that the symptoms stemmed from using expired insulin.\" She continues, \"I initially thought it was merely a storage issue, but when I checked the box, I found it had expired in December 2024, even though I had used it in June 2025. This exacerbated Khaled's condition, as his symptoms worsened, resulting in altered mental status, frequent fainting episodes, vomiting, relentless thirst, and excessive urination.\" Following a two-week interruption in Khaled's medication regimen, he has developed chronic hyperglycemia, resulting in significant weight loss and skeletal prominence. “We visit the hospital daily, where the only available treatment is intravenous fluid administration, if they happen to be in stock and we’re fortunate enough to secure an empty bed. My faith in the medication has waned, yet I have no other options. I dread the thought of waking up one day to find he’s no longer with us.” The lack of an expiration date on the packaging: A significant concern identified within brokers' groups is the absence of expiration dates on pharmaceutical packaging. Data reported by Al-Watan newspaper indicates that 24 medication types were offered for sale without clearly marked expiration dates. Furthermore, five medication types were labeled with an expiration date of May 2025, and eight others with expiration dates in April and June 2025. An additional four medications were advertised with October expiration dates, while varying quantities of one medication were noted to expire in July and September 2025, and December 2024. Key months and years of expiration and the number of medication types: 24 medication types Dr. Hazem Abdelhadi, an observer of the illicit drug market, has confirmed that medications currently in circulation are entering the country through multiple channels. Some originate from stockpiles in pre-war storage facilities, while others are illicitly taken from the Ministry of Health's warehouses and field hospitals operated by American, Jordanian, Emirati, and Red Crescent entities. Furthermore, certain medicines are smuggled alongside aid trucks and sold on the black market, while others are pilfered by security personnel responsible for securing shipments at border crossings. Dr. Abdelhadi reports that the most frequently smuggled medications are those used to treat chronic illnesses such as hypertension and diabetes, neurological conditions, dermatological conditions, severe pain, hormonal imbalances, and pregnancy complications; an estimated 30% of these medications are expired. Dr. Abdelhadi notes a lack of official invoices for smuggled or expired medications, replaced instead by informal itemized lists lacking tax information and regulatory oversight. He also highlights the prevalence of bank transfer payment requests from brokers, stating: \"The price difference reflected in bank transfer applications is 40% higher than cash payments. For example, a medication box priced at 100 shekels cash would cost 140 shekels via bank transfer.\" Dr. Abdelhadi attributes the proliferation of expired medications to the period following the initial year of aggression, coinciding with the depletion of usable stocks, particularly medications for dermatological conditions, chronic illnesses, and neurological disorders. The resultant supply scarcity and compromised regulatory oversight due to the disruption of medical investigations facilitated the emergence of WhatsApp groups. These groups, infiltrated by brokers and pharmacists, offer in-demand medications, including those expired by more than six months, at inflated prices. This situation, characterized by systemic chaos, lack of oversight, and supply shortages, presents patients with a distressing dilemma: endure the symptoms of their illness or risk consuming expired medication. Dr. Abdelhadi further stated: “Medications with high public demand, such as pregnancy-stabilizing drugs like Duphaston and hormone medications, are frequently bundled with less frequently needed items and sold at inflated prices.” Zakaria Abu Qamar, Acting Director General of Pharmacy at the Ministry of Health in Gaza, reported to Al-Watan that brief inspections of pharmacies conducted during the recent conflict revealed the presence of expired medications. These medications, which should have been isolated for disposal, were not properly segregated due to disruptions caused by the ongoing war, rendering designated disposal sites inaccessible. He noted that the Ministry is currently collecting these items at temporary locations pending access to appropriate disposal facilities. Abu Qamar stated that the Ministry has not received any formal complaints from the public via the Complaints Department or the Quality Department regarding the sale of expired medications in licensed pharmacies. He further noted that most licensed pharmacies are experiencing significant medication shortages. He identified unlicensed stalls and kiosks as a primary challenge, the oversight of which falls under the purview of the Ministry of Interior or the Ministry of Economy. Abu Qamar disclosed that the Ministry of Health is currently facing a critical drug shortage of 52%. He acknowledged that the Ministry is unable to eliminate the sale of medications by street vendors, who operate from temporary locations and obtain drugs through illicit channels from specific organizations. He assured that the Ministry takes prompt action upon receiving complaints from the public, implementing both technical and legal measures against offenders. He also indicated that approximately 80% of private sector pharmacies are non-operational, due to infrastructural damage from bombings or the displacement of pharmacy owners. He explained that commercial drug shipments have been suspended since the beginning of the conflict nearly two years ago, with medication entry limited to aid deliveries to hospitals, primary care centers, and medical and charitable organizations, excluding private sector pharmacies. Abu Qamar stated that the activities of the Ministry of Health inspectors from the Quality and Control Department have been significantly restricted during the ongoing conflict. This limitation is further exacerbated by the dwindling number of staff available in hospitals and primary care centers, as emergency departments are overwhelmed with a high influx of casualties. He stated that the Ministry of Health is actively disseminating warnings to the public via its websites and pharmacy-related social media groups regarding the risks associated with using expired medications, and has issued several public advisories. He affirmed that the General Directorate of Pharmacy addresses all received complaints with urgency. The Ministry is also collaborating with NGOs and UNRWA to provide medications for chronic illnesses and vulnerable populations, aiming to assist as many patients and displaced individuals as possible. He emphasized the Ministry of Health's continued monitoring of licensed pharmacies and cautioned against purchasing medications from unregulated kiosks or street vendors, even if the medications appear to be within their expiration date, due to the potential for spoilage resulting from improper storage. Rawan purchased expired baby formula for 100 shekels: “Doctors warned me my son could get poisoned.” The challenges facing Gazans extend beyond the risks associated with expired medication. In the narrow pathways of the densely populated Nuseirat refugee camp, nestled among the makeshift shelters of those displaced from their homes, the echoes of hunger and the wails of children filled the air. There, 26-year-old Rawan Ismail held her young son, Rakan, close, battling tears as she grappled with the harsh reality: “I gave him the expired formula because I have nothing else.” Rawan’s origins do not lie in this camp, and she never envisioned that displacement and starvation would be part of her everyday existence. A year and a half ago, relentless Israeli aggression forced her to abandon her home in Gaza City, seeking refuge within the Nuseirat camp, in search of safety and shelter. Today, she faces the heart-wrenching challenge of finding sufficient food to nourish her three-year-old son. In the face of severe food shortages and inflated prices, a mother in her twenties resorted to purchasing a 400-gram can of Materna Plus 2 formula for her infant, Rakan, from a small vendor within the camp in early August. The cost was 100 shekels, a significant increase from the pre-war price of 25 to 30 shekels. Driven by her child's distress, she stated, \"I wasn't thinking about the price. I was just looking for something to quiet Rakan's crying. He was screaming from hunger. All I wanted was for him to calm down, to feel full for even a moment, even if it was just for a short time.\" It was only after the purchase, as Rawan was about to open the can, that she observed the expiration date of February 2025. Nevertheless, she felt she had no other alternatives. Driven by her child's evident hunger, she resolved to proceed. With tears streaming down her face, she recounted her dilemma: \"I considered returning the product, but they wouldn’t refund me, and finding another can seemed impossible, so I made the choice to take it and feed him.\" Tragically, within a day of consuming the expired milk, Rakan experienced adverse effects: \"He developed severe diarrhea and intense stomach cramps, and cried incessantly.\" Rawan carried him from one place to another, desperately seeking medicine or basic care, but pharmacies were rarely open, and hospitals lacked the resources to adequately address the situation. \"The doctors cautioned me that my son might vomit or suffer from cramps, and, in the worst-case scenario, it could escalate to food poisoning. But I had no other options. Even if I resolved to stop giving it to him, what could I offer? Water? Clean water is also unavailable.\" She added sorrowfully, glancing at her weary child's face, \"I know giving him that milk is wrong.\" \"It's a heartbreaking end, but if you could see the hunger in his eyes, you would understand. I had to choose the lesser of two evils.\" Al-Turkmani: We haven't received any complaints or reports about the sale of expired medications. Bakr al-Turkmani, a lawyer and investigations coordinator at the Independent Commission for Human Rights (ICHR), the Ombudsman's Office in the Gaza Strip, has indicated that the Commission has not received any formal grievances or incident reports pertaining to the distribution of expired or counterfeit pharmaceutical products since the onset of hostilities. Mr. al-Turkmani further noted the absence of precise estimations or dependable data to accurately assess the prevalence of this issue, both within established pharmacies and in unregulated markets. He attributed this situation to the extensive disruption of Gaza's administrative and institutional framework, resulting from direct Israeli targeting, which has impacted all state institutions, including those responsible for accountability and regulatory oversight. Mr. al-Turkmani emphasized that the occupation’s military actions have specifically targeted members of the Legislative Council, civilian police personnel, and officials within various ministries and governmental agencies—the very entities tasked with monitoring, price regulation, and legal prosecution of offenders. Al-Turkmani asserted that the systematic nature of these attacks has eroded the accountability framework, fostering an environment of lawlessness. He posited that the objective is to destabilize the Gaza Strip by inciting disorder and disrupting civil peace and public order. He further noted that the targeting has extended beyond official institutions to encompass local and international aid workers and human rights advocates, including..."
+   ]
+  }
+ ]
+}
