@@ -326,7 +326,8 @@ def year_nav(cat, years, current=None):
 def para_section(title, text):
     if not text:
         return ""
-    return "<h2>%s</h2><p>%s</p>" % (esc(title), esc(text))
+    parts = [part.strip() for part in re.split(r"\n{2,}", str(text)) if part.strip()]
+    return "<h2>%s</h2>%s" % (esc(title), "".join("<p>%s</p>" % esc(part) for part in parts))
 
 
 def pick_ja(translated, original):
@@ -341,6 +342,15 @@ def render_awards(awards, i18n):
         small = "<small>%s</small>" % esc(a["category"]) if a.get("category") and cat_ja != a["category"] else ""
         items.append("<li>%s · %s\n      %s</li>" % (esc(RESULT_LABELS.get(a.get("result"), a.get("result"))), esc(label), small))
     return '<h2>部門・選考結果</h2><ul class="award-list">%s</ul>' % "".join(items)
+
+
+def render_refs(refs):
+    items = [r for r in refs or [] if isinstance(r, dict) and http_url(r.get("url"))]
+    if not items:
+        return ""
+    lis = "".join('<li><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></li>' % (
+        esc(r["url"]), esc(r.get("label") or r["url"])) for r in items)
+    return '<h2 class="ref-title">本文中のリンク</h2><ul class="ref-list">%s</ul>' % lis
 
 
 def render_dja_links(entry, details):
@@ -407,9 +417,13 @@ def render_entry_page(shell, i18n, cat, entry, details, years):
         links_html = render_dja_links(entry, details)
     else:
         urls = [u for u in (details.get("links") or ([entry["url"]] if entry.get("url") else [])) if http_url(u)]
+        notes = details.get("linkNotes") if isinstance(details.get("linkNotes"), dict) else {}
         links_html = "".join(
-            '<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>' % (esc(u), "作品を開く" if i == 0 else esc(u))
+            '<span class="link-row"><a href="%s" target="_blank" rel="noopener noreferrer">%s</a>%s</span>' % (
+                esc(u), "作品を開く" if i == 0 else esc(u),
+                ('<small class="link-note">%s</small>' % esc(notes[u])) if isinstance(notes.get(u), str) and notes[u] else "")
             for i, u in enumerate(urls))
+        links_html += render_refs(details.get("refs"))
 
     lang_line = ("言語: %s" % i18n.langs(langs)) if langs else ""
     page_title = "%s | %s %s" % (plain(title) or title, conf["name"], year)

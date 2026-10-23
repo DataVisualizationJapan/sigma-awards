@@ -616,6 +616,10 @@ h1 {
   white-space: pre-wrap;
 }
 
+.drawer__body p + p {
+  margin-top: 12px;
+}
+
 .drawer__links {
   display: grid;
   gap: 8px;
@@ -624,6 +628,27 @@ h1 {
 
 .drawer__links a {
   word-break: break-all;
+}
+
+.link-note {
+  margin-left: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.ref-title {
+  margin: 16px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.ref-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 20px;
 }
 
 @media (min-width: 768px) {
@@ -713,6 +738,9 @@ body[data-catalog="dja"] .card__title { overflow-wrap: anywhere; }
 .detail__tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
 .detail__body h2, .detail__source h2, .detail__links h2 { margin: 24px 0 8px; color: var(--text-secondary); font-size: 13px; font-weight: 600; }
 .detail__body p, .detail__source p { margin: 0; white-space: pre-wrap; }
+.detail__body p + p, .detail__source p + p { margin-top: 12px; }
+.detail__links .ref-title { margin: 16px 0 0; }
+.detail__links .ref-list { margin: 0; }
 .detail__source { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--border); }
 .detail__source .detail__source-title { color: var(--text); font-size: 15px; }
 .detail__links { display: grid; gap: 8px; margin-top: 24px; }

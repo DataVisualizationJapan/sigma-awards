@@ -13,7 +13,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sigma_text import blank_placeholder, decode_entities, normalize_links, read_text_lines  # noqa: E402
+from sigma_text import (  # noqa: E402
+    PARAGRAPH,
+    blank_placeholder,
+    collapse_spaces,
+    collect_link_notes,
+    decode_entities,
+    find_tag_like,
+    html_to_text,
+    merge_refs,
+    normalize_links,
+    read_text_lines,
+)
 from sigma import ledger as id_ledger  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +59,8 @@ COUNTRY_ALIASES = {
 }
 
 SUMMARY_LIMIT = 240
+# translate-ja.py cuts the card's summaryJa to this many characters.
+SUMMARY_JA_LIMIT = 120
 UNK = "<unk>"
 LINK_KEY = re.compile(r"link", re.I)
 PLACEHOLDER_FIELDS = {"org", "country", "authors", "tools", "impact"}
@@ -61,6 +74,17 @@ def first(*values: object) -> str:
         if text:
             return re.sub(r"\s+", " ", text)
     return ""
+
+
+def first_text(*values: object) -> tuple[str, list[dict]]:
+    """Like first(), for free-text fields: markup becomes paragraphs and links go to refs."""
+    for value in values:
+        raw = "" if value is None else str(value)
+        if raw.strip():
+            text, refs = html_to_text(raw)
+            if text:
+                return text, refs
+    return "", []
 
 
 def split_tags(value: object) -> list[str]:
@@ -78,16 +102,15 @@ def split_tags(value: object) -> list[str]:
 
 
 def collect_links(row: dict[str, str]) -> tuple[list[str], list[dict]]:
-    cells: list[str] = []
-    for key, value in row.items():
-        if not key or not value:
-            continue
-        if not LINK_KEY.search(key):
-            continue
-        url = str(value).strip()
-        if url.startswith("http"):
-            cells.append(url)
-    return normalize_links(cells)
+    return normalize_links(link_cells(row))
+
+
+def link_cells(row: dict[str, str]) -> list[str]:
+    return [
+        str(value).strip()
+        for key, value in row.items()
+        if key and value and LINK_KEY.search(key) and str(value).strip().startswith("http")
+    ]
 
 
 def normalize_country(value: str) -> str:
@@ -147,6 +170,7 @@ def clean_row(row: dict[str, str]) -> dict[str, str]:
 
 
 def compact_summary(text: str) -> str:
+    text = collapse_spaces(text)
     if len(text) <= SUMMARY_LIMIT:
         return text
     clipped = text[: SUMMARY_LIMIT - 1]
@@ -155,10 +179,29 @@ def compact_summary(text: str) -> str:
     return clipped + "…"
 
 
+def compact_ja(text: str) -> str:
+    text = collapse_spaces(text)
+    return text if len(text) <= SUMMARY_JA_LIMIT else text[: SUMMARY_JA_LIMIT - 1] + "…"
+
+
+QUOTE_MARK = re.compile(r"(?:^|\s)>(?=\s)")
+
+
+def comparable(text: str) -> str:
+    """One line, without quote marks: a "> " after a line break is dropped by the clean-up, but in
+    the old single-line source the same mark sits mid-text."""
+    return collapse_spaces(QUOTE_MARK.sub(" ", text))
+
+
 def source_text(field: str, value: object) -> str:
-    """Normalize an existing JSON source value the way the build does."""
-    text = first(decode_entities(str(value or "")))
-    return blank_placeholder(text) if field in PLACEHOLDER_FIELDS else text
+    """Normalize an existing JSON source value the way the build does, as one line for comparing."""
+    text = html_to_text(decode_entities(str(value or "")))[0]
+    return blank_placeholder(comparable(text)) if field in PLACEHOLDER_FIELDS else comparable(text)
+
+
+def ja_text(value: str) -> str:
+    """A kept translation gets the same markup clean-up as the source text."""
+    return html_to_text(decode_entities(value))[0]
 
 
 def carry_ja(
@@ -177,12 +220,12 @@ def carry_ja(
     new_source = target.get(source_key) or ""
     if not new_source:
         bucket["source-empty"] += 1
-    elif source_text(source_key, old_source) != new_source:
+    elif source_text(source_key, old_source) != comparable(new_source):
         bucket["source-changed"] += 1
     elif UNK in previous[key]:
         bucket["unk"] += 1
     else:
-        target[key] = decode_entities(previous[key])
+        target[key] = ja_text(previous[key])
         bucket["kept"] += 1
 
 
@@ -213,6 +256,11 @@ def merge_existing_ja(entries: list[dict], details_by_year: dict[int, dict[str, 
             previous = old_details.get(entry_id, {})
             for key, source_key in (("summaryJa", "summary"), ("impactJa", "impact"), ("juryJa", "jury")):
                 carry_ja(record, previous, previous.get(source_key), key, source_key, "details", stats)
+    for entry in entries:
+        # The card's summaryJa is the detail's, cut short; keep it that way after the clean-up.
+        full_ja = details_by_year[entry["year"]][entry["id"]].get("summaryJa") or entry.get("summaryJa")
+        if full_ja:
+            entry["summaryJa"] = compact_ja(full_ja)
     print("Japanese translations carried over (kept / dropped by reason):")
     for name in sorted(stats):
         bucket = stats[name]
@@ -225,12 +273,26 @@ def merge_existing_ja(entries: list[dict], details_by_year: dict[int, dict[str, 
 
 ENTRY_TAIL_KEYS = ("thumb", "titleJa", "summaryJa")
 DETAIL_TAIL_KEYS = ("summaryJa", "impactJa", "juryJa")
+DETAIL_TEXT_FIELDS = ("summary", "impact", "tools", "authors", "jury")
 
 
 def with_tail_order(record: dict, tail: tuple[str, ...]) -> dict:
     """Return record with the optional keys last, in a fixed order, so output bytes are stable."""
     head = {key: value for key, value in record.items() if key not in tail}
     return head | {key: record[key] for key in tail if key in record}
+
+
+def report_tag_like(details_by_year: dict[int, dict[str, dict]]) -> None:
+    """List markup-looking text the clean-up leaves alone, so a new kind of tag shows up in the build log."""
+    found: dict[str, list[str]] = {}
+    for records in details_by_year.values():
+        for entry_id, record in records.items():
+            for field in DETAIL_TEXT_FIELDS + tuple(f"{name}Ja" for name in DETAIL_TEXT_FIELDS):
+                for piece in find_tag_like(record.get(field) or ""):
+                    found.setdefault(piece[:70], []).append(f"{entry_id}.{field}")
+    print(f"Tag-like text left as written: {sum(len(v) for v in found.values())}")
+    for piece, where in sorted(found.items()):
+        print(f"  {piece!r} x{len(where)} e.g. {where[0]}")
 
 
 def source_commit() -> str | None:
@@ -270,12 +332,20 @@ def build() -> None:
             row = clean_row(raw_row)
             title = first(row.get("Project title"))
             result_key, result_label = normalize_result(row.get("Results"))
-            summary = first(
+            summary, summary_refs = first_text(
                 row.get("A short description of the project"),
                 row.get("Description of your portfolio"),
                 row.get("Description portfolio"),
             )
+            impact, impact_refs = first_text(
+                row.get("What was the impact of the project?"),
+                row.get("What was the impact of the project"),
+            )
+            tools, tools_refs = first_text(row.get("Technologies/tools used"), row.get("Technologies tools used"))
+            authors, authors_refs = first_text(row.get("Who made this project"), row.get("Authors"))
+            jury, jury_refs = first_text(row.get("Jury's comments"))
             links, fixes = collect_links(row)
+            link_notes = collect_link_notes(link_cells(row))
             url_fixes.extend({"id": entry_id, "field": "links", **fix} for fix in fixes)
             tags = split_tags(row.get("Tags"))
             langs = first(row.get("Language"), row.get("Languages"))
@@ -295,30 +365,28 @@ def build() -> None:
                     "url": links[0] if links else "",
                 }
             )
-            details_by_year.setdefault(year, {})[entry_id] = {
+            record = {
                 "summary": summary,
-                "impact": blank_placeholder(
-                    first(
-                        row.get("What was the impact of the project?"),
-                        row.get("What was the impact of the project"),
-                    )
-                ),
-                "tools": blank_placeholder(
-                    first(
-                        row.get("Technologies/tools used"),
-                        row.get("Technologies tools used"),
-                    )
-                ),
-                "authors": blank_placeholder(first(row.get("Who made this project"), row.get("Authors"))),
+                "impact": blank_placeholder(impact),
+                "tools": blank_placeholder(tools),
+                "authors": blank_placeholder(authors),
                 "langs": first(row.get("Language"), row.get("Languages")),
                 "date": first(row.get("Publication date")),
                 "size": first(row.get("Size"), row.get("Organisation size")),
-                "jury": first(row.get("Jury's comments")),
+                "jury": jury,
                 "links": links,
             }
+            refs = merge_refs([summary_refs, impact_refs, tools_refs, authors_refs, jury_refs])
+            if refs:
+                record["refs"] = refs
+            notes = {url: note for url, note in link_notes.items() if url in links}
+            if notes:
+                record["linkNotes"] = notes
+            details_by_year.setdefault(year, {})[entry_id] = record
         counts[year] += sequential
 
     merge_existing_ja(index_entries, details_by_year)
+    report_tag_like(details_by_year)
     index_entries = [with_tail_order(entry, ENTRY_TAIL_KEYS) for entry in index_entries]
     details_by_year = {
         year: {entry_id: with_tail_order(record, DETAIL_TAIL_KEYS) for entry_id, record in records.items()}

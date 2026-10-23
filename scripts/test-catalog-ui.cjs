@@ -344,6 +344,50 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.keyboard.press('Escape');
     await drawerClosed();
 
+    // Body text is shown as paragraphs, links found in the text are listed, and link notes sit beside their link.
+    await visit('/?year=2020&locale=src#e=2020-s-0130');
+    await page.locator('#drawer-links .ref-list a').first().waitFor();
+    const bodyParagraphs = await page.locator('#drawer-body p').allInnerTexts();
+    assert.ok(bodyParagraphs.length >= 8, 'Body text is split into paragraphs');
+    assert.ok(bodyParagraphs.includes('Dallas'));
+    assert.ok(bodyParagraphs.every(text => text.trim() && !/\n\n/.test(text) && !/<\/?(?:a|ul|h4)\b/.test(text)));
+    assert.equal(await page.locator('#drawer-links .ref-title').innerText(), '本文中のリンク');
+    const refLinks = await page.locator('#drawer-links .ref-list a').evaluateAll(as => as.map(a => ({
+      href: a.getAttribute('href'), text: a.textContent, target: a.target, rel: a.rel })));
+    assert.ok(refLinks.length > 5);
+    for (const link of refLinks) {
+      assert.match(link.href, /^https?:\/\//);
+      assert.equal(link.target, '_blank');
+      assert.equal(link.rel, 'noopener noreferrer');
+    }
+    assert.ok(refLinks.some(l => l.text === 'Database of Road Transportation Emissions' && l.href.startsWith('https://daac.ornl.gov/')));
+    assert.ok(refLinks.some(l => l.text === l.href), 'A ref without a label shows its URL');
+    assert.equal(await page.locator('#drawer-links .link-note').count(), 0);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+
+    await visit('/?year=2020#e=2020-s-0130');
+    await page.locator('#drawer-links .ref-list a').first().waitFor();
+    await page.locator('#drawer-source > summary').click();
+    assert.ok((await page.locator('#drawer-source-body p').allInnerTexts()).includes('Dallas'), 'The original section is split into paragraphs too');
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+
+    await visit('/?year=2022#e=2022-s-0269');
+    await page.locator('#drawer-links .link-note').first().waitFor();
+    const noteRow = page.locator('#drawer-links .link-row', { has: page.locator('.link-note') }).first();
+    assert.equal(await noteRow.locator('.link-note').innerText(), 'Passcode: ^6@V#ytf');
+    assert.match(await noteRow.locator('a').getAttribute('href'), /^https:\/\/kqed\.zoom\.us\/rec\/play\//);
+    assert.equal(await page.locator('#drawer-links .link-row').count(), 7);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+
+    await visit('/?year=2020&locale=src#e=2020-s-0168');
+    await page.locator('#drawer-links .link-note').first().waitFor();
+    assert.match(await page.locator('#drawer-links .link-note').allInnerTexts().then(t => t.join('|')), /\(password: Australiatalks\)/);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+
     // Malformed #e= values are ignored without an error banner.
     await visit('/#e=%E0');
     assert.equal(await page.locator('#drawer').isVisible(), false);

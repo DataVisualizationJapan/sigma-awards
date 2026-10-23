@@ -43,7 +43,7 @@
 ## データ（JSON）
 
 - [Sigma Awards 作品一覧](https://sigma-awards.data-visualization.jp/data/entries.json): 全3,899件の概要（id、年、種別、タイトル、日本語タイトル、組織、国、結果、タグ、概要、日本語概要、URL）
-- [Sigma Awards 年別詳細（2020）](https://sigma-awards.data-visualization.jp/data/details-2020.json): id をキーにした詳細（概要、インパクト、使用ツール、制作者、審査員コメント、リンク、日本語訳）。2021〜2026年も同じ形式で `details-2021.json` 〜 `details-2026.json`
+- [Sigma Awards 年別詳細（2020）](https://sigma-awards.data-visualization.jp/data/details-2020.json): id をキーにした詳細（概要、インパクト、使用ツール、制作者、審査員コメント、リンク、日本語訳）。本文は段落を `\n\n` で区切ったプレーンテキストで、HTMLタグやMarkdownは含みません。本文中にあったリンクは `refs`（`[{"url", "label"}]`、`label` はリンクの文字で、URLと同じか無いときは空）に、リンク欄のURLの後ろにあった説明（パスワードなど）は `linkNotes`（`{URL: 注記}`）にあり、該当がない作品にはこれらのキーがありません。2021〜2026年も同じ形式で `details-2021.json` 〜 `details-2026.json`
 - [Sigma Awards 年別詳細（2021）](https://sigma-awards.data-visualization.jp/data/details-2021.json)
 - [Sigma Awards 年別詳細（2022）](https://sigma-awards.data-visualization.jp/data/details-2022.json)
 - [Sigma Awards 年別詳細（2023）](https://sigma-awards.data-visualization.jp/data/details-2023.json)
