@@ -23,6 +23,7 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
   page.on('response', response => {
     if (response.url().startsWith(base) && response.status() >= 400) localFailures.push(response.url());
   });
+  const drawerClosed = () => page.waitForFunction(() => document.querySelector('#drawer').hidden);
   async function visit(url) {
     await page.goto(`${base}${url}`);
     await page.waitForLoadState('networkidle');
@@ -80,6 +81,7 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
       assert.ok(await page.locator('#drawer-thumb').evaluate(img => img.naturalWidth > 0));
     }
     await page.keyboard.press('Escape');
+    await drawerClosed();
     assert.equal(await page.locator('#drawer').isVisible(), false);
     await page.locator('#locale-chips [data-locale="src"]').click();
     assert.match(page.url(), /locale=src/);
@@ -96,6 +98,7 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     assert.notEqual(await page.evaluate(() => document.activeElement.id), 'drawer-close');
     assert.equal(await page.evaluate(() => !!document.activeElement.closest('#drawer')), true);
     await page.keyboard.press('Escape');
+    await drawerClosed();
     assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
 
     await visit('/dja/?year=9999&page=9999');
@@ -109,6 +112,7 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.getByText('詳細テキストを読み込めませんでした。', { exact: false }).waitFor();
     assert.ok(await page.locator('#drawer .source-list a').count() > 0);
     await page.keyboard.press('Escape');
+    await drawerClosed();
     await page.unroute('**/data/dja/details-2013.json');
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -124,6 +128,7 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.screenshot({ path: '/tmp/dja-mobile-detail.png' });
     await page.keyboard.press('Escape');
+    await drawerClosed();
 
     await page.setViewportSize({ width: 1440, height: 1000 });
     await visit('/');
@@ -133,6 +138,194 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.locator('#drawer-body p').first().waitFor();
     assert.equal(await page.locator('#drawer').isVisible(), true);
     await page.keyboard.press('Escape');
+    await drawerClosed();
+
+    // Entry-page links: cards link to entry pages, the drawer shows the entry URL, and the catalog URL is restored.
+    for (const [prefix, query] of [['', '?year=2024&result=winner&page=2'], ['/dja', '?year=2019&page=2']]) {
+      const root = prefix ? `${prefix}/` : '/';
+      await visit(`${root}${query}`);
+      const first = page.locator('#card-grid .card').first();
+      const id = await first.getAttribute('data-id');
+      const expected = `${prefix}/entries/${id}/`;
+      assert.equal(await first.locator('.card__link').getAttribute('href'), expected);
+      assert.equal(await first.locator('.card__detail').getAttribute('href'), expected);
+      const listPath = new URL(page.url()).pathname + new URL(page.url()).search;
+      await first.locator('.card__detail').click();
+      await page.locator('#drawer-body h3').first().waitFor();
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).search + new URL(page.url()).hash, expected);
+      assert.ok((await page.locator('#drawer-body').innerText()).length > 50, 'Detail text should load');
+      const hasThumb = await page.locator('#drawer-thumb').isVisible();
+      if (hasThumb) {
+        await page.locator('#drawer-thumb').evaluate(img => img.decode());
+        assert.ok(await page.locator('#drawer-thumb').evaluate(img => img.naturalWidth > 0));
+      }
+      await page.keyboard.press('Escape');
+    await drawerClosed();
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).search + new URL(page.url()).hash, listPath);
+      // Title link opens the drawer too.
+      await first.locator('.card__link').click();
+      await page.locator('#drawer').waitFor({ state: 'visible' });
+      assert.equal(new URL(page.url()).pathname, expected);
+      await page.locator('#drawer-close').click();
+      await drawerClosed();
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).search, listPath);
+      // Direct #e= still opens the drawer.
+      await page.goto(`${base}${root}#e=${id}`);
+      await page.locator('#drawer').waitFor({ state: 'visible' });
+      assert.equal(new URL(page.url()).pathname + new URL(page.url()).hash, expected);
+      await page.keyboard.press('Escape');
+    await drawerClosed();
+      assert.equal(new URL(page.url()).pathname, root);
+      assert.equal(new URL(page.url()).hash, '');
+    }
+
+    // Language switch while the drawer is open keeps the entry path; closing restores the new catalog URL.
+    await visit('/dja/?year=2019');
+    const switchId = await page.locator('#card-grid .card').first().getAttribute('data-id');
+    await page.locator('#card-grid .card__detail').first().click();
+    await page.locator('#drawer-body p').first().waitFor();
+    await page.locator('#locale-chips [data-locale="src"]').evaluate(el => el.click());
+    assert.equal(new URL(page.url()).pathname + new URL(page.url()).search, `/dja/entries/${switchId}/`);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.match(page.url(), /\/dja\/\?.*locale=src/);
+
+    // Keyboard: Tab to the detail link, Enter opens, Escape closes and returns focus.
+    await visit('/');
+    await page.locator('#card-grid .card__detail').first().focus();
+    await page.keyboard.press('Enter');
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
+    assert.equal(await page.evaluate(() => document.activeElement.closest('.card').dataset.id === document.querySelector('.card').dataset.id), true);
+
+    // History: year chip (pushState) -> open -> close button / Back / Forward.
+    const rel = () => new URL(page.url()).pathname + new URL(page.url()).search;
+    for (const mode of ['button', 'back']) {
+      await visit('/?year=2026');
+      await page.locator('#year-chips [data-year="2024"]').click();
+      assert.equal(rel(), '/?year=2024');
+      const histId = await page.locator('#card-grid .card').first().getAttribute('data-id');
+      await page.locator('#card-grid .card__detail').first().click();
+      await page.locator('#drawer-body p').first().waitFor();
+      assert.equal(rel(), `/entries/${histId}/`);
+      if (mode === 'button') await page.locator('#drawer-close').click();
+      else await page.goBack();
+      await drawerClosed();
+      assert.equal(rel(), '/?year=2024');
+      await page.waitForFunction(id => document.activeElement?.dataset?.id === id && document.activeElement.className === 'card__detail', histId);
+      if (mode === 'back') {
+        await page.goForward();
+        await page.locator('#drawer').waitFor({ state: 'visible' });
+        assert.equal(rel(), `/entries/${histId}/`);
+        await page.keyboard.press('Escape');
+        await drawerClosed();
+        assert.equal(rel(), '/?year=2024');
+      }
+    }
+
+    // Switching to the source language while the drawer is open survives closing.
+    await visit('/?year=2024');
+    await page.locator('#card-grid .card__detail').first().click();
+    await page.locator('#drawer-body p').first().waitFor();
+    await page.locator('#locale-chips [data-locale="src"]').evaluate(el => el.click());
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.match(page.url(), /locale=src/);
+    assert.equal(await page.locator('[data-locale="src"]').getAttribute('aria-pressed'), 'true');
+
+    // Opening by #e= replaces the URL and closing restores the catalog URL.
+    await visit('/?year=2024');
+    const hashId = await page.locator('#card-grid .card').first().getAttribute('data-id');
+    await page.goto(`${base}/?year=2024#e=${hashId}`);
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    assert.equal(rel(), `/entries/${hashId}/`);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.equal(rel(), '/?year=2024');
+    assert.equal(new URL(page.url()).hash, '');
+
+    // Margin click pushes a history entry like the links do: Back, then Back again.
+    await visit('/?year=2026');
+    await page.locator('#year-chips [data-year="2024"]').click();
+    await page.locator('#card-grid .card__summary').first().click();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    assert.match(rel(), /^\/entries\//);
+    await page.goBack();
+    await drawerClosed();
+    assert.equal(rel(), '/?year=2024');
+    await page.goBack();
+    await page.waitForFunction(() => location.search === '?year=2026');
+    assert.equal(rel(), '/?year=2026');
+
+    // Opening by #e= from body focus: Escape returns focus to that card's detail link.
+    await page.goto('about:blank');
+    await page.goto(`${base}/?year=2024#e=2024-s-0010`);
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__detail');
+    assert.equal(await page.evaluate(() => document.activeElement.closest('.card')?.dataset.id), '2024-s-0010');
+
+    // Title link opens the drawer and focus returns to the title link, also after a re-render (Back).
+    await visit('/?year=2024');
+    await page.locator('#card-grid .card__link').first().click();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.goBack();
+    await drawerClosed();
+    await page.waitForFunction(() => document.activeElement?.className === 'card__link');
+
+    // Before data loads, card links navigate normally to the entry page.
+    {
+      const early = await context.newPage();
+      await early.route('**/data/entries.json', async route => { await new Promise(r => setTimeout(r, 2500)); route.continue(); });
+      await early.route('**/entries/2024-s-0010/', route => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>entry</title>' }));
+      await early.goto(`${base}/`, { waitUntil: 'domcontentloaded' });
+      await early.evaluate(() => {
+        document.querySelector('#card-grid').innerHTML = '<article class="card" data-id="2024-s-0010"><h2 class="card__title"><a class="card__link" href="/entries/2024-s-0010/">t</a></h2></article>';
+      });
+      await early.locator('.card__link').click();
+      await early.waitForURL('**/entries/2024-s-0010/');
+      await early.close();
+    }
+
+    // Margin click: after closing, focus is on that card's title link.
+    await visit('/?year=2024');
+    await page.locator('#card-grid .card__summary').first().click();
+    await page.locator('#drawer').waitFor({ state: 'visible' });
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+    assert.equal(await page.evaluate(() => document.activeElement.className), 'card__link');
+
+    // Default year follows the newest year in the data when the page has no data-default-year.
+    {
+      const future = await context.newPage();
+      await future.route('**/data/entries.json', async route => {
+        const response = await route.fetch();
+        const payload = await response.json();
+        payload.years.push(2027);
+        payload.entries.push({ ...payload.entries[0], id: '2027-s-9999', year: 2027 });
+        route.fulfill({ response, json: payload });
+      });
+      await future.goto(`${base}/`);
+      await future.locator('#card-grid .card').first().waitFor();
+      assert.equal(await future.locator('#year-chips [aria-pressed="true"]').innerText(), '2027');
+      await future.close();
+    }
+
+    // Malformed #e= values are ignored without an error banner.
+    await visit('/#e=%E0');
+    assert.equal(await page.locator('#drawer').isVisible(), false);
+    assert.equal(await page.locator('#error').isVisible(), false);
+
+    // Screenshots for visual comparison.
+    await page.screenshot({ path: '/tmp/sigma-desktop.png' });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await visit('/');
+    await page.screenshot({ path: '/tmp/sigma-mobile.png' });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await visit('/');
     await page.getByRole('link', { name: 'Data Journalism Awards', exact: true }).click();
     await page.waitForLoadState('networkidle');
     assert.equal(new URL(page.url()).pathname, '/dja/');
