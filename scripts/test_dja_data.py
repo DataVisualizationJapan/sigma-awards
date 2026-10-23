@@ -132,6 +132,23 @@ class DjaDataTests(unittest.TestCase):
             for match in pattern.finditer(path.read_text()):
                 self.fail(f'{path.name}: leftover entity {match.group(0)!r}')
 
+    def test_no_unk_placeholders_or_markup_in_dja_json(self):
+        placeholders = {'none', 'n/a'}
+        tag = re.compile(r'</?[A-Za-z][^>]*>|<!--')
+        for entry in self.entries:
+            self.assertNotIn(entry['org'].strip().lower(), placeholders, entry['id'])
+            for field in ('title', 'titleJa', 'org', 'summary', 'summaryJa'):
+                self.assertIsNone(tag.search(entry.get(field) or ''), (entry['id'], field))
+        for year, records in self.details.items():
+            for entry_id, record in records.items():
+                for field in ('authors', 'tools'):
+                    self.assertNotIn((record.get(field) or '').strip().lower(), placeholders, (entry_id, field))
+                for field in ('summary', 'summaryJa'):
+                    self.assertIsNone(tag.search(record.get(field) or ''), (entry_id, field))
+        for path in sorted((ROOT / 'public/data/dja').glob('*.json')):
+            if path.name != 'thumbnails-report.json':
+                self.assertNotIn('<unk>', path.read_text(), path.name)
+
     def test_ampersand_summary_correction_matches_output(self):
         corrections = json.loads((ROOT / 'scripts/dja/corrections.json').read_text())
         summary = corrections['records']['2014|Across U.S. Companies, Tax Rates Vary Greatly']['summary']
