@@ -62,6 +62,22 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
     await page.waitForLoadState('networkidle');
     assert.equal(await page.locator('#category').inputValue(), shortlisted.category);
 
+    // 2015: lowercase "small newsroom, large newsroom" is translated without leftovers.
+    const viz2015 = entries.find(e => e.id === 'dja-2015-16dc33bb5832');
+    await visit('/dja/?year=2015');
+    const card2015 = page.locator(`.card[data-id="${viz2015.id}"]`);
+    await card2015.waitFor();
+    const cardCategory = await card2015.locator('.card__category').innerText();
+    assert.match(cardCategory, /データ可視化 \(小規模編集部, 大規模編集部\)/);
+    assert.doesNotMatch(cardCategory, /newsroom/i);
+    await card2015.locator('.card__detail').click();
+    await page.locator('#drawer .award-list').waitFor();
+    const awardText = await page.locator('#drawer .award-list').innerText();
+    assert.match(awardText, /データ可視化 \(小規模編集部, 大規模編集部\)/);
+    assert.doesNotMatch(awardText.split('\n')[0], /newsroom/i);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
+
     await visit('/dja/?year=2019&kind=individual');
     assert.ok(await page.locator('.card').count() > 0);
     assert.equal(await page.locator('#kind').inputValue(), 'individual');
@@ -313,6 +329,20 @@ const entries = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/
       assert.equal(await future.locator('#year-chips [aria-pressed="true"]').innerText(), '2027');
       await future.close();
     }
+
+    // Unparseable links (2026-s-0045 has body text in a URL) are not rendered as links.
+    await visit('/?year=2026#e=2026-s-0045');
+    await page.locator('#drawer-links a').first().waitFor();
+    const drawerHrefs = await page.locator('#drawer-links a').evaluateAll(as => as.map(a => a.getAttribute('href')));
+    assert.ok(drawerHrefs.length > 0);
+    for (const href of drawerHrefs) {
+      assert.match(href, /^https?:\/\//);
+      assert.doesNotThrow(() => new URL(href));
+      assert.doesNotMatch(href, /\s/);
+    }
+    assert.equal(await page.locator('#drawer-links').innerText().then(t => t.includes('Death brokers')), false);
+    await page.keyboard.press('Escape');
+    await drawerClosed();
 
     // Malformed #e= values are ignored without an error banner.
     await visit('/#e=%E0');
