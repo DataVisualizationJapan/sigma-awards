@@ -1,6 +1,7 @@
 """Regression tests for archived facts, deduplication, and offline reproducibility."""
 import importlib.util
 import json
+import re
 import unittest
 import hashlib
 import tempfile
@@ -124,6 +125,40 @@ class DjaDataTests(unittest.TestCase):
             manifest.write_text(json.dumps({'images': {entry['id']: broken}}))
             with self.assertRaisesRegex(ValueError, 'Missing or modified thumbnail'):
                 attach_thumbnails(self.entries, self.details, manifest)
+
+    def test_html_entities_are_not_present(self):
+        """No HTML entities like &amp; &lt; &gt; etc. should remain in DJA JSON files."""
+        entity_pattern = r'&(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);'
+
+        # Check entries.json
+        for entry in self.entries:
+            for key, value in entry.items():
+                if isinstance(value, str):
+                    matches = re.findall(entity_pattern, value)
+                    self.assertFalse(matches, f"Found HTML entities in entries[{entry['id']}][{key}]: {set(matches)}")
+
+        # Check details files
+        for year, details in self.details.items():
+            for entry_id, entry_data in details.items():
+                for key, value in entry_data.items():
+                    if isinstance(value, str):
+                        matches = re.findall(entity_pattern, value)
+                        self.assertFalse(matches, f"Found HTML entities in details-{year}[{entry_id}][{key}]: {set(matches)}")
+
+    def test_corrections_are_applied_in_output(self):
+        """Verify that corrections from corrections.json are reflected in output JSON files."""
+        # Test the known correction for dja-2014-85792ecbf139
+        row = self.entry(2014, 'Across U.S. Companies, Tax Rates Vary Greatly')
+        self.assertEqual(row['id'], 'dja-2014-85792ecbf139')
+
+        # Check that the summary has been corrected (S&P not S.&amp;P.)
+        self.assertIn('S&P 500', row['summary'])
+        self.assertNotIn('&amp;', row['summary'])
+
+        # Verify the correction is also in details
+        details_entry = self.details[2014][row['id']]
+        self.assertIn('S&P 500', details_entry['summary'])
+        self.assertNotIn('&amp;', details_entry['summary'])
 
     @unittest.skipUnless(build_dja.DEFAULT_SOURCE.exists(), 'Supplied archive is not installed')
     def test_rebuild_never_opens_network_and_is_deterministic(self):

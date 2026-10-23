@@ -1,5 +1,9 @@
 {
   "records": {
+    "2014|Across U.S. Companies, Tax Rates Vary Greatly": {
+      "summary": "Last week, in a Congressional hearing, Apple got grilled for its low-tax strategy. But not every business can copy that approach. Here is a look at what S&P 500 companies paid in corporate...",
+      "notes": "Original HTML was double-escaped, contained &amp;P instead of &P in 'S&P 500'"
+    },
     "2017|Investigative Journalism for Ctrl+X": {
       "org": "Abraji – Brazilian Association for Investigative Journalism"
     },
