@@ -288,7 +288,7 @@ function renderCountries() {
 }
 
 function categoryJa(value) {
-  if (!IS_DJA) return value;
+  if (!IS_DJA || !value) return value;
   const labels = [
     [/Data story or group of stories on a single topic, online or print/i, "単一テーマのデータストーリー（オンライン・紙媒体）"],
     [/Data-driven investigation, which uses data collection and analysis/i, "データ収集・分析による調査報道"],
@@ -328,8 +328,7 @@ function categoryJa(value) {
     if (pattern.test(value)) { translated = value.replace(pattern, label); break; }
   }
   return translated.replace(/big media/g, "大規模媒体").replace(/small media/g, "小規模媒体")
-    .replace(/Large [Nn]ewsroom|large/g, "大規模編集部")
-    .replace(/Small [Nn]ewsroom|small/g, "小規模編集部")
+    .replace(/\b(?:small|large) newsroom\b|\b(?:small|large)\b/gi, (m) => (/^small/i.test(m) ? "小規模編集部" : "大規模編集部"))
     .replace(/national\/international/g, "国内・国際").replace(/local\/regional/g, "地方・地域");
 }
 
@@ -361,7 +360,7 @@ function renderCards() {
         .slice(0, 4)
         .map((tag) => `<span class="tag">${escapeHtml(displayTag(tag))}</span>`)
         .join("");
-      const url = entry.url
+      const url = isHttpUrl(entry.url)
         ? `<a class="card__open" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer">作品を開く</a>`
         : "";
       const langs = displayLangs(entry.langs);
@@ -524,7 +523,7 @@ function renderDrawer(entry, details = {}) {
     restoreDrawerFocus();
     return;
   }
-  const links = details.links?.length ? details.links : entry.url ? [entry.url] : [];
+  const links = (details.links?.length ? details.links : entry.url ? [entry.url] : []).filter(isHttpUrl);
   els.drawerLinks.innerHTML = links
     .map(
       (url, index) =>
@@ -534,16 +533,20 @@ function renderDrawer(entry, details = {}) {
   restoreDrawerFocus();
 }
 
-function safeLink(url, label) {
+function isHttpUrl(url) {
   try {
-    if (!["http:", "https:"].includes(new URL(url).protocol)) return "";
-  } catch { return ""; }
+    return ["http:", "https:"].includes(new URL(url).protocol);
+  } catch { return false; }
+}
+
+function safeLink(url, label) {
+  if (!isHttpUrl(url)) return "";
   return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
 }
 
 function renderAwards(awards) {
   return `<h3>部門・選考結果</h3><ul class="award-list">${awards.map((award) =>
-    `<li>${escapeHtml(RESULT_LABELS[award.result])} · ${escapeHtml(isJa() ? categoryJa(award.category) : award.category || "部門記載なし")}
+    `<li>${escapeHtml(RESULT_LABELS[award.result])} · ${escapeHtml((isJa() ? categoryJa(award.category) : award.category) || "部門記載なし")}
       ${isJa() && categoryJa(award.category) !== award.category ? `<small>${escapeHtml(award.category)}</small>` : ""}</li>`
   ).join("")}</ul>`;
 }

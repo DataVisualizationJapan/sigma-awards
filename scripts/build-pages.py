@@ -127,8 +127,10 @@ def category_ja(value):
                 translated = pattern.sub(lambda _m: label, value, count=1)
                 break
     translated = translated.replace("big media", "大規模媒体").replace("small media", "小規模媒体")
-    translated = re.sub(r"Large [Nn]ewsroom|large", "大規模編集部", translated)
-    translated = re.sub(r"Small [Nn]ewsroom|small", "小規模編集部", translated)
+    translated = re.sub(
+        r"\b(?:small|large) newsroom\b|\b(?:small|large)\b",
+        lambda m: "小規模編集部" if m.group(0).lower().startswith("small") else "大規模編集部",
+        translated, flags=re.I)
     return translated.replace("national/international", "国内・国際").replace("local/regional", "地方・地域")
 
 

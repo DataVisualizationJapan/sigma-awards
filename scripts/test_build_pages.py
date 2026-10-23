@@ -196,6 +196,37 @@ class BuildPagesTests(unittest.TestCase):
             bp.main(["--public-dir", str(self.public), "--output-dir", str(self.tmp / "d3")])
 
 
+class CategoryJaTests(unittest.TestCase):
+    def test_expected_values(self):
+        self.assertEqual(bp.category_ja("Data visualisation of the year (small newsroom, large newsroom)"),
+                         "データ可視化 (小規模編集部, 大規模編集部)")
+        self.assertEqual(bp.category_ja("Small Newsroom"), "小規模編集部")
+        self.assertEqual(bp.category_ja("Largest award"), "Largest award")
+        self.assertEqual(bp.category_ja(None), "")
+        self.assertEqual(bp.category_ja(""), "")
+
+    def test_matches_js_for_all_dja_categories(self):
+        import shutil
+        import subprocess
+        if not shutil.which("node"):
+            self.skipTest("node not available")
+        entries = json.loads((ROOT / "public/data/dja/entries.json").read_text(encoding="utf-8"))["entries"]
+        cats = sorted({a["category"] for e in entries for a in e.get("awards") or [] if a.get("category") is not None})
+        js = r"""
+const fs = require('fs');
+const src = fs.readFileSync(process.argv[1], 'utf8');
+const fn = src.match(/function categoryJa\(value\) \{[\s\S]*?\n\}\n/)[0];
+const IS_DJA = true;
+const categoryJa = eval('(' + fn.replace('function categoryJa', 'function') + ')');
+const cats = JSON.parse(fs.readFileSync(0, 'utf8'));
+console.log(JSON.stringify(cats.map(categoryJa)));
+"""
+        r = subprocess.run(["node", "-e", js, str(ROOT / "public/js/app.js")], input=json.dumps(cats),
+                           capture_output=True, text=True, check=True)
+        self.assertEqual(json.loads(r.stdout), [bp.category_ja(c) for c in cats])
+        self.assertGreater(len(cats), 50)
+
+
 class RealDataTests(unittest.TestCase):
     """Checks against known problem records in the committed catalog."""
 
