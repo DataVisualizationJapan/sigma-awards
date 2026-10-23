@@ -28,7 +28,7 @@ python3 -m http.server 4173 --directory public
 
 ### 翻訳の `<unk>` 対策（ローカルで実行）
 
-NLLBの語彙外の文字（原文の引用符・ダッシュ・`₦` など、出力側の珍しい漢字）が `<unk>` として訳に残ることがあります。`translate-ja.py` は、入力の記号を翻訳前に正規化（JSONの原文は変更しません）し、訳に `<unk>` が出たらキャッシュへ保存せず、beamを広げた再試行、Ollama（起動していれば）、補正辞書 `scripts/ja-unk-corrections.json` の順に試します。それでも残る訳は付けず、原文を表示します（`.tmp-data/ja-failed.json` に記録し、`--retry-failed` で再挑戦できます）。
+NLLBの語彙外の文字（原文の引用符・ダッシュ・`₦` など、出力側の珍しい漢字）が `<unk>` として訳に残ることがあります。`translate-ja.py` は、入力の記号を翻訳前に正規化（JSONの原文は変更しません）し、訳に `<unk>` が出たらキャッシュへ保存せず、`disable_unk` つきでbeamを広げた再試行、Ollama（`--ollama-retry` を付けたときだけ）、補正辞書（適用時にログへ出ます） `scripts/ja-unk-corrections.json` の順に試します。それでも残る訳は付けず、原文を表示します（`.tmp-data/ja-failed.json` に記録し、`--retry-failed` で再挑戦できます）。
 
 ```bash
 # 1. 既存の壊れた訳を、キャッシュと public/data/*.json から削除

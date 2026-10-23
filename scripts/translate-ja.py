@@ -19,6 +19,7 @@ FAILED_PATH = ROOT / ".tmp-data" / "ja-failed.json"
 CORRECTIONS_PATH = ROOT / "scripts" / "ja-unk-corrections.json"
 UNK = "<unk>"
 RETRY_BEAM = 5
+OLLAMA_MIN_JA_RATIO = 0.3
 
 JP_RE = re.compile(r"[\u3040-\u30ff\u4e00-\u9fff]")
 SENT_SPLIT = re.compile(r"(?<=[.!?。！？…])\s+")
@@ -90,11 +91,13 @@ def detect_lang(text: str, hint: str = "") -> str:
 _PUNCT_MAP = {
     **dict.fromkeys("\u201e\u201c\u201d\u00ab\u00bb", '"'),
     **dict.fromkeys("\u2018\u2019\u201a", "'"),
-    **dict.fromkeys("\u2013\u2014", "-"),
+    **dict.fromkeys("\u2010\u2011\u2012\u2013\u2015\u2212", "-"),
+    "\u2014": " - ",
     "\u2026": "...",
     "\u00a0": " ",
     "\u20a6": "NGN ",
-    **dict.fromkeys("\u200b\u200c\u200d\u200e\u200f\u2060\ufeff", None),
+    # ZWNJ/ZWJ (U+200C/200D) are kept: they join or split letters in Persian, Hindi, etc.
+    **dict.fromkeys("\u200b\u200e\u200f\u2060\u2066\u2067\u2068\u2069\ufeff", None),
 }
 _PUNCT_RE = re.compile("[" + "".join(_PUNCT_MAP) + "]")
 
@@ -150,10 +153,17 @@ def load_corrections(path: Path | None = None) -> dict[str, str]:
     return {k: v for k, v in data.items() if k and isinstance(v, str)}
 
 
-def apply_corrections(text: str, corrections: dict[str, str]) -> str:
+def apply_corrections(text: str, corrections: dict[str, str], log=None) -> str:
     text = re.sub(r"\s*" + re.escape(UNK) + r"\s*", UNK, text)
     for broken in sorted(corrections, key=len, reverse=True):
-        text = text.replace(broken, corrections[broken])
+        fixed = corrections[broken]
+        if log is not None:
+            start = 0
+            while (at := text.find(broken, start)) != -1:
+                end = at + len(broken)
+                log(f"correction {broken!r} -> {fixed!r} in ...{text[max(0, at - 12):end + 12]}...")
+                start = end
+        text = text.replace(broken, fixed)
     return text
 
 
@@ -222,13 +232,13 @@ def set_or_drop(target: dict, key: str, source: dict, source_key: str) -> None:
 def patch_into_files(entries: list[dict], details_by_year: dict[int, dict]) -> None:
     payload = load_json(DATA / "entries.json")
     updates = {entry["id"]: entry for entry in entries}
-    for row in payload["entries"]:
-        source = updates.get(row["id"])
+    rows = {row["id"]: row for row in payload["entries"]}
+    for row_id, row in rows.items():
+        source = updates.get(row_id)
         if not source:
             continue
         for key in ("titleJa", "summaryJa"):
             set_or_drop(row, key, source, key)
-    dump_json(DATA / "entries.json", payload)
     for year, records in details_by_year.items():
         path = DATA / f"details-{year}.json"
         current = load_json(path)
@@ -237,7 +247,10 @@ def patch_into_files(entries: list[dict], details_by_year: dict[int, dict]) -> N
                 continue
             for key in ("summaryJa", "impactJa", "juryJa"):
                 set_or_drop(current[entry_id], key, record, key)
+            if "summaryJa" in record and not record["summaryJa"] and entry_id in rows:
+                rows[entry_id].pop("summaryJa", None)
         dump_json(path, current)
+    dump_json(DATA / "entries.json", payload)
 
 
 def load_tokenizer():
@@ -267,7 +280,11 @@ class Nllb:
         )
 
     def translate_many(
-        self, items: list[tuple[str, str]], beam_size: int = 1, num_hypotheses: int = 1
+        self,
+        items: list[tuple[str, str]],
+        beam_size: int = 1,
+        num_hypotheses: int = 1,
+        disable_unk: bool = False,
     ) -> list[str]:
         """items: (src_lang, text) all same src_lang recommended but not required."""
         if not items:
@@ -287,6 +304,7 @@ class Nllb:
                 target_prefix=[["jpn_Jpan"]] * len(sources),
                 beam_size=beam_size,
                 num_hypotheses=num_hypotheses,
+                disable_unk=disable_unk,
                 max_batch_size=32,
                 max_decoding_length=256,
             )
@@ -392,11 +410,21 @@ def ollama_translate(text: str, model: str = "gemma4:e4b", kind: str = "body") -
     out = (payload.get("response") or "").strip()
     if kind == "title":
         out = next((row.strip() for row in out.splitlines() if row.strip()), "")
-    return cleanup_ja(out.strip('「」""\' '))
+        out = out.strip('「」""\' ')
+    return cleanup_ja(out)
 
 
 def ollama_translate_title(title: str, model: str = "gemma4:e4b") -> str:
     return ollama_translate(title, model, kind="title")
+
+
+def japanese_ratio(text: str) -> float:
+    chars = [c for c in text if not c.isspace()]
+    return len(JP_RE.findall(text)) / len(chars) if chars else 0.0
+
+
+def acceptable_fallback(text: str) -> bool:
+    return bool(text) and UNK not in text and japanese_ratio(text) >= OLLAMA_MIN_JA_RATIO
 
 
 def resolve_pieces(
@@ -407,18 +435,22 @@ def resolve_pieces(
     ollama=None,
     corrections: dict[str, str] | None = None,
     log=print,
-) -> list[str]:
-    """Translate pieces; "" marks a piece that could not be made <unk>-free.
+) -> list[str | None]:
+    """Translate pieces; None marks a piece that still contains <unk>.
 
-    Order: greedy -> wider beam -> Ollama (if given) -> correction dictionary.
+    Order: greedy -> wider beam with disable_unk -> Ollama (only if given)
+    -> correction dictionary. An empty string is a legitimate empty translation.
     """
-    results = list(engine.translate_many(pieces))
+    results: list[str | None] = list(engine.translate_many(pieces))
     best_nllb = list(results)
     bad = [i for i, text in enumerate(results) if UNK in text]
     if bad:
-        log(f"unk output {len(bad)}/{len(pieces)}: retry beam={retry_beam}")
+        log(f"unk output {len(bad)}/{len(pieces)}: retry beam={retry_beam} disable_unk")
         retried = engine.translate_many(
-            [pieces[i] for i in bad], beam_size=retry_beam, num_hypotheses=retry_beam
+            [pieces[i] for i in bad],
+            beam_size=retry_beam,
+            num_hypotheses=retry_beam,
+            disable_unk=True,
         )
         for i, text in zip(bad, retried):
             results[i] = best_nllb[i] = text
@@ -427,35 +459,53 @@ def resolve_pieces(
         log(f"unk output {len(bad)}: ollama")
         for i in bad:
             try:
-                results[i] = ollama(pieces[i][1])
+                candidate = ollama(pieces[i][1])
             except Exception as error:
                 log(f"ollama fail {error}")
-        bad = [i for i in bad if not results[i] or UNK in results[i]]
+                continue
+            if acceptable_fallback(candidate):
+                results[i] = candidate
+            else:
+                log("ollama output rejected (empty, <unk>, or not Japanese)")
+        bad = [i for i in bad if UNK in results[i]]
     if bad and corrections:
         for i in bad:
-            fixed = apply_corrections(best_nllb[i], corrections)
+            fixed = apply_corrections(best_nllb[i], corrections, log=log)
             if UNK not in fixed:
                 results[i] = fixed
-        bad = [i for i in bad if not results[i] or UNK in results[i]]
+        bad = [i for i in bad if UNK in results[i]]
     for i in bad:
-        results[i] = ""
+        results[i] = None
     if bad:
         log(f"unk unresolved {len(bad)}")
     return results
 
 
+def read_json_text(path: Path) -> tuple[object, bool]:
+    raw = path.read_text(encoding="utf-8")
+    return json.loads(raw), raw.endswith("\n")
+
+
+def write_like(path: Path, payload, newline: bool, **dump_kw) -> None:
+    path.write_text(json.dumps(payload, ensure_ascii=False, **dump_kw) + ("\n" if newline else ""), encoding="utf-8")
+
+
 def purge_unk(data_dir: Path, cache_path: Path, title_cache_path: Path | None = None) -> Counter:
-    """Delete <unk>-bearing translations from the caches and data JSON files."""
+    """Delete <unk>-bearing translations from the caches and data JSON files.
+
+    Files are rewritten only when something was removed, in the same compact
+    format and with the same trailing-newline state as before.
+    """
     removed: Counter[str] = Counter()
 
     for path, label in ((cache_path, "cache"), (title_cache_path, "title-cache")):
         if path is None or not path.exists():
             continue
-        cache = load_json(path)
+        cache, newline = read_json_text(path)
         kept = {k: v for k, v in cache.items() if not (isinstance(v, str) and UNK in v)}
         if len(kept) != len(cache):
             removed[label] += len(cache) - len(kept)
-            path.write_text(json.dumps(kept, ensure_ascii=False), encoding="utf-8")
+            write_like(path, kept, newline)
 
     def walk(node) -> None:
         if isinstance(node, dict):
@@ -470,12 +520,27 @@ def purge_unk(data_dir: Path, cache_path: Path, title_cache_path: Path | None = 
             for item in node:
                 walk(item)
 
+    # The card's summaryJa is a truncation of the detail's: drop both together.
+    broken_ids: set[str] = set()
+    for path in sorted(data_dir.glob("details-*.json")):
+        payload, _ = read_json_text(path)
+        broken_ids.update(
+            entry_id
+            for entry_id, record in payload.items()
+            if isinstance(record, dict) and UNK in (record.get("summaryJa") or "")
+        )
+
     for path in sorted(data_dir.glob("*.json")):
-        payload = load_json(path)
+        payload, newline = read_json_text(path)
         before = sum(removed.values())
         walk(payload)
+        if path.name == "entries.json":
+            for row in payload.get("entries", []):
+                if row.get("id") in broken_ids and "summaryJa" in row:
+                    del row["summaryJa"]
+                    removed["summaryJa"] += 1
         if sum(removed.values()) != before:
-            dump_json(path, payload)
+            write_like(path, payload, newline, separators=(",", ":"))
     return removed
 
 
@@ -516,8 +581,9 @@ def apply_translations(
             if details:
                 details["summaryJa"] = summary_ja
         else:
-            drop_unk(entry, "summaryJa")
-            drop_unk(details, "summaryJa")
+            if UNK in (entry.get("summaryJa") or "") + (details.get("summaryJa") or ""):
+                entry["summaryJa"] = ""
+                details["summaryJa"] = ""
         impact_ja = ja(details.get("impact") or "", hint)
         if impact_ja:
             details["impactJa"] = impact_ja
@@ -561,8 +627,8 @@ def translate_job_batch(
     )
     for key, start, end in spans:
         parts = translated[start:end]
-        joined = cleanup_ja(" ".join(parts))
-        if not parts or not all(parts) or UNK in joined:
+        joined = cleanup_ja(" ".join(part for part in parts if part))
+        if not parts or None in parts or not joined or UNK in joined:
             failed[key] = next(t for k, _l, t in items if k == key)[:80]
             cache.pop(key, None)
             log(f"untranslated {key[:8]} (left as source)")
@@ -608,7 +674,11 @@ def main(argv: list[str] | None = None) -> None:
         help="delete <unk>-bearing values from the cache and *Ja fields in public/data/*.json, then exit",
     )
     parser.add_argument("--retry-beam", type=int, default=RETRY_BEAM, help="beam size for the <unk> retry")
-    parser.add_argument("--no-ollama", action="store_true", help="skip the Ollama fallback for <unk> output")
+    parser.add_argument(
+        "--ollama-retry",
+        action="store_true",
+        help="use local Ollama (--model) as an extra fallback for body text that still has <unk>",
+    )
     parser.add_argument("--corrections", type=Path, default=CORRECTIONS_PATH, help="JSON of '<unk>' compound fixes")
     parser.add_argument("--retry-failed", action="store_true", help="retry jobs previously left untranslated")
     args = parser.parse_args(argv)
@@ -636,7 +706,7 @@ def main(argv: list[str] | None = None) -> None:
     if TITLE_CACHE_PATH.exists():
         title_cache = json.loads(TITLE_CACHE_PATH.read_text(encoding="utf-8"))
         print(f"title cache {len(title_cache)}")
-    failed: dict[str, str] = {} if args.retry_failed else load_dict(FAILED_PATH)
+    failed: dict[str, str] = load_dict(FAILED_PATH)
 
     entries_payload = load_json(DATA / "entries.json")
     entries = entries_payload["entries"]
@@ -676,14 +746,20 @@ def main(argv: list[str] | None = None) -> None:
             year=args.year,
             include_titles=not args.skip_titles,
         )
+        if args.retry_failed:  # only jobs in scope (--year, --skip-titles)
+            for job in jobs:
+                failed.pop(job[0], None)
         pending = pending_jobs(jobs, cache, failed)
         print(f"jobs {len(jobs)} pending {len(pending)} skipped-failed {sum(1 for j in jobs if j[0] in failed)}")
         if pending:
             engine = Nllb()
             corrections = load_corrections(args.corrections)
             ollama = None
-            if not args.no_ollama and ollama_available():
-                ollama = lambda text: ollama_translate(text, args.model)  # noqa: E731
+            if args.ollama_retry:
+                if ollama_available():
+                    ollama = lambda text: ollama_translate(text, args.model)  # noqa: E731
+                else:
+                    print("ollama not reachable; skipping that stage")
             print(f"ollama fallback {'on' if ollama else 'off'} corrections {len(corrections)}")
             batch_items: list[tuple[str, str, str]] = []
 

@@ -34,8 +34,9 @@ class FakeEngine:
         self.beam = beam or {}
         self.calls = []
 
-    def translate_many(self, items, beam_size=1, num_hypotheses=1):
+    def translate_many(self, items, beam_size=1, num_hypotheses=1, disable_unk=False):
         self.calls.append((beam_size, [t for _l, t in items]))
+        self.disable_unk_seen = getattr(self, "disable_unk_seen", []) + [disable_unk]
         table = self.greedy if beam_size == 1 else self.beam
         return [table.get(t, "訳:" + t) for _l, t in items]
 
@@ -45,10 +46,15 @@ class NormalizeTests(unittest.TestCase):
         n = tj.normalize_source
         self.assertEqual(n("„a“ ”b” «c» »d«"), '"a" "b" "c" "d"')
         self.assertEqual(n("Officials’ ‘x’ ‚y‚"), "Officials' 'x' 'y'")
-        self.assertEqual(n("a–b—c"), "a-b-c")
+        self.assertEqual(n("a–b"), "a-b")
+        self.assertEqual(n("£2.5bn—or 63%—of"), "£2.5bn - or 63% - of")
+        self.assertEqual(n("a — b"), "a - b")
+        self.assertEqual(n("a\u2010b\u2011c\u2012d\u2015e\u2212f"), "a-b-c-d-e-f")
+        self.assertEqual(n("a\u2066b\u2067c\u2068d\u2069e"), "abcde")
+        self.assertEqual(n("\u0645\u06cc\u200c\u062e a\u200db"), "\u0645\u06cc\u200c\u062e a\u200db")
         self.assertEqual(n("wait…"), "wait...")
         self.assertEqual(n("a b"), "a b")
-        self.assertEqual(n("a​b‌‍⁠﻿c"), "abc")
+        self.assertEqual(n("a\u200bb\u200e\u200f\u2060\ufeffc"), "abc")
         self.assertEqual(n("₦500"), "NGN 500")
         self.assertEqual(n("₦ 500"), "NGN 500")
 
@@ -130,7 +136,26 @@ class ResolveTests(unittest.TestCase):
 
     def test_unresolved_is_empty(self):
         engine = FakeEngine(greedy={"src": "a" + UNK}, beam={"src": "a" + UNK})
-        self.assertEqual(self.resolve(engine, corrections={"x<unk>": "y"}), [""])
+        self.assertEqual(self.resolve(engine, corrections={"x<unk>": "y"}), [None])
+
+    def test_retry_passes_disable_unk(self):
+        engine = FakeEngine(greedy={"src": "a" + UNK}, beam={"src": "灌漑"})
+        self.assertEqual(self.resolve(engine), ["灌漑"])
+        self.assertEqual(engine.disable_unk_seen, [False, True])
+
+    def test_corrections_logged_with_context(self):
+        engine = FakeEngine(greedy={"src": "広い灌<unk>用水路"}, beam={"src": "広い灌<unk>用水路"})
+        self.resolve(engine, corrections={"灌<unk>": "灌漑"})
+        self.assertTrue(any("'灌<unk>' -> '灌漑'" in m and "広い灌<unk>用水" in m for m in self.logs))
+
+    def test_ollama_rejects_non_japanese_and_unk(self):
+        for bad in ("Plain English answer", "訳" + UNK, ""):
+            engine = FakeEngine(greedy={"src": UNK}, beam={"src": UNK})
+            self.assertEqual(self.resolve(engine, ollama=lambda t, b=bad: b), [None])
+
+    def test_ollama_body_keeps_quotes(self):
+        engine = FakeEngine(greedy={"src": UNK}, beam={"src": UNK})
+        self.assertEqual(self.resolve(engine, ollama=lambda t: "「こんにちは」"), ["「こんにちは」"])
 
     def test_shipped_corrections_file(self):
         corr = tj.load_corrections()
@@ -161,6 +186,15 @@ class BatchTests(unittest.TestCase):
             FakeEngine(), [("kkkkkkkk", "eng_Latn", "a₂")], {}, {}, log=logs.append
         )
         self.assertTrue(any("U+2082" in m for m in logs))
+
+    def test_empty_fragment_dropped_not_failed(self):
+        engine = FakeEngine(greedy={"one": "", "two": "二"})
+        engine.tokenizer = FakeTokenizer()
+        cache, failed = {}, {}
+        with patch.object(tj, "split_chunks", return_value=["one", "two"]):
+            tj.translate_job_batch(engine, [("k", "eng_Latn", "one two")], cache, failed, log=lambda m: None)
+        self.assertEqual(cache, {"k": "二"})
+        self.assertEqual(failed, {})
 
     def test_pending_skips_done_unk_and_failed(self):
         jobs = [("a", "l", "t"), ("b", "l", "t"), ("c", "l", "t"), ("d", "l", "t")]
@@ -201,6 +235,73 @@ class DataTmp(unittest.TestCase):
         return buf.getvalue()
 
 
+class FakeTranslator:
+    def __init__(self, hypotheses):
+        self.hypotheses = hypotheses
+        self.kwargs = []
+
+    def translate_batch(self, sources, **kwargs):
+        self.kwargs.append(kwargs)
+
+        class Result:
+            pass
+
+        results = []
+        for _ in sources:
+            r = Result()
+            r.hypotheses = self.hypotheses
+            results.append(r)
+        return results
+
+
+class FakeTokTokens:
+    src_lang = None
+
+    def encode(self, text):
+        return list(text)
+
+    def convert_ids_to_tokens(self, ids):
+        return list(ids)
+
+    def convert_tokens_to_ids(self, tokens):
+        return list(tokens)
+
+    def decode(self, ids):
+        return "".join(ids)
+
+
+class NllbTranslateManyTests(unittest.TestCase):
+    def engine(self, hypotheses):
+        engine = tj.Nllb.__new__(tj.Nllb)
+        engine.tokenizer = FakeTokTokens()
+        engine.translator = FakeTranslator(hypotheses)
+        return engine
+
+    def test_picks_hypothesis_without_unk_and_strips_prefix(self):
+        engine = self.engine([["jpn_Jpan", "灌", UNK], ["jpn_Jpan", "灌", "漑"]])
+        self.assertEqual(engine.translate_many([("eng_Latn", "x")], beam_size=5, num_hypotheses=5), ["灌漑"])
+
+    def test_falls_back_to_top_hypothesis(self):
+        engine = self.engine([["jpn_Jpan", "灌", UNK], ["jpn_Jpan", "棕", UNK]])
+        self.assertEqual(engine.translate_many([("eng_Latn", "x")]), ["灌" + UNK])
+
+    def test_disable_unk_and_beam_forwarded(self):
+        engine = self.engine([["jpn_Jpan", "あ"]])
+        engine.translate_many([("eng_Latn", "x")])
+        engine.translate_many([("eng_Latn", "x")], beam_size=5, num_hypotheses=5, disable_unk=True)
+        first, second = engine.translator.kwargs
+        self.assertEqual((first["beam_size"], first["disable_unk"]), (1, False))
+        self.assertEqual((second["beam_size"], second["disable_unk"]), (5, True))
+        self.assertEqual(second["target_prefix"], [["jpn_Jpan"]])
+
+    def test_resolve_pieces_with_real_wrapper_uses_disable_unk(self):
+        engine = self.engine([["jpn_Jpan", "あ", UNK]])
+        engine.translator = FakeTranslator([["jpn_Jpan", "あ", UNK]])
+        out = tj.resolve_pieces(engine, [("eng_Latn", "x")], log=lambda m: None)
+        self.assertEqual(out, [None])
+        self.assertEqual([k["disable_unk"] for k in engine.translator.kwargs], [False, True])
+
+
 class PurgeTests(DataTmp):
     def test_purge_removes_only_unk(self):
         self.write(self.cache, {"a": "良い", "b": "灌" + UNK, "c": UNK})
@@ -237,6 +338,40 @@ class PurgeTests(DataTmp):
         self.assertIn("purged cache 2", out)
         self.assertIn("purged total", out)
 
+    def test_detail_summary_purge_also_clears_card(self):
+        self.write(
+            self.data / "entries.json",
+            {"years": [2021], "entries": [
+                {"id": "1", "summaryJa": "切り詰め済みの良い訳"},
+                {"id": "2", "summaryJa": "別の良い訳"},
+            ]},
+        )
+        self.write(
+            self.data / "details-2021.json",
+            {"1": {"summaryJa": "長い訳" + UNK}, "2": {"summaryJa": "別の良い訳"}},
+        )
+        self.run_main("--purge-unk")
+        rows = self.read(self.data / "entries.json")["entries"]
+        self.assertEqual(rows, [{"id": "1"}, {"id": "2", "summaryJa": "別の良い訳"}])
+        self.assertEqual(self.read(self.data / "details-2021.json"), {"1": {}, "2": {"summaryJa": "別の良い訳"}})
+
+    def test_format_preserved(self):
+        for newline in ("", "\n"):
+            entries = {"years": [2021], "entries": [{"id": "1", "titleJa": UNK, "b": "日本"}]}
+            compact = json.dumps(entries, ensure_ascii=False, separators=(",", ":")) + newline
+            (self.data / "entries.json").write_text(compact, encoding="utf-8")
+            (self.data / "details-2021.json").write_text("{}" + newline, encoding="utf-8")
+            self.cache.write_text(json.dumps({"a": UNK, "b": "良"}, ensure_ascii=False) + newline, encoding="utf-8")
+            self.run_main("--purge-unk")
+            expected = json.dumps(
+                {"years": [2021], "entries": [{"id": "1", "b": "日本"}]}, ensure_ascii=False, separators=(",", ":")
+            ) + newline
+            self.assertEqual((self.data / "entries.json").read_text(encoding="utf-8"), expected)
+            self.assertEqual((self.data / "details-2021.json").read_text(encoding="utf-8"), "{}" + newline)
+            self.assertEqual(
+                self.cache.read_text(encoding="utf-8"), json.dumps({"b": "良"}, ensure_ascii=False) + newline
+            )
+
     def test_clean_files_not_rewritten(self):
         path = self.data / "entries.json"
         path.write_text('{ "entries": [ {"titleJa": "x"} ] }', encoding="utf-8")
@@ -269,8 +404,51 @@ class WriteBackTests(DataTmp):
         self.write(self.data / "details-2020.json", {"1": {"summaryJa": "y", "impactJa": "z"}})
         entries = [{"id": "1", "year": 2020, "titleJa": "", "summaryJa": "y"}]
         tj.patch_into_files(entries, {2020: {"1": {"summaryJa": "", "impactJa": "z"}}})
-        self.assertEqual(self.read(self.data / "entries.json")["entries"][0], {"id": "1", "year": 2020, "summaryJa": "y"})
+        self.assertEqual(self.read(self.data / "entries.json")["entries"][0], {"id": "1", "year": 2020})  # card follows the emptied detail
         self.assertEqual(self.read(self.data / "details-2020.json")["1"], {"impactJa": "z"})
+
+    def test_empty_detail_summary_clears_card(self):
+        self.write(
+            self.data / "entries.json",
+            {"years": [2020], "entries": [{"id": "1", "year": 2020, "summaryJa": "短い"}]},
+        )
+        self.write(self.data / "details-2020.json", {"1": {"summaryJa": "長い"}})
+        entries = [{"id": "1", "year": 2020, "summaryJa": "短い"}]
+        tj.patch_into_files(entries, {2020: {"1": {"summaryJa": ""}}})
+        self.assertEqual(self.read(self.data / "entries.json")["entries"], [{"id": "1", "year": 2020}])
+        self.assertEqual(self.read(self.data / "details-2020.json"), {"1": {}})
+
+    def test_retry_failed_keeps_out_of_scope_records(self):
+        self.write(
+            self.data / "entries.json",
+            {"years": [2020, 2021], "entries": [
+                {"id": "a", "year": 2020, "title": "Hello", "langs": ""},
+                {"id": "b", "year": 2021, "title": "World", "langs": ""},
+            ]},
+        )
+        self.write(self.data / "details-2020.json", {})
+        self.write(self.data / "details-2021.json", {})
+        k20, k21 = tj.cache_key("eng_Latn", "Hello"), tj.cache_key("eng_Latn", "World")
+        self.write(self.failed, {k20: "Hello", k21: "World"})
+        engine = FakeEngine()
+        with patch.object(tj, "Nllb", return_value=engine), patch.object(tj, "ollama_available", return_value=False):
+            self.run_main("--year", "2020", "--retry-failed")
+        failed = self.read(self.failed)
+        self.assertEqual(list(failed), [k21])
+        self.assertIn(k20, self.read(self.cache))
+
+    def test_ollama_only_when_requested(self):
+        self.write(
+            self.data / "entries.json",
+            {"years": [2020], "entries": [{"id": "a", "year": 2020, "title": "Hello", "langs": ""}]},
+        )
+        self.write(self.data / "details-2020.json", {})
+        engine = FakeEngine(greedy={"Hello": UNK}, beam={"Hello": UNK})
+        with patch.object(tj, "Nllb", return_value=engine), patch.object(
+            tj, "ollama_available", side_effect=AssertionError("must not probe ollama")
+        ):
+            self.run_main()
+        self.assertEqual(self.read(self.cache), {})
 
     def test_apply_does_not_write_cached_unk(self):
         entry = {"id": "1", "year": 2020, "title": "Hello", "langs": "", "titleJa": "古" + UNK}
