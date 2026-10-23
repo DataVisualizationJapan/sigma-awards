@@ -193,18 +193,6 @@ class BuildPagesTests(unittest.TestCase):
         self.assertNotIn("本文中のリンク", text.split("<main", 1)[1])
         self.assertNotIn("link-note", text.split("<main", 1)[1])
 
-    def test_unk_ja_falls_back_to_original(self):
-        text, ld = self.rebuild_with(
-            {"title": "„Die Welt bangt", "titleJa": "<unk>Die Welt bangt // <unk> 世界は恐れる",
-             "summaryJa": "吸うこと <unk>酒"},
-            {"summary": "orig summary", "impact": "i", "links": [], "summaryJa": "吸うこと <unk>酒",
-             "impactJa": "We<unk>ve", "juryJa": "<unk>"})
-        for needle in ("&lt;unk&gt;", "<unk>"):
-            self.assertNotIn(needle, text)
-        self.assertNotIn("alternateName", text)
-        self.assertNotIn("alternateName", ld)
-        self.assertIn("<h1>%s</h1>" % bp.esc(bp.clean_str("„Die Welt bangt")), text)
-
     def test_index_embeds_cards(self):
         # 2026 is absent from the fixture, so the latest available year (2025) is embedded
         self.assertIn('<h2 class="card__title"><a class="card__link" href="/entries/2025-s-0003/">Title 3</a></h2>', self.read("index.html"))
@@ -223,13 +211,6 @@ class BuildPagesTests(unittest.TestCase):
         bp.main(["--public-dir", str(self.public), "--output-dir", str(out2)])
         self.assertEqual(tree_hash(self.out), tree_hash(out2))
         self.assertEqual(before, tree_hash(self.public))
-
-    def test_unescape_once_is_conservative(self):
-        for keep in ("?a=1&para=2", "&copy=", "&amp=&feature=", "x&times"):
-            self.assertEqual(bp.unescape_once(keep), keep)
-        self.assertEqual(bp.unescape_once("A &amp; B &lt;i&gt; &#38; &#x26; &quot;"), 'A & B <i> & & "')
-        self.assertEqual(bp.unescape_once("&amp;amp;"), "&amp;")  # one pass only
-        self.assertEqual(bp.unescape_once("a&amp;para=1"), "a&para=1")
 
     def test_plain_strips_only_html_tags(self):
         self.assertEqual(bp.plain("a <b>x</b> <!-- c --> <Роскомнадзор> d <3"), "a x <Роскомнадзор> d <3")

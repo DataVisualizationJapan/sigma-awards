@@ -497,6 +497,12 @@ class GeneratedDataTest(unittest.TestCase):
                 self.assertNotIn("�", text, f"{name}{path}")
                 self.assertIsNone(BASIC_ENTITY.search(text), f"{name}{path}: {text[:80]}")
 
+    def test_entry_titles_and_orgs_have_no_markup(self) -> None:
+        tag = re.compile(r"</?[A-Za-z][^>]*>|<!--")
+        for entry in self.entries:
+            for field in ("title", "titleJa", "org", "summary", "summaryJa"):
+                self.assertIsNone(tag.search(entry.get(field) or ""), f"{entry['id']} {field}")
+
     def test_links_are_valid(self) -> None:
         for entry_id, record in self.details.items():
             self.assertEqual(len(record["links"]), len(set(record["links"])), entry_id)

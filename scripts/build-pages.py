@@ -19,7 +19,6 @@ from urllib.parse import quote, urljoin, urlparse
 
 SITE = "https://sigma-awards.data-visualization.jp"
 PAGE_SIZE = 24
-PLACEHOLDER = re.compile(r"\s*(?:none|n/a)\s*", re.I)
 MARKER = ".build-pages"
 SAFE_ID = re.compile(r"^[A-Za-z0-9._-]+$")
 
@@ -195,35 +194,6 @@ def plain(text):
     """Text without HTML tags/comments, for <title>, meta and JSON-LD."""
     text = re.sub(r"<!--.*?-->", " ", text or "", flags=re.S)
     return re.sub(r"\s+", " ", re.sub(r"</?[A-Za-z][^>]*>", " ", text)).strip()
-
-
-ENTITY = re.compile(r"&(?:amp|lt|gt|quot|apos|#\d+|#[xX][0-9a-fA-F]+);")
-
-
-def unescape_once(value):
-    """Decode only well-formed (semicolon-terminated) basic entities, one pass; "&para=" etc. stay intact."""
-    return ENTITY.sub(lambda m: html.unescape(m.group(0)), value)
-
-
-def clean_str(value, key=""):
-    """Undo entities stored as text (once); a Ja field with <unk> is not a translation, so it becomes empty
-    (callers then fall back to the original). org/authors/tools placeholders such as None or N/A become empty."""
-    value = unescape_once(value)
-    if key.endswith("Ja") and "<unk>" in value:
-        return ""
-    if key in ("org", "authors", "tools") and PLACEHOLDER.fullmatch(value):
-        return ""
-    return value
-
-
-def clean_data(obj, key=""):
-    if isinstance(obj, str):
-        return clean_str(obj, key)
-    if isinstance(obj, list):
-        return [clean_data(v, key) for v in obj]
-    if isinstance(obj, dict):
-        return {k: clean_data(v, k) for k, v in obj.items()}
-    return obj
 
 
 def truncate(text, limit=120):
@@ -596,12 +566,12 @@ def embed_index(i18n, cat, text, entries, years, default_year):
 def load_catalog(public, cat):
     conf = CATALOGS[cat]
     base = public / conf["data"]
-    payload = clean_data(json.loads((base / "entries.json").read_text(encoding="utf-8")))
+    payload = json.loads((base / "entries.json").read_text(encoding="utf-8"))
     entries = sorted(payload["entries"], key=sort_key)
     details = {}
     for year in payload["years"]:
         p = base / ("details-%s.json" % year)
-        details[year] = clean_data(json.loads(p.read_text(encoding="utf-8"))) if p.exists() else {}
+        details[year] = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
     for e in entries:
         if not SAFE_ID.match(e["id"]):
             raise SystemExit("unsafe entry id: %r" % e["id"])
