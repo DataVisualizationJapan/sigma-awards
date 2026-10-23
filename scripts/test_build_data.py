@@ -202,6 +202,33 @@ class HtmlToTextTest(unittest.TestCase):
             once = html_to_text(text)[0]
             self.assertEqual(html_to_text(once)[0], once, text)
 
+    def test_symbol_only_paragraphs_and_headings(self) -> None:
+        self.assertEqual(html_to_text("**\n\n# **\n\n---\n\n= · •\n\nreal")[0], "real")
+        self.assertEqual(html_to_text("## Title here\n# **Bold head")[0], "Title here\n\nBold head")
+        self.assertEqual(html_to_text("#WildEye is # of people")[0], "#WildEye is # of people")
+        self.assertEqual(html_to_text("**Opening only\nclosing only**")[0], "Opening only\n\nclosing only")
+        self.assertEqual(html_to_text("a **b** c **")[0], "a b c")
+
+    def test_broken_schemes_are_repaired_in_refs(self) -> None:
+        cases = {
+            "https://https://a.example/x": "https://a.example/x",
+            "https://http://b.example/": "http://b.example/",
+            "httphttps://c.example/q": "https://c.example/q",
+            "https://d.example/p-35bs://": "https://d.example/p-35b",
+            "https://e.example/award/s://": "https://e.example/award/",
+        }
+        for raw, want in cases.items():
+            self.assertEqual(html_to_text(f'<a href="{raw}">l</a>')[1], [{"url": want, "label": "l"}], raw)
+            self.assertEqual(html_to_text(f"[l]({raw})")[1], [{"url": want, "label": "l"}], raw)
+        for raw in ("adrianblancoramos.com/", "#_msoanchor_1", "https://", "mailto:a@b.example"):
+            self.assertEqual(html_to_text(f'<a href="{raw}">l</a>')[1], [], raw)
+
+    def test_ref_url_trailing_punctuation(self) -> None:
+        self.assertEqual(html_to_text('<a href="https://a.example/oldu/,">l</a>')[1][0]["url"], "https://a.example/oldu/")
+        self.assertEqual(html_to_text('<a href="https://a.example/x;">l</a>')[1][0]["url"], "https://a.example/x")
+        self.assertEqual(html_to_text('<a href="https://a.example/#:~:text=a,b,">l</a>')[1][0]["url"], "https://a.example/#:~:text=a,b,")
+        self.assertEqual(html_to_text('<a href="https://a.example/x,">https://a.example/x,</a>')[1], [{"url": "https://a.example/x", "label": ""}])
+
     def test_merge_refs(self) -> None:
         merged = merge_refs(
             [
@@ -229,6 +256,10 @@ class LinkNotesTest(unittest.TestCase):
                 "https://a.example/": "plain",
             },
         )
+
+    def test_symbol_only_notes_are_dropped(self) -> None:
+        self.assertEqual(collect_link_notes(["https://a.example/ ·", "https://b.example/ - (x)", "https://c.example/ — •"]),
+                         {"https://b.example/": "- (x)"})
 
     def test_text_before_the_first_url_and_plain_cells_have_no_note(self) -> None:
         self.assertEqual(collect_link_notes(["Link: https://a.example/x", "https://b.example/"]), {})
@@ -535,6 +566,26 @@ class GeneratedDataTest(unittest.TestCase):
         self.assertIn("<Роскомнадзор>", d["2023-f-0082"]["summary"])
         self.assertTrue(any("Valeeva< Kristina" in text for i, _, text in self.text_values() if i == "2021-s-0401"))
 
+    def test_known_cleanup_examples(self) -> None:
+        d = self.details
+        for entry_id, field in (("2023-f-0043", "summary"), ("2023-s-0335", "authors"), ("2023-f-0050", "summary"), ("2023-s-0013", "summary")):
+            text = d[entry_id][field]
+            self.assertTrue(text and not text.startswith(("#", "*", "-")), entry_id)
+            self.assertNotIn("\n\n**", text, entry_id)
+            self.assertNotRegex(text, r"(?:^|\n\n)[*#\-=_·•\s]*(?:\n\n|$)", entry_id)
+        self.assertEqual(d["2023-s-0335"]["authors"].split("\n\n")[0].split(" ")[:2], ["Reem", "Allam"])
+        for entry_id in ("2024-s-0095", "2023-f-0050", "2023-s-0155", "2023-s-0109"):
+            urls = [ref["url"] for ref in d[entry_id]["refs"]]
+            self.assertTrue(urls, entry_id)
+            for url in urls:
+                self.assertNotRegex(url, r"(?i)https?:/?/?https?|http(?!s?://)|s://$", f"{entry_id} {url}")
+        self.assertIn("http://kenyalaw.org/kl/", [ref["url"] for ref in d["2023-s-0155"]["refs"]])
+        self.assertTrue(any(ref["url"].startswith("https://www.dataphyte.com/") for ref in d["2023-s-0109"]["refs"]))
+        for ref in d["2020-f-0009"]["refs"]:
+            self.assertNotRegex(ref["url"], r"[,;]$")
+        self.assertIn("https://medyascope.tv/2019/08/22/sadece-son-bir-ayda-200-orman-yangini-cikti/", [r["url"] for r in d["2020-f-0009"]["refs"]])
+        self.assertNotIn("linkNotes", d["2022-s-0210"])
+
     def test_known_link_notes(self) -> None:
         zoom = self.details["2022-s-0269"]["linkNotes"]
         self.assertEqual(list(zoom.values()), ["Passcode: ^6@V#ytf"])
@@ -553,6 +604,7 @@ class GeneratedDataTest(unittest.TestCase):
             self.assertIsNone(re.search(r"(?:^|\n\n)>\s", text), where)
             for paragraph in text.split("\n\n"):
                 self.assertTrue(paragraph and paragraph == re.sub(r"\s+", " ", paragraph).strip(), where)
+                self.assertFalse(re.fullmatch(r"[\s*_#\-=·•]*", paragraph), f"{where}: {paragraph[:40]}")
 
     def test_text_is_stable_under_cleaning(self) -> None:
         for entry_id, field, text in self.text_values():
@@ -583,6 +635,7 @@ class GeneratedDataTest(unittest.TestCase):
                 for ref in refs:
                     self.assertEqual(set(ref), {"url", "label"}, entry_id)
                     self.assertTrue(is_valid_url(ref["url"]), f"{entry_id}: {ref['url'][:100]}")
+                    self.assertNotRegex(ref["url"], r"[,;]$|(?i:https?:/?/?https?)", f"{entry_id}: {ref['url'][:100]}")
                     self.assertNotEqual(ref["label"].rstrip("/"), ref["url"].rstrip("/") if ref["label"] else None, entry_id)
                     self.assertEqual(ref["label"], ref["label"].strip(), entry_id)
                     self.assertNotRegex(ref["label"], r"\s{2}|\n", entry_id)
@@ -593,6 +646,7 @@ class GeneratedDataTest(unittest.TestCase):
                 for url, note in notes.items():
                     self.assertIn(url, record["links"], entry_id)
                     self.assertTrue(note.strip(), entry_id)
+                    self.assertRegex(note, r"\w", entry_id)
                     for part in note.split(" "):
                         self.assertTrue(any(part in dropped for dropped in fixes.get(entry_id, [])), f"{entry_id}: {part}")
         self.assertGreater(with_refs, 200)
