@@ -126,38 +126,19 @@ class DjaDataTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'Missing or modified thumbnail'):
                 attach_thumbnails(self.entries, self.details, manifest)
 
-    def test_double_escaped_entities_are_not_present(self):
-        """Double-escaped HTML entities like &amp;amp; should not remain."""
-        double_escape_pattern = r'&amp;(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);'
+    def test_no_html_entities_remain_in_dja_json(self):
+        pattern = re.compile(r'&(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);')
+        for path in sorted((ROOT / 'public/data/dja').glob('*.json')):
+            for match in pattern.finditer(path.read_text()):
+                self.fail(f'{path.name}: leftover entity {match.group(0)!r}')
 
-        # Check entries.json
-        for entry in self.entries:
-            for key, value in entry.items():
-                if isinstance(value, str):
-                    matches = re.findall(double_escape_pattern, value)
-                    self.assertFalse(matches, f"Found double-escaped entities in entries[{entry['id']}][{key}]: {set(matches)}")
-
-        # Check details files
-        for year, details in self.details.items():
-            for entry_id, entry_data in details.items():
-                for key, value in entry_data.items():
-                    if isinstance(value, str):
-                        matches = re.findall(double_escape_pattern, value)
-                        self.assertFalse(matches, f"Found double-escaped entities in details-{year}[{entry_id}][{key}]: {set(matches)}")
-
-    def test_corrections_are_applied_in_output(self):
-        """Verify that double-escaping in dja-2014-85792ecbf139 is fixed."""
-        # Test the known correction for dja-2014-85792ecbf139
+    def test_ampersand_summary_correction_matches_output(self):
+        corrections = json.loads((ROOT / 'scripts/dja/corrections.json').read_text())
+        summary = corrections['records']['2014|Across U.S. Companies, Tax Rates Vary Greatly']['summary']
+        self.assertIn('S.&P. 500', summary)
         row = self.entry(2014, 'Across U.S. Companies, Tax Rates Vary Greatly')
-        self.assertEqual(row['id'], 'dja-2014-85792ecbf139')
-
-        # Original HTML was double-escaped (&amp;amp;P); JSON should contain &amp;P
-        # which displays as &P (and in the full context: S.&P. 500)
-        self.assertIn('S.&amp;P. 500', row['summary'])
-
-        # Verify the correction is also in details
-        details_entry = self.details[2014][row['id']]
-        self.assertIn('S.&amp;P. 500', details_entry['summary'])
+        self.assertEqual(row['summary'], summary)
+        self.assertEqual(self.details[2014][row['id']]['summary'], summary)
 
     @unittest.skipUnless(build_dja.DEFAULT_SOURCE.exists(), 'Supplied archive is not installed')
     def test_rebuild_never_opens_network_and_is_deterministic(self):
