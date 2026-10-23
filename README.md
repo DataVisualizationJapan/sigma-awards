@@ -13,6 +13,25 @@
 
 データは Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International です。利用時は Sigma Awards / GIJN へのクレジットが必要です。
 
+### ID台帳（`scripts/sigma/ids.json`）
+
+作品ID（`2024-s-0001` など）は公開URLに使われるため、上流CSVが変わっても変えません。上流には応募IDがないので、`scripts/build-data.py` は年×種別ごとに上流の行を台帳の指紋（行全体のハッシュ、タイトル、組織、リンク、説明、Category）と照合します。
+
+1. 行全体のハッシュが上流と台帳で1件ずつ一致するものは、その場で確定します。
+2. 残りは点数（タイトル3、リンク全一致2・一部一致1、説明2、組織1、Category1）で照合し、4点以上を高い順に1対1で割り当てます。
+3. 照合できない行は新規として、その年×種別の最大番号＋1を振ります。
+4. 上流から消えたIDは `removed: true` で台帳に残し、出力しません。番号は再利用しません。
+
+結果（確定・点数照合・新規・削除）はビルドの標準出力に表示され、台帳は全グループが成功したときだけ更新されます。台帳には作成に使った上流コミットも記録され、`entries.json` の `upstreamCommit` にも入ります。台帳の変更はコミットしてください。
+
+照合が止まったとき（`ID ledger:` で始まるエラー）：
+
+- 「candidates tie」：同点の候補が競合しています。表示された行と ID を見て、正しい対応を `ids.json` の `overrides` に `"<ID>": "<行ハッシュ>"` で追加し、再実行します。行ハッシュは台帳の `rowHash` か、`scripts/sigma/ledger.py` の `row_hash()` で得られます。
+- 「matched by score (limit …)」：点数照合の行が多すぎます（年×種別あたり `min(20, 行数の10%)`、最小3件）。上流の差分を確認し、意図した変更なら対応するIDを `overrides` で固定してから再実行します。
+- 上流から消えた行が戻ったときは、同じIDに自動で戻ります。
+
+テストは `python3 scripts/test_sigma_ids.py` です。`.tmp-data` に上流があれば実データでも検証します。
+
 ## 使い方
 
 ```bash

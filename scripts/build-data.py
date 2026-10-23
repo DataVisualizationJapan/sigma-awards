@@ -12,6 +12,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sigma import ledger as id_ledger  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = Path(os.environ.get("SIGMA_DATA_DIR", ROOT / ".tmp-data"))
 SOURCE_REPO = "https://github.com/Sigma-Awards/The-Sigma-Awards-projects-data.git"
@@ -154,8 +157,19 @@ def merge_existing_ja(entries: list[dict], details_by_year: dict[int, dict[str, 
                     record[key] = previous[key]
 
 
+def source_commit() -> str | None:
+    try:
+        out = subprocess.run(["git", "-C", str(SOURCE_DIR), "rev-parse", "HEAD"], capture_output=True, text=True, check=True)
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return out.stdout.strip() or None
+
+
 def build() -> None:
     ensure_source()
+    ledger = id_ledger.load()
+    commit = source_commit()
+    reports: list[dict] = []
     index_entries: list[dict] = []
     details_by_year: dict[int, dict[str, dict]] = {}
     counts = {2020: 0, 2021: 0, 2022: 0, 2023: 0, 2024: 0, 2025: 0, 2026: 0}
@@ -164,14 +178,15 @@ def build() -> None:
         path = SOURCE_DIR / filename
         if not path.exists():
             raise SystemExit(f"Missing {path}")
-        sequential = 0
-        for row in load_rows(path):
+        rows = [row for row in load_rows(path) if first(row.get("Project title"))]
+        try:
+            ids, report = id_ledger.reconcile(ledger, year, kind, rows)
+        except id_ledger.LedgerError as error:
+            raise SystemExit(f"ID ledger: {error}")
+        reports.append(report)
+        sequential = len(rows)
+        for row, entry_id in zip(rows, ids):
             title = first(row.get("Project title"))
-            if not title:
-                continue
-            prefix = "s" if kind == "project" else "f"
-            sequential += 1
-            entry_id = f"{year}-{prefix}-{sequential:04d}"
             result_key, result_label = normalize_result(row.get("Results"))
             summary = first(
                 row.get("A short description of the project"),
@@ -224,6 +239,7 @@ def build() -> None:
         "license": "CC BY-NC-SA 4.0",
         "attribution": "The Sigma Awards / Global Investigative Journalism Network (GIJN)",
         "site": "https://sigmaawards.org",
+        "upstreamCommit": commit,
         "builtAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "count": len(index_entries),
         "years": sorted({entry["year"] for entry in index_entries}),
@@ -239,6 +255,9 @@ def build() -> None:
             encoding="utf-8",
         )
 
+    ledger["upstreamCommit"] = commit
+    id_ledger.save(ledger)
+    print(id_ledger.format_report(reports))
     print(f"entries {len(index_entries)}")
     print("by year", counts)
     print("wrote", OUT_DIR / "entries.json")
