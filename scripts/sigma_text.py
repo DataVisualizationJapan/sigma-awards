@@ -171,6 +171,8 @@ def collect_link_notes(cells: list[str]) -> dict[str, str]:
     notes: dict[str, str] = {}
     for raw in cells:
         for url, note in scan_url_cell(raw)[2]:
+            if not re.search(r"\w", note):
+                continue
             notes[url] = f"{notes[url]} {note}" if url in notes else note
     return notes
 
@@ -219,6 +221,13 @@ _BOLD = re.compile(r"(?<!\*)\*\*(?=[^\s*])(.+?)(?<=[^*])\*\*(?!\*)")
 _BOLD_UNDERSCORE = re.compile(r"(?<![\w?&/=.])__(?=[^\s_])(.+?)(?<=[^\s_])__(?![\w=])")
 _URL_TOKEN = re.compile(r"(https?://\S+)")
 _QUOTE_HEAD = re.compile(r"^(?:>\s+)+")
+_HEADING_HEAD = re.compile(r"^#{1,6}\s+")
+_OPEN_BOLD_HEAD = re.compile(r"^\*\*(?!\*)\s*")
+_OPEN_BOLD_TAIL = re.compile(r"\s*(?<!\*)\*\*$")
+_SYMBOLS_ONLY = re.compile(r"^[\s*_#\-=·•]*$")
+_DOUBLE_SCHEME = re.compile(r"^(?:https?(?::/{0,2})?)+(?=https?://)", re.I)
+# What is left of a second "https://" pasted onto the end of a URL, such as "...award/s://".
+_TRAILING_SCHEME = re.compile(r"(?:h?t?t?p)?s://$", re.I)
 _SPACES = re.compile(r"\s+")
 _TAG_LIKE = re.compile(r"</?[A-Za-z][^<>]*>")
 
@@ -254,7 +263,19 @@ def _strip_emphasis(paragraph: str) -> str:
 
 
 def _same_url(url: str, label: str) -> bool:
-    return url.rstrip("/") == label.rstrip("/")
+    return url.rstrip("/") in (label.rstrip("/"), _trim(label).rstrip("/"))
+
+
+def ref_url(raw: str) -> str:
+    """The URL to list for a link in the text, or "" when it is not a usable http(s) URL.
+
+    A repeated scheme ("https://https://x", "httphttps://x") keeps the last one, a stray
+    scheme fragment at the end ("x/s://") is cut off, and trailing punctuation goes the
+    same way as in the link cells.
+    """
+    url = _TRAILING_SCHEME.sub("", _DOUBLE_SCHEME.sub("", raw.strip()))
+    url = _trim(url)
+    return url if is_valid_url(url) else ""
 
 
 def _html_to_text_once(raw: str) -> tuple[str, list[dict]]:
@@ -275,8 +296,8 @@ def _html_to_text_once(raw: str) -> tuple[str, list[dict]]:
     def add_text(segment: str) -> None:
         def link(match: re.Match[str]) -> str:
             label = _strip_emphasis(collapse_spaces(match.group(1)))
-            if is_valid_url(match.group(2)):
-                refs.append({"url": match.group(2), "label": label})
+            if ref_url(match.group(2)):
+                refs.append({"url": ref_url(match.group(2)), "label": label})
             return match.group(1)
 
         out.append(_MD_LINK.sub(link, segment))
@@ -302,7 +323,7 @@ def _html_to_text_once(raw: str) -> tuple[str, list[dict]]:
             close_anchor(False)
             href = _HREF.search(match.group(3))
             url = next((g for g in href.groups() if g is not None), "").strip() if href else ""
-            ref = {"url": url, "label": ""} if is_valid_url(url) else None
+            ref = {"url": ref_url(url), "label": ""} if ref_url(url) else None
             if ref is not None:
                 refs.append(ref)
             anchor = (ref, len(out))
@@ -313,9 +334,10 @@ def _html_to_text_once(raw: str) -> tuple[str, list[dict]]:
 
     paragraphs = []
     for part in "".join(out).split("\n"):
-        part = _strip_emphasis(_QUOTE_HEAD.sub("", collapse_spaces(part)))
-        if collapse_spaces(part):
-            paragraphs.append(collapse_spaces(part))
+        part = _HEADING_HEAD.sub("", _QUOTE_HEAD.sub("", collapse_spaces(part)))
+        part = collapse_spaces(_OPEN_BOLD_TAIL.sub("", _OPEN_BOLD_HEAD.sub("", _strip_emphasis(part))))
+        if not _SYMBOLS_ONLY.match(part):
+            paragraphs.append(part)
     for ref in refs:
         if not ref["label"] or _same_url(ref["url"], ref["label"]):
             ref["label"] = ""
