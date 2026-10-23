@@ -12,6 +12,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sigma_text import blank_placeholder, decode_entities, normalize_links, read_text_lines  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = Path(os.environ.get("SIGMA_DATA_DIR", ROOT / ".tmp-data"))
 SOURCE_REPO = "https://github.com/Sigma-Awards/The-Sigma-Awards-projects-data.git"
@@ -44,6 +47,9 @@ COUNTRY_ALIASES = {
 }
 
 SUMMARY_LIMIT = 240
+UNK = "<unk>"
+LINK_KEY = re.compile(r"link", re.I)
+PLACEHOLDER_FIELDS = {"org", "country", "authors", "tools", "impact"}
 
 
 def first(*values: object) -> str:
@@ -70,17 +76,17 @@ def split_tags(value: object) -> list[str]:
     return out
 
 
-def collect_links(row: dict[str, str]) -> list[str]:
-    links: list[str] = []
+def collect_links(row: dict[str, str]) -> tuple[list[str], list[dict]]:
+    cells: list[str] = []
     for key, value in row.items():
         if not key or not value:
             continue
-        if not re.search(r"link", key, re.I):
+        if not LINK_KEY.search(key):
             continue
         url = str(value).strip()
-        if url.startswith("http") and url not in links:
-            links.append(url)
-    return links
+        if url.startswith("http"):
+            cells.append(url)
+    return normalize_links(cells)
 
 
 def normalize_country(value: str) -> str:
@@ -120,8 +126,17 @@ def ensure_source() -> None:
 
 
 def load_rows(path: Path) -> list[dict[str, str]]:
-    with path.open(encoding="utf-8-sig", errors="replace", newline="") as handle:
-        return [{(k or "").strip(): v for k, v in row.items()} for row in csv.DictReader(handle)]
+    reader = csv.DictReader(read_text_lines(path.read_bytes()))
+    rows = []
+    for row in reader:
+        out: dict[str, str] = {}
+        for key, value in row.items():
+            name = decode_entities(key or "").strip()
+            # Link cells keep their upstream text so url-fixes.json can show the original.
+            is_link = isinstance(value, str) and LINK_KEY.search(name)
+            out[name] = decode_entities(value) if isinstance(value, str) and not is_link else value
+        rows.append(out)
+    return rows
 
 
 def compact_summary(text: str) -> str:
@@ -133,31 +148,79 @@ def compact_summary(text: str) -> str:
     return clipped + "…"
 
 
+def source_text(field: str, value: object) -> str:
+    """Normalize an existing JSON source value the way the build does."""
+    text = first(decode_entities(str(value or "")))
+    return blank_placeholder(text) if field in PLACEHOLDER_FIELDS else text
+
+
+def carry_ja(
+    target: dict,
+    previous: dict,
+    old_source: object,
+    key: str,
+    source_key: str,
+    scope: str,
+    stats: dict[str, dict[str, int]],
+) -> None:
+    """Copy previous[key] into target unless its source text changed or it is unusable."""
+    if not previous.get(key):
+        return
+    bucket = stats.setdefault(f"{scope}.{key}", {"kept": 0, "source-changed": 0, "source-empty": 0, "unk": 0})
+    new_source = target.get(source_key) or ""
+    if not new_source:
+        bucket["source-empty"] += 1
+    elif source_text(source_key, old_source) != new_source:
+        bucket["source-changed"] += 1
+    elif UNK in previous[key]:
+        bucket["unk"] += 1
+    else:
+        target[key] = decode_entities(previous[key])
+        bucket["kept"] += 1
+
+
 def merge_existing_ja(entries: list[dict], details_by_year: dict[int, dict[str, dict]]) -> None:
+    stats: dict[str, dict[str, int]] = {}
     entries_path = OUT_DIR / "entries.json"
+    old_details_by_year: dict[int, dict] = {}
+    for year in details_by_year:
+        path = OUT_DIR / f"details-{year}.json"
+        old_details_by_year[year] = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     if entries_path.exists():
         old_entries = {row["id"]: row for row in json.loads(entries_path.read_text(encoding="utf-8")).get("entries", [])}
         for entry in entries:
             previous = old_entries.get(entry["id"], {})
-            for key in ("titleJa", "summaryJa", "thumb"):
-                if previous.get(key):
-                    entry[key] = previous[key]
+            if previous.get("thumb"):
+                entry["thumb"] = previous["thumb"]
+            old_detail = old_details_by_year.get(entry["year"], {}).get(entry["id"], {})
+            full_summary = details_by_year[entry["year"]][entry["id"]]["summary"]
+            carry_ja(entry, previous, previous.get("title"), "titleJa", "title", "entries", stats)
+            # entries.summaryJa translates the full summary, which the entry only holds compacted.
+            summary_target = {"summary": full_summary}
+            carry_ja(summary_target, previous, old_detail.get("summary", previous.get("summary")), "summaryJa", "summary", "entries", stats)
+            if summary_target.get("summaryJa"):
+                entry["summaryJa"] = summary_target["summaryJa"]
     for year, records in details_by_year.items():
-        path = OUT_DIR / f"details-{year}.json"
-        if not path.exists():
-            continue
-        old_details = json.loads(path.read_text(encoding="utf-8"))
+        old_details = old_details_by_year[year]
         for entry_id, record in records.items():
             previous = old_details.get(entry_id, {})
-            for key in ("summaryJa", "impactJa", "juryJa"):
-                if previous.get(key):
-                    record[key] = previous[key]
+            for key, source_key in (("summaryJa", "summary"), ("impactJa", "impact"), ("juryJa", "jury")):
+                carry_ja(record, previous, previous.get(source_key), key, source_key, "details", stats)
+    print("Japanese translations carried over (kept / dropped by reason):")
+    for name in sorted(stats):
+        bucket = stats[name]
+        dropped = sum(bucket.values()) - bucket["kept"]
+        print(
+            f"  {name}: kept {bucket['kept']}, dropped {dropped}"
+            f" (source-changed {bucket['source-changed']}, source-empty {bucket['source-empty']}, <unk> {bucket['unk']})"
+        )
 
 
 def build() -> None:
     ensure_source()
     index_entries: list[dict] = []
     details_by_year: dict[int, dict[str, dict]] = {}
+    url_fixes: list[dict] = []
     counts = {2020: 0, 2021: 0, 2022: 0, 2023: 0, 2024: 0, 2025: 0, 2026: 0}
 
     for year, filename, kind in FILES:
@@ -178,7 +241,8 @@ def build() -> None:
                 row.get("Description of your portfolio"),
                 row.get("Description portfolio"),
             )
-            links = collect_links(row)
+            links, fixes = collect_links(row)
+            url_fixes.extend({"id": entry_id, "field": "links", **fix} for fix in fixes)
             tags = split_tags(row.get("Tags"))
             langs = first(row.get("Language"), row.get("Languages"))
             index_entries.append(
@@ -187,8 +251,8 @@ def build() -> None:
                     "year": year,
                     "kind": kind,
                     "title": title,
-                    "org": clean_org(first(row.get("Publishing organisations"))),
-                    "country": normalize_country(row.get("Country") or ""),
+                    "org": blank_placeholder(clean_org(first(row.get("Publishing organisations")))),
+                    "country": blank_placeholder(normalize_country(row.get("Country") or "")),
                     "result": result_key,
                     "resultLabel": result_label,
                     "tags": tags,
@@ -199,15 +263,19 @@ def build() -> None:
             )
             details_by_year.setdefault(year, {})[entry_id] = {
                 "summary": summary,
-                "impact": first(
-                    row.get("What was the impact of the project?"),
-                    row.get("What was the impact of the project"),
+                "impact": blank_placeholder(
+                    first(
+                        row.get("What was the impact of the project?"),
+                        row.get("What was the impact of the project"),
+                    )
                 ),
-                "tools": first(
-                    row.get("Technologies/tools used"),
-                    row.get("Technologies tools used"),
+                "tools": blank_placeholder(
+                    first(
+                        row.get("Technologies/tools used"),
+                        row.get("Technologies tools used"),
+                    )
                 ),
-                "authors": first(row.get("Who made this project"), row.get("Authors")),
+                "authors": blank_placeholder(first(row.get("Who made this project"), row.get("Authors"))),
                 "langs": first(row.get("Language"), row.get("Languages")),
                 "date": first(row.get("Publication date")),
                 "size": first(row.get("Size"), row.get("Organisation size")),
@@ -239,7 +307,13 @@ def build() -> None:
             encoding="utf-8",
         )
 
+    (OUT_DIR / "url-fixes.json").write_text(
+        json.dumps({"count": len(url_fixes), "fixes": url_fixes}, ensure_ascii=False, indent=1) + "\n",
+        encoding="utf-8",
+    )
+
     print(f"entries {len(index_entries)}")
+    print(f"url fixes {len(url_fixes)}")
     print("by year", counts)
     print("wrote", OUT_DIR / "entries.json")
 
