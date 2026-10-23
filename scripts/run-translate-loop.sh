@@ -18,9 +18,10 @@ spec.loader.exec_module(mod)
 payload = mod.load_json(mod.DATA / "entries.json")
 entries = payload["entries"]
 details = {y: mod.load_json(mod.DATA / f"details-{y}.json") for y in payload["years"]}
-cache = json.loads(mod.CACHE_PATH.read_text()) if mod.CACHE_PATH.exists() else {}
+cache = mod.load_dict(mod.CACHE_PATH)
+failed = mod.load_dict(mod.FAILED_PATH)
 jobs = mod.collect_jobs(entries, details, include_titles=True)
-print(sum(1 for key, _, _ in jobs if key not in cache))
+print(len(mod.pending_jobs(jobs, cache, failed)))
 PY
 )"
   echo "pending $leftover" >> "$LOG"

@@ -49,6 +49,23 @@ python3 -m http.server 4173 --directory public
 
 タイトル・概要・詳細本文の日本語は `scripts/translate-ja.py` がローカルの NLLB モデルで付与します。既定表示は日本語、原文はカードと詳細に残します。
 
+### 翻訳の `<unk>` 対策（ローカルで実行）
+
+NLLBの語彙外の文字（原文の引用符・ダッシュ・`₦` など、出力側の珍しい漢字）が `<unk>` として訳に残ることがあります。`translate-ja.py` は、入力の記号を翻訳前に正規化（JSONの原文は変更しません）し、訳に `<unk>` が出たらキャッシュへ保存せず、`disable_unk` つきでbeamを広げた再試行、Ollama（`--ollama-retry` を付けたときだけ）、補正辞書（適用時にログへ出ます） `scripts/ja-unk-corrections.json` の順に試します。それでも残る訳は付けず、原文を表示します（`.tmp-data/ja-failed.json` に記録し、`--retry-failed` で再挑戦できます）。
+
+```bash
+# 1. 既存の壊れた訳を、キャッシュと public/data/*.json から削除
+.venv/bin/python scripts/translate-ja.py --purge-unk
+# 2. （任意）語彙外文字を出現数つきで一覧にする。翻訳はしません
+.venv/bin/python scripts/translate-ja.py --audit-vocab
+# 3. 再翻訳（削除した分だけが対象）
+.venv/bin/python scripts/translate-ja.py        # または scripts/run-translate-loop.sh
+# 4. <unk> が残っていないこと（すべて0）を確認してコミット
+grep -c '<unk>' public/data/*.json
+```
+
+補正辞書は `{"灌<unk>": "灌漑"}` の形式で追記できます。テストは `python3 scripts/test_translate_ja.py`（モデル不要）です。
+
 ### Sigmaデータの整形
 
 `scripts/build-data.py` は、上流CSVの内容がそのまま流れ込んだ表示上の問題を、共通処理 `scripts/sigma_text.py`（標準ライブラリのみ）で直します。作品IDの決め方は変えていません。
@@ -140,3 +157,19 @@ python3 scripts/test_dja_thumbnails.py
 採用結果の正本は `scripts/dja/thumbnails.json`、画像ファイルは `public/thumbs/dja/` です。元の画像URL、入力HTML、保存URL、取得URL、形式、サイズ、SHA-256を記録します。`public/data/dja/thumbnails-report.json` には全535件の結果・除外理由・失敗した取得先を記録します。目視で判明したDJA/DENロゴの代替画像は `scripts/dja/rejected-images.json` のハッシュで除外し、URLが作品名でも画像本体が仮画像なら採用しません。
 
 現在96件（2013年73件、2015年1件、2016年1件、2018年15件、2019年6件）を採用しています。残りは取得・採用できなかった44件と画像参照のない395件です。形式検証だけでは作品画像と断定できないため、新規取得後は目視でも対応を確認してください。仮画像が見つかった場合は除外ハッシュを記録し、採用結果を見直してからデータを再生成します。元画像を変換せず保存し、ブラウザはローカル画像だけを読み込みます。データ再生成では正本の画像と入力HTMLの対応、ファイルの存在・ハッシュを確認して `thumb` を再設定するため、再生成後もサムネイルが保持されます。
+
+### 静的ページの生成（クローラー向け）
+
+JavaScriptなしでも内容を読めるよう、コミット済みのJSONからビルド時に静的HTMLを生成します。データJSONは変更しません。Netlifyでは `netlify.toml` のとおり `python3 scripts/build-pages.py` を実行し、`dist/` を公開します（Python標準ライブラリのみ、`dist/` はGit管理外）。
+
+```bash
+python3 scripts/build-pages.py && python3 -m http.server 4173 --directory dist
+python3 scripts/test_build_pages.py
+```
+
+`--public-dir`（既定 `public`）と `--output-dir`（既定 `dist`）を指定できます。`public/` を `dist/` へコピーし、次を追加します。同じ入力からは毎回同じ出力になります。
+
+- 作品ごとの個別ページ: `/entries/{id}/`（Sigma 3,899件）、`/dja/entries/{id}/`（DJA 535件）。日本語・原文、リンク・出典、canonical、OGP、JSON-LD（`CreativeWork`）を含みます。
+- 年別一覧ページ: `/{year}/`（2020〜2026）、`/dja/{year}/`（2012〜2019）。
+- `/` と `/dja/` の `#card-grid` に既定年の先頭24件のカードと「年別一覧」リンク集を埋め込みます。JavaScriptが動くと `app.js` が置き換えます。
+- `sitemap.xml`（`lastmod` なし）。

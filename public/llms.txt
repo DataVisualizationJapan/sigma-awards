@@ -1,0 +1,66 @@
+# Sigma Awards / Data Journalism Awards 作品カタログ（日本語）
+
+> Data Visualization Japan が運営する、データジャーナリズム賞の作品カタログです。The Sigma Awards（2020〜2026年）の応募作品3,899件と、Data Journalism Awards（2012〜2019年）の受賞・候補535件を、日本語のタイトル・概要つきで検索・閲覧できます。日本語のタイトル・概要・詳細本文は機械翻訳で、原文も併記しています。Data Journalism Awards の収録は全応募の網羅ではありません。
+>
+> English: A Japanese-language catalog of data journalism award entries, operated by Data Visualization Japan: 3,899 entries from The Sigma Awards (2020–2026) and 535 winners, shortlisted and special-mention entries from the Data Journalism Awards (2012–2019), with machine-translated Japanese titles and summaries alongside the originals.
+
+## 注意事項
+
+- 運営: Data Visualization Japan
+- Sigma Awards のデータは CC BY-NC-SA 4.0 です。クレジットは The Sigma Awards / Global Investigative Journalism Network (GIJN) です。ライセンス: https://creativecommons.org/licenses/by-nc-sa/4.0/
+- Data Journalism Awards の資料には上記ライセンスを適用しません。出典はレコードごとに表示しています。
+- 日本語のタイトル・概要・詳細本文は機械翻訳です。正確な内容は原文と一次ソースで確認してください。
+- Data Journalism Awards は、保存されている資料で確認できる受賞・ショートリスト・特別表彰が中心で、全応募の完全な一覧ではありません（年によって候補一覧が一部のみの場合があります）。
+- 個別作品ページの URL 形式: Sigma Awards は `https://sigma-awards.data-visualization.jp/entries/{id}/`、Data Journalism Awards は `https://sigma-awards.data-visualization.jp/dja/entries/{id}/`。`{id}` は下記データ JSON の `id` です（例: `2020-s-0001`）。
+
+## サイト
+
+- [トップ（Sigma Awards 一覧）](https://sigma-awards.data-visualization.jp/): 2020〜2026年の応募作品を検索・絞り込みできる一覧
+- [Data Journalism Awards 一覧](https://sigma-awards.data-visualization.jp/dja/): 2012〜2019年の受賞・候補の一覧
+- [サイトマップ](https://sigma-awards.data-visualization.jp/sitemap.xml): 全ページの URL 一覧
+
+## Sigma Awards 年別一覧
+
+- [2020年](https://sigma-awards.data-visualization.jp/2020/)
+- [2021年](https://sigma-awards.data-visualization.jp/2021/)
+- [2022年](https://sigma-awards.data-visualization.jp/2022/)
+- [2023年](https://sigma-awards.data-visualization.jp/2023/)
+- [2024年](https://sigma-awards.data-visualization.jp/2024/)
+- [2025年](https://sigma-awards.data-visualization.jp/2025/)
+- [2026年](https://sigma-awards.data-visualization.jp/2026/)
+
+## Data Journalism Awards 年別一覧
+
+- [2012年](https://sigma-awards.data-visualization.jp/dja/2012/)
+- [2013年](https://sigma-awards.data-visualization.jp/dja/2013/)
+- [2014年](https://sigma-awards.data-visualization.jp/dja/2014/)
+- [2015年](https://sigma-awards.data-visualization.jp/dja/2015/)
+- [2016年](https://sigma-awards.data-visualization.jp/dja/2016/)
+- [2017年](https://sigma-awards.data-visualization.jp/dja/2017/)
+- [2018年](https://sigma-awards.data-visualization.jp/dja/2018/)
+- [2019年](https://sigma-awards.data-visualization.jp/dja/2019/)
+
+## データ（JSON）
+
+- [Sigma Awards 作品一覧](https://sigma-awards.data-visualization.jp/data/entries.json): 全3,899件の概要（id、年、種別、タイトル、日本語タイトル、組織、国、結果、タグ、概要、日本語概要、URL）
+- [Sigma Awards 年別詳細（2020）](https://sigma-awards.data-visualization.jp/data/details-2020.json): id をキーにした詳細（概要、インパクト、使用ツール、制作者、審査員コメント、リンク、日本語訳）。2021〜2026年も同じ形式で `details-2021.json` 〜 `details-2026.json`
+- [Sigma Awards 年別詳細（2021）](https://sigma-awards.data-visualization.jp/data/details-2021.json)
+- [Sigma Awards 年別詳細（2022）](https://sigma-awards.data-visualization.jp/data/details-2022.json)
+- [Sigma Awards 年別詳細（2023）](https://sigma-awards.data-visualization.jp/data/details-2023.json)
+- [Sigma Awards 年別詳細（2024）](https://sigma-awards.data-visualization.jp/data/details-2024.json)
+- [Sigma Awards 年別詳細（2025）](https://sigma-awards.data-visualization.jp/data/details-2025.json)
+- [Sigma Awards 年別詳細（2026）](https://sigma-awards.data-visualization.jp/data/details-2026.json)
+- [Data Journalism Awards 作品一覧](https://sigma-awards.data-visualization.jp/data/dja/entries.json): 受賞・候補535件の概要（id、年、タイトル、組織、国、種別、結果、部門ごとの受賞情報、出典）
+- [Data Journalism Awards 年別詳細（2012）](https://sigma-awards.data-visualization.jp/data/dja/details-2012.json): id をキーにした詳細（概要、日本語要約、審査員コメント、リンク、出典記録）。2013〜2019年も同じ形式で `details-2013.json` 〜 `details-2019.json`
+- [Data Journalism Awards 年別詳細（2013）](https://sigma-awards.data-visualization.jp/data/dja/details-2013.json)
+- [Data Journalism Awards 年別詳細（2014）](https://sigma-awards.data-visualization.jp/data/dja/details-2014.json)
+- [Data Journalism Awards 年別詳細（2015）](https://sigma-awards.data-visualization.jp/data/dja/details-2015.json)
+- [Data Journalism Awards 年別詳細（2016）](https://sigma-awards.data-visualization.jp/data/dja/details-2016.json)
+- [Data Journalism Awards 年別詳細（2017）](https://sigma-awards.data-visualization.jp/data/dja/details-2017.json)
+- [Data Journalism Awards 年別詳細（2018）](https://sigma-awards.data-visualization.jp/data/dja/details-2018.json)
+- [Data Journalism Awards 年別詳細（2019）](https://sigma-awards.data-visualization.jp/data/dja/details-2019.json)
+
+## 一次ソース
+
+- [The-Sigma-Awards-projects-data (GitHub)](https://github.com/Sigma-Awards/The-Sigma-Awards-projects-data): Sigma Awards のエントリーデータの正本
+- [The Sigma Awards](https://www.sigmaawards.org/): Sigma Awards 公式サイト

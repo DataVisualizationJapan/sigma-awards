@@ -3,7 +3,12 @@ import { countryJa, langsJa, sizeJa, tagJa } from "./i18n.js";
 const PAGE_SIZE = 24;
 const IS_DJA = document.body.dataset.catalog === "dja";
 const DATA_BASE = document.body.dataset.dataBase || "data/";
-let defaultYear = document.body.dataset.defaultYear || "2026";
+// history.replaceState changes the base URL, so resolve relative URLs against the page URL at load time.
+const PAGE_URL = location.href;
+const DATA_URL = new URL(DATA_BASE, PAGE_URL).href;
+const resolveUrl = (path) => new URL(path, PAGE_URL).href;
+const entryPath = (id) => `${IS_DJA ? "/dja" : ""}/entries/${encodeURIComponent(id)}/`;
+let defaultYear = document.body.dataset.defaultYear || "latest";
 const RESULT_VALUES = new Set(["winner", "shortlist", "mention", "entry"]);
 const KIND_VALUES = new Set(IS_DJA ? ["project", "portfolio", "individual", "team", "site"] : ["project", "portfolio"]);
 const RESULT_LABELS = {
@@ -150,14 +155,26 @@ function nextUrl() {
   return `${location.pathname}${filtersToSearch()}${location.hash}`;
 }
 
+// While the drawer is open the address bar shows the entry page; listUrl keeps the catalog URL to return to.
+let listUrl = "";
+
 function writeUrl({ replace = true, measure = true } = {}) {
-  const url = nextUrl();
-  if (url === currentUrl()) return;
-  history[replace ? "replaceState" : "pushState"](null, "", url);
+  let pageLocation = location.href;
+  if (state.openId && listUrl) {
+    const url = `${listUrl.split("?")[0]}${filtersToSearch()}`;
+    if (url === listUrl) return;
+    listUrl = url;
+    pageLocation = new URL(url, location.origin).href;
+  } else {
+    const url = nextUrl();
+    if (url === currentUrl()) return;
+    history[replace ? "replaceState" : "pushState"](null, "", url);
+    pageLocation = location.href;
+  }
   if (measure && typeof window.gtag === "function") {
     window.gtag("event", "page_view", {
       page_title: document.title,
-      page_location: location.href,
+      page_location: pageLocation,
     });
   }
 }
@@ -350,7 +367,7 @@ function renderCards() {
       const langs = displayLangs(entry.langs);
       const langsOriginal = entry.langs && langs !== entry.langs ? entry.langs : "";
       const thumb = entry.thumb
-        ? `<img class="card__thumb" src="${escapeHtml(entry.thumb)}" alt="" width="640" height="400" loading="lazy" decoding="async">`
+        ? `<img class="card__thumb" src="${escapeHtml(resolveUrl(entry.thumb))}" alt="" width="640" height="400" loading="lazy" decoding="async">`
         : "";
       return `
         <article class="card" data-id="${escapeHtml(entry.id)}">
@@ -360,7 +377,7 @@ function renderCards() {
             <span class="card__year">${entry.year}</span>
             <span class="card__kind">${escapeHtml(KIND_LABELS[entry.kind])}</span>
           </div>
-          <h2 class="card__title">${escapeHtml(displayTitle(entry))}</h2>
+          <h2 class="card__title"><a class="card__link" href="${entryPath(entry.id)}">${escapeHtml(displayTitle(entry))}</a></h2>
           ${isJa() && entry.titleJa && entry.titleJa !== entry.title ? `<p class="card__original-title">${escapeHtml(entry.title)}</p>` : ""}
           <p class="card__org">${escapeHtml([entry.org, displayCountry(entry.country)].filter(Boolean).join(" · "))}</p>
           ${langs ? `<p class="card__langs">${escapeHtml(isJa() ? `言語: ${langs}` : `Language: ${entry.langs}`)}</p>` : ""}
@@ -369,7 +386,7 @@ function renderCards() {
           <p class="card__summary">${escapeHtml(displayCardSummary(entry))}</p>
           <div class="card__tags">${tags}</div>
           <div class="card__actions">
-            <button class="card__detail" type="button" data-id="${escapeHtml(entry.id)}">詳細</button>
+            <a class="card__detail" href="${entryPath(entry.id)}" data-id="${escapeHtml(entry.id)}">詳細</a>
             ${url}
           </div>
         </article>
@@ -425,7 +442,7 @@ function findEntry(id) {
 
 async function loadDetails(year) {
   if (state.details.has(year)) return state.details.get(year);
-  const response = await fetch(`${DATA_BASE}details-${year}.json`);
+  const response = await fetch(`${DATA_URL}details-${year}.json`);
   if (!response.ok) throw new Error(`詳細データの読み込みに失敗しました（${year}）`);
   const payload = await response.json();
   state.details.set(year, payload);
@@ -454,7 +471,7 @@ function renderDrawer(entry, details = {}) {
   const title = displayTitle(entry);
   if (entry.thumb) {
     els.drawerThumb.hidden = false;
-    els.drawerThumb.src = entry.thumb;
+    els.drawerThumb.src = resolveUrl(entry.thumb);
     els.drawerThumb.alt = "";
   } else {
     els.drawerThumb.removeAttribute("src");
@@ -546,18 +563,30 @@ function renderDjaLinks(entry, details) {
 }
 
 let returnFocus = null;
+let returnSelector = ".card__detail";
+// True when the open drawer owns a history entry pushed for it (as opposed to a replaced one).
+let drawerPushed = false;
 
-async function openDrawer(id) {
+async function openDrawer(id, trigger = null, { mode = "replace" } = {}) {
   const entry = findEntry(id);
   if (!entry) return;
-  if (els.drawer.hidden) returnFocus = document.activeElement;
+  const wasOpen = !els.drawer.hidden;
+  if (!wasOpen) {
+    returnFocus = trigger || document.activeElement;
+    returnSelector = trigger?.classList.contains("card__link") ? ".card__link" : ".card__detail";
+    drawerPushed = mode === "push" || (mode === "keep" && Boolean(history.state?.drawer));
+    listUrl = mode === "keep"
+      ? `${IS_DJA ? "/dja/" : "/"}${filtersToSearch()}`
+      : `${location.pathname}${location.search}`;
+  }
   state.openId = id;
   renderDrawer(entry);
   els.drawer.hidden = false;
   els.drawer.dataset.open = "true";
   els.drawerBackdrop.hidden = false;
   document.body.style.overflow = "hidden";
-  history.replaceState(null, "", `${location.pathname}${location.search}#e=${encodeURIComponent(id)}`);
+  if (mode === "push" && !wasOpen) history.pushState({ drawer: id }, "", entryPath(id));
+  else if (mode === "replace") history.replaceState(null, "", entryPath(id));
   els.drawerClose.focus();
   try {
     const details = await loadDetails(entry.year);
@@ -573,22 +602,64 @@ async function openDrawer(id) {
   }
 }
 
-function closeDrawer() {
+function closeDrawer({ restoreUrl = true } = {}) {
+  const closedId = state.openId;
   state.openId = "";
   els.drawer.hidden = true;
   els.drawer.dataset.open = "false";
   els.drawerBackdrop.hidden = true;
   document.body.style.overflow = "";
-  if (returnFocus?.isConnected) returnFocus.focus();
-  if (location.hash.startsWith("#e=")) {
-    history.replaceState(null, "", location.pathname + location.search);
+  if (returnFocus?.isConnected && returnFocus !== document.body && !els.drawer.contains(returnFocus)) {
+    returnFocus.focus();
+  } else {
+    // The opener is gone, was the page body, or sat inside the drawer: use the same kind of link on the card.
+    const card = [...els.grid.querySelectorAll(".card")].find((c) => c.dataset.id === closedId);
+    const link = card?.querySelector(returnSelector);
+    if (link) link.focus();
+    else {
+      els.count.tabIndex = -1;
+      els.count.focus();
+    }
   }
+  drawerPushed = false;
+  if (restoreUrl && listUrl) history.replaceState(null, "", listUrl);
+  listUrl = "";
+}
+
+// A drawer opened by a click owns a pushed history entry; closing walks back so Back/Forward stay symmetric.
+function requestCloseDrawer() {
+  if (state.openId && history.state?.drawer) history.back();
+  else closeDrawer();
+}
+
+function safeDecode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return "";
+  }
+}
+
+const ENTRY_PATH_RE = IS_DJA ? /^\/dja\/entries\/([^/]+)\/$/ : /^\/entries\/([^/]+)\/$/;
+
+function syncFromPopState() {
+  const match = location.pathname.match(ENTRY_PATH_RE);
+  if (match && safeDecode(match[1])) {
+    openDrawer(safeDecode(match[1]), null, { mode: "keep" });
+    return;
+  }
+  // Closing with Back lands on the old list entry; apply filters changed while the drawer was open (e.g. locale).
+  if (state.openId && drawerPushed && listUrl && listUrl !== `${location.pathname}${location.search}`) {
+    history.replaceState(null, "", listUrl);
+  }
+  restoreFromLocation();
 }
 
 function syncFromHash() {
   const match = location.hash.match(/^#e=(.+)$/);
-  if (match) openDrawer(decodeURIComponent(match[1]));
-  else if (state.openId) closeDrawer();
+  const id = match ? safeDecode(match[1]) : "";
+  if (id) openDrawer(id);
+  else if (state.openId) closeDrawer({ restoreUrl: false });
 }
 
 function restoreFromLocation() {
@@ -663,9 +734,19 @@ function bind() {
     });
   }
   els.grid.addEventListener("click", (event) => {
+    const link = event.target.closest(".card__link, .card__detail");
+    if (link) {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const id = link.closest("[data-id]")?.dataset.id;
+      // Without loaded data the link navigates to the entry page normally.
+      if (!id || !findEntry(id)) return;
+      event.preventDefault();
+      openDrawer(id, link, { mode: "push" });
+      return;
+    }
     if (event.target.closest("a")) return;
     const card = event.target.closest("[data-id]");
-    if (card) openDrawer(card.dataset.id);
+    if (card) openDrawer(card.dataset.id, card.querySelector(".card__link"), { mode: "push" });
   });
   els.pager.addEventListener("click", (event) => {
     const button = event.target.closest("[data-page]");
@@ -678,11 +759,11 @@ function bind() {
     writeUrl({ replace: false });
     els.count.scrollIntoView({ block: "start" });
   });
-  els.drawerClose.addEventListener("click", closeDrawer);
-  els.drawerBackdrop.addEventListener("click", closeDrawer);
+  els.drawerClose.addEventListener("click", requestCloseDrawer);
+  els.drawerBackdrop.addEventListener("click", requestCloseDrawer);
   document.addEventListener("keydown", (event) => {
     if (els.drawer.hidden) return;
-    if (event.key === "Escape") closeDrawer();
+    if (event.key === "Escape") requestCloseDrawer();
     if (event.key === "Tab") {
       const items = [...els.drawer.querySelectorAll('button, a[href], summary')].filter((el) => el.getClientRects().length);
       const first = items[0], last = items.at(-1);
@@ -690,14 +771,17 @@ function bind() {
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     }
   });
-  window.addEventListener("hashchange", syncFromHash);
-  window.addEventListener("popstate", restoreFromLocation);
+  // popstate also fires for hash navigation and handles closing; the URL may already be an entry path here.
+  window.addEventListener("hashchange", () => {
+    if (location.hash) syncFromHash();
+  });
+  window.addEventListener("popstate", syncFromPopState);
 }
 
 async function init() {
   bind();
   try {
-    const response = await fetch(`${DATA_BASE}entries.json`);
+    const response = await fetch(`${DATA_URL}entries.json`);
     if (!response.ok) throw new Error("entries.json");
     const payload = await response.json();
     state.entries = payload.entries.slice().sort(compareEntries);

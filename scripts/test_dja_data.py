@@ -1,6 +1,7 @@
 """Regression tests for archived facts, deduplication, and offline reproducibility."""
 import importlib.util
 import json
+import re
 import unittest
 import hashlib
 import tempfile
@@ -124,6 +125,20 @@ class DjaDataTests(unittest.TestCase):
             manifest.write_text(json.dumps({'images': {entry['id']: broken}}))
             with self.assertRaisesRegex(ValueError, 'Missing or modified thumbnail'):
                 attach_thumbnails(self.entries, self.details, manifest)
+
+    def test_no_html_entities_remain_in_dja_json(self):
+        pattern = re.compile(r'&(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);')
+        for path in sorted((ROOT / 'public/data/dja').glob('*.json')):
+            for match in pattern.finditer(path.read_text()):
+                self.fail(f'{path.name}: leftover entity {match.group(0)!r}')
+
+    def test_ampersand_summary_correction_matches_output(self):
+        corrections = json.loads((ROOT / 'scripts/dja/corrections.json').read_text())
+        summary = corrections['records']['2014|Across U.S. Companies, Tax Rates Vary Greatly']['summary']
+        self.assertIn('S.&P. 500', summary)
+        row = self.entry(2014, 'Across U.S. Companies, Tax Rates Vary Greatly')
+        self.assertEqual(row['summary'], summary)
+        self.assertEqual(self.details[2014][row['id']]['summary'], summary)
 
     @unittest.skipUnless(build_dja.DEFAULT_SOURCE.exists(), 'Supplied archive is not installed')
     def test_rebuild_never_opens_network_and_is_deterministic(self):

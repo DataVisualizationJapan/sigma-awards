@@ -6,3 +6,4 @@ __pycache__/
 :memory:.ses
 .netlify/
 
+dist/

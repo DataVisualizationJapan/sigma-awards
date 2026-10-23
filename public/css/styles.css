@@ -351,6 +351,21 @@ h1 {
   line-height: 1.4;
 }
 
+.card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__link:hover,
+.card__link:focus-visible {
+  text-decoration: underline;
+}
+
+.card__link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 .card__original,
 .card__original-title,
 .drawer__original-title {
@@ -415,6 +430,9 @@ h1 {
 }
 
 .card__detail {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
   min-height: 44px;
   padding: 0 12px;
   border: 1px solid var(--border);
@@ -683,3 +701,28 @@ h1 {
 .source-note { font-size: 13px; color: var(--text-secondary); }
 .source-records p { font-size: 14px; overflow-wrap: anywhere; }
 body[data-catalog="dja"] .card__title { overflow-wrap: anywhere; }
+
+/* Static pages (entry detail, year lists) */
+.detail { max-width: 800px; overflow-wrap: anywhere; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-bottom: 16px; font-size: 14px; }
+.crumbs a { display: inline-flex; align-items: center; min-height: 44px; }
+.detail__thumb { display: block; width: 100%; height: auto; max-height: 360px; margin: 0 0 16px; object-fit: cover; background: var(--code-bg); border-radius: 8px; }
+.detail__meta, .detail__org, .detail__langs { margin: 0; color: var(--text-secondary); font-size: 14px; }
+.detail h1 { margin: 8px 0; }
+.detail__original-title { margin: 0 0 8px; color: var(--text-secondary); font-size: 14px; }
+.detail__tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.detail__body h2, .detail__source h2, .detail__links h2 { margin: 24px 0 8px; color: var(--text-secondary); font-size: 13px; font-weight: 600; }
+.detail__body p, .detail__source p { margin: 0; white-space: pre-wrap; }
+.detail__source { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--border); }
+.detail__source .detail__source-title { color: var(--text); font-size: 15px; }
+.detail__links { display: grid; gap: 8px; margin-top: 24px; }
+.detail__links a { word-break: break-all; }
+.year-index { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); }
+.year-index h2 { margin: 0 0 8px; font-size: 15px; }
+.year-index ul { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 0; padding: 0; list-style: none; }
+.year-index a { display: inline-flex; align-items: center; justify-content: center; min-width: 56px; min-height: 44px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--radius-btn); background: var(--surface); text-decoration: none; }
+.year-index a[aria-current="page"] { border-color: var(--primary); font-weight: 600; }
+body > .year-index { width: min(100% - 32px, var(--page-width)); margin-inline: auto; }
+.entry-list { margin: 16px 0 0; padding-left: 28px; }
+.entry-list li { margin-bottom: 12px; }
+.entry-list__original, .entry-list__meta { display: block; color: var(--text-secondary); font-size: 13px; }

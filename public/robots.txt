@@ -1,0 +1,11 @@
+# Search and answer crawlers are welcome. AI training crawlers are not.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://sigma-awards.data-visualization.jp/sitemap.xml
