@@ -11,6 +11,7 @@ Callers must pass those raw rows to `reconcile`.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import math
@@ -76,6 +77,7 @@ def fingerprint(row: dict[str, str]) -> dict:
     return {
         "rowHash": row_hash(row),
         "title": norm_text(row.get("Project title")),
+        "rawTitle": " ".join(str(row.get("Project title") or "").split()),
         "org": norm_text(row.get("Publishing organisations")),
         "links": sorted(links),
         "desc": _sha(description, 12) if description else "",
@@ -152,6 +154,27 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
 
     `rows` are the raw CSV rows that have a project title.
     """
+    overrides = {i: w for i, w in ledger.get("overrides", {}).items()
+                 if i in ledger["entries"] and ledger["entries"][i]["year"] == year and ledger["entries"][i]["kind"] == kind}
+    unneeded = []
+    if overrides:
+        # An override is unneeded if matching gives the same IDs without it.
+        with_all = _match(copy.deepcopy(ledger), year, kind, rows)[0]
+        for entry_id in sorted(overrides):
+            probe = copy.deepcopy(ledger)
+            del probe["overrides"][entry_id]
+            try:
+                same = _match(probe, year, kind, rows)[0] == with_all
+            except LedgerError:
+                same = False
+            if same:
+                unneeded.append(entry_id)
+    ids, report = _match(ledger, year, kind, rows)
+    report["unneeded"] = unneeded
+    return ids, report
+
+
+def _match(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) -> tuple[list[str], dict]:
     entries = ledger["entries"]
     group = {i: e for i, e in entries.items() if e["year"] == year and e["kind"] == kind}
     ups = [fingerprint(r) for r in rows]
@@ -166,6 +189,15 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
 
     # 0. Manual overrides: a row hash pins an ID; null retires the ID (never matched again).
     retired = {i for i, wanted in ledger.get("overrides", {}).items() if wanted is None and i in group}
+    for entry_id in sorted(retired):
+        live = [index + 1 for index, up in enumerate(ups)
+                if up["rowHash"] == group[entry_id]["rowHash"]
+                or (score(up, group[entry_id]) >= MIN_SCORE and has_evidence(up, group[entry_id]))]
+        if live:
+            raise LedgerError(
+                f"Cannot retire {entry_id}: upstream rows {live[:5]} in {year} {kind} still match it, "
+                "so retiring it would change a published URL.\nRemove the null override from scripts/sigma/ids.json."
+            )
     taken |= retired
     for entry_id, wanted in sorted(ledger.get("overrides", {}).items()):
         if entry_id not in group or wanted is None:
@@ -175,6 +207,10 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
                 assign(index, entry_id, "overrides")
                 break
         else:
+            twins = sorted(i for i, w in ledger["overrides"].items() if w == wanted)
+            if len(twins) > 1:
+                raise LedgerError(f"Row hash {wanted} is pinned for more than one ID ({', '.join(twins)}) in {year} {kind}; "
+                                  "a row can belong to only one ID.")
             raise LedgerError(
                 f"Override for {entry_id} matches no upstream row in {year} {kind} (row hash {wanted}).\n"
                 "Fix or delete it in scripts/sigma/ids.json."
@@ -205,7 +241,11 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
             points = score(ups[index], group[entry_id])
             if points >= MIN_SCORE:
                 (pairs if has_evidence(ups[index], group[entry_id]) else weak).append((points, index, entry_id))
-    pairs.sort(key=lambda p: (-p[0], p[1], p[2]))
+    def same_title(p) -> bool:
+        return bool(ups[p[1]]["rawTitle"]) and ups[p[1]]["rawTitle"] == group[p[2]].get("rawTitle")
+
+    # Among equal scores, a pair whose titles are identical before normalisation goes first.
+    pairs.sort(key=lambda p: (-p[0], not same_title(p), p[1], p[2]))
     by_up: dict[int, int] = {}
     by_led: dict[str, int] = {}
     for _, index, entry_id in pairs:
@@ -221,6 +261,8 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
             and (p[1] == index or p[2] == entry_id)
             and p[1] not in assigned and p[2] not in taken
         ]
+        if same_title((points, index, entry_id)):
+            rivals = [r for r in rivals if same_title(r)]
         if rivals:
             lines = [f"  row {index + 1} ({rows[index].get('Project title', '')!r}) ~ {entry_id} [{points}pt]"]
             lines += [f"  row {r[1] + 1} ~ {r[2]} [{r[0]}pt]" for r in rivals]
@@ -280,6 +322,9 @@ def validate_overrides(ledger: dict) -> None:
 
 def format_report(reports: list[dict]) -> str:
     out = ["ID ledger:"]
+    for rep in reports:
+        for entry_id in rep.get("unneeded", []):
+            out.append(f"  unneeded override (same result without it): {entry_id}")
     totals = {k: 0 for k in ("confirmed", "scored", "new", "removed", "overrides")}
     for rep in reports:
         for key in totals:
