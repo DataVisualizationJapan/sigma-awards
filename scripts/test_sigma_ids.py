@@ -342,6 +342,60 @@ class ReviewTests(unittest.TestCase):
         self.assertIn(ids[0], str(caught.exception))
 
 
+class OperationsTests(unittest.TestCase):
+    def test_live_id_cannot_be_retired(self):
+        rows = make_rows(6)
+        ledger, ids = fresh(rows)
+        ledger['overrides'][ids[2]] = None
+        with self.assertRaises(L.LedgerError) as caught:
+            run(ledger, rows)
+        self.assertIn('Cannot retire', str(caught.exception))
+        rows[2]['Project title'] = 'edited'  # still matched by link and description
+        with self.assertRaises(L.LedgerError):
+            run(ledger, rows)
+
+    def test_case_only_duplicates_survive_whole_file_changes(self):
+        upper = make_row(1, **{'Project title': 'INVESTIGATION NUMBER 1'})
+        rows = [make_row(1), upper] + make_rows(8)[1:]
+        for mutate in (lambda r: r.update({'Extra': 'x'}), lambda r: r.update({'Results': 'Winner'})):
+            ledger, ids = fresh(rows, year=2020)
+            changed = copy.deepcopy(rows)
+            for row in changed:
+                mutate(row)
+            again, _ = run(ledger, changed, year=2020)
+            self.assertEqual(again, ids)
+            again, _ = run(ledger, changed[::-1], year=2020)
+            self.assertEqual(again, ids[::-1])
+
+    def test_same_row_pinned_for_two_ids_says_so(self):
+        rows = make_rows(5)
+        ledger, ids = fresh(rows)
+        digest = L.fingerprint(rows[0])['rowHash']
+        ledger['overrides'] = {ids[0]: digest, ids[1]: digest}
+        with self.assertRaises(L.LedgerError) as caught:
+            run(ledger, rows)
+        self.assertIn('pinned for more than one ID', str(caught.exception))
+
+    def test_unneeded_overrides_are_reported_not_fatal(self):
+        rows = make_rows(5)
+        ledger, ids = fresh(rows)
+        ledger['overrides'] = {ids[0]: L.fingerprint(rows[0])['rowHash']}
+        again, report = run(ledger, rows)
+        self.assertEqual(again, ids)
+        self.assertEqual(report['unneeded'], [ids[0]])
+        self.assertIn(ids[0], L.format_report([report]))
+
+    def test_needed_override_is_not_reported_unneeded(self):
+        rows = [make_row(1, Category='A'), make_row(1, Category='B')] + make_rows(8)[1:]
+        ledger, ids = fresh(rows, year=2020)
+        edited = [make_row(1, Category='C')] + make_rows(8)[1:]
+        edited[0]['A short description of the project'] = rows[0]['A short description of the project']
+        edited[0]['Publishing organisations'] = 'Someone else'
+        ledger['overrides'][ids[1]] = L.fingerprint(edited[0])['rowHash']
+        _, report = run(ledger, edited, year=2020)
+        self.assertEqual(report['unneeded'], [])
+
+
 class FingerprintIsRawTests(unittest.TestCase):
     """build-data.py may clean rows for display; that must never move an ID."""
 
@@ -445,6 +499,17 @@ class RealDataTests(unittest.TestCase):
 
     def test_every_year_kind_group_is_present(self):
         self.assertEqual(sum(len(r) for r in self.groups.values()), 3899)
+
+    def test_whole_file_changes_keep_every_id(self):
+        for mutate in (lambda r: r.update({'Extra': 'x'}), lambda r: r.update({'Results': 'Winner'})):
+            ledger = copy.deepcopy(self.ledger)
+            for (year, kind), rows in self.groups.items():
+                changed = copy.deepcopy(rows)
+                for row in changed:
+                    mutate(row)
+                ids, _ = L.reconcile(ledger, year, kind, changed)
+                expected = sorted(i for i, e in self.ledger['entries'].items() if e['year'] == year and e['kind'] == kind)
+                self.assertEqual(ids, expected, (year, kind))
 
     @unittest.skipUnless(upstream_has('dc71023^', 'dc71023'), 'dc71023 not in clone')
     def test_applicant_removal_dc71023_removes_one_and_keeps_the_rest(self):
