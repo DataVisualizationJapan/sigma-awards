@@ -2,6 +2,11 @@
 
 Upstream has no submission key, so each upstream row is matched to a ledger
 entry by fingerprint. IDs are never renumbered and never reused.
+
+Fingerprints are computed from the rows exactly as read from the CSV, before
+any cleanup (entity decoding, placeholder handling, ...) that build-data.py
+applies for display. Cleanup rules can then change without moving any ID.
+Callers must pass those raw rows to `reconcile`.
 """
 
 from __future__ import annotations
@@ -78,6 +83,17 @@ def fingerprint(row: dict[str, str]) -> dict:
     }
 
 
+def has_evidence(up: dict, led: dict) -> bool:
+    """Title and organisation alone are too weak to hand an ID to another work."""
+    return bool(set(up["links"]) & set(led["links"])) or bool(up["desc"] and up["desc"] == led["desc"])
+
+
+def is_exact_content(up: dict, led: dict) -> bool:
+    """Same title, link set and description: only other columns changed."""
+    return bool(up["title"] and up["title"] == led["title"] and up["links"] == led["links"]
+                and up["desc"] and up["desc"] == led["desc"])
+
+
 def score(up: dict, led: dict) -> int:
     total = 0
     if up["title"] and up["title"] == led["title"]:
@@ -101,7 +117,8 @@ def empty_ledger() -> dict:
     return {"version": VERSION, "upstreamCommit": None, "overrides": {}, "entries": {}}
 
 
-def load(path: Path = LEDGER_PATH) -> dict:
+def load(path: Path | None = None) -> dict:
+    path = path or LEDGER_PATH
     if not path.exists():
         return empty_ledger()
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -109,7 +126,8 @@ def load(path: Path = LEDGER_PATH) -> dict:
     return data
 
 
-def save(ledger: dict, path: Path = LEDGER_PATH) -> None:
+def save(ledger: dict, path: Path | None = None) -> None:
+    path = path or LEDGER_PATH
     head = {k: v for k, v in ledger.items() if k != "entries"}
     entries = ledger["entries"]
     rows = [f'  {json.dumps(i)}:{json.dumps(entries[i], ensure_ascii=False, separators=(",", ":"))}' for i in sorted(entries)]
@@ -146,14 +164,21 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
         taken.add(entry_id)
         report[how].append((entry_id, points) if points is not None else entry_id)
 
-    # 0. Manual overrides pin an ID to an upstream row hash.
+    # 0. Manual overrides: a row hash pins an ID; null retires the ID (never matched again).
+    retired = {i for i, wanted in ledger.get("overrides", {}).items() if wanted is None and i in group}
+    taken |= retired
     for entry_id, wanted in sorted(ledger.get("overrides", {}).items()):
-        if entry_id not in group or entry_id in taken:
+        if entry_id not in group or wanted is None:
             continue
         for index, up in enumerate(ups):
             if index not in assigned and up["rowHash"] == wanted:
                 assign(index, entry_id, "overrides")
                 break
+        else:
+            raise LedgerError(
+                f"Override for {entry_id} matches no upstream row in {year} {kind} (row hash {wanted}).\n"
+                "Fix or delete it in scripts/sigma/ids.json."
+            )
 
     # 1. Whole-row hash that is unique (or equally repeated) on both sides.
     up_by_hash: dict[str, list[int]] = {}
@@ -170,17 +195,23 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
             for index, entry_id in zip(indexes, ids):  # identical rows are interchangeable
                 assign(index, entry_id, "confirmed")
 
-    # 2. Score the rest, best pairs first, one-to-one.
+    # 2. Score the rest, best pairs first, one-to-one. A pair needs link or
+    #    description evidence; title + organisation alone is never enough.
     free_up = [i for i in range(len(ups)) if i not in assigned]
     free_led = [i for i in sorted(group) if i not in taken]
-    pairs = []
+    pairs, weak = [], []
     for index in free_up:
         for entry_id in free_led:
             points = score(ups[index], group[entry_id])
             if points >= MIN_SCORE:
-                pairs.append((points, index, entry_id))
+                (pairs if has_evidence(ups[index], group[entry_id]) else weak).append((points, index, entry_id))
     pairs.sort(key=lambda p: (-p[0], p[1], p[2]))
-    scored = 0
+    by_up: dict[int, int] = {}
+    by_led: dict[str, int] = {}
+    for _, index, entry_id in pairs:
+        by_up[index] = by_up.get(index, 0) + 1
+        by_led[entry_id] = by_led.get(entry_id, 0) + 1
+    counted = 0
     for points, index, entry_id in pairs:
         if index in assigned or entry_id in taken:
             continue
@@ -198,13 +229,26 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
                 + "\nPin one in scripts/sigma/ids.json under \"overrides\": {\"<id>\": \"<row hash>\"}."
             )
         assign(index, entry_id, "scored", points)
-        scored += 1
+        # Rows whose title, links and description all agree and that have no
+        # competing candidate only changed in other columns; they are not a risk.
+        if not (is_exact_content(ups[index], group[entry_id]) and by_up[index] == 1 and by_led[entry_id] == 1):
+            counted += 1
     limit = score_limit(len(ups))
-    if scored > limit:
+    if counted > limit:
         raise LedgerError(
-            f"{scored} rows in {year} {kind} matched by score (limit {limit}); upstream changed too much to trust.\n"
+            f"{counted} rows in {year} {kind} matched by score (limit {limit}); upstream changed too much to trust.\n"
             + "\n".join(f"  {i} [{p}pt]" for i, p in report["scored"][:30])
             + "\nReview the upstream diff, then pin IDs under \"overrides\" in scripts/sigma/ids.json."
+        )
+    leftovers = [p for p in weak if p[1] not in assigned and p[2] not in taken]
+    if leftovers:
+        lines = [f"  row {i + 1} ({rows[i].get('Project title', '')!r}) ~ {e}{' (removed)' if group[e]['removed'] else ''} [{pt}pt, no shared link or description]"
+                 for pt, i, e in sorted(leftovers, key=lambda p: (p[1], p[2]))[:30]]
+        raise LedgerError(
+            f"Needs review in {year} {kind}: title/organisation/category match, but nothing else does.\n"
+            + "\n".join(lines)
+            + "\nSame work: pin it with \"overrides\": {\"<id>\": \"<row hash>\"}. Different work: retire the old ID with"
+            + " \"overrides\": {\"<id>\": null}."
         )
 
     # 3. Anything left is new; numbers only ever grow.
@@ -218,12 +262,20 @@ def reconcile(ledger: dict, year: int, kind: str, rows: list[dict[str, str]]) ->
     # 4. Persist fingerprints; unmatched ledger IDs stay as removed.
     for index, entry_id in assigned.items():
         entries[entry_id] = {"year": year, "kind": kind, **ups[index], "removed": False}
+    matched = set(assigned.values())
     for entry_id in group:
-        if entry_id not in taken:
+        if entry_id not in matched:
             if not entries[entry_id].get("removed"):
                 report["removed"].append(entry_id)
             entries[entry_id]["removed"] = True
     return [assigned[i] for i in range(len(ups))], report
+
+
+def validate_overrides(ledger: dict) -> None:
+    """Overrides naming an ID the ledger has never issued are typos."""
+    unknown = sorted(i for i in ledger.get("overrides", {}) if i not in ledger["entries"])
+    if unknown:
+        raise LedgerError("Overrides name IDs that are not in the ledger: " + ", ".join(unknown))
 
 
 def format_report(reports: list[dict]) -> str:

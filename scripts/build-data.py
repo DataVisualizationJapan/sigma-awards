@@ -122,9 +122,15 @@ def ensure_source() -> None:
     subprocess.check_call(["git", "clone", "--depth", "1", SOURCE_REPO, str(SOURCE_DIR)])
 
 
-def load_rows(path: Path) -> list[dict[str, str]]:
+def read_rows(path: Path) -> list[dict[str, str]]:
+    """CSV rows exactly as read. The ID ledger fingerprints these, so keep any cleanup out of here."""
     with path.open(encoding="utf-8-sig", errors="replace", newline="") as handle:
         return [{(k or "").strip(): v for k, v in row.items()} for row in csv.DictReader(handle)]
+
+
+def clean_row(row: dict[str, str]) -> dict[str, str]:
+    """Display-only cleanup applied after IDs are assigned."""
+    return row
 
 
 def compact_summary(text: str) -> str:
@@ -168,6 +174,10 @@ def source_commit() -> str | None:
 def build() -> None:
     ensure_source()
     ledger = id_ledger.load()
+    try:
+        id_ledger.validate_overrides(ledger)
+    except id_ledger.LedgerError as error:
+        raise SystemExit(f"ID ledger: {error}")
     commit = source_commit()
     reports: list[dict] = []
     index_entries: list[dict] = []
@@ -178,14 +188,15 @@ def build() -> None:
         path = SOURCE_DIR / filename
         if not path.exists():
             raise SystemExit(f"Missing {path}")
-        rows = [row for row in load_rows(path) if first(row.get("Project title"))]
+        raw_rows = [row for row in read_rows(path) if (row.get("Project title") or "").strip()]
         try:
-            ids, report = id_ledger.reconcile(ledger, year, kind, rows)
+            ids, report = id_ledger.reconcile(ledger, year, kind, raw_rows)
         except id_ledger.LedgerError as error:
             raise SystemExit(f"ID ledger: {error}")
         reports.append(report)
-        sequential = len(rows)
-        for row, entry_id in zip(rows, ids):
+        sequential = len(raw_rows)
+        for raw_row, entry_id in zip(raw_rows, ids):
+            row = clean_row(raw_row)
             title = first(row.get("Project title"))
             result_key, result_label = normalize_result(row.get("Results"))
             summary = first(

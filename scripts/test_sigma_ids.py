@@ -1,5 +1,8 @@
 """Tests for the Sigma ID ledger: IDs must survive upstream edits."""
+import contextlib
 import copy
+import csv
+import io
 import importlib.util
 import json
 import random
@@ -7,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -263,6 +267,133 @@ class LedgerTests(unittest.TestCase):
             self.assertEqual(json.loads(path.read_text()), ledger)
 
 
+class ReviewTests(unittest.TestCase):
+    def rtve_rows(self):
+        return [make_row(n, **{'Project title': 'RTVE', 'Publishing organisations': 'RTVE'}) for n in (1, 2, 3)] + make_rows(8)[3:]
+
+    def test_title_and_org_alone_do_not_hand_over_an_id(self):
+        rows = self.rtve_rows()
+        ledger, ids = fresh(rows)
+        edited = rows[1:] + [make_row(70, **{'Project title': 'RTVE', 'Publishing organisations': 'RTVE'})]
+        with self.assertRaises(L.LedgerError) as caught:
+            run(ledger, edited)
+        self.assertIn('Needs review', str(caught.exception))
+        self.assertIn(ids[0], str(caught.exception))
+
+    def test_removed_id_is_not_revived_by_a_weak_match(self):
+        rows = make_rows(6)
+        ledger, ids = fresh(rows, year=2020, kind='portfolio')
+        run(ledger, rows[1:], year=2020, kind='portfolio')
+        impostor = make_row(1, **{'Project link 1': 'https://other.example/x', 'Project link 2': '',
+                                  'A short description of the project': 'different'})
+        with self.assertRaises(L.LedgerError):
+            run(ledger, rows[1:] + [impostor], year=2020, kind='portfolio')
+        self.assertTrue(ledger['entries'][ids[0]]['removed'])
+
+    def test_weak_candidate_can_be_pinned_or_retired(self):
+        rows = self.rtve_rows()
+        newcomer = make_row(70, **{'Project title': 'RTVE', 'Publishing organisations': 'RTVE'})
+        edited = rows[1:] + [newcomer]
+        pinned, ids = fresh(rows)
+        pinned['overrides'][ids[0]] = L.fingerprint(newcomer)['rowHash']
+        again, _ = run(pinned, edited)
+        self.assertEqual(again[-1], ids[0])
+        retired, ids = fresh(rows)
+        retired['overrides'][ids[0]] = None
+        again, report = run(retired, edited)
+        self.assertEqual(again[-1], '2024-s-0009')
+        self.assertEqual(report['removed'], [ids[0]])
+
+    def test_partial_link_overlap_with_little_else_is_not_enough(self):
+        rows = make_rows(10)
+        ledger, ids = fresh(rows)
+        rows[2]['Project title'] = 'Renamed'
+        rows[2]['A short description of the project'] = 'rewritten'
+        rows[2]['Project link 2'] = 'https://example.org/else'
+        again, _ = run(ledger, rows)  # one shared link plus org: 2 pt, below the threshold
+        self.assertNotEqual(again[2], ids[2])  # too little: the old ID is not forced onto it
+
+    def test_results_column_change_on_every_row_does_not_stop(self):
+        rows = make_rows(120)
+        ledger, ids = fresh(rows)
+        for row in rows:
+            row['Results'] = 'Winner'
+        again, report = run(ledger, rows)
+        self.assertEqual(again, ids)
+        self.assertEqual(len(report['scored']), 120)
+
+    def test_added_column_on_every_row_does_not_stop(self):
+        rows = make_rows(120)
+        ledger, ids = fresh(rows)
+        for row in rows:
+            row['Reviewer notes'] = 'x'
+        again, _ = run(ledger, rows)
+        self.assertEqual(again, ids)
+
+    def test_bad_overrides_are_errors(self):
+        rows = make_rows(5)
+        ledger, ids = fresh(rows)
+        ledger['overrides']['2024-s-9999'] = 'abc'
+        with self.assertRaises(L.LedgerError):
+            L.validate_overrides(ledger)
+        ledger['overrides'] = {ids[0]: 'nonexistent-hash'}
+        with self.assertRaises(L.LedgerError) as caught:
+            run(ledger, rows)
+        self.assertIn(ids[0], str(caught.exception))
+
+
+class FingerprintIsRawTests(unittest.TestCase):
+    """build-data.py may clean rows for display; that must never move an ID."""
+
+    def write_upstream(self, root):
+        for year, filename, kind in build_sigma.FILES:
+            with (root / filename).open('w', encoding='utf-8', newline='') as handle:
+                writer = csv.DictWriter(handle, fieldnames=[
+                    'Project title', 'Publishing organisations', 'A short description of the project',
+                    'Project link 1', 'Results'])
+                writer.writeheader()
+                for n in range(1, 6):
+                    writer.writerow({
+                        'Project title': f'{year} {kind} &amp; story {n}', 'Publishing organisations': f'Org &amp; {n}',
+                        'A short description of the project': f'Text {n} &lt;unk&gt;', 'Project link 1': f'https://e.org/{year}/{kind}/{n}',
+                        'Results': ''})
+
+    def run_build(self, root, out, ledger_path, clean=None):
+        patches = [
+            unittest.mock.patch.object(build_sigma, 'SOURCE_DIR', root),
+            unittest.mock.patch.object(build_sigma, 'OUT_DIR', out),
+            unittest.mock.patch.object(L, 'LEDGER_PATH', ledger_path),
+        ]
+        if clean:
+            patches.append(unittest.mock.patch.object(build_sigma, 'clean_row', clean))
+        with contextlib.ExitStack() as stack, contextlib.redirect_stdout(io.StringIO()) as buf:
+            for patch in patches:
+                stack.enter_context(patch)
+            build_sigma.build()
+        return buf.getvalue()
+
+    def test_row_cleanup_does_not_change_fingerprints_or_ids(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, out = Path(tmp) / 'up', Path(tmp) / 'out'
+            root.mkdir()
+            self.write_upstream(root)
+            ledger_path = Path(tmp) / 'ids.json'
+            self.run_build(root, out, ledger_path)
+            first_ledger = ledger_path.read_bytes()
+            first_ids = [e['id'] for e in json.loads((out / 'entries.json').read_text())['entries']]
+
+            def clean(row):
+                return {k: (v.replace('&amp;', '&').replace('&lt;unk&gt;', '').upper() if isinstance(v, str) else v)
+                        for k, v in row.items()}
+
+            log = self.run_build(root, out, ledger_path, clean=clean)
+            self.assertIn('confirmed 70', log)
+            self.assertEqual(ledger_path.read_bytes(), first_ledger)
+            payload = json.loads((out / 'entries.json').read_text())
+            self.assertEqual([e['id'] for e in payload['entries']], first_ids)
+            self.assertTrue(payload['entries'][0]['title'].isupper())
+
+
 def git(*args):
     return subprocess.run(['git', '-C', str(UPSTREAM), *args], capture_output=True, check=True).stdout
 
@@ -278,7 +409,7 @@ def rows_at(rev, filename):
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / filename
         path.write_bytes(git('show', f'{rev}:{filename}'))
-        return [r for r in build_sigma.load_rows(path) if build_sigma.first(r.get('Project title'))]
+        return [r for r in build_sigma.read_rows(path) if build_sigma.first(r.get('Project title'))]
 
 
 @unittest.skipUnless(upstream_has(PINNED), 'upstream clone with 311fc0c not available in .tmp-data')
