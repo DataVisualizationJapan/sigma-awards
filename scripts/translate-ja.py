@@ -10,6 +10,9 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sigma_text import DETAIL_TAIL_KEYS, ENTRY_TAIL_KEYS, with_tail_order  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "public" / "data"
 MODEL_DIR = ROOT / ".tmp-data" / "nllb-ct2"
@@ -245,11 +248,12 @@ def patch_into_files(entries: list[dict], details_by_year: dict[int, dict]) -> N
         for entry_id, record in records.items():
             if entry_id not in current:
                 continue
-            for key in ("summaryJa", "impactJa", "juryJa"):
+            for key in DETAIL_TAIL_KEYS:
                 set_or_drop(current[entry_id], key, record, key)
             if "summaryJa" in record and not record["summaryJa"] and entry_id in rows:
                 rows[entry_id].pop("summaryJa", None)
-        dump_json(path, current)
+        dump_json(path, {entry_id: with_tail_order(record, DETAIL_TAIL_KEYS) for entry_id, record in current.items()})
+    payload["entries"] = [with_tail_order(row, ENTRY_TAIL_KEYS) for row in payload["entries"]]
     dump_json(DATA / "entries.json", payload)
 
 

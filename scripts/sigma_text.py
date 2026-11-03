@@ -376,3 +376,13 @@ def merge_refs(groups: list[list[dict]]) -> list[dict]:
 def find_tag_like(text: str) -> list[str]:
     """Markup-looking pieces left in text that html_to_text does not treat as tags."""
     return [piece for piece in _TAG_LIKE.findall(text) if not _TAG.fullmatch(piece)]
+
+
+ENTRY_TAIL_KEYS = ("thumb", "titleJa", "summaryJa")
+DETAIL_TAIL_KEYS = ("summaryJa", "impactJa", "juryJa")
+
+
+def with_tail_order(record: dict, tail: tuple[str, ...]) -> dict:
+    """Return record with the optional keys last, in a fixed order, so output bytes are stable."""
+    head = {key: value for key, value in record.items() if key not in tail}
+    return head | {key: record[key] for key in tail if key in record}

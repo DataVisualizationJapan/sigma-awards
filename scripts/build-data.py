@@ -14,6 +14,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sigma_text import (  # noqa: E402
+    DETAIL_TAIL_KEYS,
+    ENTRY_TAIL_KEYS,
     PARAGRAPH,
     blank_placeholder,
     collapse_spaces,
@@ -24,6 +26,7 @@ from sigma_text import (  # noqa: E402
     merge_refs,
     normalize_links,
     read_text_lines,
+    with_tail_order,
 )
 from sigma import ledger as id_ledger  # noqa: E402
 
@@ -271,15 +274,7 @@ def merge_existing_ja(entries: list[dict], details_by_year: dict[int, dict[str, 
         )
 
 
-ENTRY_TAIL_KEYS = ("thumb", "titleJa", "summaryJa")
-DETAIL_TAIL_KEYS = ("summaryJa", "impactJa", "juryJa")
 DETAIL_TEXT_FIELDS = ("summary", "impact", "tools", "authors", "jury")
-
-
-def with_tail_order(record: dict, tail: tuple[str, ...]) -> dict:
-    """Return record with the optional keys last, in a fixed order, so output bytes are stable."""
-    head = {key: value for key, value in record.items() if key not in tail}
-    return head | {key: record[key] for key in tail if key in record}
 
 
 def report_tag_like(details_by_year: dict[int, dict[str, dict]]) -> None:

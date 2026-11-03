@@ -346,8 +346,7 @@ class RealDataTests(unittest.TestCase):
 
     def test_quoted_title_shown_in_full(self):
         text = self.page("entries/2020-s-0243")
-        self.assertRegex(text, r"<title>„Die Welt bangt")
-        self.assertIn("<h1>„Die Welt bangt", text)
+        self.assertIn("„Die Welt bangt um die drei Astronauten&quot; // „The World Fears for the Three Astronauts&quot;", text)
         self.assertNotIn("&lt;unk&gt;", text)
 
     def test_placeholder_org_authors_tools(self):
