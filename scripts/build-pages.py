@@ -9,6 +9,7 @@ Copies ``public/`` to ``dist/`` and adds, without touching ``public/``:
 Standard library only. Output is deterministic (no timestamps, fixed order).
 """
 import argparse
+from analytics import render as render_analytics
 import html
 import json
 import re
@@ -231,9 +232,7 @@ class Shell:
     """Head/footer pieces taken from the existing list pages so they stay in sync."""
 
     def __init__(self, public):
-        idx = (public / "index.html").read_text(encoding="utf-8")
-        m = re.search(r"<!-- Google tag \(gtag\.js\) -->.*?gtag\('config'[^)]*\);\s*</script>", idx, re.S)
-        self.gtag = m.group(0) if m else ""
+        self.analytics = render_analytics(public / "analytics.json", script_src="/js/dvj-analytics.js")
         self.footer = {}
         for cat, conf in CATALOGS.items():
             src = (public / conf["index"]).read_text(encoding="utf-8")
@@ -269,7 +268,7 @@ class Shell:
     %s
   </body>
 </html>
-""" % (self.gtag, esc(title), esc(description), esc(canonical), og_html, FONTS, ld_html, body, self.footer[cat])
+""" % (self.analytics, esc(title), esc(description), esc(canonical), og_html, FONTS, ld_html, body, self.footer[cat])
 
 
 def masthead(cat):
@@ -620,6 +619,10 @@ def build(public, out):
             urls.append(SITE + entry_path(cat, e["id"]))
         default_year = default_year_for(public / conf["index"], years)
         index_path = out / conf["index"]
+        source_html = index_path.read_text(encoding="utf-8")
+        if source_html.count("<!-- DVJ_ANALYTICS -->") != 1:
+            raise SystemExit("expected one DVJ_ANALYTICS marker in %s" % conf["index"])
+        write(index_path, source_html.replace("<!-- DVJ_ANALYTICS -->", shell.analytics))
         write(index_path, embed_index(i18n, cat, index_path.read_text(encoding="utf-8"), entries, years, default_year))
         stats[cat] = len(entries)
 
