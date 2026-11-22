@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "measurement_id": "G-0DP20HK462",
+  "site_id": "sigma_awards",
+  "production_hosts": [
+    "sigma-awards.data-visualization.jp"
+  ]
+}

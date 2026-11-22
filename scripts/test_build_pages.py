@@ -1,5 +1,7 @@
 """Tests for scripts/build-pages.py (static page generation)."""
 import hashlib
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
 import importlib.util
 import json
 import re
@@ -13,9 +15,7 @@ spec = importlib.util.spec_from_file_location("build_pages", ROOT / "scripts/bui
 bp = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bp)
 
-INDEX = """<!DOCTYPE html><html><head><title>T &amp; U</title><meta name="description" content="D" /><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X"></script>
-<script>gtag('config', 'G-X');</script></head><body>
+INDEX = """<!DOCTYPE html><html><head><title>T &amp; U</title><meta name="description" content="D" /><!-- DVJ_ANALYTICS --></head><body>
 <p id="result-count">読み込み中</p>
 <div class="card-grid" id="card-grid"></div>
 <footer class="site-footer"><p>FOOT %s</p></footer></body></html>"""
@@ -38,6 +38,7 @@ def write_json(path, data):
 
 def make_public(root):
     (root / "dja").mkdir(parents=True)
+    write_json(root / "analytics.json", {"enabled": False, "measurement_id": "G-TEST", "site_id": "sigma_awards", "production_hosts": ["sigma-awards.data-visualization.jp"]})
     (root / "css").mkdir()
     (root / "css/styles.css").write_text("body{}", encoding="utf-8")
     (root / "index.html").write_text(INDEX % "sigma", encoding="utf-8")

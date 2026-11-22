@@ -1,6 +1,8 @@
 import { countryJa, langsJa, sizeJa, tagJa } from "./i18n.js";
 
 const PAGE_SIZE = 24;
+const CATALOG_TITLE = document.title;
+let analyticsFilterTimer = 0;
 const IS_DJA = document.body.dataset.catalog === "dja";
 const DATA_BASE = document.body.dataset.dataBase || "data/";
 // history.replaceState changes the base URL, so resolve relative URLs against the page URL at load time.
@@ -158,24 +160,22 @@ function nextUrl() {
 // While the drawer is open the address bar shows the entry page; listUrl keeps the catalog URL to return to.
 let listUrl = "";
 
-function writeUrl({ replace = true, measure = true } = {}) {
-  let pageLocation = location.href;
+function writeUrl({ replace = true, measure = true, eventName = "filter_apply" } = {}) {
   if (state.openId && listUrl) {
     const url = `${listUrl.split("?")[0]}${filtersToSearch()}`;
     if (url === listUrl) return;
     listUrl = url;
-    pageLocation = new URL(url, location.origin).href;
   } else {
     const url = nextUrl();
     if (url === currentUrl()) return;
     history[replace ? "replaceState" : "pushState"](null, "", url);
-    pageLocation = location.href;
   }
-  if (measure && typeof window.gtag === "function") {
-    window.gtag("event", "page_view", {
-      page_title: document.title,
-      page_location: pageLocation,
-    });
+  if (measure) {
+    window.clearTimeout(analyticsFilterTimer);
+    analyticsFilterTimer = window.setTimeout(() => window.dvjAnalytics?.event(eventName, {
+      catalog: IS_DJA ? "dja" : "sigma", has_search: Boolean(state.query),
+      result_count: state.filtered.length, page: state.page, language: state.locale,
+    }), eventName === "filter_apply" ? 600 : 0);
   }
 }
 
@@ -617,6 +617,8 @@ async function openDrawer(id, trigger = null, { mode = "replace" } = {}) {
   if (mode === "push" && !wasOpen) history.pushState({ drawer: id }, "", entryPath(id));
   else if (mode === "replace") history.replaceState(null, "", entryPath(id));
   els.drawerClose.focus();
+  document.title = `${displayTitle(entry)} | ${IS_DJA ? "Data Journalism Awards" : "Sigma Awards"} ${entry.year}`;
+  window.dvjAnalytics?.pageView(location.href, document.title);
   try {
     const details = await loadDetails(entry.year);
     if (state.openId === id) renderDrawer(entry, details[id] || {});
@@ -653,6 +655,8 @@ function closeDrawer({ restoreUrl = true } = {}) {
   drawerPushed = false;
   if (restoreUrl && listUrl) history.replaceState(null, "", listUrl);
   listUrl = "";
+  document.title = CATALOG_TITLE;
+  window.dvjAnalytics?.pageView(location.href, document.title);
 }
 
 // A drawer opened by a click owns a pushed history entry; closing walks back so Back/Forward stay symmetric.
@@ -738,7 +742,7 @@ function bind() {
     if (!button) return;
     state.locale = button.dataset.locale;
     renderCategories();
-    writeUrl();
+    writeUrl({eventName: "language_change"});
     renderLocaleChips();
     renderCategories();
     renderCountries();
@@ -785,7 +789,7 @@ function bind() {
     if (!page || page < 1 || page > maxPage) return;
     state.page = page;
     renderCards();
-    writeUrl({ replace: false });
+    writeUrl({ replace: false, eventName: "pagination_change" });
     els.count.scrollIntoView({ block: "start" });
   });
   els.drawerClose.addEventListener("click", requestCloseDrawer);
